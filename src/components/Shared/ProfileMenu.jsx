@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import { useState } from "react";
 
 const ProfileMenu = () => {
+  const { user, logOut } = useContext(AUTH_CONTEXT);
+
   return (
     <div
-      className="absolute right-0 bg-white w-[200px] text-base z-50 list-none divide-y divide-gray-100 rounded my-4"
+      className="absolute md:right-3 right-1 md:top-6 top-12 border bg-white w-[200px] text-base z-50 list-none divide-y divide-gray-100 rounded shadow-boxShadow my-4"
       id="dropdown"
     >
       <div className="px-4 py-3">
-        <span className="block text-sm">Bonnie Green</span>
+        <span className="block text-md">{user?.displayName}</span>
         <span className="block text-sm font-medium text-gray-900 truncate">
-          name@flowbite.com
+          {user?.email}
         </span>
       </div>
       <ul className="py-1" aria-labelledby="dropdown">
@@ -37,13 +41,8 @@ const ProfileMenu = () => {
             Earnings
           </a>
         </li>
-        <li>
-          <a
-            href="#"
-            className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-          >
-            Sign out
-          </a>
+        <li onClick={logOut} className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2">
+          Sign out
         </li>
       </ul>
     </div>
