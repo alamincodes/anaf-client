@@ -15,6 +15,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userFullInfo, setUserFullInfo] = useState({});
 
   // create user with email password
   const createUser = (email, password) => {
@@ -49,12 +50,23 @@ const AuthProvider = ({ children }) => {
 
   // user full data
 
+  useEffect(() => {
+    // setIsLoading(true);
+    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setUserFullInfo(data);
+        // setIsLoading(false);
+      });
+  }, [user]);
   const authInfo = {
     createUser,
     loginUser,
     updateName,
+    userFullInfo,
     user,
-    logOut
+    logOut,
   };
   return (
     <AUTH_CONTEXT.Provider value={authInfo}>{children}</AUTH_CONTEXT.Provider>
