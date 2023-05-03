@@ -5,6 +5,9 @@ import Products from "../products/Products";
 import Login from "../auth/Login";
 import SignUp from "../auth/SignUp";
 import Cart from "../cart/Cart";
+import Checkout from "../cart/Checkout";
+import PrivateRoutes from "./PrivateRoutes";
+import ForgetPAssword from "../auth/ForgetPAssword";
 
 export const routes = createBrowserRouter([
   {
@@ -23,12 +26,24 @@ export const routes = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: "/checkout",
+        element: (
+          <PrivateRoutes>
+            <Checkout />
+          </PrivateRoutes>
+        ),
+      },
+      {
         path: "/login",
         element: <Login />,
       },
       {
         path: "/signUp",
         element: <SignUp />,
+      },
+      {
+        path: "/forgetPAssword",
+        element: <ForgetPAssword />,
       },
     ],
   },

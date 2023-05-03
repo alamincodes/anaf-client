@@ -2,7 +2,7 @@ export const districts = [
     {
       id: "1",
       division_id: "1",
-      name: "Comilla",
+      name: "Cumilla",
       bn_name: "কুমিল্লা",
       lat: "23.4682747",
       lon: "91.1788135",

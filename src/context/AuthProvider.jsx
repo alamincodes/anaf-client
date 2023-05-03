@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendPasswordResetEmail,
   updateProfile,
 } from "firebase/auth";
 
@@ -33,6 +34,10 @@ const AuthProvider = ({ children }) => {
       displayName: name,
     });
   };
+  // user forget password
+  const forgetPassword = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   // user name update
   const logOut = () => {
     return signOut(auth);
@@ -51,21 +56,23 @@ const AuthProvider = ({ children }) => {
   // user full data
 
   useEffect(() => {
-    // setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
         setUserFullInfo(data);
-        // setIsLoading(false);
+        setLoading(false);
       });
   }, [user]);
   const authInfo = {
     createUser,
     loginUser,
     updateName,
+    forgetPassword,
     userFullInfo,
     user,
+    loading,
+    setLoading,
     logOut,
   };
   return (

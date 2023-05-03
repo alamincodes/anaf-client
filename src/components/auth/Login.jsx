@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/logo/anaf.svg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
-import { BiErrorAlt } from "react-icons/bi";
 import { toast } from "react-hot-toast";
+import useTitle from "../../hooks/useTitle";
+import AnimatePage from "../Shared/AnimatePage";
 const Login = () => {
+  useTitle("Login");
   const { loginUser } = useContext(AUTH_CONTEXT);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState("");
@@ -14,7 +16,11 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
+
   const handleSignUp = (data) => {
     console.log(data);
     setIsLoading(true);
@@ -23,7 +29,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         setIsLoading(false);
-        navigate("/");
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => {
@@ -39,18 +45,20 @@ const Login = () => {
   };
 
   return (
-    <div>
+   <AnimatePage>
+     <div>
       <div className="md:container  md:mx-auto">
-        <div className="flex flex-col justify-center items-center mt-10">
-          <img src={logo} className="w-28" alt="" />
-          <h2 className="text-3xl font-bold font-secondary">Login</h2>
-        </div>
         {/* form */}
         <div className="flex justify-center items-center mt-10">
           <form
             onSubmit={handleSubmit(handleSignUp)}
             className="p-10 w-96 bg-white"
           >
+            <div className="flex flex-col justify-center items-center ">
+              <img src={logo} className="md:w-28 w-20" alt="" />
+              
+              <h2 className="md:text-3xl font-2xl font-normal mt-4 font-secondary">Login</h2>
+            </div>
             {/* email */}
             <div className="">
               <label>
@@ -90,8 +98,10 @@ const Login = () => {
                   {errors?.password?.message}
                 </p>
               )}
+              {/* forget password  */}
+              <Link to="/forgetPassword"><p className="text-right font-normal hover:underline">Forget password?</p></Link>
             </div>
-            {/* error message */}
+            {/* firebase error message */}
             {errorMessage && (
               <p className="text-red-500 mt-5 font-medium">{errorMessage}</p>
             )}
@@ -137,6 +147,7 @@ const Login = () => {
         </div>
       </div>
     </div>
+   </AnimatePage>
   );
 };
 
