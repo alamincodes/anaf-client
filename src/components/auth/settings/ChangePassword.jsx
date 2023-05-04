@@ -59,7 +59,7 @@ const ChangePassword = () => {
         userUpdatePassword(password)
           .then(() => {
             console.log("Success change");
-            toast.error("Password change successfully", {
+            toast.success("Password change successfully", {
               style: {
                 border: "1px solid black",
                 padding: "16px",
@@ -76,7 +76,6 @@ const ChangePassword = () => {
           .then((error) => {
             console.error(error);
           });
-        setOpenModal(true);
       })
       .catch((error) => {
         console.error(error);

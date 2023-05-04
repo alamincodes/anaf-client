@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { AUTH_CONTEXT } from "../../../context/AuthProvider";
 import AnimatePage from "../../Shared/AnimatePage";
@@ -7,6 +7,7 @@ import { toast } from "react-hot-toast";
 const General = () => {
   useTitle("General");
   const { user, updateName } = useContext(AUTH_CONTEXT);
+  const [isLoading, setIsLoading] = useState(false);
   const handleUserUpdateName = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -26,9 +27,11 @@ const General = () => {
       return;
     }
     console.log(name);
+    setIsLoading(true);
     updateName(name)
       .then(() => {
-        toast.error("Name change successfully", {
+        setIsLoading(false);
+        toast.success("Name change successfully", {
           style: {
             border: "1px solid black",
             padding: "16px",
@@ -44,6 +47,7 @@ const General = () => {
       })
       .catch((error) => {
         console.error(error);
+        setIsLoading(false);
       });
   };
 
@@ -68,9 +72,10 @@ const General = () => {
               {/* <p className="text-red-500 font-normal">{errorText}</p> */}
               <button
                 type="submit"
+                disabled={isLoading}
                 className="w-full py-3 font-medium text-white bg-black border-indigo-500 inline-flex space-x-2 items-center justify-center"
               >
-                <span>Update name</span>
+                {isLoading ? "Loading..." : "Update name "}
               </button>
             </div>
           </form>

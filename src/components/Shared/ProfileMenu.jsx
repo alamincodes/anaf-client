@@ -31,7 +31,7 @@ const ProfileMenu = () => {
 
         <li
           onClick={handleLogOut}
-          className="text-sm font-bold hover:bg-gray-100 text-red-700 border-t-2 block px-4 py-2"
+          className="text-sm font-bold hover:bg-gray-100 text-red-700 border-t block px-4 py-2"
         >
           Sign out
         </li>

@@ -143,7 +143,24 @@ const Checkout = () => {
                       className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
                     />
                   </div>
-                  <div className="w-full">
+                    {/* division */}
+                    <div className="w-full">
+                    <label className="text-xs font-medium text-gray-700">
+                      Division
+                    </label>
+                    <input
+                      type="text"
+                      name="division"
+                      defaultValue={userFullInfo.division}
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                    />
+                  </div>
+                 
+                </div>
+                
+                <div className="flex md:flex-row flex-col gap-5">
+                  {/* district */}
+                <div className="w-full">
                     <label className=" text-xs font-medium text-gray-700">
                       District
                     </label>
@@ -155,22 +172,9 @@ const Checkout = () => {
                       className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
                     />
                   </div>
-                </div>
-                <div className="flex md:flex-row flex-col gap-5">
-                  <div className="w-full">
-                    <label className="text-xs font-medium text-gray-700">
-                      Division
-                    </label>
-                    <input
-                      type="text"
-                      name="division"
-                      defaultValue={userFullInfo.division}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
-                    />
-                  </div>
                   <div className="w-full">
                     <label className=" text-xs font-medium text-gray-700">
-                      Division
+                      Address 
                     </label>
                     <textarea
                       type="text"
