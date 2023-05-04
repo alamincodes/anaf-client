@@ -8,6 +8,8 @@ import {
   signOut,
   sendPasswordResetEmail,
   updateProfile,
+  updatePassword,
+  deleteUser,
 } from "firebase/auth";
 
 export const AUTH_CONTEXT = createContext();
@@ -38,6 +40,14 @@ const AuthProvider = ({ children }) => {
   const forgetPassword = (email) => {
     return sendPasswordResetEmail(auth, email);
   };
+  // user forget password
+  const userUpdatePassword = (newPassword) => {
+    return updatePassword(auth.currentUser, newPassword);
+  };
+  // user forget password
+  const deleteUserAccount = () => {
+    return deleteUser(auth.currentUser);
+  };
   // user name update
   const logOut = () => {
     return signOut(auth);
@@ -59,7 +69,7 @@ const AuthProvider = ({ children }) => {
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUserFullInfo(data);
         setLoading(false);
       });
@@ -69,8 +79,10 @@ const AuthProvider = ({ children }) => {
     loginUser,
     updateName,
     forgetPassword,
+    userUpdatePassword,
     userFullInfo,
     user,
+    deleteUserAccount,
     loading,
     setLoading,
     logOut,

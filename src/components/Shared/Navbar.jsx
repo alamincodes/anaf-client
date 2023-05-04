@@ -26,7 +26,7 @@ const Navbar = () => {
               </Link>
             </div>
             {/* home */}
-            <ul className="md:flex hidden items-center space-x-8 font-semibold">
+            <ul className="md:flex hidden items-center space-x-5 font-semibold">
               <NavLink
                 to="/"
                 className={({ isActive }) =>

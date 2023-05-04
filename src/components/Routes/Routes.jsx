@@ -8,6 +8,10 @@ import Cart from "../cart/Cart";
 import Checkout from "../cart/Checkout";
 import PrivateRoutes from "./PrivateRoutes";
 import ForgetPAssword from "../auth/ForgetPAssword";
+import Settings from "../auth/settings/Settings";
+import General from "../auth/settings/General";
+import ChangePassword from "../auth/settings/ChangePassword";
+import DangerZone from "../auth/settings/DangerZone";
 
 export const routes = createBrowserRouter([
   {
@@ -44,6 +48,28 @@ export const routes = createBrowserRouter([
       {
         path: "/forgetPAssword",
         element: <ForgetPAssword />,
+      },
+      {
+        path: "/settings",
+        element: (
+          <PrivateRoutes>
+            <Settings />
+          </PrivateRoutes>
+        ),
+        children: [
+          {
+            path: "/settings/general",
+            element: <General />,
+          },
+          {
+            path: "/settings/changePassword",
+            element: <ChangePassword />,
+          },
+          {
+            path: "/settings/dangerZone",
+            element: <DangerZone />,
+          },
+        ],
       },
     ],
   },

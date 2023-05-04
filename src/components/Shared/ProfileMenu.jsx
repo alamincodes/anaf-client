@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
+import { Link } from "react-router-dom";
 
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -21,30 +22,13 @@ const ProfileMenu = () => {
         </span>
       </div>
       <ul className="py-1" aria-labelledby="dropdown">
-        {/* <li>
-          <a
-            href="#"
-            className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-          >
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-          >
-            Settings
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-          >
-            Earnings
-          </a>
-        </li> */}
+        <Link
+          to="/settings/general"
+          className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+        >
+          <li>Settings</li>
+        </Link>
+
         <li
           onClick={handleLogOut}
           className="text-sm font-bold hover:bg-gray-100 text-red-700 border-t-2 block px-4 py-2"

@@ -9,7 +9,7 @@ const Checkout = () => {
   const { user } = useContext(AUTH_CONTEXT);
   const { items, cartTotal } = useCart();
   const [paymentMode, setPaymentMode] = useState("Cash");
-  const [userFullInfo, setUserFullInfo] = useState("Cash");
+  const [userFullInfo, setUserFullInfo] = useState({});
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -112,7 +112,7 @@ const Checkout = () => {
                     <input
                       type="text"
                       name="name"
-                      defaultValue={userFullInfo.name}
+                      defaultValue={user?.displayName}
                       className="mt-1 w-full  rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
                     />
                   </div>
@@ -125,7 +125,7 @@ const Checkout = () => {
                       type="text"
                       disabled
                       name="email"
-                      defaultValue={userFullInfo.email}
+                      defaultValue={user?.email}
                       className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
                     />
                   </div>
