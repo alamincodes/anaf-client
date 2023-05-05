@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import useTitle from "../../../hooks/useTitle";
 import { AUTH_CONTEXT } from "../../../context/AuthProvider";
 import { toast } from "react-hot-toast";
-import SuccessModal from "../../Shared/SuccessModal";
 import AnimatePage from "../../Shared/AnimatePage";
 
 const ChangePassword = () => {
@@ -24,6 +23,22 @@ const ChangePassword = () => {
     ) {
       setErrorMessage("Please provide password.");
       toast.error("Please provide password.", {
+        style: {
+          border: "1px solid black",
+          padding: "16px",
+          color: "red",
+          fontWeight: "500",
+        },
+        iconTheme: {
+          primary: "red",
+          secondary: "white",
+        },
+      });
+      return;
+    }
+    if (password.length < 6 || confirmPassword.length < 6) {
+      setErrorMessage("Password should be at least 6 characters ");
+      toast.error("Password should be at least 6 characters ", {
         style: {
           border: "1px solid black",
           padding: "16px",
@@ -103,25 +118,25 @@ const ChangePassword = () => {
           <h1 className="md:text-4xl text-3xl font-medium">Change password</h1>
           <form className="my-10" onSubmit={handleChangePassword}>
             <div className="flex flex-col space-y-5">
-              <label htmlFor="email">
+              <label htmlFor="password">
                 <p className="font-medium text-slate-700 pb-2">Old password</p>
                 <input
                   name="oldPassword"
                   type="password"
                   className="w-full py-3 font-normal border border-slate-200 rounded-sm px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                  placeholder="Enter email address"
+                  placeholder="Enter your old password"
                 />
               </label>
-              <label htmlFor="email">
+              <label htmlFor="password">
                 <p className="font-medium text-slate-700 pb-2">New password</p>
                 <input
                   name="password"
                   type="password"
                   className="w-full py-3 font-normal border border-slate-200 rounded-sm px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                  placeholder="Enter email address"
+                  placeholder="Enter your new password"
                 />
               </label>
-              <label htmlFor="email">
+              <label htmlFor="password">
                 <p className="font-medium text-slate-700 pb-2">
                   Confirm password
                 </p>
@@ -129,7 +144,7 @@ const ChangePassword = () => {
                   name="confirmPassword"
                   type="password"
                   className="w-full py-3 font-normal border border-slate-200 rounded-sm px-3 focus:outline-none focus:border-slate-500 hover:shadow"
-                  placeholder="Enter email address"
+                  placeholder="Confirm password"
                 />
               </label>
               {errorMessage && (

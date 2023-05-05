@@ -4,7 +4,7 @@ import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 
 const Banner = () => {
   return (
-    <section>
+    <section className="bg-[#F0F0F0]">
       <div className="lg:container lg:mx-auto ">
         <div className="relative select-none">
           <img src={bannerImg} alt="" />

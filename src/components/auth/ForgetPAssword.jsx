@@ -42,7 +42,7 @@ const ForgetPAssword = () => {
         }
         setIsLoading(false);
       });
-    console.log(email);
+    // console.log(email);
   };
   if (isLoading) {
     return <LoadingSpinner />;

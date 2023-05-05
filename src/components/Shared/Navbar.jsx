@@ -52,7 +52,7 @@ const Navbar = () => {
                       {totalUniqueItems}
                     </span>
                   )}
-                  <HiOutlineShoppingBag size={30} />
+                  <HiOutlineShoppingBag size={30} className="mb-1" />
                 </li>
               </Link>
               {!user?.email && (

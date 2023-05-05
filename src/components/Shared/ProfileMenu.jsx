@@ -28,6 +28,12 @@ const ProfileMenu = () => {
         >
           <li>Settings</li>
         </Link>
+        <Link
+          to="/settings/general"
+          className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+        >
+          <li>Dashboard</li>
+        </Link>
 
         <li
           onClick={handleLogOut}

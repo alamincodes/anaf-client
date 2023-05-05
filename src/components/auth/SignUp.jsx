@@ -9,10 +9,12 @@ import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import { toast } from "react-hot-toast";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const SignUp = () => {
   const { createUser, updateName } = useContext(AUTH_CONTEXT);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // useForm
   const {
@@ -74,7 +76,7 @@ const SignUp = () => {
         console.error(error);
         const errMessage = error.message;
         if (errMessage.includes("email-already-in-use")) {
-          setErrorMessage("Email already used");
+          setErrorMessage("Email already used, try another email.");
         }
         setIsLoading(false);
       });
@@ -140,18 +142,38 @@ const SignUp = () => {
                     <label>
                       <span className="font-[400] text-black">Password</span>
                     </label>
-                    <input
-                      type="password"
-                      {...register("password", {
-                        required: "Password is required",
-                        minLength: {
-                          value: 6,
-                          message: "Password must be 6 character",
-                        },
-                      })}
-                      placeholder="Enter your password"
-                      className="border rounded-sm outline-none font-normal p-2 w-full"
-                    />
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text": "password"}
+                        {...register("password", {
+                          required: "Password is required",
+                          minLength: {
+                            value: 6,
+                            message: "Password must be 6 character",
+                          },
+                        })}
+                        placeholder="Enter your password"
+                        className="border rounded-sm outline-none font-normal p-2 w-full"
+                      />
+                      {showPassword ? (
+                        <span
+                          onClick={() => setShowPassword(!showPassword)}
+                          className=" absolute right-3 mt-[10px]"
+                        >
+                          <AiOutlineEyeInvisible
+                            size={25}
+                            className="cursor-pointer"
+                          />
+                        </span>
+                      ) : (
+                        <span
+                          onClick={() => setShowPassword(!showPassword)}
+                          className=" absolute right-3 mt-[10px] cursor-pointer"
+                        >
+                          <AiOutlineEye size={25} />
+                        </span>
+                      )}
+                    </div>
                     {errors?.password && (
                       <p className="text-red-600 font-semibold">
                         {errors?.password?.message}
@@ -242,7 +264,7 @@ const SignUp = () => {
               </div>
               {/* error message */}
               {errorMessage && (
-                <p className="text-red-500 mt-1 font-medium">{errorMessage}</p>
+                <p className="text-red-500 mt-1 font-normal">{errorMessage}</p>
               )}
               {/* submit button */}
               <button

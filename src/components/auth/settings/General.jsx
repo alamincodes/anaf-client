@@ -16,11 +16,11 @@ const General = () => {
         style: {
           border: "1px solid black",
           padding: "16px",
-          color: "green",
+          color: "red",
           fontWeight: "500",
         },
         iconTheme: {
-          primary: "green",
+          primary: "red",
           secondary: "white",
         },
       });
