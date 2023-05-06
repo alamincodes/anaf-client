@@ -3,13 +3,19 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
+import BkashAndNagad from './BkashAndNagad';
 import { HiOutlineCheck } from "react-icons/hi";
+import bkash from "../../assets/icons/bkash.svg";
+import nagad from "../../assets/icons/nagad.svg";
+import { TbTruckDelivery } from "react-icons/tb";
+
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
   const { items, cartTotal } = useCart();
-  const [paymentMode, setPaymentMode] = useState("Cash");
+  const [paymentMode, setPaymentMode] = useState("Cash on delivery");
   const [userFullInfo, setUserFullInfo] = useState({});
+  const [copied, setCopied] = useState(false);
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -41,7 +47,6 @@ const Checkout = () => {
       .then((data) => {
         // console.log(data);
         setUserFullInfo(data);
-        
       });
   }, [user]);
   return (
@@ -75,9 +80,7 @@ const Checkout = () => {
                         />
 
                         <div>
-                          <h3 className="text-sm font-normal text-gray-900">
-                            {item.name}
-                          </h3>
+                          <h3 className="text-sm text-gray-900">{item.name}</h3>
 
                           <dl className="mt-0.5 space-y-px text-[13px] text-gray-600">
                             <div className="font-normal">
@@ -113,7 +116,7 @@ const Checkout = () => {
                       type="text"
                       name="name"
                       defaultValue={user?.displayName}
-                      className="mt-1 w-full  rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full  rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
                   <div className="w-full">
@@ -126,7 +129,7 @@ const Checkout = () => {
                       disabled
                       name="email"
                       defaultValue={user?.email}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
                 </div>
@@ -140,11 +143,11 @@ const Checkout = () => {
                       type="text"
                       name="phone"
                       defaultValue={userFullInfo.phone}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
-                    {/* division */}
-                    <div className="w-full">
+                  {/* division */}
+                  <div className="w-full">
                     <label className="text-xs font-medium text-gray-700">
                       Division
                     </label>
@@ -152,15 +155,14 @@ const Checkout = () => {
                       type="text"
                       name="division"
                       defaultValue={userFullInfo.division}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
-                 
                 </div>
-                
+
                 <div className="flex md:flex-row flex-col gap-5">
                   {/* district */}
-                <div className="w-full">
+                  <div className="w-full">
                     <label className=" text-xs font-medium text-gray-700">
                       District
                     </label>
@@ -169,19 +171,19 @@ const Checkout = () => {
                       type="text"
                       name="district"
                       defaultValue={userFullInfo.district}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
                   <div className="w-full">
                     <label className=" text-xs font-medium text-gray-700">
-                      Address 
+                      Address
                     </label>
                     <textarea
                       type="text"
                       name="address"
                       defaultValue={userFullInfo.address}
                       rows={1}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm font-normal p-2 border outline-none"
+                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
                   </div>
                 </div>
@@ -209,34 +211,45 @@ const Checkout = () => {
                       <div className="flex items-center gap-2">
                         <HiOutlineCheck className="hidden bg-black text-white ro" />
 
-                        <p className="text-gray-700">Cash on delivery</p>
+                        <p className="text-gray-700 flex items-center">
+                          Cash on delivery{" "}
+                          <TbTruckDelivery className="w-7 h-9 ml-1" />{" "}
+                        </p>
                       </div>
                     </label>
                   </div>
-                  {/* Bkash */}
+                  {/* Online payment */}
                   <div className="w-full">
                     <input
                       type="radio"
                       name="selectPayment"
-                      value="bkash"
+                      value="Online Payment"
                       onChange={(e) => setPaymentMode(e.target.value)}
-                      id="bkash"
+                      id="onlinePayment"
                       className="peer hidden [&:checked_+_label_svg]:block"
                     />
 
                     <label
-                      htmlFor="bkash"
-                      className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-black peer-checked:ring-1 peer-checked:ring-black"
+                      htmlFor="onlinePayment"
+                      className="flex cursor-pointer items-center rounded-lg border border-gray-100 bg-white p-4 text-sm font-medium shadow-sm hover:border-gray-200 peer-checked:border-black peer-checked:ring-1 peer-checked:ring-black"
                     >
                       <div className="flex items-center gap-2">
                         <HiOutlineCheck className="hidden bg-black text-white ro" />
 
-                        <p className="text-gray-900">Bkash</p>
+                        <p className="text-gray-900">Online Payment</p>
+
+                        <div className="flex items-center">
+                          <img src={bkash} className="w-7 h-9" alt="" />
+                          <img src={nagad} className="w-6" alt="" />
+                        </div>
                       </div>
                     </label>
                   </div>
                 </div>
-
+                {/* ---------- */}
+                {paymentMode === "Online Payment" && (
+                <BkashAndNagad/>
+                )}
                 <div className="col-span-6">
                   <button
                     type="submit"

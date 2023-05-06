@@ -96,9 +96,12 @@ const SignUp = () => {
               className="p-10 bg-white"
             >
               {/* logo */}
-              <div className="flex flex-col justify-center items-center">
-                <img src={logo} className="w-28" alt="" />
-                <h2 className="text-3xl font-normal">Create your account</h2>
+              <div className="flex flex-col justify-center items-center ">
+                <img src={logo} className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]" alt="" />
+
+                <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
+                  Sign up
+                </h2>
               </div>
               <div className="flex md:flex-row flex-col md:gap-4 mt-10">
                 {/*  --------part 1-------- */}

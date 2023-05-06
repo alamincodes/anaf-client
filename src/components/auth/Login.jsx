@@ -56,9 +56,9 @@ const Login = () => {
               className="p-10 w-96 bg-white"
             >
               <div className="flex flex-col justify-center items-center ">
-                <img src={logo} className="md:w-28 w-20" alt="" />
+                <img src={logo} className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]" alt="" />
 
-                <h2 className="md:text-3xl font-2xl font-normal mt-4 font-secondary">
+                <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
                   Login
                 </h2>
               </div>
@@ -123,7 +123,7 @@ const Login = () => {
                 )}
                 {/* forget password  */}
                 <Link to="/forgetPassword">
-                  <p className="text-right font-normal hover:underline">
+                  <p className="text-right font-normal hover:underline select-none">
                     Forget password?
                   </p>
                 </Link>
@@ -136,7 +136,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-black text-white w-full mt-5 p-2 font-semibold"
+                className="bg-black text-white w-full mt-5 p-2 font-semibold select-none"
               >
                 {isLoading ? (
                   <>
@@ -163,7 +163,7 @@ const Login = () => {
                 )}
               </button>
 
-              <p className="font-normal mt-4">
+              <p className="font-normal mt-4 select-none">
                 New to ANAF?
                 <Link to="/signUp" className="ml-1 text-violet-500">
                   <span>Create new account</span>

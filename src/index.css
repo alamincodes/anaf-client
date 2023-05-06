@@ -6,7 +6,7 @@
 
 @layer base {
   body {
-    @apply font-primary bg-gray-50 relative leading-relaxed font-extralight;
+    @apply font-primary bg-gray-50 relative  leading-relaxed;
   }
   h1,
   h2,
