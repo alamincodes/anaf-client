@@ -249,6 +249,7 @@ const Checkout = () => {
                       name="selectPayment"
                       value="Online Payment"
                       id="onlinePayment"
+                      onChange={(e) => setPaymentMode(e.target.value)}
                       className="peer hidden [&:checked_+_label_svg]:block"
                     />
 

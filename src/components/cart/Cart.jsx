@@ -47,7 +47,7 @@ const Cart = () => {
         ) : (
           <div>
             <div className="mx-auto con mt-3 ">
-              <div className="mx-auto md:container px-2">
+              <div className="mx-auto container">
                 <header className="text-center">
                   <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
                     Your Cart
