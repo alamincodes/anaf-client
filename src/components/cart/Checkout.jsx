@@ -3,7 +3,7 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
-import BkashAndNagad from './BkashAndNagad';
+import BkashAndNagad from "./BkashAndNagad";
 import { HiOutlineCheck } from "react-icons/hi";
 import bkash from "../../assets/icons/bkash.svg";
 import nagad from "../../assets/icons/nagad.svg";
@@ -15,7 +15,19 @@ const Checkout = () => {
   const { items, cartTotal } = useCart();
   const [paymentMode, setPaymentMode] = useState("Cash on delivery");
   const [userFullInfo, setUserFullInfo] = useState({});
-  const [copied, setCopied] = useState(false);
+
+  const handleDelivery = (value) => {
+    if (
+      value === "Cumilla" ||
+      value === "cumilla" ||
+      value === "comilla" ||
+      value === "Comilla"
+    ) {
+      setDeliveryFee(60);
+    } else {
+      setDeliveryFee(130);
+    }
+  };
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -23,20 +35,23 @@ const Checkout = () => {
     const name = form.name.value;
     const email = form.email.value;
     const phone = form.phone.value;
-    const district = form.district.value;
+    const districtName = form.district.value;
     const division = form.division.value;
     const address = form.address.value;
     const selectPayment = paymentMode;
+
     console.log(paymentMode);
     const orderInfo = {
       name,
       email,
       phone,
-      district,
+      districtName,
       division,
       address,
       selectPayment,
       items,
+      totalPrice: cartTotal,
+      deliveryFee :130
     };
     console.log(orderInfo);
   };
@@ -48,7 +63,7 @@ const Checkout = () => {
         // console.log(data);
         setUserFullInfo(data);
       });
-  }, [user]);
+  }, [user, userFullInfo]);
   return (
     <AnimatePage>
       <section className="container mx-auto">
@@ -56,6 +71,14 @@ const Checkout = () => {
           <div className="bg-gray-50 py-12 md:py-24 col-span-3">
             <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
               <div>
+                <p className="text-sm font-medium tracking-tight text-gray-900">
+                  Subtotal Tk. {cartTotal}
+                </p>
+
+                <p className="text-sm font-medium tracking-tight text-gray-900">
+                  Shipping fee Tk. 130
+                </p>
+
                 <p className="text-2xl font-medium tracking-tight text-gray-900">
                   Total Tk. {cartTotal + 130}
                 </p>
@@ -170,6 +193,7 @@ const Checkout = () => {
                     <input
                       type="text"
                       name="district"
+                      onChange={(e) => handleDelivery(e.target.value)}
                       defaultValue={userFullInfo.district}
                       className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                     />
@@ -224,7 +248,6 @@ const Checkout = () => {
                       type="radio"
                       name="selectPayment"
                       value="Online Payment"
-                      onChange={(e) => setPaymentMode(e.target.value)}
                       id="onlinePayment"
                       className="peer hidden [&:checked_+_label_svg]:block"
                     />
@@ -247,10 +270,8 @@ const Checkout = () => {
                   </div>
                 </div>
                 {/* ---------- */}
-                {paymentMode === "Online Payment" && (
-                <BkashAndNagad/>
-                )}
-                <div className="col-span-6">
+                {paymentMode === "Online Payment" && <BkashAndNagad />}
+                <div className="mt-10">
                   <button
                     type="submit"
                     className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"

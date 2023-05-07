@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useCart } from "react-use-cart";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
-import { HiX, HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 const Cart = () => {
@@ -45,124 +45,120 @@ const Cart = () => {
             </h2>
           </div>
         ) : (
-          <div className="mx-auto px-4 sm:px-6 lg:px-8">
-            {/* <div className="flex items-center justify-center">
-          <h1 className="text-2xl font-semibold text-gray-900">Your Cart</h1>
-        </div> */}
+          <div>
+            <div className="mx-auto con mt-3 ">
+              <div className="mx-auto md:container px-2">
+                <header className="text-center">
+                  <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
+                    Your Cart
+                  </h1>
+                </header>
 
-            <div className="mx-auto mt-8 max-w-2xl md:mt-12">
-              <div className="bg-white shadow">
-                <div className="px-4 py-6 sm:px-8 sm:py-10">
-                  <div className="flow-root">
-                    <ul className="-my-8">
-                      {items.map((item) => (
-                        <li
-                          key={item.id}
-                          className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
-                        >
-                          <div className="shrink-0">
-                            <img
-                              className="h-24 w-24 max-w-full rounded-lg object-cover"
-                              src={item.img}
-                              alt=""
-                            />
-                          </div>
+                <div className="mt-8">
+                  <ul className="space-y-4">
+                    {items.map((item) => (
+                      <li
+                        key={item.id}
+                        className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
+                      >
+                        <div className="shrink-0">
+                          <img
+                            className="h-16 w-16 max-w-full rounded-lg object-cover"
+                            src={item.img}
+                            alt=""
+                          />
+                        </div>
 
-                          <div className="relative flex flex-1 flex-col justify-between">
-                            <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
-                              <div className="pr-8 sm:pr-5">
-                                <p className="text-base font-semibold text-gray-900">
-                                  {item.name}
-                                </p>
-                                <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">
-                                  36EU - 4US
-                                </p>
-                              </div>
+                        <div className="relative flex flex-1 flex-col justify-between">
+                          <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
+                            <div className="pr-8 sm:pr-5">
+                              <p className="text-base font-semibold text-gray-900">
+                                {item.name}
+                              </p>
+                              <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">
+                                36EU - 4US
+                              </p>
+                            </div>
 
-                              <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
-                                <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">
-                                  Tk {item.price}
-                                </p>
+                            <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
+                              <p className="shrink-0 w-20 text-base font-semibold text-gray-900 sm:order-2 sm:ml-8 sm:text-right">
+                                Tk {item.price}
+                              </p>
 
-                                <div className="sm:order-1">
-                                  <div className="mx-auto flex h-8 items-stretch text-gray-600">
-                                    <button
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          item.id,
-                                          item.quantity - 1
-                                        )
-                                      }
-                                      className="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
-                                    >
-                                      -
-                                    </button>
-                                    <div className="flex w-full items-center font-normal justify-center bg-gray-100 px-4 text-xs transition">
-                                      {item.quantity}
-                                    </div>
-                                    <button
-                                      onClick={() =>
-                                        updateItemQuantity(
-                                          item.id,
-                                          item.quantity + 1
-                                        )
-                                      }
-                                      className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
-                                    >
-                                      +
-                                    </button>
+                              <div className="sm:order-1">
+                                <div className="mx-auto flex h-8 items-stretch text-gray-600">
+                                  <button
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        item.id,
+                                        item.quantity - 1
+                                      )
+                                    }
+                                    className="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                  >
+                                    -
+                                  </button>
+                                  <div className="flex w-full items-center font-normal justify-center bg-gray-100 px-4 text-xs transition">
+                                    {item.quantity}
                                   </div>
+                                  <button
+                                    onClick={() =>
+                                      updateItemQuantity(
+                                        item.id,
+                                        item.quantity + 1
+                                      )
+                                    }
+                                    className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
+                                  >
+                                    +
+                                  </button>
                                 </div>
                               </div>
                             </div>
-
-                            <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
-                              <button
-                                type="button"
-                                onClick={() => removeItem(item.id)}
-                                className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-gray-900"
-                              >
-                                <HiX size={22} />
-                              </button>
-                            </div>
                           </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
-                  <div className="mt-6 border-t border-b py-2">
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-400">Subtotal</p>
-                      <p className="text-lg font-semibold text-gray-900">
-                        Tk. {cartTotal}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <p className="text-sm text-gray-400">Shipping</p>
-                      <p className="text-lg font-semibold text-gray-900">130</p>
-                    </div>
-                  </div>
-                  <div className="mt-6 flex items-center justify-between">
-                    <p className="text-sm font-medium text-gray-900">Total</p>
-                    <p className="text-2xl font-semibold text-gray-900">
-                      <span className="text-xs font-normal text-gray-400">
-                        USD
-                      </span>{" "}
-                      {cartTotal + 130}
-                    </p>
-                  </div>
+                          <div className="absolute top-0 right-0 flex sm:bottom-0 sm:top-auto">
+                            <button
+                              type="button"
+                              onClick={() => removeItem(item.id)}
+                              className="flex rounded p-2 text-center text-gray-500 transition-all duration-200 ease-in-out focus:shadow hover:text-red-500"
+                            >
+                              <HiOutlineTrash size={22} />
+                            </button>
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
 
-                  <div className="mt-6 text-center">
-                    <Link to="/checkout">
-                      <button
-                        type="button"
-                        className="group inline-flex w-full items-center justify-center rounded-md bg-gray-900 px-6 py-4 text-lg font-semibold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
-                      >
-                        Checkout
-                        <HiOutlineArrowNarrowRight className="text-2xl group-hover:translate-x-2 transition-all ml-2" />
-                      </button>
-                    </Link>
+                  <div className="mt-8 flex justify-end border-t border-gray-300 pt-8">
+                    <div className="w-screen max-w-lg space-y-4">
+                      <dl className="space-y-0.5 text-md text-gray-700">
+                        <div className="flex justify-between">
+                          <dt>Subtotal</dt>
+                          <dd>Tk. {cartTotal}</dd>
+                        </div>
+
+                        <div className="flex justify-between">
+                          <dt>Discount</dt>
+                          <dd>Tk. 0</dd>
+                        </div>
+
+                        <div className="flex justify-between !text-base font-medium">
+                          <dt>Total</dt>
+                          <dd>Tk. {cartTotal}</dd>
+                        </div>
+                      </dl>
+
+                      <div className="flex justify-end">
+                        <Link
+                          to="/checkout"
+                          className="block rounded bg-black px-5 py-3 text-sm text-white "
+                        >
+                          Checkout
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
