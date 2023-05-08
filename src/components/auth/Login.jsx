@@ -6,6 +6,7 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { MdOutlineAlternateEmail } from "react-icons/md";
 const Login = () => {
   useTitle("Login");
   const { loginUser } = useContext(AUTH_CONTEXT);
@@ -56,7 +57,11 @@ const Login = () => {
               className="p-10 w-96 bg-white"
             >
               <div className="flex flex-col justify-center items-center ">
-                <img src={logo} className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]" alt="" />
+                <img
+                  src={logo}
+                  className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]"
+                  alt=""
+                />
 
                 <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
                   Login
@@ -67,12 +72,21 @@ const Login = () => {
                 <label>
                   <span className="font-[400] text-black">Your email</span>
                 </label>
-                <input
-                  type="email"
-                  {...register("email", { required: true })}
-                  placeholder="Enter your email"
-                  className="border rounded-sm outline-none font-normal p-2 w-full"
-                />
+                <div className="relative">
+                  <input
+                    type="email"
+                    {...register("email", { required: true })}
+                    placeholder="Enter your email"
+                    className="border rounded-sm outline-none font-normal p-2 w-full"
+                  />
+                  <span className=" absolute right-3 mt-[10px]">
+                    <MdOutlineAlternateEmail
+                      size={22}
+                      className="cursor-pointer"
+                    />
+                  </span>
+                </div>
+
                 {errors.email?.type === "required" && (
                   <p className="text-red-600 font-semibold">
                     Please provide email*

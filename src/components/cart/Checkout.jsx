@@ -15,6 +15,10 @@ const Checkout = () => {
   const { items, cartTotal } = useCart();
   const [paymentMode, setPaymentMode] = useState("Cash on delivery");
   const [userFullInfo, setUserFullInfo] = useState({});
+  const [discountTotal, setDiscountTotal] = useState(cartTotal);
+  const [discountError, setDiscountError] = useState("");
+  const [payWith, setPayWith] = useState("bkash");
+  const [transactionId, setTransactionId] = useState("");
 
   const handleDelivery = (value) => {
     if (
@@ -29,6 +33,29 @@ const Checkout = () => {
     }
   };
 
+  const handleDiscount = (e) => {
+    e.preventDefault();
+    const discountValue = e.target.discount.value;
+    const code = import.meta.env.VITE_DISCOUNT_CODE;
+    console.log(code);
+    setDiscountError("");
+
+    if (discountValue !== code) {
+      setDiscountError("discount code you have provided is not valid.");
+    }
+    if (cartTotal < 600) {
+      setDiscountError(
+        "discount code is valid for purchases with a minimum value of 600 TK."
+      );
+      return;
+    }
+
+    if (discountValue === code && cartTotal >= 600) {
+      setDiscountTotal(cartTotal - 100);
+      setDiscountError("");
+    }
+  };
+
   const handleOrder = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -38,9 +65,12 @@ const Checkout = () => {
     const districtName = form.district.value;
     const division = form.division.value;
     const address = form.address.value;
-    const selectPayment = paymentMode;
+    const selectPaymentType = paymentMode;
+    const payWithC = payWith;
 
     console.log(paymentMode);
+    console.log(payWithC);
+    console.log(transactionId);
     const orderInfo = {
       name,
       email,
@@ -48,10 +78,14 @@ const Checkout = () => {
       districtName,
       division,
       address,
-      selectPayment,
+      selectPaymentType,
       items,
-      totalPrice: cartTotal,
-      deliveryFee :130
+      cartTotal,
+      discountTotal,
+      deliveryFee: 130,
+      total: discountTotal + 130,
+      payWith,
+      transactionId,
     };
     console.log(orderInfo);
   };
@@ -67,12 +101,12 @@ const Checkout = () => {
   return (
     <AnimatePage>
       <section className="container mx-auto">
-        <div className="grid lg:grid-cols-6 grid-cols-1">
-          <div className="bg-gray-50 py-12 md:py-24 col-span-3">
-            <div className="mx-auto max-w-lg space-y-8 px-4 lg:px-8">
+        <div className="flex justify-between md:flex-row flex-col">
+          <div className="bg-gray-50 py-12 md:py-18">
+            <div>
               <div>
                 <p className="text-sm font-medium tracking-tight text-gray-900">
-                  Subtotal Tk. {cartTotal}
+                  Subtotal Tk. {discountTotal}
                 </p>
 
                 <p className="text-sm font-medium tracking-tight text-gray-900">
@@ -80,9 +114,33 @@ const Checkout = () => {
                 </p>
 
                 <p className="text-2xl font-medium tracking-tight text-gray-900">
-                  Total Tk. {cartTotal + 130}
+                  Total Tk. {discountTotal + 130}
                 </p>
 
+                {/* --- discount form ---*/}
+                <div className="mb-5">
+                  <form onSubmit={handleDiscount} className=" ">
+                    <label className="text-sm font-medium text-gray-700">
+                      Discount coupon
+                    </label>
+                    <div className="relative md:w-[250px] w-[200px]">
+                      <input
+                        type="text"
+                        name="discount"
+                        className="mt-1 px-3 border-2 border-gray-500 w-full relative shadow-sm p-1 rounded outline-none"
+                      />
+                      <button
+                        type="submit"
+                        className="bg-black text-xs  rounded absolute top-[5px] right-0 text-white py-[10px] px-4"
+                      >
+                        Apply
+                      </button>
+                    </div>
+                    {discountError && (
+                      <p className="text-red-500">{discountError}</p>
+                    )}
+                  </form>
+                </div>
                 <p className="mt-1 text-sm text-gray-600">
                   For the purchase of
                 </p>
@@ -90,7 +148,7 @@ const Checkout = () => {
 
               <div>
                 <div className="flow-root">
-                  <ul className="-my-4 divide-y divide-gray-100">
+                  <ul className="-my-4 divide-y divide-gray-200">
                     {items.map((item) => (
                       <li
                         className="flex items-center gap-4 py-4"
@@ -235,7 +293,7 @@ const Checkout = () => {
                       <div className="flex items-center gap-2">
                         <HiOutlineCheck className="hidden bg-black text-white ro" />
 
-                        <p className="text-gray-700 flex items-center">
+                        <p className="text-black flex items-center">
                           Cash on delivery{" "}
                           <TbTruckDelivery className="w-7 h-9 ml-1" />{" "}
                         </p>
@@ -271,7 +329,13 @@ const Checkout = () => {
                   </div>
                 </div>
                 {/* ---------- */}
-                {paymentMode === "Online Payment" && <BkashAndNagad />}
+                {paymentMode === "Online Payment" && (
+                  <BkashAndNagad
+                    discountTotal={discountTotal}
+                    setPayWith={setPayWith}
+                    setTransactionId={setTransactionId}
+                  />
+                )}
                 <div className="mt-10">
                   <button
                     type="submit"
