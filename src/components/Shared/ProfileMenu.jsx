@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
+import { RiSettings5Line } from "react-icons/ri";
+import { BsBoxSeam } from "react-icons/bs";
 
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -26,13 +28,18 @@ const ProfileMenu = () => {
           to="/settings/general"
           className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
         >
-          <li>Settings</li>
+          <li className="flex items-center">
+            <RiSettings5Line size={18} className="mr-1" /> <span>Settings</span>
+          </li>
         </Link>
         <Link
-          to="/settings/general"
+          to="/orders"
           className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
         >
-          <li>Dashboard</li>
+          <li className="flex items-center">
+            {" "}
+            <BsBoxSeam className="mr-1" /> <span>Orders</span>
+          </li>
         </Link>
 
         <li

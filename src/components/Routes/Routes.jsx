@@ -12,6 +12,7 @@ import Settings from "../auth/settings/Settings";
 import General from "../auth/settings/General";
 import ChangePassword from "../auth/settings/ChangePassword";
 import DangerZone from "../auth/settings/DangerZone";
+import Orders from "../orders/Orders";
 
 export const routes = createBrowserRouter([
   {
@@ -34,6 +35,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Checkout />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/orders",
+        element: (
+          <PrivateRoutes>
+            <Orders />
           </PrivateRoutes>
         ),
       },

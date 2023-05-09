@@ -27,7 +27,7 @@ export default {
         transparent: "transparent",
       },
       boxShadow: {
-        primary: "0px 4px 40px rgba(0, 0, 0, 0.03)",
+        primary:  "0px 0px 15px -3px rgba(0,0,0,0.1)",
       },
       backgroundImage: {
         radialBgCircle: "url('/src/assets/img/radial-bg.svg')",

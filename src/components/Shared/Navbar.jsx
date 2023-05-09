@@ -9,7 +9,7 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 
 const Navbar = () => {
-  const { user, userFullInfo, loading } = useContext(AUTH_CONTEXT);
+  const { user } = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
   const [open, setOpen] = useState(false);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
@@ -88,13 +88,13 @@ const Navbar = () => {
             <div className="md:hidden flex items-center space-x-2">
               {/* cart */}
               <Link to="/cart">
-                <h2 className="cursor-pointer relative">
+                <h2 className="cursor-pointer relative mb-1">
                   {totalUniqueItems > 0 && (
-                    <span className=" absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
+                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
                       {totalUniqueItems}
                     </span>
                   )}
-                  <HiOutlineShoppingBag size={30} />
+                  <HiOutlineShoppingBag size={32} />
                 </h2>
               </Link>
               {/* ---mobile profile menu start---- */}
@@ -112,7 +112,7 @@ const Navbar = () => {
               {/* ---mobile profile menu end---- */}
               <HiOutlineMenu
                 onClick={() => setOpen(true)}
-                className=" mt-1"
+                className=""
                 size={30}
               />
             </div>

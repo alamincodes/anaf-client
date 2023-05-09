@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { useCart } from "react-use-cart";
-import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
@@ -16,21 +15,9 @@ const Cart = () => {
     cartTotal,
     removeItem,
   } = useCart();
-  const { userFullInfo } = useContext(AUTH_CONTEXT);
 
   //   console.log(items);
 
-  if (!userFullInfo.district === "Comilla") {
-    for (let item of items) {
-      //   console.log(item);
-      item.shipping = 130;
-    }
-  } else {
-    for (let item of items) {
-      //   console.log(item);
-      item.shipping = 60;
-    }
-  }
   return (
     <AnimatePage>
       <section>
