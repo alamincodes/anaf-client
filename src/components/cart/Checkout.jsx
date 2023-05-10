@@ -13,10 +13,11 @@ import { toast } from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { VscCopy } from "react-icons/vsc";
 import LoadingSpinner from "../Shared/LoadingSpinner";
+import OrderSuccessModal from "../orders/OrderSuccessModal";
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
-  const { items, cartTotal } = useCart();
+  const { items, cartTotal, emptyCart } = useCart();
   const [paymentMode, setPaymentMode] = useState("Cash on delivery");
   const [userFullInfo, setUserFullInfo] = useState({});
   const [discountTotal, setDiscountTotal] = useState(cartTotal);
@@ -27,6 +28,8 @@ const Checkout = () => {
   const [bkashCopied, setBkashCopied] = useState(false);
   const [nagadCopied, setNagadCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
+  const [orderId, setOrderId] = useState("");
 
   const handleDelivery = (value) => {
     if (
@@ -85,7 +88,9 @@ const Checkout = () => {
     const selectPaymentType = paymentMode;
 
     if (transactionId === "") {
-      setSetErrorMessage("Kindly make the payment and provide the transaction ID.");
+      setSetErrorMessage(
+        "Kindly make the payment and provide the transaction ID."
+      );
       return;
     }
 
@@ -113,7 +118,7 @@ const Checkout = () => {
 
     console.log(orderInfo);
     setIsLoading(true);
-    fetch("http://localhost:5000/orders", {
+    fetch("https://anaf-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -122,7 +127,13 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        emptyCart();
         setIsLoading(false);
+        setSuccessModal(true);
+
+        if (data.insertedId) {
+          setOrderId(data.insertedId);
+        }
         console.log(data);
       });
   };
@@ -140,392 +151,401 @@ const Checkout = () => {
   }
   return (
     <AnimatePage>
-      <section className="container mx-auto">
-        <div className="flex justify-between md:gap-3 md:flex-row flex-col">
-          <div className="bg-gray-50 py-12 md:py-18">
-            <div>
+      <>
+        <section className="container mx-auto">
+          <div className="flex justify-between md:gap-3 md:flex-row flex-col">
+            <div className="bg-gray-50 py-12 md:py-18">
               <div>
-                <p className="text-sm font-medium tracking-tight text-gray-900">
-                  Subtotal Tk. {discountTotal}
-                </p>
+                <div>
+                  <p className="text-sm font-medium tracking-tight text-gray-900">
+                    Subtotal Tk. {discountTotal}
+                  </p>
 
-                <p className="text-sm font-medium tracking-tight text-gray-900">
-                  Shipping fee Tk. 130
-                </p>
+                  <p className="text-sm font-medium tracking-tight text-gray-900">
+                    Shipping fee Tk. 130
+                  </p>
 
-                <p className="text-2xl font-medium tracking-tight text-gray-900">
-                  Total Tk. {discountTotal + 130}
-                </p>
+                  <p className="text-2xl font-medium tracking-tight text-gray-900">
+                    Total Tk. {discountTotal + 130}
+                  </p>
 
-                {/* --- discount form ---*/}
-                <div className="mb-5">
-                  <form onSubmit={handleDiscount} className=" ">
-                    <label className="text-sm font-medium text-gray-700">
-                      Discount coupon
-                    </label>
-                    <div className="relative md:w-[250px] w-[200px]">
+                  {/* --- discount form ---*/}
+                  <div className="mb-5">
+                    <form onSubmit={handleDiscount} className=" ">
+                      <label className="text-sm font-medium text-gray-700">
+                        Discount coupon
+                      </label>
+                      <div className="relative md:w-[250px] w-[200px]">
+                        <input
+                          type="text"
+                          name="discount"
+                          className="mt-1 px-3 border-2 border-gray-500 w-full relative shadow-sm p-1 rounded outline-none"
+                        />
+                        <button
+                          type="submit"
+                          className="bg-black text-xs  rounded absolute top-[5px] right-0 text-white py-[10px] px-4"
+                        >
+                          Apply
+                        </button>
+                      </div>
+                      {discountError && (
+                        <p className="text-red-500">{discountError}</p>
+                      )}
+                    </form>
+                  </div>
+                  <p className="mt-1 text-sm text-gray-600">
+                    For the purchase of
+                  </p>
+                </div>
+
+                <div>
+                  <div className="flow-root">
+                    <ul className="-my-4 divide-y divide-gray-200">
+                      {items.map((item) => (
+                        <li
+                          className="flex items-center gap-4 py-4"
+                          key={item.id}
+                        >
+                          <img
+                            src={item.img}
+                            alt=""
+                            className="h-16 w-16 rounded object-cover"
+                          />
+
+                          <div>
+                            <h3 className="text-sm text-gray-900">
+                              {item.name}
+                            </h3>
+
+                            <dl className="mt-0.5 space-y-px text-[13px] text-gray-600">
+                              <div className="font-normal">
+                                <dt className="inline">Quantity:</dt>
+                                <dd className="inline">{item.quantity}</dd>
+                              </div>
+
+                              <div className="font-normal">
+                                <dt className="inline">Price:</dt>
+                                <dd className="inline">{item.price}</dd>
+                              </div>
+                            </dl>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* User order data */}
+            <div className="bg-white py-12 md:py-24 col-span-3 ">
+              <div className="px-4 lg:px-8">
+                <form onSubmit={handleOrder}>
+                  <div className="flex md:flex-row flex-col gap-5">
+                    <div className="w-full">
+                      <label className=" text-xs font-medium text-gray-700">
+                        Name
+                      </label>
+
                       <input
                         type="text"
-                        name="discount"
-                        className="mt-1 px-3 border-2 border-gray-500 w-full relative shadow-sm p-1 rounded outline-none"
+                        name="name"
+                        defaultValue={user?.displayName}
+                        className="mt-1 w-full  rounded-md border-gray-200 shadow-sm p-2 border outline-none"
                       />
-                      <button
-                        type="submit"
-                        className="bg-black text-xs  rounded absolute top-[5px] right-0 text-white py-[10px] px-4"
-                      >
-                        Apply
-                      </button>
                     </div>
-                    {discountError && (
-                      <p className="text-red-500">{discountError}</p>
-                    )}
-                  </form>
-                </div>
-                <p className="mt-1 text-sm text-gray-600">
-                  For the purchase of
-                </p>
-              </div>
+                    <div className="w-full">
+                      <label className=" text-xs font-medium text-gray-700">
+                        Email
+                      </label>
 
-              <div>
-                <div className="flow-root">
-                  <ul className="-my-4 divide-y divide-gray-200">
-                    {items.map((item) => (
-                      <li
-                        className="flex items-center gap-4 py-4"
-                        key={item.id}
+                      <input
+                        type="text"
+                        disabled
+                        name="email"
+                        defaultValue={user?.email}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex md:flex-row flex-col gap-5">
+                    <div className="w-full">
+                      <label className=" text-xs font-medium text-gray-700">
+                        Phone
+                      </label>
+
+                      <input
+                        type="text"
+                        name="phone"
+                        defaultValue={userFullInfo.phone}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                    {/* division */}
+                    <div className="w-full">
+                      <label className="text-xs font-medium text-gray-700">
+                        Division
+                      </label>
+                      <input
+                        type="text"
+                        name="division"
+                        defaultValue={userFullInfo.division}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex md:flex-row flex-col gap-5">
+                    {/* district */}
+                    <div className="w-full">
+                      <label className=" text-xs font-medium text-gray-700">
+                        District
+                      </label>
+
+                      <input
+                        type="text"
+                        name="district"
+                        onChange={(e) => handleDelivery(e.target.value)}
+                        defaultValue={userFullInfo.district}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                    <div className="w-full">
+                      <label className=" text-xs font-medium text-gray-700">
+                        Address
+                      </label>
+                      <textarea
+                        type="text"
+                        name="address"
+                        defaultValue={userFullInfo.address}
+                        rows={1}
+                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                  </div>
+                  {/* select payment */}
+                  <h2 className="font-medium text-xs mt-4">
+                    Select payment type
+                  </h2>
+                  <div className="flex md:flex-row flex-col items-center gap-4 my-3">
+                    {/* cash on deliver */}
+                    <div className="w-full">
+                      <input
+                        type="radio"
+                        name="selectPayment"
+                        value="Cash on delivery"
+                        id="Cash"
+                        defaultChecked
+                        onChange={(e) => setPaymentMode(e.target.value)}
+                        className="peer hidden [&:checked_+_label_svg]:block"
+                      />
+
+                      <label
+                        htmlFor="Cash"
+                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
+                          paymentMode === "Cash on delivery" &&
+                          "border-2 border-black"
+                        }`}
                       >
-                        <img
-                          src={item.img}
-                          alt=""
-                          className="h-16 w-16 rounded object-cover"
-                        />
-
-                        <div>
-                          <h3 className="text-sm text-gray-900">{item.name}</h3>
-
-                          <dl className="mt-0.5 space-y-px text-[13px] text-gray-600">
-                            <div className="font-normal">
-                              <dt className="inline">Quantity:</dt>
-                              <dd className="inline">{item.quantity}</dd>
-                            </div>
-
-                            <div className="font-normal">
-                              <dt className="inline">Price:</dt>
-                              <dd className="inline">{item.price}</dd>
-                            </div>
-                          </dl>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* User order data */}
-          <div className="bg-white py-12 md:py-24 col-span-3 ">
-            <div className="px-4 lg:px-8">
-              <form onSubmit={handleOrder}>
-                <div className="flex md:flex-row flex-col gap-5">
-                  <div className="w-full">
-                    <label className=" text-xs font-medium text-gray-700">
-                      Name
-                    </label>
-
-                    <input
-                      type="text"
-                      name="name"
-                      defaultValue={user?.displayName}
-                      className="mt-1 w-full  rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <label className=" text-xs font-medium text-gray-700">
-                      Email
-                    </label>
-
-                    <input
-                      type="text"
-                      disabled
-                      name="email"
-                      defaultValue={user?.email}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                </div>
-                <div className="flex md:flex-row flex-col gap-5">
-                  <div className="w-full">
-                    <label className=" text-xs font-medium text-gray-700">
-                      Phone
-                    </label>
-
-                    <input
-                      type="text"
-                      name="phone"
-                      defaultValue={userFullInfo.phone}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                  {/* division */}
-                  <div className="w-full">
-                    <label className="text-xs font-medium text-gray-700">
-                      Division
-                    </label>
-                    <input
-                      type="text"
-                      name="division"
-                      defaultValue={userFullInfo.division}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                </div>
-
-                <div className="flex md:flex-row flex-col gap-5">
-                  {/* district */}
-                  <div className="w-full">
-                    <label className=" text-xs font-medium text-gray-700">
-                      District
-                    </label>
-
-                    <input
-                      type="text"
-                      name="district"
-                      onChange={(e) => handleDelivery(e.target.value)}
-                      defaultValue={userFullInfo.district}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                  <div className="w-full">
-                    <label className=" text-xs font-medium text-gray-700">
-                      Address
-                    </label>
-                    <textarea
-                      type="text"
-                      name="address"
-                      defaultValue={userFullInfo.address}
-                      rows={1}
-                      className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                    />
-                  </div>
-                </div>
-                {/* select payment */}
-                <h2 className="font-medium text-xs mt-4">
-                  Select payment type
-                </h2>
-                <div className="flex md:flex-row flex-col items-center gap-4 my-3">
-                  {/* cash on deliver */}
-                  <div className="w-full">
-                    <input
-                      type="radio"
-                      name="selectPayment"
-                      value="Cash on delivery"
-                      id="Cash"
-                      defaultChecked
-                      onChange={(e) => setPaymentMode(e.target.value)}
-                      className="peer hidden [&:checked_+_label_svg]:block"
-                    />
-
-                    <label
-                      htmlFor="Cash"
-                      className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
-                        paymentMode === "Cash on delivery" &&
-                        "border-2 border-black"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        {paymentMode === "Cash on delivery" && (
-                          <HiOutlineCheck className=" bg-black text-white ro" />
-                        )}
-
-                        <p className="text-black flex items-center">
-                          Cash on delivery{" "}
-                          <TbTruckDelivery className="w-7 h-9 ml-1" />{" "}
-                        </p>
-                      </div>
-                    </label>
-                  </div>
-                  {/* Online payment */}
-                  <div className="w-full">
-                    <input
-                      type="radio"
-                      name="selectPayment"
-                      value="Online Payment"
-                      id="onlinePayment"
-                      onChange={(e) => setPaymentMode(e.target.value)}
-                      className="peer hidden [&:checked_+_label_svg]:block"
-                    />
-
-                    <label
-                      htmlFor="onlinePayment"
-                      className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
-                        paymentMode === "Online Payment" &&
-                        "border-2 border-black"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        {paymentMode === "Online Payment" && (
-                          <HiOutlineCheck className=" bg-black text-white ro" />
-                        )}
-
-                        <p className="text-gray-900">Online Payment</p>
-
-                        <div className="flex items-center">
-                          <img src={bkash} className="w-7 h-9" alt="" />
-                          <img src={nagad} className="w-6" alt="" />
-                        </div>
-                      </div>
-                    </label>
-                  </div>
-                </div>
-                {/* ---------- */}
-                {paymentMode === "Online Payment" && (
-                  <BkashAndNagad
-                    discountTotal={discountTotal}
-                    setPayWith={setPayWith}
-                    setTransactionId={setTransactionId}
-                  />
-                )}
-                {paymentMode === "Cash on delivery" && (
-                  <div>
-                    <div className="flex items-center">
-                      <h2 className="flex items-center">
-                        <img src={bkash} className="w-7 h-7" alt="" />{" "}
-                        <span>01630328733</span>
-                      </h2>
-
-                      <CopyToClipboard
-                        text="01830328733"
-                        onCopy={() => setBkashCopied(true)}
-                      >
-                        <span
-                          className={`ml-2 ${
-                            bkashCopied && "bg-[#d41065]/70 text-white"
-                          } bg-gray-300 flex justify-center items-center p-1 rounded-full`}
-                        >
-                          {bkashCopied ? (
-                            <HiOutlineClipboardCheck />
-                          ) : (
-                            <VscCopy size={15} />
+                        <div className="flex items-center gap-2">
+                          {paymentMode === "Cash on delivery" && (
+                            <HiOutlineCheck className=" bg-black text-white ro" />
                           )}
-                        </span>
-                      </CopyToClipboard>
-                    </div>
-                    {/* nagad */}
-                    <div className="flex items-center mt-1">
-                      <h2 className="flex items-center">
-                        <img src={nagad} className="w-7 h-5" alt="" />{" "}
-                        <span>01630328733</span>
-                      </h2>
 
-                      <CopyToClipboard
-                        text="01830328733"
-                        onCopy={() => setNagadCopied(true)}
+                          <p className="text-black flex items-center">
+                            Cash on delivery{" "}
+                            <TbTruckDelivery className="w-7 h-9 ml-1" />{" "}
+                          </p>
+                        </div>
+                      </label>
+                    </div>
+                    {/* Online payment */}
+                    <div className="w-full">
+                      <input
+                        type="radio"
+                        name="selectPayment"
+                        value="Online Payment"
+                        id="onlinePayment"
+                        onChange={(e) => setPaymentMode(e.target.value)}
+                        className="peer hidden [&:checked_+_label_svg]:block"
+                      />
+
+                      <label
+                        htmlFor="onlinePayment"
+                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
+                          paymentMode === "Online Payment" &&
+                          "border-2 border-black"
+                        }`}
                       >
-                        <span
-                          className={`ml-2 ${
-                            nagadCopied && "bg-[#f6921e]/70 text-white"
-                          } bg-gray-300 flex justify-center items-center p-1 rounded-full`}
-                        >
-                          {nagadCopied ? (
-                            <HiOutlineClipboardCheck />
-                          ) : (
-                            <VscCopy size={15} />
+                        <div className="flex items-center gap-2">
+                          {paymentMode === "Online Payment" && (
+                            <HiOutlineCheck className=" bg-black text-white ro" />
                           )}
-                        </span>
-                      </CopyToClipboard>
-                    </div>
-                    <div className="flex items-center gap-5 my-3">
-                      <div>
-                        <input
-                          type="radio"
-                          name="selectPayment"
-                          value="bkash"
-                          id="Bkash"
-                          defaultChecked
-                          onChange={(e) => setPayWith(e.target.value)}
-                          className="peer hidden [&:checked_+_label_svg]:block"
-                        />
 
-                        <label
-                          htmlFor="Bkash"
-                          className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-                        >
-                          <div className="flex items-center gap-2">
-                            <HiOutlineCheck className="hidden bg-black text-white ro" />
+                          <p className="text-gray-900">Online Payment</p>
 
-                            <p className="text-black flex items-center">
-                              <img src={bkash} className="w-7 h-8" alt="" />
-                              Bkash
-                            </p>
+                          <div className="flex items-center">
+                            <img src={bkash} className="w-7 h-9" alt="" />
+                            <img src={nagad} className="w-6" alt="" />
                           </div>
-                        </label>
-                      </div>
-                      <div>
-                        <input
-                          type="radio"
-                          name="selectPayment"
-                          value="nagad"
-                          id="nagad"
-                          onChange={(e) => setPayWith(e.target.value)}
-                          className="peer hidden [&:checked_+_label_svg]:block"
-                        />
-
-                        <label
-                          htmlFor="nagad"
-                          className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-                        >
-                          <div className="flex items-center gap-2">
-                            <HiOutlineCheck className="hidden bg-black text-white ro" />
-
-                            <p className="text-black flex items-center">
-                              <img
-                                src={nagad}
-                                className="w-5 h-9 mr-1"
-                                alt=""
-                              />
-                              Nagad
-                            </p>
-                          </div>
-                        </label>
-                      </div>
+                        </div>
+                      </label>
                     </div>
-                    <ul className="list-disc px-4">
-                      <li className="text-md font-secondary mt-1">
-                        Cash on delivery তে ১৩০ টাকা অগ্রিম পরিশোধ করতে হবে।
-                      </li>
-                      <li className="text-md font-secondary mt-1">
-                        Bkash অথবা Nagad সিলেক্ট করে Payment করার পর Transaction
-                        Id টি দিয়ের অর্ডার Confirm করুন।
-                      </li>
-                    </ul>
-                    <label className="text-sm font-medium text-gray-700">
-                      Transaction Id
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Transaction Id"
-                      onChange={(e) => setTransactionId(e.target.value)}
-                      className="mt-1 w-full rounded-md border-gray-400 shadow-sm p-2 border outline-none"
-                    />
                   </div>
-                )}
-                <div className="mt-10">
-                  <button
-                    type="submit"
-                    className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
-                  >
-                    Confirm order
-                  </button>
-                  {errorMessage && (
-                    <p className="text-red-500 mt-1">{errorMessage}</p>
+                  {/* ---------- */}
+                  {paymentMode === "Online Payment" && (
+                    <BkashAndNagad
+                      discountTotal={discountTotal}
+                      setPayWith={setPayWith}
+                      setTransactionId={setTransactionId}
+                    />
                   )}
-                </div>
-              </form>
+                  {paymentMode === "Cash on delivery" && (
+                    <div>
+                      <div className="flex items-center">
+                        <h2 className="flex items-center">
+                          <img src={bkash} className="w-7 h-7" alt="" />{" "}
+                          <span>01630328733</span>
+                        </h2>
+
+                        <CopyToClipboard
+                          text="01830328733"
+                          onCopy={() => setBkashCopied(true)}
+                        >
+                          <span
+                            className={`ml-2 ${
+                              bkashCopied
+                                ? "bg-[#d41065]/70 text-white"
+                                : "bg-gray-300"
+                            } flex justify-center items-center p-1 rounded-full`}
+                          >
+                            {bkashCopied ? (
+                              <HiOutlineClipboardCheck />
+                            ) : (
+                              <VscCopy size={15} />
+                            )}
+                          </span>
+                        </CopyToClipboard>
+                      </div>
+                      {/* nagad */}
+                      <div className="flex items-center mt-1">
+                        <h2 className="flex items-center">
+                          <img src={nagad} className="w-7 h-5" alt="" />{" "}
+                          <span>01630328733</span>
+                        </h2>
+
+                        <CopyToClipboard
+                          text="01830328733"
+                          onCopy={() => setNagadCopied(true)}
+                        >
+                          <span
+                            className={`ml-2 ${
+                              nagadCopied
+                                ? "bg-[#f6921e]/70 text-white"
+                                : "bg-gray-300"
+                            }  flex justify-center items-center p-1 rounded-full`}
+                          >
+                            {nagadCopied ? (
+                              <HiOutlineClipboardCheck />
+                            ) : (
+                              <VscCopy size={15} />
+                            )}
+                          </span>
+                        </CopyToClipboard>
+                      </div>
+                      <div className="flex items-center gap-5 my-3">
+                        <div>
+                          <input
+                            type="radio"
+                            name="selectPayment"
+                            value="bkash"
+                            id="Bkash"
+                            defaultChecked
+                            onChange={(e) => setPayWith(e.target.value)}
+                            className="peer hidden [&:checked_+_label_svg]:block"
+                          />
+
+                          <label
+                            htmlFor="Bkash"
+                            className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
+                          >
+                            <div className="flex items-center gap-2">
+                              <HiOutlineCheck className="hidden bg-black text-white ro" />
+
+                              <p className="text-black flex items-center">
+                                <img src={bkash} className="w-7 h-8" alt="" />
+                                Bkash
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+                        <div>
+                          <input
+                            type="radio"
+                            name="selectPayment"
+                            value="nagad"
+                            id="nagad"
+                            onChange={(e) => setPayWith(e.target.value)}
+                            className="peer hidden [&:checked_+_label_svg]:block"
+                          />
+
+                          <label
+                            htmlFor="nagad"
+                            className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
+                          >
+                            <div className="flex items-center gap-2">
+                              <HiOutlineCheck className="hidden bg-black text-white ro" />
+
+                              <p className="text-black flex items-center">
+                                <img
+                                  src={nagad}
+                                  className="w-5 h-9 mr-1"
+                                  alt=""
+                                />
+                                Nagad
+                              </p>
+                            </div>
+                          </label>
+                        </div>
+                      </div>
+                      <ul className="list-disc px-4">
+                        <li className="text-md font-secondary mt-1">
+                          Cash on delivery তে ১৩০ টাকা অগ্রিম পরিশোধ করতে হবে।
+                        </li>
+                        <li className="text-md font-secondary mt-1">
+                          Bkash অথবা Nagad সিলেক্ট করে Payment করার পর
+                          Transaction Id টি দিয়ের অর্ডার Confirm করুন।
+                        </li>
+                      </ul>
+                      <label className="text-sm font-medium text-gray-700">
+                        Transaction Id
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Transaction Id"
+                        onChange={(e) => setTransactionId(e.target.value)}
+                        className="mt-1 w-full rounded-md border-gray-400 shadow-sm p-2 border outline-none"
+                      />
+                    </div>
+                  )}
+                  <div className="mt-10">
+                    <button
+                      type="submit"
+                      className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
+                    >
+                      Confirm order
+                    </button>
+                    {errorMessage && (
+                      <p className="text-red-500 mt-1">{errorMessage}</p>
+                    )}
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+        {successModal && <OrderSuccessModal orderId={orderId} />}
+      </>
     </AnimatePage>
   );
 };

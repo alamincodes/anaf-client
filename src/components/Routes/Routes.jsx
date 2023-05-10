@@ -13,6 +13,7 @@ import General from "../auth/settings/General";
 import ChangePassword from "../auth/settings/ChangePassword";
 import DangerZone from "../auth/settings/DangerZone";
 import Orders from "../orders/Orders";
+import OrderDetails from "../orders/OrderDetails";
 
 export const routes = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Orders />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/order/:id",
+        element: (
+          <PrivateRoutes>
+            <OrderDetails />
           </PrivateRoutes>
         ),
       },

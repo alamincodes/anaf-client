@@ -1,7 +1,8 @@
 import React from "react";
-import { HiCheck } from "react-icons/hi";
 import AnimatePage from "../Shared/AnimatePage";
-const ForgetSuccessModal = ({ handleCloseModal }) => {
+import { HiCheck } from "react-icons/hi";
+import { Link } from "react-router-dom";
+const OrderSuccessModal = ({ orderId }) => {
   return (
     <AnimatePage>
       <div>
@@ -26,25 +27,42 @@ const ForgetSuccessModal = ({ handleCloseModal }) => {
                         className="text-base font-semibold leading-6 text-gray-900"
                         id="modal-title"
                       >
-                        Check your email
+                        Your order has been received
                       </h3>
                       <div className="mt-2">
+                        <p className="text-sm text-gray-500 my-2">
+                          Your order Id:{" "}
+                          <span className="text-black bg-gray-100 p-1 rounded-sm">
+                            {orderId}
+                          </span>
+                        </p>
                         <p className="text-sm text-gray-500">
-                          If you don't get the password reset email, please
-                          check your spam folder.
+                          Payment verification and order confirmation will be
+                          undertaken.
                         </p>
                       </div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                  <button
-                    type="button"
-                    onClick={() => handleCloseModal(false)}
-                    className="inline-flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
-                  >
-                    Okay
-                  </button>
+                  <Link to="/orders">
+                    <button
+                      type="button"
+                      onClick={() => handleCloseModal(false)}
+                      className="inline-flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                    >
+                      See order
+                    </button>
+                  </Link>
+                  <Link to="/">
+                    <button
+                      type="button"
+                      onClick={() => handleCloseModal(false)}
+                      className="inline-flex w-full justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
+                    >
+                      Home
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -55,4 +73,4 @@ const ForgetSuccessModal = ({ handleCloseModal }) => {
   );
 };
 
-export default ForgetSuccessModal;
+export default OrderSuccessModal;

@@ -37,8 +37,8 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
               >
                 <span
                   className={`ml-2 ${
-                    bkashCopied && "bg-[#d41065]/70 text-white"
-                  } bg-gray-300 flex justify-center items-center p-1 rounded-full`}
+                    bkashCopied ? "bg-[#d41065]/70 text-white" : "bg-gray-300"
+                  }  flex justify-center items-center p-1 rounded-full`}
                 >
                   {bkashCopied ? (
                     <HiOutlineClipboardCheck />
@@ -61,8 +61,8 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
               >
                 <span
                   className={`ml-2 ${
-                    nagadCopied && "bg-[#f6921e]/70 text-white"
-                  } bg-gray-300 flex justify-center items-center p-1 rounded-full`}
+                    nagadCopied ? "bg-[#f6921e]/70 text-white" : "bg-gray-300"
+                  }  flex justify-center items-center p-1 rounded-full`}
                 >
                   {nagadCopied ? (
                     <HiOutlineClipboardCheck />
@@ -74,7 +74,8 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
             </div>
             <ul className="list-disc px-6">
               <li className="text-md font-secondary mt-1">
-                Bkash personal number তায় Send money অপশন সিলেক্ট করে পেমেন্ট করুন।
+                Bkash personal number তায় Send money অপশন সিলেক্ট করে পেমেন্ট
+                করুন।
               </li>
               <li className="text-md font-secondary mt-1">
                 Bkash অথবা Nagad সিলেক্ট করে Payment করার পর Transaction Id টি
