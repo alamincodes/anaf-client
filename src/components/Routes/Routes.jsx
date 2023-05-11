@@ -14,6 +14,10 @@ import ChangePassword from "../auth/settings/ChangePassword";
 import DangerZone from "../auth/settings/DangerZone";
 import Orders from "../orders/Orders";
 import OrderDetails from "../orders/OrderDetails";
+import DashboardLayout from "../Dashboard/DashboardLayout";
+import AllUsers from "../Dashboard/AllUsers";
+import PrivateAdminRoute from "./PrivateAdminRoute";
+import AllOrders from "../Dashboard/AllOrders";
 
 export const routes = createBrowserRouter([
   {
@@ -86,6 +90,24 @@ export const routes = createBrowserRouter([
           {
             path: "/settings/dangerZone",
             element: <DangerZone />,
+          },
+        ],
+      },
+      {
+        path: "/dashboard",
+        element: (
+          <PrivateAdminRoute>
+            <DashboardLayout />
+          </PrivateAdminRoute>
+        ),
+        children: [
+          {
+            path: "/dashboard/allUsers",
+            element: <AllUsers />,
+          },
+          {
+            path: "/dashboard/allOrders",
+            element: <AllOrders />,
           },
         ],
       },

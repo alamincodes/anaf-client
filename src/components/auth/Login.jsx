@@ -7,22 +7,28 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdOutlineAlternateEmail } from "react-icons/md";
+import useToken from "../../hooks/useToken";
 const Login = () => {
   useTitle("Login");
   const { loginUser } = useContext(AUTH_CONTEXT);
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [jwtSendEmail, setJwtSendEmail] = useState("");
   const {
     register,
     formState: { errors },
     handleSubmit,
   } = useForm();
 
+  const [token] = useToken(jwtSendEmail);
   const navigate = useNavigate();
   let location = useLocation();
   let from = location.state?.from?.pathname || "/";
 
+  if (token) {
+    navigate(from, { replace: true });
+  }
   const handleSignUp = (data) => {
     // console.log(data);
     setIsLoading(true);
@@ -30,8 +36,8 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
+        setJwtSendEmail(data.email);
         setIsLoading(false);
-        navigate(from, { replace: true });
         // console.log(user);
       })
       .catch((error) => {

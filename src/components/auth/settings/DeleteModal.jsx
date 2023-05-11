@@ -28,6 +28,7 @@ const DeleteModal = ({ setOpen }) => {
               deleteUserAccount()
                 .then(() => {
                   console.log("Account deleted");
+                  localStorage.removeItem("accessToken");
                   toast.success("Account deleted successfully", {
                     style: {
                       border: "1px solid black",

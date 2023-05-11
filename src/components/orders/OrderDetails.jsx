@@ -11,7 +11,11 @@ const OrderDetails = () => {
   let { id } = useParams();
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/order/${id}`)
+    fetch(`https://anaf-server.vercel.app/order/${id}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -25,43 +29,58 @@ const OrderDetails = () => {
   return (
     <AnimatePage>
       <div>
-        <div className="container mx-auto bg-white md:p-24">
-          <h2 className="text-3xl font-bold text-center">Your order</h2>
-          <h2 className="text-2xl mt-4">Hi, {user?.displayName}</h2>
-          <h2 className="my-2">
-            Your order has been confirmed and will be shipping soon.
-          </h2>
-          <div className="space-y-2 border-b">
-            <h2>
-              <span className="uppercase font-medium">Order id:</span>{" "}
-             <span className="text-gray-500"> {orderDetail._id}</span>
-            </h2>
-            <h2>
-              <span className="uppercase font-medium">Order date: </span>{" "}
-             <span className="text-gray-600"> {orderDetail.orderDate}</span>
-            </h2>
-            <h2>
-              {" "}
-              <span className="uppercase font-medium">Payment type: </span>{" "}
-              <span className="text-gray-600">{orderDetail.selectPaymentType}</span>
-            </h2>
-            <h2>
-              {" "}
-              <span className="uppercase font-medium">Address: </span>{" "}
-              <span className="text-gray-600">{orderDetail.address}</span>
-            </h2>
-            <h2>
-              {" "}
-              <span className="uppercase font-medium">
-                Transaction Id:{" "}
-              </span>{" "}
-              <span className="text-gray-500">{orderDetail.transactionId}</span>
-            </h2>
+        <div className="container mx-auto bg-white md:p-20">
+          <h2 className="md:text-3xl font-bold text-center">Your order</h2>
+          <div className="">
+            <div>
+              <h2 className="text-2xl font-medium mt-4">
+                Hi, {user?.displayName}
+              </h2>
+              <h2 className="my-2">
+                Your order has been confirmed and will be shipping soon.
+              </h2>
+            </div>
+            <div className="space-y-2 border-4 border-gray-300 border-dotted p-2 md:text-sm text-xs">
+              <h2>
+                <span className="uppercase font-medium">Order id:</span>{" "}
+                <span className="text-gray-500"> {orderDetail._id}</span>
+              </h2>
+              <h2>
+                <span className="uppercase font-medium">Order date: </span>{" "}
+                <span className="text-gray-600"> {orderDetail.orderDate}</span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">
+                  Payment type:{" "}
+                </span>{" "}
+                <span className="text-gray-600">
+                  {orderDetail.selectPaymentType}
+                </span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">Address: </span>{" "}
+                <span className="text-gray-600">{orderDetail.address}</span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">
+                  Transaction Id:{" "}
+                </span>{" "}
+                <span className="text-gray-500">
+                  {orderDetail.transactionId}
+                </span>
+              </h2>
+            </div>
           </div>
 
-          <div>
+          <div className="mt-5">
             {orderDetail.items?.map((item) => (
-              <div key={item.id} className="flex justify-between md:flex-row flex-col border-b py-2">
+              <div
+                key={item.id}
+                className="flex justify-between md:flex-row flex-col bg-gray-50 rounded mt-2 py-5 px-3 "
+              >
                 <div className="flex items-center space-x-3">
                   <img
                     src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80"
@@ -86,7 +105,7 @@ const OrderDetails = () => {
               <h2>Delivery fee : </h2>
               <h2>{orderDetail.deliveryFee} Tk</h2>
             </div>
-            <div className="flex justify-end items-center space-x-28 border-t">
+            <div className="flex justify-end items-center space-x-28 border-t font-medium">
               <h2>Total payable : </h2>
               <h2>{orderDetail.total} TK</h2>
             </div>

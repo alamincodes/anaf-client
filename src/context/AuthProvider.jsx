@@ -18,7 +18,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [userFullInfo, setUserFullInfo] = useState({});
+  // const [userFullInfo, setUserFullInfo] = useState({});
 
   // create user with email password
   const createUser = (email, password) => {
@@ -65,22 +65,22 @@ const AuthProvider = ({ children }) => {
 
   // user full data
 
-  useEffect(() => {
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setUserFullInfo(data);
-        setLoading(false);
-      });
-  }, [user]);
+  // useEffect(() => {
+  //   fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       // console.log(data);
+  //       setUserFullInfo(data);
+  //       setLoading(false);
+  //     });
+  // }, [user]);
   const authInfo = {
     createUser,
     loginUser,
     updateName,
     forgetPassword,
     userUpdatePassword,
-    userFullInfo,
+    // userFullInfo,
     user,
     deleteUserAccount,
     loading,

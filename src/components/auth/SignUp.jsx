@@ -10,11 +10,15 @@ import { toast } from "react-hot-toast";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import useToken from "../../hooks/useToken";
 const SignUp = () => {
-  const { createUser, updateName } = useContext(AUTH_CONTEXT);
+  // useTitle
+  useTitle("Sign up");
+  const { createUser, updateName, user } = useContext(AUTH_CONTEXT);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [jwtSendEmail, setJwtSendEmail] = useState("");
 
   // useForm
   const {
@@ -23,9 +27,12 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
-  // useTitle
-  useTitle("Sign up");
+  const [token] = useToken(jwtSendEmail);
   const navigate = useNavigate();
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSignUp = (data) => {
     setErrorMessage("");
@@ -67,7 +74,7 @@ const SignUp = () => {
           .then((data) => {
             // console.log(data);
             if (data.acknowledged) {
-              navigate("/");
+              setJwtSendEmail(user?.email);
               setIsLoading(false);
             }
           });
@@ -78,9 +85,9 @@ const SignUp = () => {
         if (errMessage.includes("email-already-in-use")) {
           setErrorMessage("Email already used, try another email.");
         }
-        setIsLoading(false);
       });
   };
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -97,7 +104,11 @@ const SignUp = () => {
             >
               {/* logo */}
               <div className="flex flex-col justify-center items-center ">
-                <img src={logo} className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]" alt="" />
+                <img
+                  src={logo}
+                  className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]"
+                  alt=""
+                />
 
                 <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
                   Sign up
@@ -147,7 +158,7 @@ const SignUp = () => {
                     </label>
                     <div className="relative">
                       <input
-                        type={showPassword ? "text": "password"}
+                        type={showPassword ? "text" : "password"}
                         {...register("password", {
                           required: "Password is required",
                           minLength: {

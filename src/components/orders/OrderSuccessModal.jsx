@@ -48,7 +48,6 @@ const OrderSuccessModal = ({ orderId }) => {
                   <Link to="/orders">
                     <button
                       type="button"
-                      onClick={() => handleCloseModal(false)}
                       className="inline-flex w-full justify-center rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
                     >
                       See order
@@ -57,7 +56,6 @@ const OrderSuccessModal = ({ orderId }) => {
                   <Link to="/">
                     <button
                       type="button"
-                      onClick={() => handleCloseModal(false)}
                       className="inline-flex w-full justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
                     >
                       Home

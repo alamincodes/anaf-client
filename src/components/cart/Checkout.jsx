@@ -31,49 +31,36 @@ const Checkout = () => {
   const [successModal, setSuccessModal] = useState(false);
   const [orderId, setOrderId] = useState("");
 
-  const handleDelivery = (value) => {
-    if (
-      value === "Cumilla" ||
-      value === "cumilla" ||
-      value === "comilla" ||
-      value === "Comilla"
-    ) {
-      setDeliveryFee(60);
-    } else {
-      setDeliveryFee(130);
-    }
-  };
+  // const handleDiscount = (e) => {
+  //   e.preventDefault();
+  //   const discountValue = e.target.discount.value;
+  //   const code = import.meta.env.VITE_DISCOUNT_CODE;
+  //   console.log(code);
+  //   setDiscountError("");
 
-  const handleDiscount = (e) => {
-    e.preventDefault();
-    const discountValue = e.target.discount.value;
-    const code = import.meta.env.VITE_DISCOUNT_CODE;
-    console.log(code);
-    setDiscountError("");
+  //   if (discountValue !== code) {
+  //     setDiscountError("discount code you have provided is not valid.");
+  //   }
+  //   if (cartTotal < 600) {
+  //     setDiscountError(
+  //       "discount code is valid for purchases with a minimum value of 600 TK."
+  //     );
+  //     return;
+  //   }
 
-    if (discountValue !== code) {
-      setDiscountError("discount code you have provided is not valid.");
-    }
-    if (cartTotal < 600) {
-      setDiscountError(
-        "discount code is valid for purchases with a minimum value of 600 TK."
-      );
-      return;
-    }
-
-    if (discountValue === code && cartTotal >= 600) {
-      setDiscountTotal(cartTotal - 100);
-      toast("You have successfully received a discount of 100 Tk.", {
-        icon: "🎉",
-        style: {
-          borderRadius: "10px",
-          background: "black",
-          color: "white",
-        },
-      });
-      setDiscountError("");
-    }
-  };
+  //   if (discountValue === code && cartTotal >= 600) {
+  //     setDiscountTotal(cartTotal - 100);
+  //     toast("You have successfully received a discount of 100 Tk.", {
+  //       icon: "🎉",
+  //       style: {
+  //         borderRadius: "10px",
+  //         background: "black",
+  //         color: "white",
+  //       },
+  //     });
+  //     setDiscountError("");
+  //   }
+  // };
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -170,7 +157,7 @@ const Checkout = () => {
                   </p>
 
                   {/* --- discount form ---*/}
-                  <div className="mb-5">
+                  {/* <div className="mb-5">
                     <form onSubmit={handleDiscount} className=" ">
                       <label className="text-sm font-medium text-gray-700">
                         Discount coupon
@@ -192,7 +179,7 @@ const Checkout = () => {
                         <p className="text-red-500">{discountError}</p>
                       )}
                     </form>
-                  </div>
+                  </div> */}
                   <p className="mt-1 text-sm text-gray-600">
                     For the purchase of
                   </p>

@@ -3,7 +3,8 @@ import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
-import AnimatePage from "../Shared/AnimatePage";
+import AnimatePage from "../Shared/AnimatePage"
+import emptyCartImg from '../../assets/image/emptyCart.png';;
 const Cart = () => {
   useTitle("Cart");
   const {
@@ -23,9 +24,10 @@ const Cart = () => {
       <section>
         {isEmpty ? (
           <div className="container mx-auto flex flex-col justify-center items-center mt-20">
+            <img src={emptyCartImg} className="w-32 h-32 mb-5" alt="" />
             <h2 className="text-3xl font-semibold">your cart is empty</h2>
             <h2 className="font-normal">
-              Continue{" "}
+              Continue to{" "}
               <Link to="/">
                 <span className="text-violet-600">shopping</span>
               </Link>
