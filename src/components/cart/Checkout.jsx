@@ -129,10 +129,10 @@ const Checkout = () => {
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setUserFullInfo(data);
       });
-  }, [user, userFullInfo]);
+  }, [user]);
   if (isLoading) {
     return <LoadingSpinner />;
   }

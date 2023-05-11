@@ -14,7 +14,7 @@ const DashboardLayout = () => {
           to="/dashboard/allUsers"
         >
           <li className="-mb-px border-b-2 border-black border-transparent p-4 flex items-center">
-            <FaUsers size={18} className="mr-1" /> All users
+            <FaUsers size={18} className="mr-1" /> All <span className="ml-1">Users</span>
           </li>
         </NavLink>
         <NavLink
