@@ -1,60 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Product from "./Product";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 
 const Products = () => {
   useTitle("Shop");
-  const products = [
-    {
-      id: 1,
-      name: "Test products",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-    {
-      id: 2,
-      name: "Test product ",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-    {
-      id: 3,
-      name: "Test product",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-    {
-      id: 4,
-      name: "Test product",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-    {
-      id: 5,
-      name: "Test product",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-    {
-      id: 6,
-      name: "Test product",
-      price: 200,
-      quantity: 1,
-      shipping: 0,
-      img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    fetch("https://anaf-server.vercel.app/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+      });
+  }, []);
+  // const products = [
+  //   {
+  //     id: 1,
+  //     name: "Test products",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Test product ",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Test product",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Test product",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "Test product",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "Test product",
+  //     price: 200,
+  //     quantity: 1,
+
+  //     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80",
+  //   },
+  // ];
   return (
     <AnimatePage>
       <section className="my-20">
@@ -83,7 +92,7 @@ const Products = () => {
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 ">
             {/* products */}
             {products.map((product) => (
-              <Product key={product.id} product={product} />
+              <Product key={product._id} product={product} />
             ))}
           </div>
         </div>

@@ -100,7 +100,9 @@ const OrderDetails = () => {
               <h2>
                 {" "}
                 <span className="uppercase font-medium">District: </span>{" "}
-                <span className="text-gray-600">{orderDetail?.districtName}</span>
+                <span className="text-gray-600">
+                  {orderDetail?.districtName}
+                </span>
               </h2>
               <h2>
                 {" "}
@@ -134,7 +136,7 @@ const OrderDetails = () => {
               >
                 <div className="flex items-center space-x-3">
                   <img
-                    src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1072&q=80"
+                    src={item.img}
                     alt=""
                     className="w-20 h-20 bg-cover rounded-md"
                   />

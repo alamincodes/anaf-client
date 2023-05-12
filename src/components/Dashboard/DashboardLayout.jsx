@@ -30,7 +30,7 @@ const DashboardLayout = () => {
 
         <NavLink
           className={({ isActive }) => (isActive ? " text-black" : undefined)}
-          // to="/settings/dangerZone"
+          to="/dashboard/addProducts"
         >
           <li className="-mb-px p-4 flex items-center">
             <MdOutlineAddBox size={20} className="mr-1" /> Add{" "}

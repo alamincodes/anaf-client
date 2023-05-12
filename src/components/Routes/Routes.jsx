@@ -18,6 +18,7 @@ import DashboardLayout from "../Dashboard/DashboardLayout";
 import AllUsers from "../Dashboard/AllUsers";
 import PrivateAdminRoute from "./PrivateAdminRoute";
 import AllOrders from "../Dashboard/AllOrders";
+import AddProducts from "../Dashboard/AddProducts";
 
 export const routes = createBrowserRouter([
   {
@@ -108,6 +109,10 @@ export const routes = createBrowserRouter([
           {
             path: "/dashboard/allOrders",
             element: <AllOrders />,
+          },
+          {
+            path: "/dashboard/addProducts",
+            element: <AddProducts />,
           },
         ],
       },

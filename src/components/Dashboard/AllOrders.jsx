@@ -54,6 +54,7 @@ const AllOrders = () => {
         return res.json();
       })
       .then((data) => {
+        // console.log(data);
         setOrders(data.reverse());
         setIsLoading(false);
       });
@@ -153,14 +154,15 @@ const AllOrders = () => {
                             )}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
-                            {order.orderDate}
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4">
-                            {order.items[0]?.name}
+                            {order?.items[0]?.name}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             {order.discountTotal}Tk
                           </td>
+                          <td className="whitespace-nowrap px-6 py-4">
+                            {order.orderDate}
+                          </td>
+
                           <td className="whitespace-nowrap px-6 py-4">
                             <form
                               className="flex items-center"
