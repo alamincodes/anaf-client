@@ -14,6 +14,8 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { VscCopy } from "react-icons/vsc";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import OrderSuccessModal from "../orders/OrderSuccessModal";
+import { districts } from "../BD_DISTRICTS_DIVISION/districts";
+import { divisions } from "../BD_DISTRICTS_DIVISION/divisions";
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
@@ -273,12 +275,17 @@ const Checkout = () => {
                       <label className="text-xs font-medium text-gray-700">
                         Division
                       </label>
-                      <input
-                        type="text"
+
+                      <select
                         name="division"
-                        defaultValue={userFullInfo.division}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                      />
+                        className="border rounded-sm outline-none font-normal p-2 w-full "
+                      >
+                        {divisions.map((division) => (
+                          <option key={division.id} value={division.name}>
+                            {division.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
@@ -289,13 +296,16 @@ const Checkout = () => {
                         District
                       </label>
 
-                      <input
-                        type="text"
+                      <select
                         name="district"
-                        onChange={(e) => handleDelivery(e.target.value)}
-                        defaultValue={userFullInfo.district}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-                      />
+                        className="border rounded-sm outline-none font-normal p-2 w-full "
+                      >
+                        {districts.map((district) => (
+                          <option key={district.id} value={district.name}>
+                            {district.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                     <div className="w-full">
                       <label className=" text-xs font-medium text-gray-700">

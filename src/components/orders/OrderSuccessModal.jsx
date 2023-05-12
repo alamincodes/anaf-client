@@ -56,7 +56,7 @@ const OrderSuccessModal = ({ orderId }) => {
                   <Link to="/">
                     <button
                       type="button"
-                      className="inline-flex w-full justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
+                      className="inline-flex w-full md:mt-auto mt-2 justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto"
                     >
                       Home
                     </button>

@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoadingSpinner from "../Shared/LoadingSpinner";
+import useTitle from "../../hooks/useTitle";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
 
 const AllUsers = () => {
+  useTitle("users");
+  const { logOut } = useContext(AUTH_CONTEXT);
   const [users, setAllUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const handleMakeAdmin = (id) => {
@@ -11,7 +15,13 @@ const AllUsers = () => {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         console.log(data);
       });

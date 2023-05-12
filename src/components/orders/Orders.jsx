@@ -98,7 +98,7 @@ const Orders = () => {
                           <td className="whitespace-nowrap px-6 py-4 ">
                             {order.status ? (
                               <>
-                                {order.status === "confirm" && (
+                                {order.status === "completed" && (
                                   <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
@@ -114,7 +114,12 @@ const Orders = () => {
                                   </span>
                                 )}
                                 {order.status === "receive" && (
-                                  <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                  <span className="bg-sky-200 text-sky-800 p-2 rounded-sm ">
+                                    {order.status ? order.status : "Pending"}
+                                  </span>
+                                )}
+                                {order.status === "cancel" && (
+                                  <span className="bg-red-200 text-red-800 p-2 rounded-sm ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}

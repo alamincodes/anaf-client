@@ -29,16 +29,36 @@ const OrderDetails = () => {
   return (
     <AnimatePage>
       <div>
-        <div className="container mx-auto bg-white md:p-20">
+        <div className="container mx-auto bg-white md:px-20 md:py-10">
           <h2 className="md:text-3xl font-bold text-center">Your order</h2>
           <div className="">
             <div>
               <h2 className="text-2xl font-medium mt-4">
                 Hi, {user?.displayName}
               </h2>
-              <h2 className="my-2">
-                Your order has been confirmed and will be shipping soon.
-              </h2>
+              {orderDetail?.status === "receive" && (
+                <h2 className="my-2 text-sky-500">
+                  Your order has been receive and will be shipping soon.
+                </h2>
+              )}
+              {orderDetail?.status === "completed" && (
+                <h2 className="my-2 text-green-500">Your order completed.</h2>
+              )}
+              {orderDetail?.status === "processing" && (
+                <h2 className="my-2 text-purple-500">
+                  Your order is processing.
+                </h2>
+              )}
+              {orderDetail?.status === "cancel" && (
+                <h2 className="my-2 text-red-500">Your order is cancel.</h2>
+              )}
+
+              {orderDetail?.status === "pending" && (
+                <h2 className="my-2 text-yellow-500">Your order is pending.</h2>
+              )}
+              {!orderDetail?.status && (
+                <h2 className="my-2 text-yellow-500">Your order is pending.</h2>
+              )}
             </div>
             <div className="space-y-2 border-4 border-gray-300 border-dotted p-2 md:text-sm text-xs">
               <h2>
@@ -60,6 +80,30 @@ const OrderDetails = () => {
               </h2>
               <h2>
                 {" "}
+                <span className="uppercase font-medium">
+                  Payment with:{" "}
+                </span>{" "}
+                <span className="text-gray-600 uppercase">
+                  {orderDetail.payWith}
+                </span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">Phone: </span>{" "}
+                <span className="text-gray-600">{orderDetail.phone}</span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">Email: </span>{" "}
+                <span className="text-gray-600">{orderDetail.email}</span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">District: </span>{" "}
+                <span className="text-gray-600">{orderDetail?.districtName}</span>
+              </h2>
+              <h2>
+                {" "}
                 <span className="uppercase font-medium">Address: </span>{" "}
                 <span className="text-gray-600">{orderDetail.address}</span>
               </h2>
@@ -70,6 +114,13 @@ const OrderDetails = () => {
                 </span>{" "}
                 <span className="text-gray-500">
                   {orderDetail.transactionId}
+                </span>
+              </h2>
+              <h2>
+                {" "}
+                <span className="uppercase font-medium">Status:</span>{" "}
+                <span className="text-gray-500">
+                  {orderDetail.status ? orderDetail.status : "pending"}
                 </span>
               </h2>
             </div>
