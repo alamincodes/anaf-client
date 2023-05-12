@@ -96,11 +96,34 @@ const Orders = () => {
                             {order.discountTotal}Tk
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 ">
-                            <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
-                              {order.orderStatus
-                                ? order.orderStatus
-                                : "Pending"}
-                            </span>
+                            {order.status ? (
+                              <>
+                                {order.status === "confirm" && (
+                                  <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
+                                    {order.status ? order.status : "Pending"}
+                                  </span>
+                                )}
+                                {order.status === "processing" && (
+                                  <span className="bg-purple-200 text-purple-800 p-2 rounded-sm ">
+                                    {order.status ? order.status : "Pending"}
+                                  </span>
+                                )}
+                                {order.status === "pending" && (
+                                  <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                    {order.status ? order.status : "Pending"}
+                                  </span>
+                                )}
+                                {order.status === "receive" && (
+                                  <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                    {order.status ? order.status : "Pending"}
+                                  </span>
+                                )}
+                              </>
+                            ) : (
+                              <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
+                                {order.status ? order.status : "Pending"}
+                              </span>
+                            )}
                           </td>
                         </tr>
                       ))}

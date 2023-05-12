@@ -2,11 +2,33 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import { GrUpdate } from "react-icons/gr";
 
 const AllOrders = () => {
   const { logOut } = useContext(AUTH_CONTEXT);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [orderId, setOrderId] = useState("");
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const status = e.target.orderStatus.value;
+    const orderStatus = {
+      status,
+    };
+    console.log(orderId);
+    console.log(status);
+    fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderStatus),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   useEffect(() => {
     // setIsLoading(true);
     fetch("https://anaf-server.vercel.app/orders", {
@@ -22,10 +44,10 @@ const AllOrders = () => {
         return res.json();
       })
       .then((data) => {
-        setOrders(data);
+        setOrders(data.reverse());
         setIsLoading(false);
       });
-  }, []);
+  }, [orders]);
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -46,7 +68,7 @@ const AllOrders = () => {
                         #Id
                       </th>
                       <th scope="col" className="px-6 py-4">
-                        Date
+                        Order status
                       </th>
                       <th scope="col" className="px-6 py-4">
                         Product name
@@ -55,7 +77,10 @@ const AllOrders = () => {
                         Price
                       </th>
                       <th scope="col" className="px-6 py-4">
-                        Order status
+                        Date
+                      </th>
+                      <th scope="col" className="px-6 py-4">
+                        Update
                       </th>
                     </tr>
                   </thead>
@@ -80,6 +105,37 @@ const AllOrders = () => {
                         >
                           {order._id.slice(0, 5)}...
                         </td>
+
+                        <td className="whitespace-nowrap px-6 py-4 ">
+                          {order.status ? (
+                            <>
+                              {order.status === "confirm" && (
+                                <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
+                                  {order.status ? order.status : "Pending"}
+                                </span>
+                              )}
+                              {order.status === "processing" && (
+                                <span className="bg-purple-200 text-purple-800 p-2 rounded-sm ">
+                                  {order.status ? order.status : "Pending"}
+                                </span>
+                              )}
+                              {order.status === "pending" && (
+                                <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                  {order.status ? order.status : "Pending"}
+                                </span>
+                              )}
+                              {order.status === "receive" && (
+                                <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                  {order.status ? order.status : "Pending"}
+                                </span>
+                              )}
+                            </>
+                          ) : (
+                            <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
+                              {order.status ? order.status : "Pending"}
+                            </span>
+                          )}
+                        </td>
                         <td className="whitespace-nowrap px-6 py-4">
                           {order.orderDate}
                         </td>
@@ -89,10 +145,26 @@ const AllOrders = () => {
                         <td className="whitespace-nowrap px-6 py-4">
                           {order.discountTotal}Tk
                         </td>
-                        <td className="whitespace-nowrap px-6 py-4 ">
-                          <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
-                            {order.orderStatus ? order.orderStatus : "Pending"}
-                          </span>
+                        <td className="whitespace-nowrap px-6 py-4">
+                          <form
+                            className="flex items-center"
+                            onSubmit={handleUpdate}
+                          >
+                            <select name="orderStatus" className="p-2">
+                              <option value="receive">receive</option>
+                              <option value="processing">processing</option>
+                              <option value="confirm">confirm</option>
+                              <option value="pending">pending</option>
+                            </select>
+
+                            <button
+                              type="submit"
+                              onClick={() => setOrderId(order._id)}
+                              className="ml-2 bg-slate-200 rounded-full p-1 px-2 flex items-center"
+                            >
+                              <GrUpdate className="mx-2 text-white" /> update
+                            </button>
+                          </form>
                         </td>
                       </tr>
                     ))}
