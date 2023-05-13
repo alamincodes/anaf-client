@@ -15,6 +15,19 @@ const AllUsers = () => {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
+
+  const handleCancelAdmin = (id) => {
+    fetch(`https://anaf-server.vercel.app/users/cancel/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => {
         if (res.status === 401 || res.status === 403) {
           localStorage.removeItem("accessToken");
@@ -26,6 +39,7 @@ const AllUsers = () => {
         console.log(data);
       });
   };
+
   useEffect(() => {
     fetch("https://anaf-server.vercel.app/allUsers")
       .then((res) => res.json())
@@ -75,12 +89,20 @@ const AllUsers = () => {
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 ">
                           {user?.role === "admin" ? (
-                            <h2>
-                              {" "}
-                              <span className="bg-green-200 p-2 rounded-full text-green-700">
-                                Admin
-                              </span>{" "}
-                            </h2>
+                            <div className="flex items-center gap-1">
+                              <h2>
+                                {" "}
+                                <span className="bg-green-200 p-2 rounded-full text-green-700">
+                                  Admin
+                                </span>{" "}
+                              </h2>
+                              <button
+                                onClick={() => handleCancelAdmin(user._id)}
+                                className="bg-black text-white p-2"
+                              >
+                                Remove admin
+                              </button>
+                            </div>
                           ) : (
                             <button
                               onClick={() => handleMakeAdmin(user._id)}

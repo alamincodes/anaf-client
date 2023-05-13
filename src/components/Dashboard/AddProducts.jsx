@@ -58,7 +58,7 @@ const AddProducts = () => {
     fetch("https://anaf-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProduct(data);
       });
   }, [product]);

@@ -6,7 +6,7 @@ import ScrollTop from "../Shared/ScrollTop";
 const Main = () => {
   return (
     <div>
-       <ScrollTop />
+      <ScrollTop />
       <Navbar />
       <Outlet />
     </div>

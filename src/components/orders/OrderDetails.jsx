@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import AnimatePage from "../Shared/AnimatePage";
 import LoadingSpinner from "../Shared/LoadingSpinner";

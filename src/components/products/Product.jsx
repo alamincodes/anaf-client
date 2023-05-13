@@ -1,32 +1,37 @@
 import React from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
+import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
+
 const Product = ({ product }) => {
   const { addItem } = useCart();
-  const { name, img, price } = product;
+  const { name, img, price, _id } = product;
   return (
     <div className="flex flex-col border border-gray-100 bg-white shadow-md">
-      <a className="relative flex h-48 overflow-hidden" href="#">
+      <Link
+        to={`/product/${_id}`}
+        className="relative flex h-48 overflow-hidden"
+      >
         <img
           className="absolute top-0 right-0 w-full h-full object-cover"
           src={img}
           alt="product image"
         />
-      </a>
+      </Link>
       <div className="mt-4 md:px-5 px-2 md:mb-5 mb-2">
-        <a href="#">
+        <Link to={`/product/${_id}`}>
           <h5 className="lg:text-xl md:text-md  text-sm tracking-tight text-slate-900">
             {name}
           </h5>
-        </a>
+        </Link>
         <div className="mb-4 flex items-center justify-between mt-4">
           <p>
             <span className="md:text-3xl text-lg font-bold text-slate-900">
               TK.{price}
             </span>
-            <span className="text-sm text-slate-900 line-through">
+            {/* <span className="text-sm text-slate-900 line-through">
               ${price}
-            </span>
+            </span> */}
           </p>
         </div>
         <button
