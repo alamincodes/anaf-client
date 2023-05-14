@@ -4,15 +4,21 @@ import HomeSlider from "./HomeSlider";
 import Products from "../products/Products";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
+import HomeDelivery from "./HomeDelivery";
+import Footer from "../Shared/Footer";
+import BusinessAbout from "./BusinessAbout";
 
 const Home = () => {
   useTitle("Home");
   return (
     <AnimatePage>
-      <div>
+      <div className="">
         <Banner />
         <Products />
         {/* <HomeSlider /> */}
+        <BusinessAbout />
+        <HomeDelivery />
+        <Footer />
       </div>
     </AnimatePage>
   );

@@ -2,12 +2,15 @@ import React, { useContext, useEffect, useState } from "react";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import useTitle from "../../hooks/useTitle";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import { toast } from "react-hot-toast";
+import Alert from "../Shared/Alert";
 
 const AllUsers = () => {
   useTitle("users");
   const { logOut } = useContext(AUTH_CONTEXT);
   const [users, setAllUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [alert, setAlert] = useState(false);
   const handleMakeAdmin = (id) => {
     fetch(`https://anaf-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -18,6 +21,8 @@ const AllUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        setAlert(true);
+        // toast.success("Successfully make admin");
       });
   };
 
@@ -36,6 +41,7 @@ const AllUsers = () => {
         return res.json();
       })
       .then((data) => {
+        toast.success("Remove admin successfully");
         console.log(data);
       });
   };

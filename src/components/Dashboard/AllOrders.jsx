@@ -82,8 +82,8 @@ const AllOrders = () => {
                         <th scope="col" className="px-6 py-4">
                           Order status
                         </th>
-                        <th scope="col" className="px-6 py-4">
-                          Product name
+                        <th scope="col" className="px-6 flex items-center py-4">
+                          Product <span className="ml-1">name</span>
                         </th>
                         <th scope="col" className="px-6 py-4">
                           Price

@@ -11,6 +11,7 @@ const AddProducts = () => {
     const name = form.productName.value;
     const price = form.price.value;
     const quantity = form.quantity.value;
+    const detail = form.detail.value;
     const id = form.pId.value;
     // const image = form.image;
 
@@ -35,6 +36,7 @@ const AddProducts = () => {
             name,
             price,
             quantity,
+            detail,
             img: imageData.data.url,
             id,
           };
@@ -93,6 +95,11 @@ const AddProducts = () => {
             type="number"
             name="quantity"
             placeholder="quantity "
+            className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+          />
+          <textarea
+            name="detail"
+            placeholder="Product detail  "
             className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
           />
           <label htmlFor="">

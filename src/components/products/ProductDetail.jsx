@@ -23,9 +23,9 @@ const ProductDetail = () => {
         setIsLoading(false);
       });
   }, []);
-  //   if (isLoading) {
-  //     return <LoadingSpinner />;
-  //   }
+    if (isLoading) {
+      return <LoadingSpinner />;
+    }
   return (
     <AnimatePage>
       <div>
@@ -39,7 +39,6 @@ const ProductDetail = () => {
                     className="w-full rounded-md relative z-10"
                     alt=""
                   />
-                  <div className="border-4 border-yellow-200 absolute top-10 bottom-10 left-10 right-10 z-0"></div>
                 </div>
               </div>
               <div className="w-full md:w-1/2 px-10">
@@ -48,16 +47,8 @@ const ProductDetail = () => {
                     {orderDetail.name}
                   </h1>
                   <p className="text-sm">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing, elit.
-                    Eos, voluptatum dolorum! Laborum blanditiis consequatur,
-                    voluptates, sint enim fugiat saepe, dolor fugit, magnam
-                    explicabo eaque quas id quo porro dolorum facilis...{" "}
-                    <a
-                      href="#"
-                      className="opacity-50 text-gray-900 hover:opacity-100 inline-block text-xs leading-none border-b border-gray-900"
-                    >
-                      MORE <i className="mdi mdi-arrow-right"></i>
-                    </a>
+                    {orderDetail.detail}
+                    
                   </p>
                 </div>
                 <div className="flex flex-col gap-y-3">

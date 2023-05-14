@@ -27,17 +27,12 @@ export default {
         transparent: "transparent",
       },
       boxShadow: {
-        primary:  "0px 0px 15px -3px rgba(0,0,0,0.1)",
+        primary: "0px 0px 15px -3px rgba(0,0,0,0.1)",
       },
       backgroundImage: {
-        radialBgCircle: "url('/src/assets/img/radial-bg.svg')",
-        videoBg: "url('/src/assets/img/video-bg.png')",
-        circle: "url('/src/assets/img/circle.png')",
-        explore: "url('/src/assets/img/explore.png')",
+        clBg: "url('./src/assets/image/clBg.jpeg')",
       },
     },
   },
-  plugins: [
-    require('tailwind-scrollbar-hide')
-  ],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

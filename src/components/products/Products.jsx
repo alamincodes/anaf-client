@@ -49,7 +49,7 @@ const Products = () => {
             </span>
           </h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 ">
-            {isLoading && <SkeletonCard cards={5} />}
+            {isLoading && <SkeletonCard cards={20} />}
             {/* products */}
             {products.map((product) => (
               <Product key={product._id} product={product} />

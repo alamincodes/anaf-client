@@ -76,7 +76,8 @@ const Navbar = () => {
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
                   {user?.email && (
-                    <FaUser className="text-3xl border-4 p-[2px] border-black rounded-full" />
+                    // <FaUser className="text-3xl border-4 p-[2px] border-black rounded-full" />
+                    <div className="h-9 w-9 bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
                   )}
                   {openProfileMenu && <ProfileMenu />}
                 </li>
@@ -104,7 +105,7 @@ const Navbar = () => {
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
                   {user?.email && (
-                    <FaUser className="text-3xl border-4 p-[2px] border-black rounded-full" />
+                    <div className="h-8 w-8 bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
                   )}
                   {openProfileMenu && <ProfileMenu />}
                 </h2>
