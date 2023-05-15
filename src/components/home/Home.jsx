@@ -7,6 +7,7 @@ import AnimatePage from "../Shared/AnimatePage";
 import HomeDelivery from "./HomeDelivery";
 import Footer from "../Shared/Footer";
 import BusinessAbout from "./BusinessAbout";
+import CallNow from "./CallNow";
 
 const Home = () => {
   useTitle("Home");
@@ -18,6 +19,7 @@ const Home = () => {
         {/* <HomeSlider /> */}
         <BusinessAbout />
         <HomeDelivery />
+        <CallNow />
         <Footer />
       </div>
     </AnimatePage>

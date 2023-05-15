@@ -1,11 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import AnimatePage from "../Shared/AnimatePage";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const OrderDetails = () => {
-  const { user } = useContext(AUTH_CONTEXT);
   const [orderDetail, setOrderDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   let { id } = useParams();
@@ -34,7 +32,7 @@ const OrderDetails = () => {
           <div className="">
             <div>
               <h2 className="text-2xl font-medium mt-4">
-                Hi, {user?.displayName}
+                Hi, {orderDetail?.name}
               </h2>
               {orderDetail?.status === "receive" && (
                 <h2 className="my-2 text-sky-500">

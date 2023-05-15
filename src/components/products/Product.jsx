@@ -21,7 +21,7 @@ const Product = ({ product }) => {
         </Link>
         <div className="mt-4 md:px-5 px-2 md:mb-5 mb-2">
           <Link to={`/product/${_id}`}>
-            <h5 className="lg:text-xl md:text-md  text-sm tracking-tight text-slate-900">
+            <h5 className="lg:text-lg md:text-md text-sm h-10 tracking-tight text-slate-900">
               {name}
             </h5>
           </Link>

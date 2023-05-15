@@ -30,7 +30,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-200" : undefined
+                  isActive ? "bg-gray-100 rounded" : undefined
                 }
               >
                 <li className="cursor-pointer py-1 px-2">Home</li>
@@ -39,7 +39,7 @@ const Navbar = () => {
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-200" : undefined
+                  isActive ? "bg-gray-100 rounded" : undefined
                 }
               >
                 <li className="cursor-pointer py-1 px-2">Shop</li>
@@ -76,7 +76,6 @@ const Navbar = () => {
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
                   {user?.email && (
-                    // <FaUser className="text-3xl border-4 p-[2px] border-black rounded-full" />
                     <div className="h-9 w-9 bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
                   )}
                   {openProfileMenu && <ProfileMenu />}
@@ -87,6 +86,13 @@ const Navbar = () => {
 
             {/* menu  icon */}
             <div className="md:hidden flex items-center space-x-2">
+              {!user?.email && (
+                <Link to="/login">
+                  <h2 className="bg-black text-white text-xs py-[6px] px-3 rounded-sm">
+                    Login
+                  </h2>
+                </Link>
+              )}
               {/* cart */}
               <Link to="/cart">
                 <h2 className="cursor-pointer relative mb-1">
@@ -98,6 +104,7 @@ const Navbar = () => {
                   <HiOutlineShoppingBag size={32} />
                 </h2>
               </Link>
+
               {/* ---mobile profile menu start---- */}
               {user?.email && (
                 <h2

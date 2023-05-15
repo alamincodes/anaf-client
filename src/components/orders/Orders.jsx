@@ -46,6 +46,9 @@ const Orders = () => {
                     <thead className="border-b bg-white font-medium ">
                       <tr>
                         <th scope="col" className="px-6 py-4">
+                          No.
+                        </th>
+                        <th scope="col" className="px-6 py-4">
                           View order
                         </th>
                         <th scope="col" className="px-6 py-4">
@@ -66,11 +69,14 @@ const Orders = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {orders.map((order) => (
+                      {orders.map((order, i) => (
                         <tr
                           key={order._id}
                           className="border-b odd:bg-gray-100 font-medium"
                         >
+                          <td className="whitespace-nowrap px-6 py-4 font-medium">
+                           <h2>{i + 1}</h2>
+                          </td>
                           <td className="whitespace-nowrap px-6 py-4 font-medium">
                             <Link to={`/order/${order._id}`}>
                               <span className="border p-2 text-xs border-black hover:bg-black hover:text-white transition-all">

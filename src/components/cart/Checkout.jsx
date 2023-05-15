@@ -276,16 +276,11 @@ const Checkout = () => {
                         Division
                       </label>
 
-                      <select
+                      <input
                         name="division"
+                        defaultValue={userFullInfo.division}
                         className="border rounded-sm outline-none font-normal p-2 w-full "
-                      >
-                        {divisions.map((division) => (
-                          <option key={division.id} value={division.name}>
-                            {division.name}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                   </div>
 
@@ -296,16 +291,11 @@ const Checkout = () => {
                         District
                       </label>
 
-                      <select
+                      <input
                         name="district"
+                        defaultValue={userFullInfo.district}
                         className="border rounded-sm outline-none font-normal p-2 w-full "
-                      >
-                        {districts.map((district) => (
-                          <option key={district.id} value={district.name}>
-                            {district.name}
-                          </option>
-                        ))}
-                      </select>
+                      />
                     </div>
                     <div className="w-full">
                       <label className=" text-xs font-medium text-gray-700">
@@ -496,7 +486,7 @@ const Checkout = () => {
                               <p className="text-black flex items-center">
                                 <img
                                   src={nagad}
-                                  className="w-5 h-9 mr-1"
+                                  className="w-5 h-8 mr-1"
                                   alt=""
                                 />
                                 Nagad

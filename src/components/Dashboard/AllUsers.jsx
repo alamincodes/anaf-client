@@ -22,7 +22,7 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         setAlert(true);
-        // toast.success("Successfully make admin");
+        toast.success("Successfully make admin");
       });
   };
 

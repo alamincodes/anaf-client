@@ -104,7 +104,7 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
                   <HiOutlineCheck className="hidden bg-black text-white ro" />
 
                   <p className="text-black flex items-center">
-                    <img src={bkash} className="w-7 h-8" alt="" />
+                    <img src={bkash} className="w-7 h-7" alt="" />
                     Bkash
                   </p>
                 </div>
