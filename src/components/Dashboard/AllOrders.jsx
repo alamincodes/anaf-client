@@ -4,8 +4,11 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { GrUpdate } from "react-icons/gr";
 import AnimatePage from "../Shared/AnimatePage";
+import useTitle from "../../hooks/useTitle";
+import { toast } from "react-hot-toast";
 
 const AllOrders = () => {
+  useTitle("Admin order");
   const { logOut } = useContext(AUTH_CONTEXT);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +38,15 @@ const AllOrders = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        toast("Order update", {
+          icon: "🚀",
+          style: {
+            borderRadius: "10px",
+            background: "#333",
+            color: "#fff",
+          },
+        });
       });
   };
 

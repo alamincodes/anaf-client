@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import useTitle from "../../hooks/useTitle";
 
 const AddProducts = () => {
+  useTitle('Add Product')
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState([]);

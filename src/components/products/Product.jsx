@@ -1,24 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
+import { Blurhash } from "react-blurhash";
+import Skeleton from "react-loading-skeleton";
 
 const Product = ({ product }) => {
   const { addItem } = useCart();
+  const [imageLoad, setImageLoad] = useState(false);
   const { name, img, price, _id } = product;
+
+  useEffect(() => {
+    const image = new Image();
+    image.onload = () => {
+      setImageLoad(true);
+    };
+    image.src = img;
+  }, [product]);
   return (
     <div>
       <div className="flex flex-col border border-gray-100 bg-white shadow-md">
-        <Link
-          to={`/product/${_id}`}
-          className="relative flex h-48 overflow-hidden"
-        >
-          <img
-            className="absolute top-0 right-0 w-full h-full object-cover"
-            src={img}
-            alt="product image"
-          />
-        </Link>
+        {!imageLoad && (
+          <>
+            <div className="lg:hidden block">
+              <Skeleton height={190} />
+            </div>
+            <div className="hidden lg:block">
+              <Blurhash
+                hash="LYJ?ynrWTJb]ajS}w0oy}AtOE*OX"
+                width={282}
+                height={200}
+                resolutionX={32}
+                resolutionY={32}
+                punch={1}
+              />
+            </div>
+          </>
+        )}
+        {imageLoad && (
+          <Link
+            to={`/product/${_id}`}
+            className="relative flex h-48 overflow-hidden"
+          >
+            <img
+              className="absolute top-0 right-0 w-full h-full object-cover"
+              src={img}
+              alt="product image"
+            />
+          </Link>
+        )}
         <div className="mt-4 md:px-5 px-2 md:mb-5 mb-2">
           <Link to={`/product/${_id}`}>
             <h5 className="lg:text-lg md:text-md text-sm h-10 tracking-tight text-slate-900">

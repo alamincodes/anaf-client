@@ -3,14 +3,13 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import useTitle from "../../hooks/useTitle";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { toast } from "react-hot-toast";
-import Alert from "../Shared/Alert";
+import { MdVerified } from "react-icons/md";
 
 const AllUsers = () => {
-  useTitle("users");
+  useTitle("All users");
   const { logOut } = useContext(AUTH_CONTEXT);
   const [users, setAllUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [alert, setAlert] = useState(false);
   const handleMakeAdmin = (id) => {
     fetch(`https://anaf-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -21,7 +20,6 @@ const AllUsers = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setAlert(true);
         toast.success("Successfully make admin");
       });
   };
@@ -90,29 +88,28 @@ const AllUsers = () => {
                           {user.name}
                         </td>
 
-                        <td className="whitespace-nowrap px-6 py-4 ">
+                        <td className="whitespace-nowrap flex items-center px-6 py-4 ">
+                          {user?.role === "admin" && (
+                            <span>
+                              <MdVerified className="mr-1 text-lg text-green-500" />
+                            </span>
+                          )}
                           {user.email}
                         </td>
                         <td className="whitespace-nowrap px-6 py-4 ">
                           {user?.role === "admin" ? (
                             <div className="flex items-center gap-1">
-                              <h2>
-                                {" "}
-                                <span className="bg-green-200 p-2 rounded-full text-green-700">
-                                  Admin
-                                </span>{" "}
-                              </h2>
                               <button
                                 onClick={() => handleCancelAdmin(user._id)}
-                                className="bg-black text-white p-2"
+                                className="bg-red-100 rounded text-red-700 p-2"
                               >
-                                Remove admin
+                                Remove
                               </button>
                             </div>
                           ) : (
                             <button
                               onClick={() => handleMakeAdmin(user._id)}
-                              className="bg-black text-white p-2"
+                              className="bg-black rounded text-white p-2"
                             >
                               Make admin
                             </button>
