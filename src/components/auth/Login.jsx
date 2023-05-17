@@ -85,10 +85,10 @@ const Login = () => {
                     placeholder="Enter your email"
                     className="border rounded-sm outline-none font-normal p-2 w-full"
                   />
-                  <span className=" absolute right-3 mt-[10px]">
+                  <span className="absolute right-2 -top-1 mt-[10px]">
                     <MdOutlineAlternateEmail
-                      size={22}
-                      className="cursor-pointer"
+                      size={30}
+                      className="cursor-pointer p-1 bg-white"
                     />
                   </span>
                 </div>
@@ -120,19 +120,19 @@ const Login = () => {
                   {showPassword ? (
                     <span
                       onClick={() => setShowPassword(!showPassword)}
-                      className=" absolute right-3 mt-[10px]"
+                      className=" absolute right-2 mt-[6px] cursor-pointer"
                     >
                       <AiOutlineEyeInvisible
-                        size={25}
-                        className="cursor-pointer"
+                        size={32}
+                        className="cursor-pointer bg-white p-1"
                       />
                     </span>
                   ) : (
                     <span
                       onClick={() => setShowPassword(!showPassword)}
-                      className=" absolute right-3 mt-[10px] cursor-pointer"
+                      className=" absolute right-2 mt-[6px] cursor-pointer"
                     >
-                      <AiOutlineEye size={25} />
+                      <AiOutlineEye size={32} className="bg-white p-1" />
                     </span>
                   )}
                 </div>

@@ -6,6 +6,7 @@ import { GrUpdate } from "react-icons/gr";
 import AnimatePage from "../Shared/AnimatePage";
 import useTitle from "../../hooks/useTitle";
 import { toast } from "react-hot-toast";
+import { HiOutlineTrash, HiOutlineCog8Tooth } from "react-icons/hi2";
 
 const AllOrders = () => {
   useTitle("Admin order");
@@ -13,6 +14,7 @@ const AllOrders = () => {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [orderId, setOrderId] = useState("");
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -47,6 +49,20 @@ const AllOrders = () => {
             color: "#fff",
           },
         });
+      });
+  };
+  const handleDeleteOrder = (id) => {
+    setDeleteLoading(true);
+    fetch(`http://localhost:5000/deleteOrder/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success("Deleted successfully");
+          setDeleteLoading(false);
+        }
+        console.log(data);
       });
   };
 
@@ -113,6 +129,9 @@ const AllOrders = () => {
                           </th>
                           <th scope="col" className="px-6 py-4">
                             Update
+                          </th>
+                          <th scope="col" className="px-6 py-4">
+                            Delete
                           </th>
                         </tr>
                       </thead>
@@ -211,6 +230,24 @@ const AllOrders = () => {
                                   update
                                 </button>
                               </form>
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              <h2
+                                onClick={() => handleDeleteOrder(order._id)}
+                                className="bg-red-100 cursor-pointer flex items-center justify-center rounded-full p-3"
+                              >
+                                {deleteLoading ? (
+                                  <HiOutlineCog8Tooth
+                                    size={20}
+                                    className="text-red-600 animate-spin"
+                                  />
+                                ) : (
+                                  <HiOutlineTrash
+                                    size={20}
+                                    className="text-red-600"
+                                  />
+                                )}
+                              </h2>
                             </td>
                           </tr>
                         ))}

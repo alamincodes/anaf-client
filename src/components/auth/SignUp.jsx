@@ -172,19 +172,19 @@ const SignUp = () => {
                       {showPassword ? (
                         <span
                           onClick={() => setShowPassword(!showPassword)}
-                          className=" absolute right-3 mt-[10px]"
+                          className=" absolute right-2 mt-[6px] cursor-pointer"
                         >
                           <AiOutlineEyeInvisible
-                            size={25}
-                            className="cursor-pointer"
+                            size={32}
+                            className="cursor-pointer bg-white p-1"
                           />
                         </span>
                       ) : (
                         <span
                           onClick={() => setShowPassword(!showPassword)}
-                          className=" absolute right-3 mt-[10px] cursor-pointer"
+                          className=" absolute right-2 mt-[6px] cursor-pointer"
                         >
-                          <AiOutlineEye size={25} />
+                          <AiOutlineEye size={32} className="bg-white p-1" />
                         </span>
                       )}
                     </div>

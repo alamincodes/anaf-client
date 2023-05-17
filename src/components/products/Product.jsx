@@ -22,7 +22,7 @@ const Product = ({ product }) => {
       <div className="flex flex-col border border-gray-100 bg-white shadow-md">
         {!imageLoad && (
           <>
-            <div className="lg:hidden block">
+            <div className="lg:hidden block p-1">
               <Skeleton height={190} />
             </div>
             <div className="hidden lg:block">
