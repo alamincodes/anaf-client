@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/logo/anaf.svg";
 import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import { FaUser } from "react-icons/fa";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
-
 const Navbar = () => {
   const { user } = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
@@ -76,7 +74,7 @@ const Navbar = () => {
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
                   {user?.email && (
-                    <div className="h-9 w-9 bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
+                    <div className="h-9 w-9  bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
                   )}
                   {openProfileMenu && <ProfileMenu />}
                 </li>

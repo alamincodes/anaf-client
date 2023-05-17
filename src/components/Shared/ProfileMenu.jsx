@@ -7,6 +7,7 @@ import { BsBoxSeam } from "react-icons/bs";
 import { RxDashboard } from "react-icons/rx";
 import { VscSignOut } from "react-icons/vsc";
 import useAdmin from "../../hooks/useAdmin";
+import { MdVerified } from "react-icons/md";
 
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -24,10 +25,19 @@ const ProfileMenu = () => {
       id="dropdown"
     >
       <div className="px-4 py-3">
-        <span className="font-bold text-md">{user?.displayName}</span>
-        <span className="block text-sm font-medium text-gray-900 truncate">
+        <h2 className="font-bold  text-md">
+          <span className="relative">
+            {user?.displayName}
+            {isAdmin && (
+              <span className="absolute top-[1px] ml-[2px]">
+                <MdVerified size={17} className="" />
+              </span>
+            )}
+          </span>
+        </h2>
+        <p className="block text-sm font-medium text-gray-900 truncate">
           {user?.email}
-        </span>
+        </p>
       </div>
       <ul className="py-1" aria-labelledby="dropdown">
         <Link

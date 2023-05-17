@@ -53,8 +53,12 @@ const AllOrders = () => {
   };
   const handleDeleteOrder = (id) => {
     setDeleteLoading(true);
-    fetch(`http://localhost:5000/deleteOrder/${id}`, {
+    fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        "content-type": "application/json",
+      },
     })
       .then((res) => res.json())
       .then((data) => {
@@ -62,7 +66,12 @@ const AllOrders = () => {
           toast.success("Deleted successfully");
           setDeleteLoading(false);
         }
+        setDeleteLoading(false);
         console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setDeleteLoading(false);
       });
   };
 
