@@ -23,9 +23,9 @@ const ProductDetail = () => {
         setIsLoading(false);
       });
   }, []);
-    if (isLoading) {
-      return <LoadingSpinner />;
-    }
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
   return (
     <AnimatePage>
       <div>
@@ -46,10 +46,7 @@ const ProductDetail = () => {
                   <h1 className="font-bold uppercase text-2xl mb-5">
                     {orderDetail.name}
                   </h1>
-                  <p className="text-sm">
-                    {orderDetail.detail}
-                    
-                  </p>
+                  <p className="text-sm">{orderDetail.detail}</p>
                 </div>
                 <div className="flex flex-col gap-y-3">
                   <div className="inline-block align-bottom mr-5">

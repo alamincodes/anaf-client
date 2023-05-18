@@ -20,6 +20,7 @@ import PrivateAdminRoute from "./PrivateAdminRoute";
 import AllOrders from "../Dashboard/AllOrders";
 import AddProducts from "../Dashboard/AddProducts";
 import ProductDetail from "../products/ProductDetail";
+import FindOrder from "../Dashboard/FindOrder";
 
 export const routes = createBrowserRouter([
   {
@@ -118,6 +119,10 @@ export const routes = createBrowserRouter([
           {
             path: "/dashboard/addProducts",
             element: <AddProducts />,
+          },
+          {
+            path: "/dashboard/findOrder",
+            element: <FindOrder />,
           },
         ],
       },

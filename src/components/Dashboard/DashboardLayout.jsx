@@ -37,6 +37,15 @@ const DashboardLayout = () => {
             <span className="ml-1">Product</span>
           </li>
         </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? " text-black" : undefined)}
+          to="/dashboard/findOrder"
+        >
+          <li className="-mb-px p-4 flex items-center">
+            <MdOutlineAddBox size={20} className="mr-1" /> Find{" "}
+            <span className="ml-1">Order</span>
+          </li>
+        </NavLink>
       </ul>
       <Outlet />
     </div>

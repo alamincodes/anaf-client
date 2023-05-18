@@ -1,0 +1,212 @@
+import React, { useEffect, useState } from "react";
+import { MdFindInPage } from "react-icons/md";
+import LoadingSpinner from "../Shared/LoadingSpinner";
+const FindOrder = () => {
+  const [id, setId] = useState("");
+  const [orderDetail, setOrderDetail] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const productId = e.target.productId.value;
+    setId(productId);
+    console.log(orderDetail);
+  };
+  useEffect(() => {
+    setIsLoading(true);
+    fetch(`https://anaf-server.vercel.app/find/${id}`, {
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setOrderDetail(data);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+  }, [id]);
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+  return (
+    <div>
+      <form
+        onSubmit={handleSearch}
+        className="flex md:flex-row flex-col items-center gap-2"
+      >
+        <input
+          type="text"
+          name="productId"
+          placeholder="id"
+          className="mt-1 w-full border-gray-200 rounded shadow-sm p-2 border outline-none"
+        />
+        <button
+          type="submit"
+          className="flex items-center justify-center text-sm md:w-auto w-full rounded bg-black text-white mt-1 p-[10px]"
+        >
+          <span>
+            {" "}
+            <MdFindInPage size={20} className="mr-1" />
+          </span>{" "}
+          Find <span className="ml-1">order</span>{" "}
+        </button>
+      </form>
+
+      <div>
+        {orderDetail ? (
+          <div className="container mx-auto bg-white md:px-20 md:py-10">
+            <h2 className="md:text-3xl font-bold text-center"> Order detail</h2>
+            <div className="">
+              <div>
+                <h2 className="text-2xl font-medium mt-4">
+                  Hi, {orderDetail?.name}
+                </h2>
+                {orderDetail?.status === "receive" && (
+                  <h2 className="my-2 text-sky-500">
+                    Your order has been receive and will be shipping soon.
+                  </h2>
+                )}
+                {orderDetail?.status === "completed" && (
+                  <h2 className="my-2 text-green-500">Your order completed.</h2>
+                )}
+                {orderDetail?.status === "processing" && (
+                  <h2 className="my-2 text-purple-500">
+                    Your order is processing.
+                  </h2>
+                )}
+                {orderDetail?.status === "cancel" && (
+                  <h2 className="my-2 text-red-500">Your order is cancel.</h2>
+                )}
+
+                {orderDetail?.status === "pending" && (
+                  <h2 className="my-2 text-yellow-500">
+                    Your order is pending.
+                  </h2>
+                )}
+                {!orderDetail?.status && (
+                  <h2 className="my-2 text-yellow-500">
+                    Your order is pending.
+                  </h2>
+                )}
+              </div>
+              <div className="space-y-2 border-4 border-gray-300 border-dotted p-2 md:text-sm text-xs">
+                <h2>
+                  <span className="uppercase font-medium">Order id:</span>{" "}
+                  <span className="text-gray-500"> {orderDetail._id}</span>
+                </h2>
+                <h2>
+                  <span className="uppercase font-medium">Order date: </span>{" "}
+                  <span className="text-gray-600">
+                    {" "}
+                    {orderDetail.orderDate}
+                  </span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">
+                    Payment type:{" "}
+                  </span>{" "}
+                  <span className="text-gray-600">
+                    {orderDetail.selectPaymentType}
+                  </span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">
+                    Payment with:{" "}
+                  </span>{" "}
+                  <span className="text-gray-600 uppercase">
+                    {orderDetail.payWith}
+                  </span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">Phone: </span>{" "}
+                  <span className="text-gray-600">{orderDetail.phone}</span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">Email: </span>{" "}
+                  <span className="text-gray-600">{orderDetail.email}</span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">District: </span>{" "}
+                  <span className="text-gray-600">
+                    {orderDetail?.districtName}
+                  </span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">Address: </span>{" "}
+                  <span className="text-gray-600">{orderDetail.address}</span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">
+                    Transaction Id:{" "}
+                  </span>{" "}
+                  <span className="text-gray-500">
+                    {orderDetail.transactionId}
+                  </span>
+                </h2>
+                <h2>
+                  {" "}
+                  <span className="uppercase font-medium">Status:</span>{" "}
+                  <span className="text-gray-500">
+                    {orderDetail.status ? orderDetail.status : "pending"}
+                  </span>
+                </h2>
+              </div>
+            </div>
+
+            <div className="mt-5">
+              {orderDetail.items?.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex justify-between md:flex-row flex-col bg-gray-50 rounded mt-2 py-5 px-3 "
+                >
+                  <div className="flex items-center space-x-3">
+                    <img
+                      src={item.img}
+                      alt=""
+                      className="w-20 h-20 bg-cover rounded-md"
+                    />
+                    <h2>{item.name}</h2>
+                  </div>
+                  <div className="flex items-center space-x-5">
+                    <h2>Quantity: {item.quantity}</h2>
+                    <h2>Price: {item.price} Tk</h2>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="text-right py-2 space-y-4">
+              <div className="flex justify-end items-center space-x-28">
+                <h2>Subtotal : </h2>
+                <h2>{orderDetail.discountTotal} Tk</h2>
+              </div>
+              <div className="flex justify-end items-center space-x-28">
+                <h2>Delivery fee : </h2>
+                <h2>{orderDetail.deliveryFee} Tk</h2>
+              </div>
+              <div className="flex justify-end items-center space-x-28 border-t font-medium">
+                <h2>Total payable : </h2>
+                <h2>{orderDetail.total} TK</h2>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <h2>No </h2>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default FindOrder;
