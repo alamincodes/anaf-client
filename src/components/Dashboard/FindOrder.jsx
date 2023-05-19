@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MdFindInPage } from "react-icons/md";
+import {
+  IoMailUnreadOutline,
+  IoPersonOutline,
+  IoLocationOutline,
+  IoCallOutline,
+} from "react-icons/io5";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 const FindOrder = () => {
   const [id, setId] = useState("");
@@ -58,128 +64,92 @@ const FindOrder = () => {
       </form>
 
       <div>
-        {orderDetail ? (
-          <div className="container mx-auto bg-white md:px-20 md:py-10">
-            <h2 className="md:text-3xl font-bold text-center"> Order detail</h2>
-            <div className="">
-              <div>
-                <h2 className="text-2xl font-medium mt-4">
-                  Hi, {orderDetail?.name}
-                </h2>
-                {orderDetail?.status === "receive" && (
-                  <h2 className="my-2 text-sky-500">
-                    Your order has been receive and will be shipping soon.
-                  </h2>
-                )}
-                {orderDetail?.status === "completed" && (
-                  <h2 className="my-2 text-green-500">Your order completed.</h2>
-                )}
-                {orderDetail?.status === "processing" && (
-                  <h2 className="my-2 text-purple-500">
-                    Your order is processing.
-                  </h2>
-                )}
-                {orderDetail?.status === "cancel" && (
-                  <h2 className="my-2 text-red-500">Your order is cancel.</h2>
-                )}
-
-                {orderDetail?.status === "pending" && (
-                  <h2 className="my-2 text-yellow-500">
-                    Your order is pending.
-                  </h2>
-                )}
-                {!orderDetail?.status && (
-                  <h2 className="my-2 text-yellow-500">
-                    Your order is pending.
-                  </h2>
-                )}
-              </div>
-              <div className="space-y-2 border-4 border-gray-300 border-dotted p-2 md:text-sm text-xs">
-                <h2>
-                  <span className="uppercase font-medium">Order id:</span>{" "}
-                  <span className="text-gray-500"> {orderDetail._id}</span>
-                </h2>
-                <h2>
-                  <span className="uppercase font-medium">Order date: </span>{" "}
-                  <span className="text-gray-600">
-                    {" "}
-                    {orderDetail.orderDate}
-                  </span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">
-                    Payment type:{" "}
-                  </span>{" "}
-                  <span className="text-gray-600">
-                    {orderDetail.selectPaymentType}
-                  </span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">
-                    Payment with:{" "}
-                  </span>{" "}
-                  <span className="text-gray-600 uppercase">
-                    {orderDetail.payWith}
-                  </span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">Phone: </span>{" "}
-                  <span className="text-gray-600">{orderDetail.phone}</span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">Email: </span>{" "}
-                  <span className="text-gray-600">{orderDetail.email}</span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">District: </span>{" "}
-                  <span className="text-gray-600">
-                    {orderDetail?.districtName}
-                  </span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">Address: </span>{" "}
-                  <span className="text-gray-600">{orderDetail.address}</span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">
-                    Transaction Id:{" "}
-                  </span>{" "}
-                  <span className="text-gray-500">
-                    {orderDetail.transactionId}
-                  </span>
-                </h2>
-                <h2>
-                  {" "}
-                  <span className="uppercase font-medium">Status:</span>{" "}
-                  <span className="text-gray-500">
-                    {orderDetail.status ? orderDetail.status : "pending"}
-                  </span>
-                </h2>
-              </div>
+        <div className="flex justify-between gap-2 md:flex-row flex-col bg-white md:px-5 px-2 md:py-10">
+          <div className="shadow-lg md:p-4 py-2 px-2 rounded-md">
+            <h2 className="text-2xl font-bold text-center">Customer</h2>
+            <div className="font-semibold flex flex-col mt-4 space-y-4 ">
+              <h4 className="inline-flex items-center">
+                {" "}
+                <span>
+                  <IoPersonOutline size={20} className="mr-1" />
+                </span>{" "}
+                {orderDetail.name}
+              </h4>
+              <h4 className=" inline-flex items-center">
+                <span>
+                  <IoMailUnreadOutline size={20} className="mr-1" />
+                </span>{" "}
+                {orderDetail.email}
+              </h4>
+              <h4 className=" inline-flex items-center">
+                <span>
+                  <IoLocationOutline size={23} className="mr-1" />
+                </span>{" "}
+                {orderDetail.address}
+              </h4>
+              <h4 className=" inline-flex items-center">
+                <span>
+                  <IoLocationOutline size={23} className="mr-1" />
+                </span>{" "}
+                {orderDetail.districtName}
+              </h4>
+              <h4 className=" inline-flex items-center">
+                <span>
+                  <IoLocationOutline size={23} className="mr-1" />
+                </span>{" "}
+                {orderDetail.division}
+              </h4>
+              <h4 className=" inline-flex items-center">
+                <span>
+                  <IoLocationOutline size={23} className="mr-1" />
+                </span>{" "}
+                {orderDetail.phone}
+              </h4>
             </div>
+          </div>
 
-            <div className="mt-5">
+          <div className="shadow-md md:p-4 p-2 ">
+            <h2 className="text-2xl text-center font-bold">Order Detail</h2>
+            <div className="mt-4 space-y-3">
+              <h2 className="uppercase font-semibold">
+                Order id: <span className="text-xs">{orderDetail._id}</span>{" "}
+              </h2>
+              <h2 className="uppercase font-semibold ">
+                Status:{" "}
+                <span className="bg-gray-200 text-xs p-2 rounded-sm">
+                  {orderDetail.status ? orderDetail.status : "pending"}
+                </span>{" "}
+              </h2>
+              <h2 className="uppercase font-semibold">
+                payment type: <span className="text-xs">{orderDetail.selectPaymentType}</span>
+              </h2>
+              <h2 className="uppercase font-semibold">
+                payment with: {orderDetail.payWith}
+              </h2>
+              <h2>
+                <span className="uppercase font-semibold">Transaction Id:</span>{" "}
+                {orderDetail.transactionId}
+              </h2>
+            
+            </div>
+          </div>
+
+          <div>
+            <div className="mt-5 ">
               {orderDetail.items?.map((item) => (
                 <div
                   key={item.id}
-                  className="flex justify-between md:flex-row flex-col bg-gray-50 rounded mt-2 py-5 px-3 "
+                  className="flex justify-between  md:flex-row flex-col bg-gray-50 rounded mt-2 py-5 px-3 "
                 >
-                  <div className="flex items-center space-x-3">
+                  <div className="flex items-center">
                     <img
                       src={item.img}
                       alt=""
                       className="w-20 h-20 bg-cover rounded-md"
                     />
-                    <h2>{item.name}</h2>
+                    <h2 className="ml-2">{item.name}</h2>
                   </div>
-                  <div className="flex items-center space-x-5">
+                  <div className="flex items-center font-semibold ml-2 space-x-5">
                     <h2>Quantity: {item.quantity}</h2>
                     <h2>Price: {item.price} Tk</h2>
                   </div>
@@ -201,9 +171,7 @@ const FindOrder = () => {
               </div>
             </div>
           </div>
-        ) : (
-          <h2>No </h2>
-        )}
+        </div>
       </div>
     </div>
   );
