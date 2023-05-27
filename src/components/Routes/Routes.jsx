@@ -21,6 +21,7 @@ import AllOrders from "../Dashboard/AllOrders";
 import AddProducts from "../Dashboard/AddProducts";
 import ProductDetail from "../products/ProductDetail";
 import FindOrder from "../Dashboard/FindOrder";
+import Invoice from "../orders/Invoice";
 
 export const routes = createBrowserRouter([
   {
@@ -63,6 +64,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <OrderDetails />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/invoice/:id",
+        element: (
+          <PrivateRoutes>
+            <Invoice />
           </PrivateRoutes>
         ),
       },

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import AnimatePage from "../Shared/AnimatePage";
@@ -66,6 +66,9 @@ const Orders = () => {
                         <th scope="col" className="px-6 flex items-center py-4">
                           Order <span className="ml-1">status</span>
                         </th>
+                        <th scope="col" className="px-6 ">
+                          Invoice
+                        </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -75,7 +78,7 @@ const Orders = () => {
                           className="border-b odd:bg-gray-100 font-medium"
                         >
                           <td className="whitespace-nowrap px-6 py-4 font-medium">
-                           <h2>{i + 1}</h2>
+                            <h2>{i + 1}</h2>
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 font-medium">
                             <Link to={`/order/${order._id}`}>
@@ -135,6 +138,11 @@ const Orders = () => {
                                 {order.status ? order.status : "Pending"}
                               </span>
                             )}
+                          </td>
+                          <td className="whitespace-nowrap px-6 py-4">
+                            <Link to={`/invoice/${order._id}`}>
+                              <button>Invoice</button>
+                            </Link>
                           </td>
                         </tr>
                       ))}

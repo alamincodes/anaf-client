@@ -121,7 +121,8 @@ const FindOrder = () => {
                 </span>{" "}
               </h2>
               <h2 className="uppercase font-semibold">
-                payment type: <span className="text-xs">{orderDetail.selectPaymentType}</span>
+                payment type:{" "}
+                <span className="text-xs">{orderDetail.selectPaymentType}</span>
               </h2>
               <h2 className="uppercase font-semibold">
                 payment with: {orderDetail.payWith}
@@ -130,7 +131,6 @@ const FindOrder = () => {
                 <span className="uppercase font-semibold">Transaction Id:</span>{" "}
                 {orderDetail.transactionId}
               </h2>
-            
             </div>
           </div>
 
