@@ -8,15 +8,17 @@ import HomeDelivery from "./HomeDelivery";
 import Footer from "../Shared/Footer";
 import BusinessAbout from "./BusinessAbout";
 import CallNow from "./CallNow";
+import Categories from "./categories/Categories";
 
 const Home = () => {
   useTitle("Home");
   return (
     <AnimatePage>
       <div className="">
-        <Banner />
+        {/* <Banner /> */}
+        <HomeSlider />
+        <Categories/>
         <Products />
-        {/* <HomeSlider /> */}
         <BusinessAbout />
         <HomeDelivery />
         <CallNow />

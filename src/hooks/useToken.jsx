@@ -6,7 +6,13 @@ const useToken = (email) => {
     if (email) {
       const url = `https://anaf-server.vercel.app/jwt?email=${email}`;
       fetch(url)
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            localStorage.removeItem("accessToken");
+            return logOut();
+          }
+          return res.json();
+        })
         .then((data) => {
           if (data.accessToken) {
             console.log(data);

@@ -101,7 +101,7 @@ const FindOrder = () => {
               </h4>
               <h4 className=" inline-flex items-center">
                 <span>
-                  <IoLocationOutline size={23} className="mr-1" />
+                  <IoCallOutline size={23} className="mr-1" />
                 </span>{" "}
                 {orderDetail.phone}
               </h4>

@@ -85,6 +85,7 @@ const SignUp = () => {
         if (errMessage.includes("email-already-in-use")) {
           setErrorMessage("Email already used, try another email.");
         }
+        setIsLoading(false)
       });
   };
 

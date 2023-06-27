@@ -2,11 +2,37 @@ import React, { useEffect, useState } from "react";
 import useTitle from "../../hooks/useTitle";
 
 const AddProducts = () => {
-  useTitle('Add Product')
+  useTitle("Add Product");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState([]);
 
+  const categories = [
+    {
+      id: 1,
+      name: "powerBank",
+    },
+    {
+      id: 2,
+      name: "tripod",
+    },
+    {
+      id: 3,
+      name: "microphone",
+    },
+    {
+      id: 4,
+      name: "rechargeableFan",
+    },
+    {
+      id: 5,
+      name: "router",
+    },
+    {
+      id: 6,
+      name: "smartWatches",
+    },
+  ];
   const handleAddProduct = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,6 +41,7 @@ const AddProducts = () => {
     const quantity = form.quantity.value;
     const detail = form.detail.value;
     const id = form.pId.value;
+    const category = form.category.value;
     // const image = form.image;
 
     // console.log(ordersInfo.selectedFile);
@@ -36,6 +63,7 @@ const AddProducts = () => {
         if (imageData.success) {
           const ordersInfo = {
             name,
+            category,
             price,
             quantity,
             detail,
@@ -53,11 +81,13 @@ const AddProducts = () => {
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
+              form.reset();
               setIsLoading(false);
             });
         }
       });
   };
+
   useEffect(() => {
     fetch("https://anaf-server.vercel.app/products")
       .then((res) => res.json())
@@ -79,6 +109,16 @@ const AddProducts = () => {
             placeholder="id"
             className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
           />
+          <select
+            name="category"
+            className="border rounded-sm outline-none font-normal p-2 w-full "
+          >
+            {categories.map((category) => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
+          </select>
           <input
             type="text"
             name="productName"
