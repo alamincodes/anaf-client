@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/logo/anaf.svg";
 import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { FaUser } from "react-icons/fa";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
@@ -60,7 +61,7 @@ const Navbar = () => {
                     <li className="cursor-pointer">Login</li>
                   </Link>
                   <Link to="/signUp">
-                    <li className="cursor-pointer bg-black text-white p-2 px-4">
+                    <li className="cursor-pointer rounded-md bg-black text-white p-2 px-4">
                       Sign up
                     </li>
                   </Link>
@@ -74,7 +75,9 @@ const Navbar = () => {
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
                   {user?.email && (
-                    <div className="h-9 w-9  bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
+                    <div>
+                      <FaUser size={28} />
+                    </div>
                   )}
                   {openProfileMenu && <ProfileMenu />}
                 </li>
@@ -109,9 +112,7 @@ const Navbar = () => {
                   className="cursor-pointer relative"
                   onClick={() => setOpenProfileMenu(!openProfileMenu)}
                 >
-                  {user?.email && (
-                    <div className="h-8 w-8 bg-gradient-to-tl from-teal-500 to-yellow-500 bg-black rounded-full"></div>
-                  )}
+                  {user?.email && <FaUser size={25} />}
                   {openProfileMenu && <ProfileMenu />}
                 </h2>
               )}

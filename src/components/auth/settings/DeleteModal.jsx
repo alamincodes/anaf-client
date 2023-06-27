@@ -12,7 +12,7 @@ const DeleteModal = ({ setOpen }) => {
 
   const handleAccountDelete = (userId) => {
     if (getPassword.length === 0) {
-      setErrorMessage("Please provide password");
+      setErrorMessage("Password cannot be empty*");
       return;
     }
     setErrorMessage("");

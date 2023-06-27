@@ -25,38 +25,36 @@ const Product = ({ product }) => {
             <div className="loader lg:h-[250px] h-[120px] lg:before:w-[200px] before:w-[100%] lg:before:h-[200px] before:h-[120px]"></div>
           </div>
         )}
-        {imageLoad && (
-          <Link
-            to={`/product/${_id}`}
-            className="relative flex justify-center items-center md:h-[300px] h-[180px] overflow-hidden"
-          >
-            <img
-              loading="lazy"
-              className="lg:w-[100%] md:w-[250px] w-[150px] md:h-[300px] h-[150px] object-cover bg-center bg-cover lg:p-5 p-2 lg:rounded-3xl rounded-lg mb-4"
-              src={img}
-              alt="product image"
-            />
-          </Link>
-        )}
-        <div className="mt-1 mb-10  md:px-5 px-2">
-          <Link to={`/product/${_id}`}>
+        <Link to={`/product/${_id}`}>
+          {imageLoad && (
+            <div className="relative flex justify-center items-center md:h-[300px] h-[180px] overflow-hidden">
+              <img
+                loading="lazy"
+                className="lg:w-[100%] md:w-[250px] w-[150px] md:h-[300px] h-[150px] object-cover bg-center bg-cover lg:p-5 p-2 lg:rounded-3xl rounded-lg mb-4"
+                src={img}
+                alt="product image"
+              />
+            </div>
+          )}
+          <div className="mt-1 mb-10  md:px-5 px-2">
             <h5 className="md:text-[15px] text-xs tracking-tight text-slate-900">
               {name}
             </h5>
-          </Link>
-          <div className="absolute bottom-2 ">
-            <div>
-              <p>
-                <span className="md:text-xl text-lg font-bold text-slate-900">
-                  TK.{price}
-                </span>
-                {/* <span className="text-sm text-slate-900 line-through">
+
+            <div className="absolute bottom-2 ">
+              <div>
+                <p>
+                  <span className="md:text-xl text-lg font-bold text-slate-900">
+                    TK.{price}
+                  </span>
+                  {/* <span className="text-sm text-slate-900 line-through">
               ${price}
             </span> */}
-              </p>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );

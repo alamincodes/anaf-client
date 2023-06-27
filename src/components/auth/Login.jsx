@@ -83,19 +83,19 @@ const Login = () => {
                     type="email"
                     {...register("email", { required: true })}
                     placeholder="Enter your email"
-                    className="border rounded-sm outline-none font-normal p-2 w-full"
+                    className="border rounded-sm pr-9 outline-none font-normal p-2 w-full"
                   />
                   <span className="absolute right-2 -top-1 mt-[10px]">
                     <MdOutlineAlternateEmail
                       size={30}
-                      className="cursor-pointer p-1 bg-white"
+                      className="cursor-pointer p-1"
                     />
                   </span>
                 </div>
 
                 {errors.email?.type === "required" && (
                   <p className="text-red-600 font-semibold">
-                    Please provide email*
+                    Email cannot be empty*
                   </p>
                 )}
               </div>
@@ -108,14 +108,14 @@ const Login = () => {
                   <input
                     type={showPassword ? "text" : "password"}
                     {...register("password", {
-                      required: "Please provide password",
+                      required: "Password cannot be empty*",
                       minLength: {
                         value: 6,
                         message: "Password must be 6 character",
                       },
                     })}
                     placeholder="Enter your password"
-                    className="border rounded-sm outline-none font-normal p-2 w-full"
+                    className="border rounded-sm pr-4 outline-none font-normal p-2 w-full"
                   />
                   {showPassword ? (
                     <span
@@ -124,7 +124,7 @@ const Login = () => {
                     >
                       <AiOutlineEyeInvisible
                         size={32}
-                        className="cursor-pointer bg-white p-1"
+                        className="cursor-pointer p-1"
                       />
                     </span>
                   ) : (
@@ -156,7 +156,7 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-black text-white w-full mt-5 p-2 font-semibold select-none"
+                className="bg-black rounded text-white w-full mt-5 p-2 font-semibold select-none"
               >
                 {isLoading ? (
                   <>

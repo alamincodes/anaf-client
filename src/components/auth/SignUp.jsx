@@ -285,7 +285,7 @@ const SignUp = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-black disabled:bg-gray-400 text-white w-full mt-5 p-2 font-semibold"
+                className="bg-black rounded disabled:bg-gray-400 text-white w-full mt-5 p-2 font-semibold"
               >
                 Sign up
               </button>
