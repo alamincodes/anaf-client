@@ -11,7 +11,7 @@ const CallNow = () => {
           <p className="font-secondary text-gray-400">
             সকাল ৯ টা থেকে রাত ১০ টা পর্যন্ত
           </p>
-          <p className="font-secondary text-gray-200">
+          <p className="font-secondary text-gray-400">
             01612888248
           </p>
         </div>

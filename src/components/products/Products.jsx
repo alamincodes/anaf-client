@@ -3,12 +3,17 @@ import Product from "./Product";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import SkeletonCard from "../Shared/SkeletonCard";
-import LoadingSpinner from "../Shared/LoadingSpinner";
 
 const Products = () => {
   useTitle("Shop");
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loadCount, setLoadCount] = useState(10);
+
+  const handleLoadMore = () => {
+    setLoadCount((prevCount) => prevCount + 10);
+    console.log(loadCount);
+  };
 
   useEffect(() => {
     // setIsLoading(true);
@@ -21,9 +26,6 @@ const Products = () => {
       });
   }, [products]);
 
-  // if (isLoading) {
-  //   return <SkeletonCard cards={products.length} />;
-  // }
   return (
     <AnimatePage>
       <section className="my-20">
@@ -34,9 +36,21 @@ const Products = () => {
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 ">
             {isLoading && <SkeletonCard cards={20} />}
             {/* products */}
-            {products.map((product) => (
+            {products.slice(0, loadCount).map((product) => (
               <Product key={product._id} product={product} />
             ))}
+          </div>
+          <div className="text-center mt-7">
+            {products.length <= loadCount ? (
+              ""
+            ) : (
+              <button
+                onClick={handleLoadMore}
+                className="bg-black rounded-full text-white py-2 px-4"
+              >
+                Load More
+              </button>
+            )}
           </div>
         </div>
       </section>

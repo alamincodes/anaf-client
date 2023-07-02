@@ -26,7 +26,7 @@ const Orders = () => {
         return res.json();
       })
       .then((ordersData) => {
-        console.log(ordersData);
+        // console.log(ordersData);
         setOrders(ordersData.reverse());
         setIsLoading(false);
       });
@@ -43,32 +43,33 @@ const Orders = () => {
               <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
                   <table className="min-w-full text-left text-sm font-light">
-                    <thead className="border-b bg-white font-medium ">
+                    <thead className="border-b bg-white font-medium uppercase">
                       <tr>
-                        <th scope="col" className="px-6 py-4">
+                        {/* <th scope="col" className="px-6 py-4">
                           No.
-                        </th>
+                        </th> */}
+
                         <th scope="col" className="px-6 py-4">
-                          View order
-                        </th>
-                        <th scope="col" className="px-6 py-4">
-                          #Id
+                          #Order
                         </th>
                         <th scope="col" className="px-6 py-4">
                           Date
                         </th>
-                        <th scope="col" className="px-6 flex items-center py-4">
+                        <th scope="col" className="px-6 py-4">
                           Product <span className="ml-1">name</span>
                         </th>
                         <th scope="col" className="px-6 py-4">
                           Price
                         </th>
-                        <th scope="col" className="px-6 flex items-center py-4">
-                          Order <span className="ml-1">status</span>
+                        <th scope="col" className="px-6  py-4">
+                          status
                         </th>
-                        <th scope="col" className="px-6 ">
+                        <th scope="col" className="px-6 py-4">
+                          Action
+                        </th>
+                        {/* <th scope="col" className="px-6 ">
                           Invoice
-                        </th>
+                        </th> */}
                       </tr>
                     </thead>
                     <tbody>
@@ -77,17 +78,9 @@ const Orders = () => {
                           key={order._id}
                           className="border-b odd:bg-gray-100 font-medium"
                         >
-                          <td className="whitespace-nowrap px-6 py-4 font-medium">
+                          {/* <td className="whitespace-nowrap px-6 py-4 font-medium">
                             <h2>{i + 1}</h2>
-                          </td>
-                          <td className="whitespace-nowrap px-6 py-4 font-medium">
-                            <Link to={`/order/${order._id}`}>
-                              <span className="border p-2 text-xs border-black hover:bg-black hover:text-white transition-all">
-                                {" "}
-                                View order
-                              </span>
-                            </Link>
-                          </td>
+                          </td> */}
 
                           <td
                             className="whitespace-nowrap px-6 py-4 font-medium"
@@ -108,42 +101,47 @@ const Orders = () => {
                             {order.status ? (
                               <>
                                 {order.status === "completed" && (
-                                  <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
+                                  <span className="bg-green-200 text-green-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}
                                 {order.status === "processing" && (
-                                  <span className="bg-purple-200 text-purple-800 p-2 rounded-sm ">
+                                  <span className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}
                                 {order.status === "pending" && (
-                                  <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
+                                  <span className="bg-yellow-200 text-yellow-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}
                                 {order.status === "receive" && (
-                                  <span className="bg-sky-200 text-sky-800 p-2 rounded-sm ">
+                                  <span className="bg-sky-200 text-sky-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}
                                 {order.status === "cancel" && (
-                                  <span className="bg-red-200 text-red-800 p-2 rounded-sm ">
+                                  <span className="bg-red-200 text-red-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>
                                 )}
                               </>
                             ) : (
-                              <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
+                              <span className="bg-yellow-200 px-4 py-2 rounded-full text-yellow-800">
                                 {order.status ? order.status : "Pending"}
                               </span>
                             )}
                           </td>
-                          <td className="whitespace-nowrap px-6 py-4">
+                          <td className="whitespace-nowrap px-6 py-4 font-medium">
+                            <Link to={`/order/${order._id}`}>
+                              <span className="text-blue-500"> View</span>
+                            </Link>
+                          </td>
+                          {/* <td className="whitespace-nowrap px-6 py-4">
                             <Link to={`/invoice/${order._id}`}>
                               <button>Invoice</button>
                             </Link>
-                          </td>
+                          </td> */}
                         </tr>
                       ))}
                     </tbody>

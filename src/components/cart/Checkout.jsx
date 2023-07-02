@@ -123,7 +123,7 @@ const Checkout = () => {
         if (data.insertedId) {
           setOrderId(data.insertedId);
         }
-        console.log(data);
+        // console.log(data);
       });
   };
 
@@ -131,7 +131,7 @@ const Checkout = () => {
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUserFullInfo(data);
       });
   }, [user]);
@@ -341,7 +341,7 @@ const Checkout = () => {
 
                           <p className="text-black flex items-center">
                             Cash on delivery{" "}
-                            <TbTruckDelivery className="w-7 h-9 ml-1" />{" "}
+                            <TbTruckDelivery className="w-7 h-9 ml-1" />
                           </p>
                         </div>
                       </label>
@@ -516,15 +516,15 @@ const Checkout = () => {
                     </div>
                   )}
                   <div className="mt-10">
+                    {errorMessage && (
+                      <p className="text-red-500 mt-1">{errorMessage}</p>
+                    )}
                     <button
                       type="submit"
                       className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
                     >
                       Confirm order
                     </button>
-                    {errorMessage && (
-                      <p className="text-red-500 mt-1">{errorMessage}</p>
-                    )}
                   </div>
                 </form>
               </div>

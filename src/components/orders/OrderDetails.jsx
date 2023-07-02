@@ -16,7 +16,7 @@ const OrderDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setOrderDetail(data);
         setIsLoading(false);
       });

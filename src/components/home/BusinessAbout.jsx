@@ -40,17 +40,22 @@ const BusinessAbout = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
-              <img
-                alt="clothing"
-                src={img1}
-                className="h-40 w-full object-cover sm:h-56 md:h-full"
-              />
+              <div className="overflow-hidden group">
+                <img
+                  alt="clothing"
+                  src={img1}
+                  className="h-40 w-full object-cover sm:h-56 md:h-full group-hover:scale-110 duration-300"
+                />
+              </div>
+              <div className="overflow-hidden group">
+                <img
+                  alt="clothing"
+                  src={img2}
+                  className="h-40 w-full object-cover sm:h-56 md:h-full group-hover:scale-110 duration-300"
+                />
+              </div>
 
-              <img
-                alt="clothing"
-                src={img2}
-                className="h-40 w-full object-cover sm:h-56 md:h-full"
-              />
+            
             </div>
           </div>
         </div>

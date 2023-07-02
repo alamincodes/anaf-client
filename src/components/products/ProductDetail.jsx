@@ -6,12 +6,25 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import AnimatePage from "../Shared/AnimatePage";
+import { toast } from "react-hot-toast";
 const ProductDetail = () => {
   const [orderDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const { addItem } = useCart();
   let { id } = useParams();
 
+  const handleAddToCart = () => {
+    addItem(orderDetail);
+    toast("Added product, Go to cart🛒", {
+      icon: "☑️",
+      style: {
+        borderRadius: "50px",
+        background: "black",
+        padding: "10px 20px",
+        color: "#fff",
+      },
+    });
+  };
   useEffect(() => {
     setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/product/${id}`)
@@ -56,7 +69,7 @@ const ProductDetail = () => {
                   </div>
                   <div className="inline-block align-bottom">
                     <button
-                      onClick={() => addItem(orderDetail)}
+                      onClick={handleAddToCart}
                       className="flex items-center w-full justify-center bg-gray-900 p-2 md:p-3 text-white hover:border-2 hover:border-black hover:text-black  hover:bg-transparent transition-all border-2 border-transparent sm:bg-none font-medium md:text-sm text-[10px]"
                     >
                       <HiOutlineShoppingBag className="md:text-2xl text-xl mr-1 mb-1" />
@@ -77,10 +90,10 @@ const ProductDetail = () => {
               </div>
               {/* add to card */}
               <button
-                onClick={() => addItem(orderDetail)}
-                className="flex items-center justify-center rounded-md bg-white text-black backdrop-blur-2xl p-2 md:p-3 hover:border-2 hover:border-black hover:text-black  hover:bg-transparent transition-all border-2 border-transparent sm:bg-none font-medium  text-sm"
+                onClick={handleAddToCart}
+                className="flex items-center justify-center rounded-md bg-white text-black px-4 py-4 font-medium text-sm"
               >
-                <HiOutlineShoppingBag className="md:text-2xl text-xl mr-1 mb-1" />
+                <HiOutlineShoppingBag className="text-2xl mr-1 mb-1" />
                 Add to cart
               </button>
             </div>
