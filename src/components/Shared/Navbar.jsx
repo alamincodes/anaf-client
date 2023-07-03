@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../../assets/logo/anaf.svg";
 import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
+import { TbSearch } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import ProfileMenu from "./ProfileMenu";
@@ -44,6 +45,11 @@ const Navbar = () => {
                 <li className="cursor-pointer py-1 px-2">Shop</li>
               </NavLink>
               {/* cart */}
+              <Link to="/search">
+                <li className="cursor-pointer relative">
+                  <TbSearch size={30} />
+                </li>
+              </Link>
               <Link to="/cart">
                 <li className="cursor-pointer relative">
                   {totalUniqueItems > 0 && (
@@ -95,6 +101,11 @@ const Navbar = () => {
                 </Link>
               )}
               {/* cart */}
+              <Link to="/search">
+                <h2 className="cursor-pointer relative">
+                  <TbSearch size={30} className="mt-1" />
+                </h2>
+              </Link>
               <Link to="/cart">
                 <h2 className="cursor-pointer relative mb-1">
                   {totalUniqueItems > 0 && (
@@ -132,13 +143,20 @@ const Navbar = () => {
       <div
         className={`${
           open ? "right-0 " : "-right-full "
-        } fixed top-0 bottom-0 lg:hidden bg-black/95  transition-all text-white z-20 w-48 duration-300`}
+        } fixed top-0 bottom-0 lg:hidden bg-black/95 border-l-4 border-black transition-all text-white z-20 w-48 duration-300`}
       >
         <IoClose
           onClick={() => setOpen(false)}
           className="text-3xl absolute left-4 top-6 cursor-pointer"
         />
+
         <ul className="flex flex-col items-center justify-center h-full space-y-8 font-secondary">
+          <Link onClick={() => setOpen(false)} to="/" >
+            <li className="bg-white/90 text-black p-2 absolute bottom-0 left-0 right-0">
+              <h2> {user?.displayName } </h2>
+              <h2> {user?.email.length > 20 ? user?.email.substr(0, 15) + "..." : user?.email} </h2>
+            </li>
+          </Link>
           <Link onClick={() => setOpen(false)} to="/">
             <li>Home</li>
           </Link>

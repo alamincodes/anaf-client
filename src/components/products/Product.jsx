@@ -36,10 +36,10 @@ const Product = ({ product }) => {
               />
             </div>
           )}
-          <div className="lg:mb-20 lg:mt-auto mt-32  md:px-5 px-2">
+          <div className="lg:mb-20 lg:mt-auto mt-24  md:px-5 px-2">
             <div className="absolute bottom-2">
               <h5 className="md:text-[15px] text-xs tracking-tight text-slate-900">
-                {name}
+                {name.length > 50 ? name.substr(0, 40) +"..." : name}
               </h5>
               <div className="mt-5">
                 <p>

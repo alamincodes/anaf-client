@@ -131,7 +131,7 @@ const AllOrders = () => {
                             Product <span className="ml-1">name</span>
                           </th>
                           <th scope="col" className="px-6 py-4">
-                            Price
+                            Total
                           </th>
                           <th scope="col" className="px-6 py-4">
                             Date
@@ -205,10 +205,12 @@ const AllOrders = () => {
                               )}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order?.items[0]?.name}
+                              {order?.items[0]?.name.length > 10
+                                ? order?.items[0]?.name.substr(0, 10) + "..."
+                                : order?.items[0]?.name}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order.discountTotal}Tk
+                              {order.total}Tk
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.orderDate}

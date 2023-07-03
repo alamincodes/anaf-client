@@ -1,19 +1,16 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const CategoryProductCard = ({ category }) => {
+const SearchProduct = ({ searchProduct }) => {
   const [imageLoad, setImageLoad] = useState(false);
-  const { name, img, price, _id } = category;
-
+  const { name, img, price, _id } = searchProduct;
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
       setImageLoad(true);
     };
     image.src = img;
-  }, [category]);
+  }, []);
   return (
     <div className="relative border rounded-md border-gray-100 bg-white shadow">
       <div className="flex flex-col ">
@@ -44,8 +41,8 @@ const CategoryProductCard = ({ category }) => {
                     TK.{price}
                   </span>
                   {/* <span className="text-sm text-slate-900 line-through">
-            ${price}
-          </span> */}
+              ${price}
+            </span> */}
                 </p>
               </div>
             </div>
@@ -56,4 +53,4 @@ const CategoryProductCard = ({ category }) => {
   );
 };
 
-export default CategoryProductCard;
+export default SearchProduct;

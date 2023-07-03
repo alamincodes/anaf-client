@@ -42,7 +42,7 @@ const Orders = () => {
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                 <div className="overflow-hidden">
-                  <table className="min-w-full text-left text-sm font-light">
+                  <table className="min-w-full text-left text-sm font-light border-4">
                     <thead className="border-b bg-white font-medium uppercase">
                       <tr>
                         {/* <th scope="col" className="px-6 py-4">
@@ -59,7 +59,7 @@ const Orders = () => {
                           Product <span className="ml-1">name</span>
                         </th>
                         <th scope="col" className="px-6 py-4">
-                          Price
+                          Total
                         </th>
                         <th scope="col" className="px-6  py-4">
                           status
@@ -95,7 +95,7 @@ const Orders = () => {
                             {order.items[0]?.name}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
-                            {order.discountTotal}Tk
+                            {order.total}Tk
                           </td>
                           <td className="whitespace-nowrap px-6 py-4 ">
                             {order.status ? (

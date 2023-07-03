@@ -5,6 +5,7 @@ import powerBank from "../../../assets/categories/powerBank.svg";
 import router from "../../../assets/categories/router.svg";
 import tripod from "../../../assets/categories/tripod.svg";
 import watch from "../../../assets/categories/watch.svg";
+import headphone from "../../../assets/categories/headphone.svg";
 import { Link } from "react-router-dom";
 const Categories = () => {
   const categories = [
@@ -44,6 +45,12 @@ const Categories = () => {
       query: "smartWatches",
       icon: watch,
     },
+    {
+      id: 7,
+      name: "Headphones",
+      query: "headphones",
+      icon: headphone,
+    },
   ];
   return (
     <div className="container mx-auto">
@@ -52,7 +59,7 @@ const Categories = () => {
           Categories
         </h2>
 
-        <div className="grid md:grid-cols-3 grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-5 grid-cols-2 gap-5">
           {categories.map((category) => {
             // console.log(category);
             return (

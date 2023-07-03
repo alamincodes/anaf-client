@@ -58,7 +58,7 @@ const OrderDetails = () => {
                 <h2 className="my-2 text-yellow-500">Your order is pending.</h2>
               )}
             </div>
-            <div className="space-y-2 border-4 border-gray-300 border-dotted p-2 md:text-sm text-xs">
+            <div className="space-y-2 border-4 border-gray-300 border-dashed p-2 md:text-sm text-xs">
               <h2>
                 <span className="uppercase font-medium">Order id:</span>{" "}
                 <span className="text-gray-500"> {orderDetail._id}</span>

@@ -98,8 +98,8 @@ const Checkout = () => {
       items,
       cartTotal,
       discountTotal,
-      deliveryFee: 130,
-      total: discountTotal + 130,
+      deliveryFee: 120,
+      total: discountTotal + 120,
       payWith,
       transactionId,
       orderDate,
@@ -151,11 +151,11 @@ const Checkout = () => {
                   </p>
 
                   <p className="text-sm font-medium tracking-tight text-gray-900">
-                    Shipping fee Tk. 130
+                    Shipping fee Tk. 120
                   </p>
 
                   <p className="text-2xl font-medium tracking-tight text-gray-900">
-                    Total Tk. {discountTotal + 130}
+                    Total Tk. {discountTotal + 120}
                   </p>
 
                   {/* --- discount form ---*/}
@@ -497,7 +497,7 @@ const Checkout = () => {
                       </div>
                       <ul className="list-disc px-4">
                         <li className="text-md font-secondary mt-1">
-                          Cash on delivery তে ১৩০ টাকা অগ্রিম পরিশোধ করতে হবে।
+                          Cash on delivery তে ২০০ টাকা অগ্রিম পরিশোধ করতে হবে।
                         </li>
                         <li className="text-md font-secondary mt-1">
                           Bkash অথবা Nagad সিলেক্ট করে Payment করার পর

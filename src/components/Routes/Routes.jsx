@@ -23,6 +23,7 @@ import ProductDetail from "../products/ProductDetail";
 import FindOrder from "../Dashboard/FindOrder";
 import Invoice from "../orders/Invoice";
 import CategoryProducts from "../home/categories/CategoryProducts";
+import Search from "../search/Search";
 
 export const routes = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const routes = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
       {
         path: "/checkout",

@@ -20,10 +20,11 @@ const BusinessAbout = () => {
                 </h2>
 
                 <p className="text-white/90 text-xs md:text-lg mt-4 ">
-                  Our business operates within a precise seasonal framework,
-                  carefully curating clothing collections that align with each
-                  season. We prioritize precision and attention to detail,
-                  integrating our offerings with climate and fashion trends.
+                  In the fast-paced world of business, staying ahead requires
+                  leveraging the power of technology. ANAF is your trusted
+                  partner, dedicated to providing innovative and high-quality
+                  tech gadgets that empower businesses to thrive in today's
+                  competitive landscape.
                 </p>
 
                 {!user && (
@@ -54,8 +55,6 @@ const BusinessAbout = () => {
                   className="h-40 w-full object-cover sm:h-56 md:h-full group-hover:scale-110 duration-300"
                 />
               </div>
-
-            
             </div>
           </div>
         </div>

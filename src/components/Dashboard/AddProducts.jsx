@@ -32,6 +32,10 @@ const AddProducts = () => {
       id: 6,
       name: "smartWatches",
     },
+    {
+      id: 7,
+      name: "headphones",
+    },
   ];
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -41,7 +45,9 @@ const AddProducts = () => {
     const quantity = form.quantity.value;
     const detail = form.detail.value;
     const id = form.pId.value;
+    const outOfStock = false;
     const category = form.category.value;
+
     // const image = form.image;
 
     // console.log(ordersInfo.selectedFile);
@@ -67,6 +73,7 @@ const AddProducts = () => {
             price,
             quantity,
             detail,
+            outOfStock,
             img: imageData.data.url,
             id,
           };

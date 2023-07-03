@@ -14,10 +14,10 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
         <div className="border-2 border-dashed border-gray-400 p-2 mb-5">
           <h2 className="text-md">Subtotal : {discountTotal} Tk</h2>
           <h2 className="text-md border-b-2 border-dashed">
-            Delivery fee : 130 Tk
+            Delivery fee : 120 Tk
           </h2>
           <h2 className="text-md font-semibold">
-            Total : {discountTotal + 130} Tk
+            Total : {discountTotal + 120} Tk
           </h2>
         </div>
         {/* select bkash and nagad */}
