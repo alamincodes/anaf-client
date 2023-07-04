@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { HiOutlineShoppingBag } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
-import { Blurhash } from "react-blurhash";
-import Skeleton from "react-loading-skeleton";
 
 const Product = ({ product }) => {
   const { addItem } = useCart();
   const [imageLoad, setImageLoad] = useState(false);
-  const { name, img, price, _id } = product;
+  const { name, img, price, _id, outOfStock } = product;
 
   useEffect(() => {
     const image = new Image();
@@ -19,7 +16,13 @@ const Product = ({ product }) => {
   }, [product]);
   return (
     <div className="relative border rounded-md border-gray-100 bg-white shadow">
-      <div className="flex flex-col ">
+      {outOfStock === "true" && (
+        <div className="absolute rounded bg-black text-white z-10 md:p-3 md:text-base text-xs p-1 right-0">
+          <h2 className="font-bold">Out of stock</h2>
+        </div>
+      )}
+
+      <div className="flex flex-col">
         {!imageLoad && (
           <div className="lg:p-5 p-2">
             <div className="loader lg:h-[250px] h-[120px] lg:before:w-[200px] before:w-[100%] lg:before:h-[200px] md:lg:before:h-[220px] before:h-[100px]"></div>
@@ -39,7 +42,7 @@ const Product = ({ product }) => {
           <div className="lg:mb-20 lg:mt-auto mt-24  md:px-5 px-2">
             <div className="absolute bottom-2">
               <h5 className="md:text-[15px] text-xs tracking-tight text-slate-900">
-                {name?.length > 50 ? name.substr(0, 40) +"..." : name}
+                {name?.length > 50 ? name.substr(0, 40) + "..." : name}
               </h5>
               <div className="mt-5">
                 <p>

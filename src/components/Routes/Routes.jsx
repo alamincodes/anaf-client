@@ -26,6 +26,7 @@ import CategoryProducts from "../home/categories/CategoryProducts";
 import Search from "../search/Search";
 import AllProducts from "../Dashboard/AllProducts";
 import EditProduct from "../Dashboard/EditProduct";
+import Contact from "../Dashboard/Contact";
 
 export const routes = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ export const routes = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/checkout",

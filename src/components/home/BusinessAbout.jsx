@@ -8,14 +8,14 @@ const BusinessAbout = () => {
   return (
     <section>
       <div className="container mx-auto">
-        <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 mb-20">
+        <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 mb-20 uppercase">
           Business About
         </h2>
         <div className="">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="bg-black p-8 md:p-12 lg:px-16 lg:py-24">
               <div className="mx-auto max-w-xl text-center">
-                <h2 className="text-2xl font-bold text-white md:text-4xl uppercase">
+                <h2 className="text-2xl uppercase font-bold text-white md:text-4xl">
                   our business type
                 </h2>
 

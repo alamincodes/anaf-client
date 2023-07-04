@@ -68,7 +68,7 @@ const AllProducts = () => {
         </button>
       </form>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-1 gap-4 mt-3">
+      <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2 gap-4 mt-3">
         {searchData.map((product) => (
           <div
             key={product._id}

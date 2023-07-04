@@ -47,7 +47,7 @@ const ProductDetail = () => {
         <div className="container mx-auto px-4 relative">
           {/* toast */}
           {isVisible && (
-            <div className="my-4 rounded w-[300px] top-14 right-0 fixed text-green-700  bg-green-200 p-5 ">
+            <div className="my-4 rounded w-[300px] z-20 top-[50px] right-0 fixed text-green-700  bg-green-200 p-5 ">
               <div className="flex items-center">
                 <span>
                   {" "}
@@ -90,10 +90,17 @@ const ProductDetail = () => {
                 <button
                   type="button"
                   onClick={handleAddToCart}
-                  className="inline-flex items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                  disabled={productDetail.outOfStock === "true"}
+                  className="inline-flex disabled:bg-gray-400 items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
                 >
-                  <HiOutlineShoppingBag className="mr-1" size={20} />
-                  Add to cart
+                  {productDetail.outOfStock === "true" ? (
+                    "Out of stock"
+                  ) : (
+                    <>
+                      <HiOutlineShoppingBag className="mr-1" size={20} />
+                      Add to cart
+                    </>
+                  )}
                 </button>
               </div>
 

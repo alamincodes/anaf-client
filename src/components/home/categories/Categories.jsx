@@ -17,7 +17,7 @@ const Categories = () => {
     },
     {
       id: 2,
-      name: "tripod",
+      name: "Tripod",
       query: "tripod",
       icon: tripod,
     },

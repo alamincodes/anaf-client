@@ -30,7 +30,7 @@ const Products = () => {
     <AnimatePage>
       <section className="my-20">
         <div className="container mx-auto">
-          <h2 className="md:text-2xl text-2xl font-bold text-center mt-20 uppercase mb-10">
+          <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
             Our Products
           </h2>
           <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 ">

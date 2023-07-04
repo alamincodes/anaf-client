@@ -22,10 +22,10 @@ const DangerZone = () => {
               Deleting your account is unrecoverable and cannot be undone. Feel
               free to contact{" "}
               <a
-                href="mailto:anaffashion.com@gmail.com"
+                href="mailto:anafshop.com@gmail.com"
                 className="font-semibold"
               >
-                anaffashion.com@gmail.com
+                anafshop.com@gmail.com
               </a>{" "}
               with any questions.
             </p>
