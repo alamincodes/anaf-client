@@ -92,7 +92,9 @@ const Orders = () => {
                             {order.orderDate}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
-                            {order.items[0]?.name}
+                            {order.items[0]?.name.length > 25
+                              ? order.items[0]?.name.substr(0, 20) + '...'
+                              : order.items[0]?.name}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             {order.total}Tk
@@ -100,7 +102,7 @@ const Orders = () => {
                           <td className="whitespace-nowrap px-6 py-4 ">
                             {order.status ? (
                               <>
-                                {order.status === "completed" && (
+                                {order.status === "Handover to Courier" && (
                                   <span className="bg-green-200 text-green-800 px-4 py-2 rounded-full ">
                                     {order.status ? order.status : "Pending"}
                                   </span>

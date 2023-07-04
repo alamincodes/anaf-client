@@ -46,6 +46,15 @@ const DashboardLayout = () => {
             <span className="ml-1">Order</span>
           </li>
         </NavLink>
+        <NavLink
+          className={({ isActive }) => (isActive ? " text-black" : undefined)}
+          to="/dashboard/allProduct"
+        >
+          <li className="-mb-px p-4 flex items-center">
+            <BsBoxSeam size={20} className="mr-1" /> All
+            <span className="ml-1">Product</span>
+          </li>
+        </NavLink>
       </ul>
       <Outlet />
     </div>

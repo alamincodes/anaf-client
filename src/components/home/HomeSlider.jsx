@@ -36,14 +36,14 @@ const HomeSlider = () => {
           <div className="">
             <img
               className="w-full md:h-[500px] h-[200px] bg-cover bg-center object-cover"
-              src="https://i.ibb.co/0hkHgt5/Special-Collection-Gadget-and-Electronic-Banner-2.png"
+              src="https://i.ibb.co/bgD3c4R/1-transformed-1.png"
             />
           </div>
         </SwiperSlide>
         <SwiperSlide>
           <img
             className="w-full md:h-[500px] h-[200px] bg-cover bg-center object-cover"
-            src="https://i.ibb.co/cvp3kPQ/Special-Collection-Gadget-and-Electronic-Banner-1.png"
+            src="https://i.ibb.co/KF023kT/9325c778-2c49-4d85-91c3-d75a8781f862-transformed.png"
           />
         </SwiperSlide>
       </Swiper>

@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { MdFindInPage } from "react-icons/md";
-import {
-  IoMailUnreadOutline,
-  IoPersonOutline,
-  IoLocationOutline,
-  IoCallOutline,
-} from "react-icons/io5";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 const FindOrder = () => {
   const [id, setId] = useState("");
   const [orderDetail, setOrderDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+
   const handleSearch = (e) => {
     e.preventDefault();
     const productId = e.target.productId.value;
@@ -64,111 +59,68 @@ const FindOrder = () => {
       </form>
 
       <div>
-        <div className="flex justify-between gap-2 md:flex-row flex-col bg-white md:px-5 px-2 md:py-10">
-          <div className="shadow-lg md:p-4 py-2 px-2 rounded-md">
-            <h2 className="text-2xl font-bold text-center">Customer</h2>
-            <div className="font-semibold flex flex-col mt-4 space-y-4 ">
-              <h4 className="inline-flex items-center">
-                {" "}
-                <span>
-                  <IoPersonOutline size={20} className="mr-1" />
-                </span>{" "}
-                {orderDetail.name}
-              </h4>
-              <h4 className=" inline-flex items-center">
-                <span>
-                  <IoMailUnreadOutline size={20} className="mr-1" />
-                </span>{" "}
-                {orderDetail.email}
-              </h4>
-              <h4 className=" inline-flex items-center">
-                <span>
-                  <IoLocationOutline size={23} className="mr-1" />
-                </span>{" "}
-                {orderDetail.address}
-              </h4>
-              <h4 className=" inline-flex items-center">
-                <span>
-                  <IoLocationOutline size={23} className="mr-1" />
-                </span>{" "}
-                {orderDetail.districtName}
-              </h4>
-              <h4 className=" inline-flex items-center">
-                <span>
-                  <IoLocationOutline size={23} className="mr-1" />
-                </span>{" "}
-                {orderDetail.division}
-              </h4>
-              <h4 className=" inline-flex items-center">
-                <span>
-                  <IoCallOutline size={23} className="mr-1" />
-                </span>{" "}
-                {orderDetail.phone}
-              </h4>
-            </div>
-          </div>
-
-          <div className="shadow-md md:p-4 p-2 ">
-            <h2 className="text-2xl text-center font-bold">Order Detail</h2>
-            <div className="mt-4 space-y-3">
-              <h2 className="uppercase font-semibold">
-                Order id: <span className="text-xs">{orderDetail._id}</span>{" "}
-              </h2>
-              <h2 className="uppercase font-semibold ">
-                Status:{" "}
-                <span className="bg-gray-200 text-xs p-2 rounded-sm">
-                  {orderDetail.status ? orderDetail.status : "pending"}
-                </span>{" "}
-              </h2>
-              <h2 className="uppercase font-semibold">
-                payment type:{" "}
-                <span className="text-xs">{orderDetail.selectPaymentType}</span>
-              </h2>
-              <h2 className="uppercase font-semibold">
-                payment with: {orderDetail.payWith}
-              </h2>
-              <h2>
-                <span className="uppercase font-semibold">Transaction Id:</span>{" "}
-                {orderDetail.transactionId}
-              </h2>
-            </div>
-          </div>
-
-          <div>
-            <div className="mt-5 ">
-              {orderDetail.items?.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex justify-between  md:flex-row flex-col bg-gray-50 rounded mt-2 py-5 px-3 "
-                >
-                  <div className="flex items-center">
-                    <img
-                      src={item.img}
-                      alt=""
-                      className="w-20 h-20 bg-cover rounded-md"
-                    />
-                    <h2 className="ml-2">{item.name}</h2>
-                  </div>
-                  <div className="flex items-center font-semibold ml-2 space-x-5">
-                    <h2>Quantity: {item.quantity}</h2>
-                    <h2>Price: {item.price} Tk</h2>
-                  </div>
+        <div className="container mx-auto bg-white md:px-20 md:py-10">
+          <h2 className="md:text-3xl font-bold text-left uppercase">
+            Order Details
+          </h2>
+          <h2 className=" mt-5">
+            Order{" "}
+            <span className="bg-gray-200 font-bold p-1">
+              #{orderDetail._id}
+            </span>{" "}
+            was placed on {orderDetail.orderDate} and is currently{" "}
+            <span className="bg-gray-200 p-1  font-bold">
+              {orderDetail.status ? orderDetail.status : "pending"}
+            </span>
+          </h2>
+          <div className="mt-5">
+            {orderDetail.items?.map((item) => (
+              <div key={item.id} className="bg-gray-50 rounded mt-2 py-5 px-3 ">
+                <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
+                  <img
+                    src={item.img}
+                    alt=""
+                    className="w-20 h-20 bg-cover rounded-md"
+                  />
+                  <h2>
+                    {item.name} X {item.quantity}{" "}
+                  </h2>
+                  <h2>Price: {item.price} Tk</h2>
                 </div>
-              ))}
+              </div>
+            ))}
+          </div>
+          <div className="grid md:grid-cols-3 grid-cols-1 mt-3">
+            {/* total */}
+            <div className="shadow-sm border p-5">
+              <h2 className="font-bold uppercase">Total Amount</h2>
+              <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
+              <h2>Delivery fee: 120 Tk</h2>
+              <h2>Total: {orderDetail.total} Tk</h2>
             </div>
-            <div className="text-right py-2 space-y-4">
-              <div className="flex justify-end items-center space-x-28">
-                <h2>Subtotal : </h2>
-                <h2>{orderDetail.discountTotal} Tk</h2>
-              </div>
-              <div className="flex justify-end items-center space-x-28">
-                <h2>Delivery fee : </h2>
-                <h2>{orderDetail.deliveryFee} Tk</h2>
-              </div>
-              <div className="flex justify-end items-center space-x-28 border-t font-medium">
-                <h2>Total payable : </h2>
-                <h2>{orderDetail.total} TK</h2>
-              </div>
+            {/* total */}
+            <div className="shadow-sm border p-5">
+              <h2 className="font-bold uppercase">Payment details</h2>
+              <h2>Payment type: {orderDetail.selectPaymentType}</h2>
+              <h2>Payment method: {orderDetail.payWith} </h2>
+              <h2>Transaction Id: {orderDetail.transactionId}</h2>
+              <h2>
+                Pay:{" "}
+                {orderDetail.selectPaymentType === "Cash on delivery"
+                  ? "200"
+                  : orderDetail.total}
+                Tk
+              </h2>
+            </div>
+
+            {/* billing address */}
+
+            <div className="shadow-sm border p-5">
+              <h2 className="font-bold uppercase">BILLING ADDRESS</h2>
+              <h3>{orderDetail.name}</h3>
+              <h3>{orderDetail.phone}</h3>
+              <h3>{orderDetail.email}</h3>
+              <h3>{orderDetail.address}</h3>
             </div>
           </div>
         </div>

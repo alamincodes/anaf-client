@@ -8,10 +8,10 @@ const Products = () => {
   useTitle("Shop");
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadCount, setLoadCount] = useState(10);
+  const [loadCount, setLoadCount] = useState(12);
 
   const handleLoadMore = () => {
-    setLoadCount((prevCount) => prevCount + 10);
+    setLoadCount((prevCount) => prevCount + 12);
     console.log(loadCount);
   };
 

@@ -150,11 +150,16 @@ const Navbar = () => {
           className="text-3xl absolute left-4 top-6 cursor-pointer"
         />
 
-        <ul className="flex flex-col items-center justify-center h-full space-y-8 font-secondary">
-          <Link onClick={() => setOpen(false)} to="/" >
+        <ul className="flex uppercase flex-col items-center justify-center h-full space-y-5 font-secondary">
+          <Link onClick={() => setOpen(false)} to="/">
             <li className="bg-white/90 text-black p-2 absolute bottom-0 left-0 right-0">
-              <h2> {user?.displayName } </h2>
-              <h2> {user?.email.length > 20 ? user?.email.substr(0, 15) + "..." : user?.email} </h2>
+              <h2> {user?.displayName} </h2>
+              <h2>
+                {" "}
+                {user?.email.length > 20
+                  ? user?.email.substr(0, 15) + "..."
+                  : user?.email}{" "}
+              </h2>
             </li>
           </Link>
           <Link onClick={() => setOpen(false)} to="/">
@@ -163,13 +168,18 @@ const Navbar = () => {
           <Link onClick={() => setOpen(false)} to="/products">
             Shop
           </Link>
+          {user?.email && (
+            <Link onClick={() => setOpen(false)} to="/orders">
+              orders
+            </Link>
+          )}
           {!user?.email && (
             <>
               <Link onClick={() => setOpen(false)} to="/login">
                 <li>Login</li>
               </Link>
               <Link onClick={() => setOpen(false)} to="/signUp">
-                <li className="bg-white border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all duration-300 text-black font-bold p-2 px-4">
+                <li className="bg-white rounded-md border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all duration-300 text-black font-bold p-2 px-4">
                   Sign up
                 </li>
               </Link>

@@ -24,6 +24,8 @@ import FindOrder from "../Dashboard/FindOrder";
 import Invoice from "../orders/Invoice";
 import CategoryProducts from "../home/categories/CategoryProducts";
 import Search from "../search/Search";
+import AllProducts from "../Dashboard/AllProducts";
+import EditProduct from "../Dashboard/EditProduct";
 
 export const routes = createBrowserRouter([
   {
@@ -142,6 +144,14 @@ export const routes = createBrowserRouter([
           {
             path: "/dashboard/findOrder",
             element: <FindOrder />,
+          },
+          {
+            path: "/dashboard/allProduct",
+            element: <AllProducts />,
+          },
+          {
+            path: "/dashboard/:id",
+            element: <EditProduct />,
           },
         ],
       },

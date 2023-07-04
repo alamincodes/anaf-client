@@ -13,7 +13,7 @@ const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();
   const [isAdmin] = useAdmin(user?.email);
-  console.log(isAdmin);
+  // console.log(isAdmin);
   const handleLogOut = () => {
     emptyCart();
     localStorage.removeItem("accessToken");

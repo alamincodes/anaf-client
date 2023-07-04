@@ -45,7 +45,7 @@ const AddProducts = () => {
     const quantity = form.quantity.value;
     const detail = form.detail.value;
     const id = form.pId.value;
-    const outOfStock = false;
+    const outOfStock = "false";
     const category = form.category.value;
 
     // const image = form.image;
@@ -67,7 +67,7 @@ const AddProducts = () => {
         console.log(imageData);
 
         if (imageData.success) {
-          const ordersInfo = {
+          const productInfo = {
             name,
             category,
             price,
@@ -83,7 +83,7 @@ const AddProducts = () => {
               "content-type": "application/json",
               authorization: `bearer ${localStorage.getItem("accessToken")}`,
             },
-            body: JSON.stringify(ordersInfo),
+            body: JSON.stringify(productInfo),
           })
             .then((res) => res.json())
             .then((data) => {

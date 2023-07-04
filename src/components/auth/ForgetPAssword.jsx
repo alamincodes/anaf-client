@@ -36,7 +36,7 @@ const ForgetPAssword = () => {
         } else if (errMessage.includes("too-many-requests")) {
           setErrorText("Too many request, Try agin latter.");
         } else if (errMessage.includes("missing-email")) {
-          setErrorText("Please provide email.");
+          setErrorText("Email cannot be empty.");
         } else {
           setErrorText(errMessage);
         }

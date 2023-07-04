@@ -85,7 +85,7 @@ const SignUp = () => {
         if (errMessage.includes("email-already-in-use")) {
           setErrorMessage("Email already used, try another email.");
         }
-        setIsLoading(false)
+        setIsLoading(false);
       });
   };
 
@@ -161,14 +161,14 @@ const SignUp = () => {
                       <input
                         type={showPassword ? "text" : "password"}
                         {...register("password", {
-                          required: "Password is required",
+                          required: "Password cannot be empty*",
                           minLength: {
                             value: 6,
                             message: "Password must be 6 character",
                           },
                         })}
                         placeholder="Enter your password"
-                        className="border rounded-sm outline-none font-normal p-2 w-full"
+                        className="border rounded-sm pr-10 outline-none font-normal p-2 w-full"
                       />
                       {showPassword ? (
                         <span
@@ -177,7 +177,7 @@ const SignUp = () => {
                         >
                           <AiOutlineEyeInvisible
                             size={32}
-                            className="cursor-pointer bg-white p-1"
+                            className="cursor-pointer p-1"
                           />
                         </span>
                       ) : (
@@ -185,7 +185,7 @@ const SignUp = () => {
                           onClick={() => setShowPassword(!showPassword)}
                           className=" absolute right-2 mt-[6px] cursor-pointer"
                         >
-                          <AiOutlineEye size={32} className="bg-white p-1" />
+                          <AiOutlineEye size={32} className="p-1" />
                         </span>
                       )}
                     </div>
@@ -194,6 +194,12 @@ const SignUp = () => {
                         {errors?.password?.message}
                       </p>
                     )}
+                    {/* forget password  */}
+                    <Link to="/forgetPassword">
+                      <p className="text-right font-normal hover:underline select-none">
+                        Forget password?
+                      </p>
+                    </Link>
                   </div>
                   {/* phone */}
                   <div>

@@ -3,19 +3,12 @@ import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
-import AnimatePage from "../Shared/AnimatePage"
-import emptyCartImg from '../../assets/image/emptyCart.png';;
+import AnimatePage from "../Shared/AnimatePage";
+import emptyCartImg from "../../assets/image/emptyCart.png";
 const Cart = () => {
   useTitle("Cart");
-  const {
-    isEmpty,
-    emptyCart,
-    totalUniqueItems,
-    items,
-    updateItemQuantity,
-    cartTotal,
-    removeItem,
-  } = useCart();
+  const { isEmpty, items, updateItemQuantity, cartTotal, removeItem } =
+    useCart();
 
   //   console.log(items);
 
@@ -65,7 +58,7 @@ const Cart = () => {
                                 {item.name}
                               </p>
                               <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">
-                                36EU - 4US
+                                Quantity: {item.quantity}
                               </p>
                             </div>
 

@@ -172,7 +172,7 @@ const AllOrders = () => {
                             <td className="whitespace-nowrap px-6 py-4 ">
                               {order.status ? (
                                 <>
-                                  {order.status === "completed" && (
+                                  {order.status === "Handover to Courier" && (
                                     <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
                                       {order.status ? order.status : "Pending"}
                                     </span>
@@ -227,7 +227,9 @@ const AllOrders = () => {
                                 >
                                   <option value="receive">receive</option>
                                   <option value="processing">processing</option>
-                                  <option value="completed">completed</option>
+                                  <option value="Handover to Courier">
+                                    Handover to Courier
+                                  </option>
                                   <option value="pending">pending</option>
                                   <option value="cancel">cancel</option>
                                 </select>
