@@ -27,6 +27,7 @@ import Search from "../search/Search";
 import AllProducts from "../Dashboard/AllProducts";
 import EditProduct from "../Dashboard/EditProduct";
 import Contact from "../Dashboard/Contact";
+import PageNotFound from "../Shared/PageNotFound";
 
 export const routes = createBrowserRouter([
   {
@@ -159,6 +160,10 @@ export const routes = createBrowserRouter([
             element: <EditProduct />,
           },
         ],
+      },
+      {
+        path: "*",
+        element: <PageNotFound />,
       },
     ],
   },

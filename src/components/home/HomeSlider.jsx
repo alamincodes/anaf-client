@@ -43,7 +43,7 @@ const HomeSlider = () => {
         <SwiperSlide>
           <img
             className="w-full md:h-[500px] h-[200px] bg-cover bg-center object-cover"
-            src="https://i.ibb.co/KF023kT/9325c778-2c49-4d85-91c3-d75a8781f862-transformed.png"
+            src="https://i.ibb.co/604068v/Special-Collection-Gadget-and-Electronic-Banner-transformed.png"
           />
         </SwiperSlide>
       </Swiper>
