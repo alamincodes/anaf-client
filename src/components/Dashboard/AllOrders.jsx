@@ -110,25 +110,22 @@ const AllOrders = () => {
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                   <div className="overflow-hidden">
                     <table className="min-w-full text-left text-sm font-light">
-                      <thead className="border-b bg-white font-medium ">
+                      <thead className="border-b bg-white font-medium uppercase">
                         <tr>
                           <th scope="col" className="px-6 py-4">
-                            No.
+                            name
                           </th>
                           <th scope="col" className="px-6 py-4">
-                            View order
+                            Action
                           </th>
                           <th scope="col" className="px-6 py-4">
                             #Id
                           </th>
-                          <th scope="col" className="px-6  py-4">
-                            Order <span>status</span>
+                          <th scope="col" className="px-6 py-4">
+                            status
                           </th>
-                          <th
-                            scope="col"
-                            className="px-6 flex items-center py-4"
-                          >
-                            Product <span className="ml-1">name</span>
+                          <th scope="col" className="px-6">
+                            Product
                           </th>
                           <th scope="col" className="px-6 py-4">
                             Total
@@ -151,14 +148,11 @@ const AllOrders = () => {
                             className="border-b odd:bg-gray-100 font-medium"
                           >
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
-                              <h2>{i + 1}</h2>
+                              <h2>{order.name}</h2>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
-                                <span className="border p-2 text-xs border-black hover:bg-black hover:text-white transition-all">
-                                  {" "}
-                                  View order
-                                </span>
+                                <span className="text-blue-600"> View</span>
                               </Link>
                             </td>
 

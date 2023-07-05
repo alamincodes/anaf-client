@@ -100,7 +100,7 @@ const AddProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setProduct(data);
+        setProduct(data.reverse());
       });
   }, [product]);
   return (
@@ -168,9 +168,11 @@ const AddProducts = () => {
         </form>
       </div>
 
-      <div className="mt-4 flex">
+      <div className="mt-4 flex flex-wrap gap-1 [&>*:nth-child(1)]:bg-black [&>*:nth-child(1)]:text-white">
         {product.map((p) => (
-          <h2 key={p._id}>{p.id},</h2>
+          <div key={p._id} className="order-id bg-white p-1 shadow-lg gap-5">
+            <h2>{p.id}</h2>
+          </div>
         ))}
       </div>
     </div>

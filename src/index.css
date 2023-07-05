@@ -4,7 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   body {
     @apply font-primary bg-gray-50 relative  leading-relaxed;
@@ -29,7 +28,10 @@
   }
 }
 
-
+/* .order-id:nth-child(1) {
+  background-color: #000000;
+color: white;
+} */
 
 .swiper-button-disabled {
   display: none;

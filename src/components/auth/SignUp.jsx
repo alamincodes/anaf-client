@@ -194,12 +194,6 @@ const SignUp = () => {
                         {errors?.password?.message}
                       </p>
                     )}
-                    {/* forget password  */}
-                    <Link to="/forgetPassword">
-                      <p className="text-right font-normal hover:underline select-none">
-                        Forget password?
-                      </p>
-                    </Link>
                   </div>
                   {/* phone */}
                   <div>

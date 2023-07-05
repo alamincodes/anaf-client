@@ -74,8 +74,8 @@ const EditProduct = () => {
         console.log(data);
         if (data.acknowledged) {
           setIsLoading(false);
-          toast.success('Update product')
-        //   form.reset();
+          toast.success("Update product");
+          //   form.reset();
         }
       });
   };
@@ -91,6 +91,7 @@ const EditProduct = () => {
   return (
     <div>
       <form onSubmit={handleAddProduct}>
+        <label>id</label>
         <input
           type="text"
           name="pId"
@@ -98,6 +99,7 @@ const EditProduct = () => {
           placeholder="id"
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
+        <label>category</label>
         <select
           name="category"
           className="border rounded-sm outline-none font-normal p-2 w-full "
@@ -108,6 +110,7 @@ const EditProduct = () => {
             </option>
           ))}
         </select>
+        <label>Out of stock</label>
         <select
           name="outOfStock"
           className="border rounded-sm outline-none font-normal p-2 w-full "
@@ -115,6 +118,7 @@ const EditProduct = () => {
           <option value={false}>false</option>
           <option value={true}>true</option>
         </select>
+        <label>Product name</label>
         <input
           type="text"
           defaultValue={productDetail.name}
@@ -123,6 +127,7 @@ const EditProduct = () => {
           placeholder="Product name"
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
+        <label>Price</label>
         <input
           type="number"
           name="price"
@@ -131,6 +136,7 @@ const EditProduct = () => {
           placeholder="Price"
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
+        <label>Quantity</label>
         <input
           type="number"
           name="quantity"
@@ -138,6 +144,7 @@ const EditProduct = () => {
           placeholder="quantity "
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
+        <label>Image</label>
         <input
           defaultValue={productDetail.img}
           type="text"
@@ -145,6 +152,7 @@ const EditProduct = () => {
           placeholder="img "
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
+        <label>details</label>
         <textarea
           name="detail"
           defaultValue={productDetail.detail}
