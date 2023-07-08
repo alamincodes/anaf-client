@@ -21,7 +21,7 @@ const Products = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setProducts(data);
+        setProducts(data.reverse());
         setIsLoading(false);
       });
   }, [products]);
@@ -33,7 +33,7 @@ const Products = () => {
           <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
             Our Products
           </h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 ">
+          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
             {isLoading && <SkeletonCard cards={20} />}
             {/* products */}
             {products.slice(0, loadCount).map((product) => (

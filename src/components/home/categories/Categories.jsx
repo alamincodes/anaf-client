@@ -6,6 +6,7 @@ import router from "../../../assets/categories/router.svg";
 import tripod from "../../../assets/categories/tripod.svg";
 import watch from "../../../assets/categories/watch.svg";
 import headphone from "../../../assets/categories/headphone.svg";
+import mouse from "../../../assets/categories/mouse.svg";
 import { Link } from "react-router-dom";
 const Categories = () => {
   const categories = [
@@ -50,6 +51,12 @@ const Categories = () => {
       name: "Headphones",
       query: "headphones",
       icon: headphone,
+    },
+    {
+      id: 7,
+      name: "mouse",
+      query: "mouse",
+      icon: mouse,
     },
   ];
   return (

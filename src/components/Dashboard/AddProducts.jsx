@@ -36,6 +36,10 @@ const AddProducts = () => {
       id: 7,
       name: "headphones",
     },
+    {
+      id: 8,
+      name: "mouse",
+    },
   ];
   const handleAddProduct = (e) => {
     e.preventDefault();

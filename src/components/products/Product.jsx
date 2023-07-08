@@ -6,7 +6,7 @@ const Product = ({ product }) => {
   const { addItem } = useCart();
   const [imageLoad, setImageLoad] = useState(false);
   const { name, img, price, _id, outOfStock } = product;
-
+  
   useEffect(() => {
     const image = new Image();
     image.onload = () => {

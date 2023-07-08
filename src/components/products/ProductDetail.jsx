@@ -122,8 +122,9 @@ const ProductDetail = () => {
                 </nav>
               </div>
 
-              <div className="mt-8 flow-root sm:mt-12">
+              <div className="my-8 flow-root sm:my-12">
                 <p className="mt-0">{productDetail.detail}</p>
+             
               </div>
             </div>
           </div>

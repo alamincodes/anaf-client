@@ -17,7 +17,7 @@ const CategoryProducts = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setCategories(data);
+        setCategories(data.reverse());
         setIsLoading(false);
       });
   }, []);

@@ -36,6 +36,10 @@ const EditProduct = () => {
       id: 7,
       name: "headphones",
     },
+    {
+      id: 8,
+      name: "mouse",
+    },
   ];
 
   const handleAddProduct = (e) => {
@@ -138,7 +142,7 @@ const EditProduct = () => {
         />
         <label>Quantity</label>
         <input
-          type="number"
+          type="text"
           name="quantity"
           defaultValue={productDetail.quantity}
           placeholder="quantity "
