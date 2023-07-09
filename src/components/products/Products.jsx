@@ -12,7 +12,7 @@ const Products = () => {
 
   const handleLoadMore = () => {
     setLoadCount((prevCount) => prevCount + 12);
-    console.log(loadCount);
+    // console.log(loadCount);
   };
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const Products = () => {
                 onClick={handleLoadMore}
                 className="bg-black rounded-full text-white py-2 px-4"
               >
-                Load More
+                View More
               </button>
             )}
           </div>

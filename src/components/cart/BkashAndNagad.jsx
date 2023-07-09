@@ -146,7 +146,7 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
             type="text"
             placeholder="Transaction Id"
             onChange={(e) => setTransactionId(e.target.value)}
-            className="mt-1 w-full rounded-md border-gray-400 shadow-sm p-2 border outline-none"
+            className="mt-1 w-full rounded-md border-purple-600 shadow-primary border-2 p-2 outline-none"
           />
         </div>
       </div>

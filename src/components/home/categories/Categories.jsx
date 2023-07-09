@@ -53,7 +53,7 @@ const Categories = () => {
       icon: headphone,
     },
     {
-      id: 7,
+      id: 8,
       name: "mouse",
       query: "mouse",
       icon: mouse,

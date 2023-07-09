@@ -152,7 +152,7 @@ const AddProducts = () => {
           />
           <textarea
             name="detail"
-            placeholder="Product detail  "
+            placeholder="Product detail"
             className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
           />
           <label htmlFor="">

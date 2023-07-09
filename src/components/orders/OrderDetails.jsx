@@ -31,10 +31,13 @@ const OrderDetails = () => {
           <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
             Order Details
           </h2>
-          <h2 className="font-medium mt-5">
-            Order <span className="bg-gray-200 font-bold p-1">#{orderDetail._id}</span>{" "}
+          <h2 className="font-medium mt-5 shadow-primary rounded p-2">
+            Order{" "}
+            <span className="bg-gray-100 font-bold md:text-sm text-xs p-1 uppercase">
+              #{orderDetail._id}
+            </span>{" "}
             was placed on {orderDetail.orderDate} and is currently{" "}
-            <span className="bg-gray-200 p-1  font-bold">
+            <span className="bg-gray-100 p-1 capitalize font-bold">
               {orderDetail.status ? orderDetail.status : "pending"}
             </span>
           </h2>
@@ -50,31 +53,39 @@ const OrderDetails = () => {
                   <h2>
                     {item.name} X {item.quantity}{" "}
                   </h2>
-                  <h2>Price: {item.price} Tk</h2>
+                  <h2 className="uppercase font-semibold">
+                    Price: {item.price} Tk
+                  </h2>
                 </div>
               </div>
             ))}
           </div>
-          <div className="grid md:grid-cols-3 grid-cols-1 mt-3">
+          <div className="grid md:grid-cols-3 grid-cols-1 mt-3 shadow gap-0">
             {/* total */}
-            <div className="shadow-sm border p-5">
+            <div className="shadow-sm border border-dashed p-5">
               <h2 className="font-bold uppercase">Total Amount</h2>
               <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
               <h2>Delivery fee: 120 Tk</h2>
               <h2>Total: {orderDetail.total} Tk</h2>
             </div>
             {/* total */}
-            <div className="shadow-sm border p-5">
+            <div className="shadow-sm border border-dashed  p-5">
               <h2 className="font-bold uppercase">Payment details</h2>
               <h2>Payment type: {orderDetail.selectPaymentType}</h2>
               <h2>Payment method: {orderDetail.payWith} </h2>
               <h2>Transaction Id: {orderDetail.transactionId}</h2>
-              <h2>Pay: {orderDetail.selectPaymentType === "Cash on delivery" ? "200": orderDetail.total}Tk</h2>
+              <h2>
+                Pay:{" "}
+                {orderDetail.selectPaymentType === "Cash on delivery"
+                  ? "200"
+                  : orderDetail.total}
+                Tk
+              </h2>
             </div>
 
             {/* billing address */}
 
-            <div className="shadow-sm border p-5">
+            <div className="shadow-sm border border-dashed p-5">
               <h2 className="font-bold uppercase">BILLING ADDRESS</h2>
               <h3>{orderDetail.name}</h3>
               <h3>{orderDetail.phone}</h3>

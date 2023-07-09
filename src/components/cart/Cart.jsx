@@ -132,10 +132,10 @@ const Cart = () => {
                         </div>
                       </dl>
 
-                      <div className="flex justify-end">
+                      <div className="flex justify-end ">
                         <Link
                           to="/checkout"
-                          className="block rounded md:w-auto w-full text-center bg-black px-5 py-3 text-sm text-white "
+                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-sm text-white "
                         >
                           Checkout
                         </Link>

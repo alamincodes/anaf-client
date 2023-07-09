@@ -336,12 +336,15 @@ const Checkout = () => {
                       >
                         <div className="flex items-center gap-2">
                           {paymentMode === "Cash on delivery" && (
-                            <HiOutlineCheck className=" bg-black text-white ro" />
+                            <span className="bg-black text-white rounded-full p-[2px]">
+                              {" "}
+                              <HiOutlineCheck size={15} />
+                            </span>
                           )}
 
                           <p className="text-black flex items-center">
-                            Cash on delivery{" "}
-                            <TbTruckDelivery className="w-7 h-9 ml-1" />
+                            <TbTruckDelivery className="w-7 h-9 mr-1" /> Cash on
+                            delivery{" "}
                           </p>
                         </div>
                       </label>
@@ -366,15 +369,16 @@ const Checkout = () => {
                       >
                         <div className="flex items-center gap-2">
                           {paymentMode === "Online Payment" && (
-                            <HiOutlineCheck className=" bg-black text-white ro" />
+                            <span className="bg-black text-white rounded-full p-[2px]">
+                              {" "}
+                              <HiOutlineCheck size={15} />
+                            </span>
                           )}
-
-                          <p className="text-gray-900">Online Payment</p>
-
                           <div className="flex items-center">
                             <img src={bkash} className="w-7 h-9" alt="" />
                             <img src={nagad} className="w-6" alt="" />
-                          </div>
+                          </div>{" "}
+                          <p className="text-gray-900">Online Payment</p>
                         </div>
                       </label>
                     </div>
@@ -403,7 +407,7 @@ const Checkout = () => {
                             className={`ml-2 ${
                               bkashCopied
                                 ? "bg-[#d41065]/70 text-white"
-                                : "bg-gray-300"
+                                : "bg-gray-200"
                             } flex justify-center items-center p-1 rounded-full`}
                           >
                             {bkashCopied ? (
@@ -429,7 +433,7 @@ const Checkout = () => {
                             className={`ml-2 ${
                               nagadCopied
                                 ? "bg-[#f6921e]/70 text-white"
-                                : "bg-gray-300"
+                                : "bg-gray-200"
                             }  flex justify-center items-center p-1 rounded-full`}
                           >
                             {nagadCopied ? (
@@ -457,7 +461,7 @@ const Checkout = () => {
                             className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
                           >
                             <div className="flex items-center gap-2">
-                              <HiOutlineCheck className="hidden bg-black text-white ro" />
+                              <HiOutlineCheck className="hidden bg-black text-white " />
 
                               <p className="text-black flex items-center">
                                 <img src={bkash} className="w-7 h-8" alt="" />
@@ -481,7 +485,7 @@ const Checkout = () => {
                             className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
                           >
                             <div className="flex items-center gap-2">
-                              <HiOutlineCheck className="hidden bg-black text-white ro" />
+                              <HiOutlineCheck className="hidden bg-black text-white" />
 
                               <p className="text-black flex items-center">
                                 <img
@@ -511,7 +515,7 @@ const Checkout = () => {
                         type="text"
                         placeholder="Transaction Id"
                         onChange={(e) => setTransactionId(e.target.value)}
-                        className="mt-1 w-full rounded-md border-gray-400 shadow-sm p-2 border outline-none"
+                        className="mt-1 w-full rounded-md border-purple-600 shadow-primary border-2 p-2 outline-none"
                       />
                     </div>
                   )}

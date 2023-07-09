@@ -27,7 +27,7 @@ export default {
         transparent: "transparent",
       },
       boxShadow: {
-        primary: "0px 0px 15px -3px rgba(0,0,0,0.1)",
+        primary: "rgba(132, 59, 206, 0.15) 0px 4px 24px",
       },
       backgroundImage: {
         clBg: "url('./src/assets/image/clBg.jpeg')",

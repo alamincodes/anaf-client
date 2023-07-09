@@ -75,6 +75,11 @@ const AllProducts = () => {
             className="relative border rounded-md border-gray-100 bg-white shadow"
           >
             <div className="flex flex-col ">
+              {product.outOfStock === "true" && (
+                <div className="absolute rounded bg-red-500 text-white z-10 md:p-3 md:text-base text-xs p-1 right-0">
+                  <h2 className="font-bold">Out of stock</h2>
+                </div>
+              )}
               <Link to={`/dashboard/${product._id}`}>
                 <div className="relative flex justify-center items-center ">
                   <img

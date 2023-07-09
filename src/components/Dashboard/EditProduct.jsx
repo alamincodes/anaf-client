@@ -7,40 +7,40 @@ const EditProduct = () => {
   const [isLoading, setIsLoading] = useState(false);
   let { id } = useParams();
 
-  const categories = [
-    {
-      id: 1,
-      name: "powerBank",
-    },
-    {
-      id: 2,
-      name: "tripod",
-    },
-    {
-      id: 3,
-      name: "microphone",
-    },
-    {
-      id: 4,
-      name: "rechargeableFan",
-    },
-    {
-      id: 5,
-      name: "router",
-    },
-    {
-      id: 6,
-      name: "smartWatches",
-    },
-    {
-      id: 7,
-      name: "headphones",
-    },
-    {
-      id: 8,
-      name: "mouse",
-    },
-  ];
+  // const categories = [
+  //   {
+  //     id: 1,
+  //     name: "powerBank",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "tripod",
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "microphone",
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "rechargeableFan",
+  //   },
+  //   {
+  //     id: 5,
+  //     name: "router",
+  //   },
+  //   {
+  //     id: 6,
+  //     name: "smartWatches",
+  //   },
+  //   {
+  //     id: 7,
+  //     name: "headphones",
+  //   },
+  //   {
+  //     id: 8,
+  //     name: "mouse",
+  //   },
+  // ];
 
   const handleAddProduct = (e) => {
     setIsLoading(true);
@@ -87,7 +87,7 @@ const EditProduct = () => {
     fetch(`https://anaf-server.vercel.app/product/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setProductDetail(data);
         setIsLoading(false);
       });
@@ -104,16 +104,12 @@ const EditProduct = () => {
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
         <label>category</label>
-        <select
+        <input
+          type="text"
+          defaultValue={productDetail.category}
           name="category"
-          className="border rounded-sm outline-none font-normal p-2 w-full "
-        >
-          {categories.map((category) => (
-            <option key={category.id} value={category.name}>
-              {category.name}
-            </option>
-          ))}
-        </select>
+          className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+        />
         <label>Out of stock</label>
         <select
           name="outOfStock"

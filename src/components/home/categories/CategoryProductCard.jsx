@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const CategoryProductCard = ({ category }) => {
   const [imageLoad, setImageLoad] = useState(false);
-  const { name, img, price, _id } = category;
+  const { name, img, price, _id, outOfStock } = category;
 
   useEffect(() => {
     const image = new Image();
@@ -16,6 +16,11 @@ const CategoryProductCard = ({ category }) => {
   }, [category]);
   return (
     <div className="relative border rounded-md border-gray-100 bg-white shadow">
+      {outOfStock === "true" && (
+        <div className="absolute rounded bg-red-500 text-white z-10 md:p-3 md:text-base text-xs p-1 right-0">
+          <h2 className="font-bold">Out of stock</h2>
+        </div>
+      )}
       <div className="flex flex-col ">
         {!imageLoad && (
           <div className="lg:p-5 p-2">
@@ -40,7 +45,11 @@ const CategoryProductCard = ({ category }) => {
               </h5>
               <div className="mt-5">
                 <p>
-                  <span className="md:text-xl text-lg font-bold text-slate-900">
+                  <span
+                    className={`md:text-xl ${
+                      outOfStock === "true" && "line-through"
+                    } text-lg font-bold text-slate-900`}
+                  >
                     TK.{price}
                   </span>
                   {/* <span className="text-sm text-slate-900 line-through">

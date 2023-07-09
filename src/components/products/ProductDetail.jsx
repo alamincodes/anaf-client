@@ -82,7 +82,11 @@ const ProductDetail = () => {
 
               <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
                 <div className="flex items-end">
-                  <h1 className="text-3xl font-bold">
+                  <h1
+                    className={`text-3xl font-bold ${
+                      productDetail.outOfStock === "true" && "line-through"
+                    }`}
+                  >
                     ৳ {productDetail.price}
                   </h1>{" "}
                 </div>
@@ -91,7 +95,7 @@ const ProductDetail = () => {
                   type="button"
                   onClick={handleAddToCart}
                   disabled={productDetail.outOfStock === "true"}
-                  className="inline-flex disabled:bg-gray-400 items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
+                  className="inline-flex disabled:bg-black disabled:text-red-600 items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
                 >
                   {productDetail.outOfStock === "true" ? (
                     "Out of stock"
@@ -124,7 +128,6 @@ const ProductDetail = () => {
 
               <div className="my-8 flow-root sm:my-12">
                 <p className="mt-0">{productDetail.detail}</p>
-             
               </div>
             </div>
           </div>

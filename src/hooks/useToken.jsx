@@ -15,7 +15,7 @@ const useToken = (email) => {
         })
         .then((data) => {
           if (data.accessToken) {
-            console.log(data);
+            // console.log(data);
             localStorage.setItem("accessToken", data.accessToken);
             setToken(data.accessToken);
           }
