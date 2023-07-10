@@ -8,7 +8,7 @@ const BusinessAbout = () => {
   return (
     <section>
       <div className="container mx-auto">
-        <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 mb-20 uppercase">
+        <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 mb-10 uppercase">
           Business About
         </h2>
         <div className="">

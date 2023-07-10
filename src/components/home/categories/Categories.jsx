@@ -8,55 +8,65 @@ import watch from "../../../assets/categories/watch.svg";
 import headphone from "../../../assets/categories/headphone.svg";
 import mouse from "../../../assets/categories/mouse.svg";
 import { Link } from "react-router-dom";
+import { BsFire } from "react-icons/bs";
 const Categories = () => {
   const categories = [
     {
-      id: 1,
-      name: "Power Bank",
-      query: "powerBank",
-      icon: powerBank,
-    },
-    {
-      id: 2,
-      name: "Tripod",
-      query: "tripod",
-      icon: tripod,
-    },
-    {
-      id: 3,
-      name: "Microphone",
-      query: "microphone",
-      icon: microphone,
-    },
-    {
-      id: 4,
-      name: "Rechargeable Fan",
-      query: "rechargeableFan",
-      icon: fan,
-    },
-    {
-      id: 5,
-      name: "Router",
-      query: "router",
-      icon: router,
+      id: 7,
+      name: "Headphones",
+      query: "headphones",
+      icon: headphone,
+      hotSeal: true,
     },
     {
       id: 6,
       name: "Smart watches",
       query: "smartWatches",
       icon: watch,
+      hotSeal: true,
     },
     {
-      id: 7,
-      name: "Headphones",
-      query: "headphones",
-      icon: headphone,
+      id: 4,
+      name: "Rechargeable Fan",
+      query: "rechargeableFan",
+      icon: fan,
+      hotSeal: true,
     },
+    {
+      id: 1,
+      name: "Power Bank",
+      query: "powerBank",
+      icon: powerBank,
+      hotSeal: false,
+    },
+    {
+      id: 2,
+      name: "Tripod",
+      query: "tripod",
+      icon: tripod,
+      hotSeal: false,
+    },
+    {
+      id: 3,
+      name: "Microphone",
+      query: "microphone",
+      icon: microphone,
+      hotSeal: false,
+    },
+    {
+      id: 5,
+      name: "Router",
+      query: "router",
+      icon: router,
+      hotSeal: false,
+    },
+
     {
       id: 8,
       name: "mouse",
       query: "mouse",
       icon: mouse,
+      hotSeal: false,
     },
   ];
   return (
@@ -66,18 +76,26 @@ const Categories = () => {
           Categories
         </h2>
 
-        <div className="grid md:grid-cols-5 grid-cols-2 gap-5">
+        <div className="grid md:grid-cols-6 grid-cols-2 gap-5">
           {categories.map((category) => {
             // console.log(category);
             return (
               <Link key={category.id} to={`/products/${category.query}`}>
                 <div className="border group rounded shadow relative md:py-5 py-2 flex flex-col justify-center items-center">
+                  {category.hotSeal === true && (
+                    <span className="absolute top-1 right-1">
+                      <BsFire
+                        size={20}
+                        className="text-red-500 animate-pulse"
+                      />{" "}
+                    </span>
+                  )}
                   <img
                     src={category.icon}
-                    className="w-20 md:h-20 h-14 mb-14 "
-                    alt=""
+                    className="w-20 md:h-14 h-14 mb-12 "
+                    alt={category.name}
                   />
-                  <h2 className="p-5 group-hover:text-black group-hover:font-medium text-gray-600 transition-all text-center absolute md:text-lg text-sm bottom-0">
+                  <h2 className="p-5 text-xs capitalize group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center absolute md:text-sm bottom-0">
                     {category.name}
                   </h2>
                 </div>

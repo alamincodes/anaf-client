@@ -32,11 +32,13 @@ const CategoryProducts = () => {
     >
       <div className=" uppercase">
         {category === "powerBank" && <h2>Power Bank</h2>}
+        {category === "headphones" && <h2>Headphones</h2>}
         {category === "smartWatches" && <h2>Smart Watches</h2>}
         {category === "rechargeableFan" && <h2>Rechargeable Fan</h2>}
         {category === "router" && <h2>router </h2>}
         {category === "tripod" && <h2>tripod</h2>}
         {category === "microphone" && <h2>microphone</h2>}
+        {category === "mouse" && <h2>Mouse</h2>}
       </div>
 
       <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4">
