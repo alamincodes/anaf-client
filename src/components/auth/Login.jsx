@@ -60,7 +60,7 @@ const Login = () => {
           <div className="flex justify-center items-center mt-10">
             <form
               onSubmit={handleSubmit(handleSignUp)}
-              className="p-10 w-96 bg-white"
+              className="py-10 md:px-10 px-5 bg-white md:w-96 w-full"
             >
               <div className="flex flex-col justify-center items-center ">
                 <img

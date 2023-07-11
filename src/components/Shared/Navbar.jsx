@@ -8,12 +8,14 @@ import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
+import useAdmin from "../../hooks/useAdmin";
 const Navbar = () => {
   const { user } = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
   const [open, setOpen] = useState(false);
   const [openProfileMenu, setOpenProfileMenu] = useState(false);
   // console.log(userFullInfo);
+  const [isAdmin] = useAdmin(user?.email);
 
   return (
     <>
@@ -95,7 +97,7 @@ const Navbar = () => {
             <div className="md:hidden flex items-center space-x-2">
               {!user?.email && (
                 <Link to="/login">
-                  <h2 className="bg-black text-white text-xs py-[6px] px-3 rounded-sm">
+                  <h2 className="bg-black uppercase text-white text-xs py-[6px] px-3 rounded">
                     Login
                   </h2>
                 </Link>
@@ -173,6 +175,12 @@ const Navbar = () => {
               orders
             </Link>
           )}
+          {isAdmin && (
+            <Link onClick={() => setOpen(false)} to="/dashboard/allOrders">
+              Dashboard
+            </Link>
+          )}
+
           {!user?.email && (
             <>
               <Link onClick={() => setOpen(false)} to="/login">

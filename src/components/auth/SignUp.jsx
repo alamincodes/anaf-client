@@ -96,12 +96,12 @@ const SignUp = () => {
   return (
     <AnimatePage>
       <div>
-        <div className="md:container  md:mx-auto md:mt-9">
+        <div className="md:container md:mx-auto md:mt-9">
           {/* form */}
           <div className="flex justify-center items-center">
             <form
               onSubmit={handleSubmit(handleSignUp)}
-              className="p-10 bg-white"
+              className="py-10 md:px-10 px-5 bg-white md:w-auto w-full"
             >
               {/* logo */}
               <div className="flex flex-col justify-center items-center ">

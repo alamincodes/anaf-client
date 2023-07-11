@@ -76,17 +76,17 @@ const Categories = () => {
           Categories
         </h2>
 
-        <div className="grid md:grid-cols-6 grid-cols-2 gap-5">
+        <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-5">
           {categories.map((category) => {
             // console.log(category);
             return (
               <Link key={category.id} to={`/products/${category.query}`}>
                 <div className="border group rounded shadow relative md:py-5 py-2 flex flex-col justify-center items-center">
                   {category.hotSeal === true && (
-                    <span className="absolute top-1 right-1">
+                    <span className="absolute bg-red-100 p-1 rounded-full top-1 right-1">
                       <BsFire
-                        size={20}
-                        className="text-red-500 animate-pulse"
+                        size={17}
+                        className="text-red-700"
                       />{" "}
                     </span>
                   )}

@@ -31,7 +31,7 @@ const OrderDetails = () => {
           <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
             Order Details
           </h2>
-          <h2 className="font-medium mt-5 shadow-primary rounded p-2">
+          <h2 className="font-medium mt-5 shadow-primary border rounded p-2">
             Order{" "}
             <span className="bg-gray-100 font-bold md:text-sm text-xs p-1 uppercase">
               #{orderDetail._id}
@@ -43,7 +43,10 @@ const OrderDetails = () => {
           </h2>
           <div className="mt-5">
             {orderDetail.items?.map((item) => (
-              <div key={item.id} className="bg-gray-50 rounded mt-2 py-5 px-3 ">
+              <div
+                key={item.id}
+                className="bg-white shadow rounded mt-2 py-5 px-3"
+              >
                 <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
                   <img
                     src={item.img}
@@ -51,7 +54,8 @@ const OrderDetails = () => {
                     className="w-20 h-20 bg-cover rounded-md"
                   />
                   <h2>
-                    {item.name} X {item.quantity}{" "}
+                    {item.name}{" "}
+                    <span className="font-semibold">X {item.quantity} </span>
                   </h2>
                   <h2 className="uppercase font-semibold">
                     Price: {item.price} Tk
@@ -66,7 +70,7 @@ const OrderDetails = () => {
               <h2 className="font-bold uppercase">Total Amount</h2>
               <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
               <h2>Delivery fee: 120 Tk</h2>
-              <h2>Total: {orderDetail.total} Tk</h2>
+              <h2 className="font-semibold text-purple-500">Total: {orderDetail.total} Tk</h2>
             </div>
             {/* total */}
             <div className="shadow-sm border border-dashed  p-5">
@@ -74,7 +78,7 @@ const OrderDetails = () => {
               <h2>Payment type: {orderDetail.selectPaymentType}</h2>
               <h2>Payment method: {orderDetail.payWith} </h2>
               <h2>Transaction Id: {orderDetail.transactionId}</h2>
-              <h2>
+              <h2 className="font-semibold text-purple-500">
                 Pay:{" "}
                 {orderDetail.selectPaymentType === "Cash on delivery"
                   ? "200"

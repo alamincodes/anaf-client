@@ -8,16 +8,15 @@ const Contact = () => {
           <div className="flex flex-wrap -mx-4 lg:justify-between">
             <div className="w-full ">
               <div className="mb-12 max-w-[570px] lg:mb-0">
-                <span className="block mb-4 text-base font-semibold text-primary">
+                <span className="block mb-4 text-base font-semibold text-purple-500">
                   Contact Us
                 </span>
                 <h2 className="mb-6 text-[20px] font-bold uppercase text-dark sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                   GET IN TOUCH WITH US
                 </h2>
                 <p className="text-base leading-relaxed mb-9 text-body-color">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eius tempor incididunt ut labore e dolore magna aliqua. Ut
-                  enim adiqua minim veniam quis nostrud exercitation ullamco
+                  Please feel free to contact us directly should you have any
+                  requirements or inquiries.
                 </p>
                 <div className="mb-8 flex w-full max-w-[370px]">
                   <div className="mr-6 flex h-[60px] w-full max-w-[60px] items-center justify-center overflow-hidden rounded bg-primary bg-opacity-5 text-primary sm:h-[70px] sm:max-w-[70px]">
@@ -65,11 +64,9 @@ const Contact = () => {
                   </div>
                   <div className="w-full">
                     <h4 className="mb-1 text-xl font-bold text-dark">
-                      Email Address
+                      Email address
                     </h4>
-                    <p className="text-base text-body-color">
-                      anafshop.com@gmail.com
-                    </p>
+                    <p className="text-xs">anafshop.com@gmail.com</p>
                   </div>
                 </div>
               </div>

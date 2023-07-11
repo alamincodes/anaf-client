@@ -3,6 +3,8 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import AnimatePage from "../Shared/AnimatePage";
 import LoadingSpinner from "../Shared/LoadingSpinner";
+import { BsBoxSeam } from "react-icons/bs";
+import { HiArrowSmRight } from "react-icons/hi";
 import emptyBox from "../../assets/image/emptyBox.png";
 import useTitle from "../../hooks/useTitle";
 const Orders = () => {
@@ -93,7 +95,7 @@ const Orders = () => {
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
                             {order.items[0]?.name.length > 25
-                              ? order.items[0]?.name.substr(0, 20) + '...'
+                              ? order.items[0]?.name.substr(0, 20) + "..."
                               : order.items[0]?.name}
                           </td>
                           <td className="whitespace-nowrap px-6 py-4">
@@ -154,14 +156,16 @@ const Orders = () => {
           </div>
         </div>
       ) : (
-        <div className="container mx-auto flex justify-center items-center flex-col mt-20">
-          <img src={emptyBox} className="w-20 h-20" alt="" />
-          <h2 className="text-medium text-2xl">No orders</h2>
-          <Link to="/">
-            <button className="bg-black text-white p-2 px-6 rounded mt-10">
-              Home
-            </button>
-          </Link>
+        <div className="container mx-auto flex justify-center items-center flex-col mt-52">
+          <BsBoxSeam size={50} />
+          <div className="inline-flex font-medium items-center mt-4">
+            <h2 className="">No orders</h2>
+            <Link to="/" className="text-purple-500 ml-2">
+              <span className="inline-flex items-center">
+                Back to home <HiArrowSmRight size={20} />
+              </span>
+            </Link>
+          </div>
         </div>
       )}
     </AnimatePage>

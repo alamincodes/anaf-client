@@ -21,7 +21,7 @@ const AllProducts = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setSearchData(data.reverse());
         setIsLoading(false);
       });
