@@ -64,13 +64,15 @@ const OrderDetails = () => {
               </div>
             ))}
           </div>
-          <div className="grid md:grid-cols-3 grid-cols-1 mt-3 shadow gap-0">
+          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-3 shadow gap-0">
             {/* total */}
             <div className="shadow-sm border border-dashed p-5">
               <h2 className="font-bold uppercase">Total Amount</h2>
               <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
               <h2>Delivery fee: 120 Tk</h2>
-              <h2 className="font-semibold text-purple-500">Total: {orderDetail.total} Tk</h2>
+              <h2 className="font-semibold text-purple-500">
+                Total: {orderDetail.total} Tk
+              </h2>
             </div>
             {/* total */}
             <div className="shadow-sm border border-dashed  p-5">
