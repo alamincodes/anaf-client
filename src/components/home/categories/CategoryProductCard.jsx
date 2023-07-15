@@ -15,7 +15,7 @@ const CategoryProductCard = ({ category }) => {
     image.src = img;
   }, [category]);
   return (
-    <div className="relative border rounded-md border-gray-100 bg-white shadow">
+    <div className="relative border rounded-md border-gray-100 bg-white hover:shadow-lg">
       {outOfStock === "true" && (
         <div className="absolute rounded bg-red-500 text-white z-10 md:p-3 md:text-base text-xs p-1 right-0">
           <h2 className="font-bold">Out of stock</h2>

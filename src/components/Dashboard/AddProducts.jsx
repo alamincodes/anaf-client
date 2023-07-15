@@ -106,7 +106,7 @@ const AddProducts = () => {
         // console.log(data);
         setProduct(data.reverse());
       });
-  }, [product]);
+  }, []);
   return (
     <div>
       <div className="text-center">
@@ -147,6 +147,7 @@ const AddProducts = () => {
           <input
             type="number"
             name="quantity"
+            defaultValue={1}
             placeholder="quantity "
             className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
           />
