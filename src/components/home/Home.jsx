@@ -14,7 +14,7 @@ const Home = () => {
   useTitle("Home");
   return (
     <AnimatePage>
-      <div className="">
+      <div>
         {/* <Banner /> */}
         <HomeSlider />
         <Categories/>

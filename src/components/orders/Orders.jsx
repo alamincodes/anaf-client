@@ -39,7 +39,8 @@ const Orders = () => {
   return (
     <AnimatePage>
       {orders.length > 0 ? (
-        <div className="container mx-auto">
+        <div className="md:container md:mx-auto md:px-0 px-2">
+          <h2 className="text-2xl uppercase font-bold my-2">My orders</h2>
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">

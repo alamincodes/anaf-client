@@ -1,48 +1,43 @@
 import React from "react";
 import logo from "../../assets/logo/anaf-white.svg";
+import { RiHeadphoneLine, RiFacebookCircleFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <div className="mt-52">
-      <footer aria-label="Site Footer" className="bg-black">
+    <div className="mt-52 bg-neutral-900 ">
+      <footer aria-label="Site Footer" className="container mx-auto">
         <div>
-          <div className="flex justify-center text-red-600">
-            <img src={logo} className="w-28 h-28" alt="" />
-          </div>
-
-          <nav aria-label="Footer Nav" className="mt-5">
-            <ul className="flex items-center justify-center flex-col gap-y-3">
+          <nav className="flex justify-between items-center px-3">
+            <img src={logo} className="w-20 h-20" alt="" />
+            <p className="text-white md:block hidden text-center">
+              © Copyright 2023 ANAF - All rights reserved.
+            </p>
+            <ul className="flex items-center justify-center space-x-5">
               <li>
                 <a
                   href="https://www.facebook.com/anaafshop"
                   rel="noreferrer"
                   target="_blank"
-                  className="text-white transition hover:text-gray-200"
+                  className="text-white transition hover:opacity-80"
                 >
-                  <span className="sr-only">Facebook</span>
-                  <svg
-                    className="h-6 w-6"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                  <RiFacebookCircleFill size={20} />
                 </a>
               </li>
               <li>
-                <Link to="/contact" className="text-white">
-                  Contact
+                <Link
+                  to="/contact"
+                  className="text-white transition hover:opacity-80"
+                >
+                  <span>
+                    {" "}
+                    <RiHeadphoneLine size={20} />
+                  </span>
                 </Link>
               </li>
             </ul>
           </nav>
 
-          <p className="text-white text-center text-xs mt-5 py-2">
+          <p className="text-white md:hidden text-center text-xs py-5">
             © Copyright 2023 ANAF - All rights reserved.
           </p>
         </div>

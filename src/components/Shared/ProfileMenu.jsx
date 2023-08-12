@@ -25,7 +25,7 @@ const ProfileMenu = () => {
       id="dropdown"
     >
       <div className="px-4 py-3">
-        <h2 className="font-bold  text-md">
+        <h2 className="font-bold text-left text-md">
           <span className="relative">
             {user?.displayName}
             {isAdmin && (

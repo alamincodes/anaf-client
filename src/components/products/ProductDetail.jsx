@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { useCart } from "react-use-cart";
-import { HiOutlineShoppingBag } from "react-icons/hi";
-import { HiCheckCircle } from "react-icons/hi2";
-import { TbTruckDelivery } from "react-icons/tb";
 import "react-loading-skeleton/dist/skeleton.css";
 import AnimatePage from "../Shared/AnimatePage";
-
+import { TbTruckDelivery, TbTruckReturn } from "react-icons/tb";
+import { BsCreditCard } from "react-icons/bs";
+import { FiCheckCircle } from "react-icons/fi";
+import { HiCheckCircle } from "react-icons/hi";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const { addItem } = useCart();
+
   let { id } = useParams();
 
   const handleAddToCart = () => {
@@ -44,15 +45,15 @@ const ProductDetail = () => {
   return (
     <AnimatePage>
       <section>
-        <div className="container mx-auto px-4 relative">
+        <div className="md:container md:mx-auto md:px-0 relative px-2">
           {/* toast */}
           {isVisible && (
-            <div className="my-4 rounded w-[300px] z-20 top-[50px] right-0 fixed text-green-700  bg-green-200 p-5 ">
+            <div className="my-4 rounded-sm w-[300px] z-20 top-[50px] right-0 fixed text-white bg-neutral-900 p-5">
               <div className="flex items-center">
                 <span>
                   {" "}
                   <HiCheckCircle
-                    size={20}
+                    size={23}
                     className="text-green-500 mr-1"
                   />{" "}
                 </span>{" "}
@@ -60,76 +61,70 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
-          <div className="lg:col-gap-12 xl:col-gap-16 mt-8 grid grid-cols-1 gap-12 lg:mt-12 lg:grid-cols-5 lg:gap-16">
-            <div className="lg:col-span-3 lg:row-end-1">
-              <div className="lg:flex lg:items-start">
-                <div className="lg:order-2 lg:ml-5">
-                  <div className="max-w-xl overflow-hidden rounded-lg">
-                    <img
-                      className="h-full w-full max-w-full object-cover"
-                      src={productDetail.img}
-                      alt=""
-                    />
+          <div className="flex flex-col md:flex-row bg-white">
+            {/* left */}
+            <div className="md:w-[500px] md:h-[500px] object-cover">
+              <img src={productDetail.img} alt="" />
+            </div>
+            {/* right */}
+            <div className="p-3 md:mt-0 mt-5">
+              <div className="border-b p-3">
+                <h2 className="md:text-3xl text-lg font-medium">
+                  {productDetail.name}
+                </h2>
+              </div>
+              {/* price section */}
+              <div className="flex md:flex-col flex-col-reverse">
+                {/* list */}
+                <div className="py-5 px-3">
+                  <div className="flex items-center space-x-4 mt-2">
+                    <span>
+                      <FiCheckCircle size={25} />
+                    </span>
+                    <h2>Authentic product</h2>
+                  </div>
+                  <div className="flex items-center space-x-4 mt-2">
+                    <span>
+                      <TbTruckDelivery size={25} />
+                    </span>
+                    <h2>Home delivery</h2>
+                  </div>
+                  <div className="flex items-center space-x-4 mt-2">
+                    <span>
+                      <BsCreditCard size={25} />
+                    </span>
+                    <h2>Pay online or when receiving goods</h2>
+                  </div>
+                  <div className="flex items-center space-x-4 mt-2">
+                    <span>
+                      <TbTruckReturn size={25} />
+                    </span>
+                    <h2>7 days replacement warranty</h2>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-2 lg:row-span-2 lg:row-end-2">
-              <h1 className="md:text-2xl text-xl font-bold text-gray-900 ">
-                {productDetail.name}
-              </h1>
-
-              <div className="mt-10 flex flex-col items-center justify-between space-y-4 border-t border-b py-4 sm:flex-row sm:space-y-0">
-                <div className="flex items-end">
-                  <h1
-                    className={`text-3xl font-bold ${
-                      productDetail.outOfStock === "true" && "line-through"
-                    }`}
-                  >
+                {/* btn */}
+                <div className="md:border-t border-b md:py-5 pb-10 flex flex-col space-y-4 mt-5">
+                  <h2 className="text-3xl font-bold text-neutral-900">
                     ৳ {productDetail.price}
-                  </h1>{" "}
+                  </h2>
+                  <button
+                    onClick={handleAddToCart}
+                    className="py-4 px-8 uppercase text-xl md:w-[200px] rounded-sm bg-neutral-900 text-white hover:bg-neutral-800"
+                  >
+                    Add to cart
+                  </button>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={handleAddToCart}
-                  disabled={productDetail.outOfStock === "true"}
-                  className="inline-flex disabled:bg-black disabled:text-red-600 items-center justify-center rounded-md border-2 border-transparent bg-gray-900 bg-none px-12 py-3 text-center text-base font-bold text-white transition-all duration-200 ease-in-out focus:shadow hover:bg-gray-800"
-                >
-                  {productDetail.outOfStock === "true" ? (
-                    "Out of stock"
-                  ) : (
-                    <>
-                      <HiOutlineShoppingBag className="mr-1" size={20} />
-                      Add to cart
-                    </>
-                  )}
-                </button>
-              </div>
-
-              <ul className="mt-8 space-y-2">
-                <li className="flex items-center text-left text-sm font-medium text-gray-600">
-                  <TbTruckDelivery size={20} className="mr-2" />
-                  Home delivery
-                </li>
-              </ul>
-            </div>
-
-            <div className="lg:col-span-3">
-              <div className="border-b border-gray-300">
-                <nav className="flex gap-4">
-                  <span className="border-b-2 border-gray-900 py-4 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800">
-                    {" "}
-                    Description{" "}
-                  </span>
-                </nav>
-              </div>
-
-              <div className="my-8 flow-root sm:my-12">
-                <p className="mt-0">{productDetail.detail}</p>
               </div>
             </div>
+          </div>
+          {/* description */}
+          <div className="p-5 bg-white mt-3 overflow-x-auto">
+            <nav className="flex gap-4 border-b">
+              <span className="border-b-2 border-gray-900 py-3 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800">
+                Description
+              </span>
+            </nav>
+            <p className="mt-2">{productDetail.detail}</p>
           </div>
         </div>
       </section>

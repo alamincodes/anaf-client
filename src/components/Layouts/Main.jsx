@@ -6,7 +6,7 @@ import HeaderContact from "../Shared/HeaderContact";
 
 const Main = () => {
   return (
-    <div>
+    <div className="md:mb-auto mb-[72px]">
       <ScrollTop />
       <HeaderContact />
       <Navbar />

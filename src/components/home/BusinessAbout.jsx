@@ -13,7 +13,7 @@ const BusinessAbout = () => {
         </h2>
         <div className="">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <div className="bg-black p-8 md:p-12 lg:px-16 lg:py-24">
+            <div className="bg-neutral-900 p-8 md:p-12 lg:px-16 lg:py-24">
               <div className="mx-auto max-w-xl text-center">
                 <h2 className="text-2xl uppercase font-bold text-white md:text-4xl">
                   our business type

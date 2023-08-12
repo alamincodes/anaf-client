@@ -55,9 +55,9 @@ const Login = () => {
   return (
     <AnimatePage>
       <div>
-        <div className="md:container  md:mx-auto">
+        <div className="md:container md:mx-auto">
           {/* form */}
-          <div className="flex justify-center items-center mt-10">
+          <div className="flex justify-center items-center md:mt-10">
             <form
               onSubmit={handleSubmit(handleSignUp)}
               className="py-10 md:px-10 px-5 bg-white md:w-96 w-full"
@@ -150,7 +150,7 @@ const Login = () => {
               </div>
               {/* firebase error message */}
               {errorMessage && (
-                <p className="text-red-500 mt-1 font-normal">{errorMessage}</p>
+                <p className="text-red-500 mt-1 font-semibold">{errorMessage}</p>
               )}
               {/* submit button */}
               <button
