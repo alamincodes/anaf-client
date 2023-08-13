@@ -7,15 +7,15 @@ import AnimatePage from "../Shared/AnimatePage";
 import { TbTruckDelivery, TbTruckReturn } from "react-icons/tb";
 import { BsCreditCard } from "react-icons/bs";
 import { FiCheckCircle } from "react-icons/fi";
-import { HiCheckCircle } from "react-icons/hi";
+import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [activeImg, setActiveImg] = useState("");
   const { addItem } = useCart();
-
+  const { img, name, detail, price } = productDetail;
   let { id } = useParams();
-
   const handleAddToCart = () => {
     addItem(productDetail);
     setIsVisible(true);
@@ -35,6 +35,7 @@ const ProductDetail = () => {
       .then((data) => {
         // console.log(data);
         setProductDetail(data);
+        setActiveImg(data?.img[0]);
         setIsLoading(false);
       });
   }, []);
@@ -61,17 +62,34 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
-          <div className="flex flex-col md:flex-row bg-white">
+          <div className="flex flex-col md:gap-4 md:flex-row bg-white">
             {/* left */}
-            <div className="md:w-[500px] md:h-[500px] object-cover">
-              <img src={productDetail.img} alt="" />
+            <div className="flex flex-col md:w-[40%]">
+              <div>
+                <img
+                  src={activeImg}
+                  className="md:w-full md:h-[500px] object-cover"
+                  alt=""
+                />
+              </div>
+              <div className="flex flex-wrap space-x-1">
+                {img?.map((singleImg) => {
+                  return (
+                    <img
+                      key={singleImg}
+                      onClick={() => setActiveImg(singleImg)}
+                      className="w-20 h-20 object-cover border p-1 my-1 cursor-pointer"
+                      src={singleImg}
+                      alt=""
+                    />
+                  );
+                })}
+              </div>
             </div>
             {/* right */}
-            <div className="p-3 md:mt-0 mt-5">
-              <div className="border-b p-3">
-                <h2 className="md:text-3xl text-lg font-medium">
-                  {productDetail.name}
-                </h2>
+            <div className="md:p-3 md:mt-0 mt-5 md:w-[50%]">
+              <div className="border-b">
+                <h2 className="md:text-3xl text-lg font-medium">{name}</h2>
               </div>
               {/* price section */}
               <div className="flex md:flex-col flex-col-reverse">
@@ -103,14 +121,17 @@ const ProductDetail = () => {
                   </div>
                 </div>
                 {/* btn */}
-                <div className="md:border-t border-b md:py-5 pb-10 flex flex-col space-y-4 mt-5">
+                <div className="md:border-t md:border-b-0 border-b md:py-5 pb-10 flex flex-col space-y-4 mt-5">
                   <h2 className="text-3xl font-bold text-neutral-900">
-                    ৳ {productDetail.price}
+                    ৳ {price}
                   </h2>
                   <button
                     onClick={handleAddToCart}
-                    className="py-4 px-8 uppercase text-xl md:w-[200px] rounded-sm bg-neutral-900 text-white hover:bg-neutral-800"
+                    className="py-4 px-3 font-[500] inline-flex justify-center uppercase text-lg md:w-[200px] rounded-sm bg-neutral-900 text-white hover:bg-neutral-800"
                   >
+                    <span>
+                      <HiOutlineShoppingBag size={25} className="mr-1" />
+                    </span>
                     Add to cart
                   </button>
                 </div>
@@ -124,7 +145,7 @@ const ProductDetail = () => {
                 Description
               </span>
             </nav>
-            <p className="mt-2">{productDetail.detail}</p>
+            <p className="mt-2">{detail}</p>
           </div>
         </div>
       </section>

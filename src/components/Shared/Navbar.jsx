@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo/anaf.svg";
 import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
 import { TbSearch } from "react-icons/tb";
@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <>
       <div className="bg-white sticky top-0 z-20">
-        <nav className="md:container md:mx-auto px-2 md:py-3 py-4 relative">
+        <nav className="md:container md:mx-auto md:px-0 px-2 md:py-3 py-4 relative">
           <div className="flex justify-between items-center">
             {/* menu */}
             <span className="md:hidden">

@@ -6,12 +6,6 @@ export default {
       primary: "Rubik, sans-serif",
       secondary: "Anek Bangla, sans-serif",
     },
-    container: {
-      padding: {
-        DEFAULT: "1.5rem",
-        lg: "3rem",
-      },
-    },
     screens: {
       sm: "640px",
       md: "768px",

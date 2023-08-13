@@ -28,21 +28,21 @@ const Product = ({ product }) => {
         )}
         <Link to={`/product/${_id}`}>
           {imageLoad && (
-            <div className="relative flex justify-center items-center ">
+            <div className="relative flex justify-center items-center">
               <img
                 loading="lazy"
-                className="lg:w-[100%] md:w-[250px] w-[150px] object-cover bg-center bg-cover lg:p-5 p-2 lg:rounded-3xl rounded-xl mb-4"
+                className="lg:w-[100%] lg:h-[300px] md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover bg-center bg-cover lg:p-5 p-2 lg:rounded-3xl rounded-xl mb-4"
                 src={img}
                 alt="product image"
               />
             </div>
           )}
-          <div className="lg:mb-20 lg:mt-auto mt-24  md:px-5 px-2">
-            <div className="absolute bottom-2">
+          <div className="md:px-5 px-2">
+            <div className=" bottom-2">
               <h5 className="md:text-[15px] text-xs tracking-tight text-slate-900">
                 {name?.length > 50 ? name.substr(0, 40) + "..." : name}
               </h5>
-              <div className="mt-5">
+              <div className="md:my-5 my-2">
                 <p>
                   <span
                     className={`md:text-xl ${

@@ -70,7 +70,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="container mx-auto">
+    <div className="md:container md:mx-auto md:px-0 px-2">
       <div>
         <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
           Categories

@@ -59,11 +59,11 @@ const FindOrder = () => {
       </form>
 
       <div>
-        <div className="container mx-auto bg-white md:px-20 md:py-10">
-          <h2 className="md:text-3xl font-bold text-left uppercase">
+        <div className="myContainer bg-white md:px-20 md:py-10">
+          <h2 className="md:text-3xl mt-2 font-bold text-left uppercase">
             Order Details
           </h2>
-          <h2 className=" mt-5">
+          <h2 className="mt-5">
             Order{" "}
             <span className="bg-gray-200 font-bold p-1">
               #{orderDetail._id}

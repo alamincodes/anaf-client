@@ -3,9 +3,9 @@ import { HiOutlineMail } from "react-icons/hi";
 const Contact = () => {
   return (
     <>
-      <section className=" container mx-auto bg-white  lg:py-[120px] overflow-hidden relative z-10">
-        <div className="container">
-          <div className="flex flex-wrap -mx-4 lg:justify-between">
+      <section className="container mx-auto bg-white  lg:py-[120px] overflow-hidden relative z-10">
+        <div className="px-10">
+          <div className="flex flex-wrap lg:justify-between">
             <div className="w-full ">
               <div className="mb-12 max-w-[570px] lg:mb-0">
                 <span className="block mb-4 text-base font-semibold text-purple-500">

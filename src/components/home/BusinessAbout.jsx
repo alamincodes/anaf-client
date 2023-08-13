@@ -7,7 +7,7 @@ const BusinessAbout = () => {
   const { user } = useContext(AUTH_CONTEXT);
   return (
     <section>
-      <div className="container mx-auto">
+      <div className="myContainer">
         <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 mb-10 uppercase">
           Business About
         </h2>

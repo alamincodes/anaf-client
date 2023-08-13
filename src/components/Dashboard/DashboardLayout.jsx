@@ -5,7 +5,7 @@ import { BsBoxSeam } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
 const DashboardLayout = () => {
   return (
-    <div className="container mx-auto">
+    <div className="myContainer">
       <ul className="flex border-b items-center border-gray-200 font-gray-500 text-sm font-medium text-gray-500 overflow-x-auto scrollbar-hide">
         <NavLink
           className={({ isActive }) => (isActive ? "text-black" : undefined)}

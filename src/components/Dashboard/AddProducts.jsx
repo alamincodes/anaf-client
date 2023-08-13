@@ -3,7 +3,8 @@ import useTitle from "../../hooks/useTitle";
 
 const AddProducts = () => {
   useTitle("Add Product");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedImages, setSelectedImages] = useState([]);
+  // const [uploadedUrls, setUploadedUrls] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [product, setProduct] = useState([]);
 
@@ -41,7 +42,12 @@ const AddProducts = () => {
       name: "mouse",
     },
   ];
-  const handleAddProduct = (e) => {
+
+  const handleImageChange = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedImages(files);
+  };
+  const handleAddProduct = async (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.productName.value;
@@ -56,47 +62,61 @@ const AddProducts = () => {
 
     // console.log(ordersInfo.selectedFile);
 
-    const image = selectedFile;
-    const formData = new FormData();
-    formData.append("image", image);
+    // const image = selectedFile;
+    // const formData = new FormData();
+    // formData.append("image", image);
     const imageBBApiKey = import.meta.env.VITE_IMAGE_BB_API_KEY;
-    const url = `https://api.imgbb.com/1/upload?key=${imageBBApiKey}`;
-    setIsLoading(true);
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imageData) => {
-        console.log(imageData);
 
-        if (imageData.success) {
-          const productInfo = {
-            name,
-            category,
-            price,
-            quantity,
-            detail,
-            outOfStock,
-            img: imageData.data.url,
-            id,
-          };
-          fetch("https://anaf-server.vercel.app/products", {
+    try {
+      const uploadPromises = selectedImages.map(async (image) => {
+        const formData = new FormData();
+        formData.append("image", image);
+        setIsLoading(true);
+        const response = await fetch(
+          `https://api.imgbb.com/1/upload?key=${imageBBApiKey}`,
+          {
             method: "POST",
-            headers: {
-              "content-type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify(productInfo),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              form.reset();
-              setIsLoading(false);
-            });
-        }
+            body: formData,
+          }
+        );
+
+        const data = await response.json();
+        return data.data.url;
       });
+
+      const uploadedUrls = await Promise.all(uploadPromises);
+      // setUploadedUrls(uploadedUrls);
+
+      const productInfo = {
+        name,
+        category,
+        price,
+        quantity,
+        detail,
+        outOfStock,
+        img: uploadedUrls,
+        id,
+      };
+
+      fetch("https://anaf-server.vercel.app/products", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(productInfo),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log(data);
+          // if(data.)
+          form.reset();
+          setIsLoading(false);
+        });
+    } catch (error) {
+      console.error("Error uploading images:", error);
+    }
+   
   };
 
   useEffect(() => {
@@ -106,7 +126,7 @@ const AddProducts = () => {
         // console.log(data);
         setProduct(data.reverse());
       });
-  }, []);
+  }, [product]);
   return (
     <div>
       <div className="text-center">
@@ -160,7 +180,8 @@ const AddProducts = () => {
             <input
               type="file"
               name="image"
-              onChange={(e) => setSelectedFile(e.target.files[0])}
+              multiple
+              onChange={handleImageChange}
               className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
             />
           </label>

@@ -16,7 +16,7 @@ const Cart = () => {
     <AnimatePage>
       <section>
         {isEmpty ? (
-          <div className="container mx-auto flex flex-col justify-center items-center mt-20">
+          <div className="myContainer flex flex-col justify-center items-center mt-20">
             <img src={emptyCartImg} className="w-32 h-32 mb-5" alt="" />
             <h2 className="text-3xl font-semibold">your cart is empty</h2>
             <h2 className="font-normal">
@@ -28,15 +28,15 @@ const Cart = () => {
           </div>
         ) : (
           <div>
-            <div className="mx-auto con mt-3 ">
-              <div className="mx-auto container">
-                <header className="text-center">
-                  <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
+            <div className="myContainer md:px-0 px-4 mt-3">
+              <div>
+                <header className="text-left">
+                  <h1 className="text-xl uppercase font-bold text-gray-900 sm:text-3xl">
                     Your Cart
                   </h1>
                 </header>
 
-                <div className="mt-8">
+                <div className="mt-5">
                   <ul className="space-y-4">
                     {items.map((item) => (
                       <li
@@ -135,7 +135,7 @@ const Cart = () => {
                       <div className="flex justify-end ">
                         <Link
                           to="/checkout"
-                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-sm text-white "
+                          className="block rounded-sm mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-sm text-white"
                         >
                           Checkout
                         </Link>

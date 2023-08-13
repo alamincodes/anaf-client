@@ -7,7 +7,7 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.search.value);
+    // console.log(e.target.search.value);
     const search = e.target.search.value;
     if (search.length === 0) {
       return;
@@ -17,14 +17,14 @@ const Search = () => {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setSearchData(data);
         setIsLoading(false);
       });
   };
 
   return (
-    <section className="container mx-auto">
+    <section className="myContainer">
       <div>
         <form onSubmit={handleSubmit} className="flex mt-3 relative">
           <input

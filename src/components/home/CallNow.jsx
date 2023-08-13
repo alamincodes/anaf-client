@@ -2,7 +2,7 @@ import React from "react";
 import { TbPhoneCall } from "react-icons/tb";
 const CallNow = () => {
   return (
-    <section className="container mx-auto my-4">
+    <section className="myContainer my-4">
       <div className="flex md:flex-row flex-col justify-between items-center md:text-left text-center md:p-10 p-3 bg-neutral-900 text-gray-100">
         <div>
           <h2 className="lg:text-3xl text-lg font-bold font-secondary">

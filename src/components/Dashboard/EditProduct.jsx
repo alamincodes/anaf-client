@@ -50,7 +50,6 @@ const EditProduct = () => {
     const price = form.price.value;
     const quantity = form.quantity.value;
     const detail = form.detail.value;
-    const img = form.img.value;
     const id = form.pId.value;
     const outOfStock = form.outOfStock.value;
     const category = form.category.value;
@@ -59,7 +58,6 @@ const EditProduct = () => {
       category,
       price,
       quantity,
-      img,
       detail,
       outOfStock,
       id,
@@ -144,14 +142,7 @@ const EditProduct = () => {
           placeholder="quantity "
           className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
         />
-        <label>Image</label>
-        <input
-          defaultValue={productDetail.img}
-          type="text"
-          name="img"
-          placeholder="img "
-          className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
-        />
+
         <label>details</label>
         <textarea
           name="detail"

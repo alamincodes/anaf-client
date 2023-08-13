@@ -16,7 +16,7 @@ const Settings = () => {
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setUserData(data);
         setIsLoading(false);
       });
@@ -25,9 +25,9 @@ const Settings = () => {
     return <LoadingSpinner />;
   }
   return (
-    <div className="container mx-auto ">
+    <div className="md:container md:mx-auto md:px-0 px-2 ">
       <div>
-        <h2 className="font-bold text-2xl mt-10">Account</h2>
+        <h2 className="font-bold text-2xl md:mt-10 my-2">My Account</h2>
         <div className="bg-white backdrop-filter backdrop-blur-3xl bg-opacity-10 overflow-hidden border text-center relative">
           {/* <div className="absolute -inset-0.5 left-0 bg-gradient-to-l from-fuchsia-500 to-orange-500 blur-3xl opacity-10"></div> */}
           <div className="p-2 flex justify-center items-center ">
