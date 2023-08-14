@@ -8,7 +8,7 @@ const Products = () => {
   useTitle("Shop");
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [loadCount, setLoadCount] = useState(12);
+  const [loadCount, setLoadCount] = useState(15);
 
   const handleLoadMore = () => {
     setLoadCount((prevCount) => prevCount + 12);
@@ -24,7 +24,7 @@ const Products = () => {
         setProducts(data.reverse());
         setIsLoading(false);
       });
-  }, [products]);
+  }, []);
 
   return (
     <AnimatePage>
@@ -33,7 +33,7 @@ const Products = () => {
           <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
             Our Products
           </h2>
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2">
+          <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2">
             {isLoading && <SkeletonCard cards={20} />}
             {/* products */}
             {products.slice(0, loadCount).map((product) => (

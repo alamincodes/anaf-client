@@ -31,14 +31,14 @@ const Product = ({ product }) => {
             <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="lg:w-[290px] lg:h-[300px] md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover mb-4"
+                className=" md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover mb-4"
                 src={img}
                 alt="product image"
               />
             </div>
           )}
           <div className="md:px-5 px-2">
-            <div className=" bottom-2">
+            <div>
               <h5 className="md:text-[15px] text-xs tracking-tight text-slate-900">
                 {name?.length > 50 ? name.substr(0, 40) + "..." : name}
               </h5>

@@ -76,28 +76,27 @@ const Categories = () => {
           Categories
         </h2>
 
-        <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-2 gap-2">
+        <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-2">
           {categories.map((category) => {
             // console.log(category);
             return (
               <Link key={category.id} to={`/products/${category.query}`}>
-                <div className="border group rounded shadow hover:shadow-primary relative md:py-5 py-2 flex flex-col justify-center items-center">
+                <div className="border group h-32 hover:shadow-primary relative md:py-5 py-2">
                   {category.hotSeal === true && (
                     <span className="absolute bg-red-100 p-1 rounded-full top-1 right-1">
-                      <BsFire
-                        size={17}
-                        className="text-red-700"
-                      />{" "}
+                      <BsFire size={17} className="text-red-700" />{" "}
                     </span>
                   )}
-                  <img
-                    src={category.icon}
-                    className="w-20 md:h-14 h-14 mb-12 "
-                    alt={category.name}
-                  />
-                  <h2 className="p-5 text-xs capitalize group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center absolute md:text-sm bottom-0">
-                    {category.name}
-                  </h2>
+                  <div className="flex flex-col justify-center items-center py-1">
+                    <img
+                      src={category.icon}
+                      className="w-20 h-14"
+                      alt={category.name}
+                    />
+                    <h2 className="p-5 text-xs capitalize group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center  md:text-sm ">
+                      {category.name}
+                    </h2>
+                  </div>
                 </div>
               </Link>
             );

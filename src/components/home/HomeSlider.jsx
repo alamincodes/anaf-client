@@ -39,6 +39,12 @@ const HomeSlider = () => {
           />
         </SwiperSlide>
         <SwiperSlide>
+          <img
+            className="w-full md:h-[600px] h-[200px] bg-cover bg-center object-cover"
+            src="https://i.ibb.co/54dz9tj/Black-Friday-Sale-Promotion-Banner-1.png"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
           <div className="">
             <img
               className="w-full md:h-[600px] h-[200px] bg-cover bg-center object-cover"

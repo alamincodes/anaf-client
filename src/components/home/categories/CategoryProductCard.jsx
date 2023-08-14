@@ -39,7 +39,7 @@ const CategoryProductCard = ({ category }) => {
               <div className="p-2 flex justify-center">
                 <img
                   loading="lazy"
-                  className="lg:w-[290px] lg:h-[300px] md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover mb-4"
+                  className="md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover mb-4"
                   src={img}
                   alt="product image"
                 />

@@ -49,7 +49,7 @@ const ProductDetail = () => {
         <div className="md:container md:mx-auto md:px-0 relative px-2">
           {/* toast */}
           {isVisible && (
-            <div className="my-4 rounded-sm w-[300px] z-20 top-[50px] right-0 fixed text-white bg-neutral-900 p-5">
+            <div className="my-4 rounded-sm w-[300px] z-20 top-[50px] right-0 left-0 mx-auto fixed text-white bg-neutral-900 p-5">
               <div className="flex items-center">
                 <span>
                   {" "}

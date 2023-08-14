@@ -49,20 +49,33 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-100 rounded-sm" : undefined
+                  isActive ? "bg-neutral-900 text-white rounded-sm" : undefined
                 }
               >
-                <li className="cursor-pointer py-1 px-2">Home</li>
+                <li className="cursor-pointer uppercase py-1 px-2">Home</li>
               </NavLink>
               {/* product */}
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-100 rounded-sm" : undefined
+                  isActive ? "bg-neutral-900 text-white rounded-sm" : undefined
                 }
               >
-                <li className="cursor-pointer py-1 px-2">Shop</li>
+                <li className="cursor-pointer uppercase py-1 px-2">Shop</li>
               </NavLink>
+              {/* orders */}
+              {user?.email && (
+                <NavLink
+                  to="/orders"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "bg-neutral-900 text-white rounded-sm"
+                      : undefined
+                  }
+                >
+                  <li className="cursor-pointer uppercase py-1 px-2">Orders</li>
+                </NavLink>
+              )}
               {/* cart */}
               <Link to="/search">
                 <li className="cursor-pointer relative">
@@ -157,15 +170,22 @@ const Navbar = () => {
           {user?.email && (
             <li
               onClick={() => setOpen(false)}
-              className="bg-white text-black px-2 py-5 absolute top-16 left-0 right-0"
+              className="bg-neutral-800 border-b text-white px-2 py-5 absolute top-16 left-0 right-0 "
             >
-              <h2 className="font-bold"> {user?.displayName} </h2>
-              <h2 className="lowercase">
-                {" "}
-                {user?.email.length > 25
-                  ? user?.email.substr(0, 15) + "..."
-                  : user?.email}{" "}
-              </h2>
+              <div className="flex flex-col">
+                <div className="flex justify-center items-center mb-1 bg-neutral-500 h-12 w-12 rounded-full">
+                  <FaUser size={30} />
+                </div>
+                <div>
+                  <h2 className="font-bold"> {user?.displayName} </h2>
+                  <h2 className="lowercase">
+                    {" "}
+                    {user?.email.length > 25
+                      ? user?.email.substr(0, 15) + "..."
+                      : user?.email}{" "}
+                  </h2>
+                </div>
+              </div>
             </li>
           )}
           <Link onClick={() => setOpen(false)} to="/">
