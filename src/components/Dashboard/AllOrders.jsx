@@ -22,8 +22,7 @@ const AllOrders = () => {
     const orderStatus = {
       status,
     };
-    // console.log(orderId);
-    // console.log(status);
+
     fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
       method: "PUT",
       headers: {
@@ -94,7 +93,7 @@ const AllOrders = () => {
         setOrders(data.reverse());
         setIsLoading(false);
       });
-  }, [orders]);
+  }, []);
   if (isLoading) {
     return <LoadingSpinner />;
   }

@@ -49,7 +49,7 @@ const Navbar = () => {
               <NavLink
                 to="/"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-100 rounded" : undefined
+                  isActive ? "bg-gray-100 rounded-sm" : undefined
                 }
               >
                 <li className="cursor-pointer py-1 px-2">Home</li>
@@ -58,7 +58,7 @@ const Navbar = () => {
               <NavLink
                 to="/products"
                 className={({ isActive }) =>
-                  isActive ? "bg-gray-100 rounded" : undefined
+                  isActive ? "bg-gray-100 rounded-sm" : undefined
                 }
               >
                 <li className="cursor-pointer py-1 px-2">Shop</li>
@@ -122,7 +122,7 @@ const Navbar = () => {
               {/* cart */}
               <Link to="/search">
                 <h2 className="cursor-pointer relative">
-                  <TbSearch size={30}  />
+                  <TbSearch size={30} />
                 </h2>
               </Link>
               <Link to="/cart">

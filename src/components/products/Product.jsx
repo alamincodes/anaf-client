@@ -28,10 +28,10 @@ const Product = ({ product }) => {
         )}
         <Link to={`/product/${_id}`}>
           {imageLoad && (
-            <div className="relative flex justify-center items-center">
+            <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="lg:w-[100%] lg:h-[300px] md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover bg-center bg-cover lg:p-5 p-2 lg:rounded-3xl rounded-xl mb-4"
+                className="lg:w-[290px] lg:h-[300px] md:w-[250px] md:h-[250px] w-[150px] h-[150px] object-cover mb-4"
                 src={img}
                 alt="product image"
               />
