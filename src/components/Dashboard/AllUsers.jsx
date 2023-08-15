@@ -4,12 +4,13 @@ import useTitle from "../../hooks/useTitle";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { toast } from "react-hot-toast";
 import { MdVerified } from "react-icons/md";
+import { useQuery } from "@tanstack/react-query";
 
 const AllUsers = () => {
   useTitle("All users");
   const { logOut } = useContext(AUTH_CONTEXT);
-  const [users, setAllUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [users, setAllUsers] = useState([]);
+  // const [isLoading, setIsLoading] = useState(true);
   const handleMakeAdmin = (id) => {
     fetch(`https://anaf-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
@@ -21,6 +22,7 @@ const AllUsers = () => {
       .then((data) => {
         console.log(data);
         toast.success("Successfully make admin");
+        refetch();
       });
   };
 
@@ -39,20 +41,35 @@ const AllUsers = () => {
         return res.json();
       })
       .then((data) => {
-        toast.success("Remove admin successfully");
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success("Remove admin successfully");
+          refetch();
+        }
+        // console.log(data);
       });
   };
 
-  useEffect(() => {
-    fetch("https://anaf-server.vercel.app/allUsers")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllUsers(data);
-        // console.log(data);
-        setIsLoading(false);
-      });
-  }, [users]);
+  const {
+    data: users = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["allUsers"],
+    queryFn: async () => {
+      const res = await fetch("https://anaf-server.vercel.app/allUsers", {});
+      const data = await res.json();
+      return data?.reverse();
+    },
+  });
+  // useEffect(() => {
+  //   fetch("https://anaf-server.vercel.app/allUsers")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAllUsers(data);
+  //       // console.log(data);
+  //       setIsLoading(false);
+  //     });
+  // }, [users]);
 
   if (isLoading) {
     return <LoadingSpinner />;

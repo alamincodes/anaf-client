@@ -16,7 +16,6 @@ const Navbar = () => {
   const { emptyCart } = useCart();
   const { totalUniqueItems } = useCart();
   const [open, setOpen] = useState(false);
-  const [openProfileMenu, setOpenProfileMenu] = useState(false);
   // console.log(userFullInfo);
   const [isAdmin] = useAdmin(user?.email);
 
@@ -107,19 +106,7 @@ const Navbar = () => {
               )}
 
               {/* ---profile menu start---- */}
-              {user?.email && (
-                <button
-                  className="cursor-pointer  relative "
-                  onClick={() => setOpenProfileMenu(!openProfileMenu)}
-                >
-                  {user?.email && (
-                    <div>
-                      <FaUser size={28} />
-                    </div>
-                  )}
-                  {openProfileMenu && <ProfileMenu />}
-                </button>
-              )}
+              {user?.email && <ProfileMenu />}
               {/* ---profile menu end---- */}
             </ul>
 

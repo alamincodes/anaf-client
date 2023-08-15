@@ -1,13 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import useTitle from "../../hooks/useTitle";
+import { useQuery } from "@tanstack/react-query";
 
 const AddProducts = () => {
   useTitle("Add Product");
   const [selectedImages, setSelectedImages] = useState([]);
   // const [uploadedUrls, setUploadedUrls] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [product, setProduct] = useState([]);
+  const [addLoading, setAddLoading] = useState(false);
+  // const [product, setProduct] = useState([]);
 
+  const { data: product = [], } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await fetch("https://anaf-server.vercel.app/products", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const data = await res.json();
+      return data?.reverse();
+    },
+  });
   const categories = [
     {
       id: 1,
@@ -47,6 +60,7 @@ const AddProducts = () => {
     const files = Array.from(event.target.files);
     setSelectedImages(files);
   };
+
   const handleAddProduct = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -58,20 +72,12 @@ const AddProducts = () => {
     const outOfStock = "false";
     const category = form.category.value;
 
-    // const image = form.image;
-
-    // console.log(ordersInfo.selectedFile);
-
-    // const image = selectedFile;
-    // const formData = new FormData();
-    // formData.append("image", image);
     const imageBBApiKey = import.meta.env.VITE_IMAGE_BB_API_KEY;
-
     try {
       const uploadPromises = selectedImages.map(async (image) => {
         const formData = new FormData();
         formData.append("image", image);
-        setIsLoading(true);
+
         const response = await fetch(
           `https://api.imgbb.com/1/upload?key=${imageBBApiKey}`,
           {
@@ -85,7 +91,6 @@ const AddProducts = () => {
       });
 
       const uploadedUrls = await Promise.all(uploadPromises);
-      // setUploadedUrls(uploadedUrls);
 
       const productInfo = {
         name,
@@ -97,7 +102,7 @@ const AddProducts = () => {
         img: uploadedUrls,
         id,
       };
-
+      setAddLoading(true);
       fetch("https://anaf-server.vercel.app/products", {
         method: "POST",
         headers: {
@@ -107,26 +112,15 @@ const AddProducts = () => {
         body: JSON.stringify(productInfo),
       })
         .then((res) => res.json())
-        .then((data) => {
-          // console.log(data);
-          // if(data.)
+        .then(() => {
           form.reset();
-          setIsLoading(false);
+          setAddLoading(false);
         });
     } catch (error) {
       console.error("Error uploading images:", error);
     }
-   
   };
 
-  useEffect(() => {
-    fetch("https://anaf-server.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setProduct(data.reverse());
-      });
-  }, [product]);
   return (
     <div>
       <div className="text-center">
@@ -189,7 +183,7 @@ const AddProducts = () => {
             // disabled={isLoading}
             className="bg-black p-2 rounded w-full mt-3 text-white"
           >
-            {isLoading ? "Loading..." : "Add product"}
+            {addLoading ? "Loading..." : "Add product"}
           </button>
         </form>
       </div>

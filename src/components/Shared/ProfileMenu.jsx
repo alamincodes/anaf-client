@@ -2,13 +2,12 @@ import React, { useContext, useEffect } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
-import { RiSettings5Line } from "react-icons/ri";
-import { BsBoxSeam } from "react-icons/bs";
-import { RxDashboard } from "react-icons/rx";
-import { VscSignOut } from "react-icons/vsc";
 import useAdmin from "../../hooks/useAdmin";
-import { MdVerified } from "react-icons/md";
-
+import { Menu } from "@headlessui/react";
+import { HiUser } from "react-icons/hi2";
+import { BiUser, BiLogOutCircle,  } from "react-icons/bi";
+import { RxDashboard } from "react-icons/rx";
+import { BsBox } from "react-icons/bs";
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();
@@ -20,61 +19,61 @@ const ProfileMenu = () => {
     logOut();
   };
   return (
-    <div
-      className="absolute md:right-3 right-1 md:top-6 top-7 border bg-white w-[200px] text-base z-50 list-none divide-y divide-gray-100 rounded shadow-boxShadow my-4"
-      id="dropdown"
-    >
-      <div className="px-4 py-3">
-        <h2 className="font-bold text-left text-md">
-          <span className="relative">
-            {user?.displayName}
-            {isAdmin && (
-              <span className="absolute top-[1px] ml-[2px]">
-                <MdVerified size={17} className="" />
+    <div className="relative mt-2">
+      <Menu>
+        <Menu.Button>
+          <div className="flex items-center">
+            <span className="p-1">
+              <HiUser size={27} />
+            </span>
+          </div>
+        </Menu.Button>
+        <Menu.Items className="flex flex-col shadow font-medium overflow-hidden absolute w-48 md:top-12 top-10 right-0 z-50 border text-left bg-white rounded-lg">
+          <Menu.Item className="hover:bg-neutral-800 hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+            <Link to="/orders">
+              <h2 className="inline-flex items-center uppercase text-sm font-semibold py-2">
+                <span>
+                  <BsBox className="mr-3" size={20} />
+                </span>
+                Orders
+              </h2>
+            </Link>
+          </Menu.Item>
+          <Menu.Item className="hover:bg-neutral-800 uppercase text-sm hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+            <Link to="/settings/general">
+              <h2 className="inline-flex items-center font-semibold py-2">
+                <span>
+                  <BiUser className="mr-3" size={20} />
+                </span>
+                Account
+              </h2>
+            </Link>
+          </Menu.Item>
+          {isAdmin && (
+            <Menu.Item className="hover:bg-neutral-800 uppercase text-sm hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+              <Link to="/dashboard/allOrders">
+                <h2 className="inline-flex items-center font-semibold py-2">
+                  <span>
+                    <RxDashboard className="mr-3" size={20} />
+                  </span>
+                  Dashboard
+                </h2>
+              </Link>
+            </Menu.Item>
+          )}
+          <Menu.Item className="uppercase text-sm text-red-500 hover:bg-red-500 hover:text-white px-2 py-2">
+            <h2
+              onClick={handleLogOut}
+              className="inline-flex items-center font-semibold"
+            >
+              <span>
+                <BiLogOutCircle size={20} className="mr-3" />
               </span>
-            )}
-          </span>
-        </h2>
-        <p className="block text-sm font-medium text-gray-900 truncate">
-          {user?.email}
-        </p>
-      </div>
-      <ul className="py-1" aria-labelledby="dropdown">
-        <Link
-          to="/orders"
-          className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-        >
-          <li className="flex items-center">
-            {" "}
-            <BsBoxSeam className="mr-1" /> <span>Orders</span>
-          </li>
-        </Link>
-        <Link
-          to="/settings/general"
-          className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-        >
-          <li className="flex items-center">
-            <RiSettings5Line size={18} className="mr-1" /> <span>Settings</span>
-          </li>
-        </Link>
-        {isAdmin && (
-          <Link
-            to="/dashboard/allOrders"
-            className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
-          >
-            <li className="flex items-center">
-              <RxDashboard size={16} className="mr-1" /> <span>Dashboard</span>
-            </li>
-          </Link>
-        )}
-
-        <li
-          onClick={handleLogOut}
-          className="flex items-center  text-sm font-bold hover:bg-gray-100 text-red-700 border-t px-4 py-2"
-        >
-          <VscSignOut size={18} className="mr-1" /> Sign out
-        </li>
-      </ul>
+              Log Out
+            </h2>
+          </Menu.Item>
+        </Menu.Items>
+      </Menu>
     </div>
   );
 };

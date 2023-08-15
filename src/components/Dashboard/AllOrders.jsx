@@ -8,13 +8,30 @@ import useTitle from "../../hooks/useTitle";
 import { toast } from "react-hot-toast";
 import { HiOutlineTrash, HiOutlineCog8Tooth } from "react-icons/hi2";
 
+import { useQuery } from "@tanstack/react-query";
+
 const AllOrders = () => {
   useTitle("Admin order");
   const { logOut } = useContext(AUTH_CONTEXT);
-  const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const [orderId, setOrderId] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const {
+    data: orders = [],
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["orders"],
+    queryFn: async () => {
+      const res = await fetch("https://anaf-server.vercel.app/orders", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
+      const data = await res.json();    
+      return data?.reverse();
+    },
+  });
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -39,17 +56,21 @@ const AllOrders = () => {
         return res.json();
       })
       .then((data) => {
-        // console.log(data);
-        toast("Order update", {
-          icon: "🚀",
-          style: {
-            borderRadius: "10px",
-            background: "#333",
-            color: "#fff",
-          },
-        });
+        console.log(data);
+        if (data.acknowledged) {
+          refetch();
+          toast("Order update", {
+            icon: "🚀",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
       });
   };
+
   const handleDeleteOrder = (id) => {
     setDeleteLoading(true);
     fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
@@ -62,6 +83,7 @@ const AllOrders = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
+          refetch();
           toast.success("Deleted successfully");
           setDeleteLoading(false);
         }
@@ -74,26 +96,26 @@ const AllOrders = () => {
       });
   };
 
-  useEffect(() => {
-    // setIsLoading(true);
-    fetch("https://anaf-server.vercel.app/orders", {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          localStorage.removeItem("accessToken");
-          return logOut();
-        }
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setOrders(data.reverse());
-        setIsLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   // setIsLoading(true);
+  //   fetch("https://anaf-server.vercel.app/orders", {
+  //     headers: {
+  //       authorization: `bearer ${localStorage.getItem("accessToken")}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.status === 401 || res.status === 403) {
+  //         localStorage.removeItem("accessToken");
+  //         return logOut();
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       // console.log(data);
+  //       setOrders(data.reverse());
+  //       setIsLoading(false);
+  //     });
+  // }, []);
   if (isLoading) {
     return <LoadingSpinner />;
   }
