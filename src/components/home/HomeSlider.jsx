@@ -17,7 +17,7 @@ const HomeSlider = () => {
       <Swiper
         style={{
           "--swiper-navigation-color": "gray",
-          "--swiper-pagination-color": "black",
+          "--swiper-pagination-color": "white",
         }}
         spaceBetween={30}
         effect={"fade"}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { FiImage } from "react-icons/fi";
 const Product = ({ product }) => {
   const [imageLoad, setImageLoad] = useState(false);
   const { name, img, price, _id, outOfStock } = product;
@@ -22,8 +22,13 @@ const Product = ({ product }) => {
 
       <div className="flex flex-col">
         {!imageLoad && (
-          <div className="lg:p-5 p-2">
-            <div className="loader lg:h-[250px] h-[120px] lg:before:w-[200px] before:w-[100%] lg:before:h-[200px] md:lg:before:h-[220px] before:h-[100px]"></div>
+          <div className="flex flex-col justify-center items-center md:h-[250px] h-[150px] lg:p-5 p-2 ">
+            <span className="opacity-10 animate-pulse text-neutral-400">
+              <FiImage size={100} />{" "}
+            </span>
+            <h2 className="lg:text-6xl text-3xl font-extrabold opacity-10 text-neutral-400 animate-pulse">
+              ANAF
+            </h2>
           </div>
         )}
         <Link to={`/product/${_id}`}>

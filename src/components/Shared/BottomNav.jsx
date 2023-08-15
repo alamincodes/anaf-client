@@ -7,7 +7,7 @@ import { RiHeadphoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 const BottomNav = () => {
   return (
-    <div className="md:hidden fixed bottom-0 z-20 bg-neutral-900 text-white w-full py-4">
+    <div className="md:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
       <ul className="relative flex items-center justify-center space-x-6">
         <Link to="/contact">
           <li className="flex flex-col items-center">

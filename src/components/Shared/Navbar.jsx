@@ -150,14 +150,14 @@ const Navbar = () => {
       >
         <IoClose
           onClick={() => setOpen(false)}
-          className="text-3xl absolute right-4 top-4 cursor-pointer"
+          className="text-3xl z-10 absolute right-4 top-4 cursor-pointer"
         />
 
         <ul className="flex justify-center uppercase flex-col h-full space-y-5 px-3">
           {user?.email && (
             <li
-              onClick={() => setOpen(false)}
-              className="bg-neutral-800 border-b text-white px-2 py-5 absolute top-16 left-0 right-0 "
+              // onClick={() => setOpen(false)}
+              className="bg-neutral-800 border-b text-white px-2 py-5 absolute top-0 left-0 right-0 "
             >
               <div className="flex flex-col">
                 <div className="flex justify-center items-center mb-1 bg-neutral-500 h-12 w-12 rounded-full">

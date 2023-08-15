@@ -8,7 +8,7 @@ const Main = () => {
   return (
     <div className="md:mb-auto mb-[72px]">
       <ScrollTop />
-      <HeaderContact />
+      {/* <HeaderContact /> */}
       <Navbar />
       <Outlet />
     </div>
