@@ -4,10 +4,11 @@ import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { Menu } from "@headlessui/react";
-import { HiUser } from "react-icons/hi2";
-import { BiUser, BiLogOutCircle,  } from "react-icons/bi";
+import { HiChevronDown } from "react-icons/hi";
+import { BiUser, BiLogOutCircle } from "react-icons/bi";
 import { RxDashboard } from "react-icons/rx";
 import { BsBox } from "react-icons/bs";
+import avatar from "../../assets/image/avatar.svg";
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();
@@ -22,16 +23,22 @@ const ProfileMenu = () => {
     <div className="relative mt-2">
       <Menu>
         <Menu.Button>
-          <div className="flex items-center">
-            <span className="p-1">
-              <HiUser size={27} />
+          <div className="flex items-center space-x-1">
+            <span>
+              <img src={avatar} className="w-10 h-10 object-cover" alt="" />
+            </span>
+            <span className="font-medium flex items-center">
+              {user?.displayName.length > 12
+                ? user?.displayName.substr(0, 12) + "..."
+                : user?.displayName}
+              <HiChevronDown size={26} />
             </span>
           </div>
         </Menu.Button>
-        <Menu.Items className="flex flex-col shadow font-medium overflow-hidden absolute w-48 md:top-12 top-10 right-0 z-50 border text-left bg-white rounded-lg">
-          <Menu.Item className="hover:bg-neutral-800 hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+        <Menu.Items className="flex flex-col bg-[#fff] text-black shadow-secondary font-medium absolute w-56 md:top-12 top-10 right-0 z-50 text-left rounded py-2">
+          <Menu.Item className="transition-all px-2 font-secondary">
             <Link to="/orders">
-              <h2 className="inline-flex items-center uppercase text-sm font-semibold py-2">
+              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
                 <span>
                   <BsBox className="mr-3" size={20} />
                 </span>
@@ -39,9 +46,9 @@ const ProfileMenu = () => {
               </h2>
             </Link>
           </Menu.Item>
-          <Menu.Item className="hover:bg-neutral-800 uppercase text-sm hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+          <Menu.Item className=" uppercase text-sm transition-all px-2 font-secondary pt-1 ">
             <Link to="/settings/general">
-              <h2 className="inline-flex items-center font-semibold py-2">
+              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
                 <span>
                   <BiUser className="mr-3" size={20} />
                 </span>
@@ -50,9 +57,9 @@ const ProfileMenu = () => {
             </Link>
           </Menu.Item>
           {isAdmin && (
-            <Menu.Item className="hover:bg-neutral-800 uppercase text-sm hover:text-white transition-all px-2 font-secondary pt-1 border-b">
+            <Menu.Item className="uppercase text-sm transition-all px-2 font-secondary pt-1 ">
               <Link to="/dashboard/allOrders">
-                <h2 className="inline-flex items-center font-semibold py-2">
+                <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
                   <span>
                     <RxDashboard className="mr-3" size={20} />
                   </span>
@@ -61,16 +68,15 @@ const ProfileMenu = () => {
               </Link>
             </Menu.Item>
           )}
-          <Menu.Item className="uppercase text-sm text-red-500 hover:bg-red-500 hover:text-white px-2 py-2">
-            <h2
-              onClick={handleLogOut}
-              className="inline-flex items-center font-semibold"
-            >
-              <span>
-                <BiLogOutCircle size={20} className="mr-3" />
-              </span>
-              Log Out
-            </h2>
+          <Menu.Item className="uppercase text-sm transition-all px-2 font-secondary pt-1">
+            <div onClick={handleLogOut}>
+              <h2 className="inline-flex hover:bg-gray-100 text-red-500 px-1 rounded w-full items-center font-semibold py-2">
+                <span>
+                  <BiLogOutCircle className="mr-3" size={20} />
+                </span>
+                Log out
+              </h2>
+            </div>
           </Menu.Item>
         </Menu.Items>
       </Menu>

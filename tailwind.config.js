@@ -22,6 +22,7 @@ export default {
       },
       boxShadow: {
         primary: "rgba(132, 59, 206, 0.15) 0px 4px 24px",
+        secondary: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px",
       },
       backgroundImage: {
         clBg: "url('./src/assets/image/clBg.jpeg')",

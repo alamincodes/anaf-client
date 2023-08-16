@@ -101,17 +101,15 @@ const SignUp = () => {
           <div className="flex justify-center items-center">
             <form
               onSubmit={handleSubmit(handleSignUp)}
-              className="py-10 md:px-10 px-5 bg-white md:w-auto w-full"
+              className="py-5 md:px-10 px-5 bg-white md:w-auto w-full"
             >
               {/* logo */}
               <div className="flex flex-col justify-center items-center ">
-                <img
-                  src={logo}
-                  className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]"
-                  alt=""
-                />
+                <div className="border-b border-dashed w-full flex justify-center">
+                  <img src={logo} className="w-28 h-20 px-2 " alt="" />
+                </div>
 
-                <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
+                <h2 className="md:text-3xl text-2xl mt-2 uppercase font-semibold">
                   Sign up
                 </h2>
               </div>

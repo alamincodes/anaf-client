@@ -47,6 +47,14 @@ const Login = () => {
           setErrorMessage("User not found");
         } else if (errMessage.includes("wrong-password")) {
           setErrorMessage("Wrong password");
+        } else if (errMessage.includes("user-disabled")) {
+          setErrorMessage(
+            "Your account has been disabled. Please speak to our customer support."
+          );
+        } else if (errMessage.includes("too-many-requests")) {
+          setErrorMessage(
+            "Your account has been temporarily disabled. Try again later."
+          );
         }
         setIsLoading(false);
       });
@@ -57,19 +65,17 @@ const Login = () => {
       <div>
         <div className="md:container md:mx-auto">
           {/* form */}
-          <div className="flex justify-center items-center md:mt-10">
+          <div className="flex justify-center items-center md:mt-5">
             <form
               onSubmit={handleSubmit(handleSignUp)}
-              className="py-10 md:px-10 px-5 bg-white md:w-96 w-full"
+              className="py-5 md:px-10 px-5 bg-white md:w-96 w-full"
             >
-              <div className="flex flex-col justify-center items-center ">
-                <img
-                  src={logo}
-                  className="w-20 rounded-full h-20 px-2 bg-[#FAF5F2]"
-                  alt=""
-                />
+              <div className="flex flex-col justify-center items-center">
+                <div className="border-b border-dashed w-full flex justify-center">
+                  <img src={logo} className="w-28 h-20 px-2 " alt="" />
+                </div>
 
-                <h2 className="md:text-3xl text-2xl font-normal mt-2 font-secondary">
+                <h2 className="md:text-3xl text-2xl text-neutral-800 font-semibold md:my-5 my-2 uppercase">
                   Login
                 </h2>
               </div>
@@ -94,9 +100,7 @@ const Login = () => {
                 </div>
 
                 {errors.email?.type === "required" && (
-                  <p className="text-red-600 font-semibold">
-                    Email cannot be empty*
-                  </p>
+                  <p className="text-red-600 ">Email cannot be empty*</p>
                 )}
               </div>
               {/* password */}
@@ -137,9 +141,7 @@ const Login = () => {
                   )}
                 </div>
                 {errors?.password && (
-                  <p className="text-red-600 font-semibold">
-                    {errors?.password?.message}
-                  </p>
+                  <p className="text-red-600 ">{errors?.password?.message}</p>
                 )}
                 {/* forget password  */}
                 <Link to="/forgetPassword">
@@ -150,7 +152,7 @@ const Login = () => {
               </div>
               {/* firebase error message */}
               {errorMessage && (
-                <p className="text-red-500 mt-1 font-semibold">{errorMessage}</p>
+                <p className="text-red-500 mt-1 ">{errorMessage}</p>
               )}
               {/* submit button */}
               <button

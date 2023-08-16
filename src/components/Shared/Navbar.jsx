@@ -11,6 +11,7 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import useAdmin from "../../hooks/useAdmin";
 import BottomNav from "./BottomNav";
+import avatar from "../../assets/image/avatar.svg";
 const Navbar = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();
@@ -43,7 +44,7 @@ const Navbar = () => {
                 <img src={logo} className="md:w-28 w-20 h-12" alt="" />
               </Link>
             </div>
-            {/* home */}
+            {/* ul */}
             <ul className="md:flex hidden items-center space-x-5 font-semibold">
               <NavLink
                 to="/"
@@ -75,51 +76,53 @@ const Navbar = () => {
                   <li className="cursor-pointer uppercase py-1 px-2">Orders</li>
                 </NavLink>
               )}
+            </ul>
+            {/* card and btn */}
+            <div className="md:flex hidden items-center space-x-4">
               {/* cart */}
               <Link to="/search">
-                <li className="cursor-pointer relative">
+                <h2 className="cursor-pointer relative">
                   <TbSearch size={30} />
-                </li>
+                </h2>
               </Link>
               <Link to="/cart">
-                <li className="cursor-pointer relative">
+                <h2 className="cursor-pointer relative">
                   {totalUniqueItems > 0 && (
                     <span className=" absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
                       {totalUniqueItems}
                     </span>
                   )}
                   <HiOutlineShoppingBag size={30} className="mb-1" />
-                </li>
+                </h2>
               </Link>
               {!user?.email && (
                 <>
                   <Link to="/login">
                     {" "}
-                    <li className="cursor-pointer">Login</li>
+                    <h2 className="cursor-pointer">Login</h2>
                   </Link>
                   <Link to="/signUp">
-                    <li className="cursor-pointer rounded-md bg-black text-white p-2 px-4">
+                    <h2 className="cursor-pointer rounded bg-black text-white p-2 px-4">
                       Sign up
-                    </li>
+                    </h2>
                   </Link>
                 </>
               )}
-
               {/* ---profile menu start---- */}
               {user?.email && <ProfileMenu />}
               {/* ---profile menu end---- */}
-            </ul>
-
+            </div>
+            {/*--------------- phone menu start ----------------*/}
             {/* menu  icon */}
             <div className="md:hidden flex items-center space-x-2">
               {!user?.email && (
                 <Link to="/login">
-                  <h2 className="bg-black uppercase text-white text-xs py-[6px] px-3 rounded">
+                  <h2 className="bg-black uppercase text-white text-xs py-[6px] px-3 rounded-sm">
                     Login
                   </h2>
                 </Link>
               )}
-              {/* cart */}
+              {/* search */}
               <Link to="/search">
                 <h2 className="cursor-pointer relative">
                   <TbSearch size={30} />
@@ -128,7 +131,7 @@ const Navbar = () => {
               <Link to="/cart">
                 <h2 className="cursor-pointer relative mb-1">
                   {totalUniqueItems > 0 && (
-                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
+                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-sm text-xs">
                       {totalUniqueItems}
                     </span>
                   )}
@@ -161,14 +164,14 @@ const Navbar = () => {
             >
               <div className="flex flex-col">
                 <div className="flex justify-center items-center mb-1 bg-neutral-500 h-12 w-12 rounded-full">
-                  <FaUser size={30} />
+                  <img src={avatar} alt="" />
                 </div>
                 <div>
                   <h2 className="font-bold"> {user?.displayName} </h2>
                   <h2 className="lowercase">
                     {" "}
-                    {user?.email.length > 25
-                      ? user?.email.substr(0, 15) + "..."
+                    {user?.email.length > 24
+                      ? user?.email.substr(0, 24) + "..."
                       : user?.email}{" "}
                   </h2>
                 </div>

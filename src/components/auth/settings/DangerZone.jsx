@@ -12,7 +12,7 @@ const DangerZone = () => {
       <div>
         <div className="max-full mx-auto md:mt-3 bg-white p-8 shadow shadow-slate-300 font-normal">
           <h1 className="md:text-4xl text-3xl font-medium">Delete account</h1>
-          <div className="bg-red-100 p-5 md:p-3 text-red-700 rounded-lg mt-4">
+          <div className="bg-red-100 p-5 md:p-3 text-red-700 rounded-sm mt-4">
             <h2>Deleting your account will:</h2>
             <p>
               Permanently delete your profile.
@@ -33,7 +33,7 @@ const DangerZone = () => {
           <div className="text-right">
             <button
               onClick={() => setOpen(true)}
-              className="mt-3 bg-red-600 text-white p-2 px-4 rounded"
+              className="mt-3 bg-red-600 text-white p-2 px-4 rounded-sm w-full"
             >
               Delete account
             </button>
