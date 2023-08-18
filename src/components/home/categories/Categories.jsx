@@ -81,7 +81,7 @@ const Categories = () => {
             // console.log(category);
             return (
               <Link key={category.id} to={`/products/${category.query}`}>
-                <div className="border group h-32 hover:shadow-primary relative md:py-5 py-2">
+                <div className=" hover:transition-all rounded-md hover:duration-300 bg-white group h-32 shadow hover:shadow-primary relative md:py-5 py-2">
                   {category.hotSeal === true && (
                     <span className="absolute bg-red-100 p-1 rounded-full top-1 right-1">
                       <BsFire size={17} className="text-red-700" />{" "}
@@ -90,10 +90,10 @@ const Categories = () => {
                   <div className="flex flex-col justify-center items-center py-1">
                     <img
                       src={category.icon}
-                      className="w-20 h-14"
+                      className="w-10 h-14"
                       alt={category.name}
                     />
-                    <h2 className="p-5 text-xs capitalize group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center  md:text-sm ">
+                    <h2 className="mt-2 uppercase text-xs group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center md:text-sm ">
                       {category.name}
                     </h2>
                   </div>

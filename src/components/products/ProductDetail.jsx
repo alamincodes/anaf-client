@@ -89,7 +89,7 @@ const ProductDetail = () => {
             {/* right */}
             <div className="md:p-3 md:mt-0 mt-5 md:w-[50%]">
               <div className="border-b">
-                <h2 className="md:text-3xl text-lg font-medium">{name}</h2>
+                <h2 className="md:text-3xl text-lg font-medium mb-2">{name}</h2>
               </div>
               {/* price section */}
               <div className="flex md:flex-col flex-col-reverse">

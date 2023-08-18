@@ -143,7 +143,7 @@ const Checkout = () => {
       <>
         <section className="container mx-auto">
           <div className="flex justify-between md:gap-3 md:flex-row flex-col">
-            <div className="bg-gray-50 py-12 md:py-18">
+            <div className="bg-gray-50 md:py-4 p-4">
               <div>
                 <div>
                   <p className="text-sm font-medium tracking-tight text-gray-900">
@@ -515,7 +515,7 @@ const Checkout = () => {
                         type="text"
                         placeholder="Transaction Id"
                         onChange={(e) => setTransactionId(e.target.value)}
-                        className="mt-1 w-full rounded-md border-purple-600 shadow-primary border-2 p-2 outline-none"
+                        className="mt-1 w-full rounded-sm border-purple-600 shadow-primary border-2 p-2 outline-none"
                       />
                     </div>
                   )}
@@ -525,7 +525,7 @@ const Checkout = () => {
                     )}
                     <button
                       type="submit"
-                      className="block w-full rounded-md bg-black p-2.5 text-sm text-white transition hover:shadow-lg"
+                      className="block w-full rounded-sm bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
                     >
                       Confirm order
                     </button>

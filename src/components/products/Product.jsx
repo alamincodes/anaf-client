@@ -50,11 +50,11 @@ const Product = ({ product }) => {
               <div className="md:my-5 my-2">
                 <p>
                   <span
-                    className={`md:text-xl ${
+                    className={`md:text-lg ${
                       outOfStock === "true" && "line-through"
                     } text-lg font-bold text-slate-900`}
                   >
-                    TK.{price}
+                    {price}৳
                   </span>
                   {/* <span className="text-sm text-slate-900 line-through">
               ${price}

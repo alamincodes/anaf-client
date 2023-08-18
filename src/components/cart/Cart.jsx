@@ -116,7 +116,7 @@ const Cart = () => {
                   <div className="mt-8 flex justify-end border-t border-gray-300 pt-8">
                     <div className="w-screen max-w-lg space-y-4">
                       <dl className="space-y-0.5 text-md text-gray-700">
-                        <div className="flex justify-between">
+                        <div className="flex justify-between ">
                           <dt>Subtotal</dt>
                           <dd>Tk. {cartTotal}</dd>
                         </div>
