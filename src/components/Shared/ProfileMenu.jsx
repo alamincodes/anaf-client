@@ -28,7 +28,7 @@ const ProfileMenu = () => {
               <img src={avatar} className="w-10 h-10 object-cover" alt="" />
             </span>
             <span className="font-medium flex items-center">
-              {user?.displayName.length > 12
+              {user?.displayName?.length > 12
                 ? user?.displayName.substr(0, 12) + "..."
                 : user?.displayName}
               <HiChevronDown size={26} />

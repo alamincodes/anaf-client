@@ -102,7 +102,7 @@ const Navbar = () => {
                     <h2 className="cursor-pointer">Login</h2>
                   </Link>
                   <Link to="/signUp">
-                    <h2 className="cursor-pointer rounded bg-black text-white p-2 px-4">
+                    <h2 className="cursor-pointer rounded-sm bg-black text-white p-2 px-4">
                       Sign up
                     </h2>
                   </Link>
