@@ -39,7 +39,7 @@ const Orders = () => {
   return (
     <AnimatePage>
       {orders.length > 0 ? (
-        <div className="md:container md:mx-auto md:px-0 px-2">
+        <div className="myContainer bg-white shadow-cardShadow rounded-xl p-5 mt-2">
           <h2 className="text-2xl uppercase font-bold my-2">My orders</h2>
           <div className="flex flex-col">
             <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -157,11 +157,14 @@ const Orders = () => {
           </div>
         </div>
       ) : (
-        <div className="container mx-auto flex justify-center items-center flex-col mt-52">
+        <div className="myContainer flex justify-center items-center flex-col mt-32">
           <BsBoxSeam size={50} />
-          <div className="inline-flex font-medium items-center mt-4">
-            <h2 className="">No orders</h2>
-            <Link to="/" className="text-purple-500 ml-2">
+          <div className="flex flex-col text-xl items-center font-medium mt-2">
+            <h2 className="mb-3">No orders</h2>
+            <Link
+              to="/"
+              className="text-white ml-2 py-2 px-4 rounded-md bg-neutral-800 "
+            >
               <span className="inline-flex items-center">
                 Back to home <HiArrowSmRight size={20} />
               </span>

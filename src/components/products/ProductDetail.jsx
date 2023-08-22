@@ -8,13 +8,14 @@ import { TbTruckDelivery, TbTruckReturn } from "react-icons/tb";
 import { BsCreditCard } from "react-icons/bs";
 import { FiCheckCircle } from "react-icons/fi";
 import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
+import RelatedPRoducts from "./RelatedProducts/RelatedPRoducts";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [activeImg, setActiveImg] = useState("");
   const { addItem } = useCart();
-  const { img, name, detail, price } = productDetail;
+  const { img, name, detail, price, outOfStock } = productDetail;
   let { id } = useParams();
   const handleAddToCart = () => {
     addItem(productDetail);
@@ -33,7 +34,7 @@ const ProductDetail = () => {
     fetch(`https://anaf-server.vercel.app/product/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setProductDetail(data);
         setActiveImg(data?.img[0]);
         setIsLoading(false);
@@ -62,13 +63,13 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
-          <div className="flex flex-col md:gap-4 md:flex-row bg-white">
+          <div className="flex flex-col md:gap-4 lg:flex-row bg-white">
             {/* left */}
-            <div className="flex flex-col md:w-[40%]">
+            <div className="flex flex-col lg:w-[40%]">
               <div>
                 <img
                   src={activeImg}
-                  className="md:w-full md:h-[500px] object-cover"
+                  className="md:w-full lg:h-[500px] object-cover"
                   alt=""
                 />
               </div>
@@ -123,16 +124,17 @@ const ProductDetail = () => {
                 {/* btn */}
                 <div className="md:border-t md:border-b-0 border-b md:py-5 pb-10 flex flex-col space-y-4 mt-5">
                   <h2 className="text-3xl font-bold text-neutral-900">
-                    ৳ {price}
+                    {price} ৳
                   </h2>
                   <button
+                    disabled={outOfStock === "true"}
                     onClick={handleAddToCart}
-                    className="py-4 px-3 font-[500] inline-flex justify-center uppercase text-lg md:w-[200px] rounded-sm bg-neutral-900 text-white hover:bg-neutral-800"
+                    className="py-4 px-3 disabled:bg-neutral-500 font-[500] inline-flex justify-center uppercase text-lg md:w-[200px] rounded-sm bg-neutral-900 text-white hover:bg-neutral-800"
                   >
                     <span>
                       <HiOutlineShoppingBag size={25} className="mr-1" />
                     </span>
-                    Add to cart
+                    {outOfStock === "true" ? "Out of stock" : "Add to cart"}
                   </button>
                 </div>
               </div>
@@ -146,6 +148,11 @@ const ProductDetail = () => {
               </span>
             </nav>
             <p className="mt-2">{detail}</p>
+          </div>
+
+          {/* related products */}
+          <div>
+            <RelatedPRoducts />
           </div>
         </div>
       </section>

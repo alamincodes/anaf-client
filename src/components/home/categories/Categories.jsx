@@ -70,9 +70,9 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="md:container md:mx-auto md:px-0 px-2">
+    <div className="md:container md:mx-auto mt-5 bg-white shadow-cardShadow p-5 rounded-xl">
       <div>
-        <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
+        <h2 className="md:text-3xl text-2xl font-bold text-center uppercase mb-5">
           Categories
         </h2>
 
@@ -93,7 +93,7 @@ const Categories = () => {
                       className="w-10 h-14"
                       alt={category.name}
                     />
-                    <h2 className="mt-2 uppercase text-xs group-hover:text-purple-500 group-hover:font-medium text-gray-600 transition-all text-center md:text-sm ">
+                    <h2 className="mt-2 uppercase text-xs group-hover:text-orange-500 group-hover:font-medium text-gray-600 transition-all text-center md:text-sm ">
                       {category.name}
                     </h2>
                   </div>

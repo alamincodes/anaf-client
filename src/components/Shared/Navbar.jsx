@@ -27,8 +27,8 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className="bg-white sticky top-0 z-20">
-        <nav className="md:container md:mx-auto md:px-0 px-2 md:py-3 py-4 relative">
+      <div className="bg-white fixed top-0 z-20 w-full">
+        <nav className="myContainer md:py-3 py-4 relative">
           <div className="flex justify-between items-center">
             {/* menu */}
             <span className="md:hidden">

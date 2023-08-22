@@ -21,7 +21,7 @@ const ProfileMenu = () => {
   };
   return (
     <div className="relative mt-2">
-      <Menu>
+      <Menu >
         <Menu.Button>
           <div className="flex items-center space-x-1">
             <span>
@@ -35,46 +35,54 @@ const ProfileMenu = () => {
             </span>
           </div>
         </Menu.Button>
-        <Menu.Items className="flex flex-col bg-[#fff] text-black shadow-secondary font-medium absolute w-56 md:top-12 top-10 right-0 z-50 text-left rounded py-2">
+        <Menu.Items className="flex flex-col bg-[#fff] text-black shadow-secondary absolute w-64 md:top-12 top-10 right-0 z-50 text-left rounded py-2">
+          <Menu.Item className="transition-all px-3 font-secondary">
+            <span className="flex items-center text-lg font-semibold text-orange-500">
+              {user?.displayName?.length > 12
+                ? user?.displayName.substr(0, 12) + "..."
+                : user?.displayName}
+            </span>
+          </Menu.Item>
+          <Menu.Item className="transition-all px-3 font-secondary border-b">
+            <span className="font-medium flex items-center text-neutral-600">
+              {user?.email?.length > 25
+                ? user?.email.substr(0, 25) + "..."
+                : user?.email}
+            </span>
+          </Menu.Item>
           <Menu.Item className="transition-all px-2 font-secondary">
             <Link to="/orders">
-              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
-                <span>
-                  <BsBox className="mr-3" size={20} />
-                </span>
-                Orders
+              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center py-2">
+                <span>{/* <BsBox className="mr-3" size={15} /> */}</span>
+                My orders
               </h2>
             </Link>
           </Menu.Item>
-          <Menu.Item className=" uppercase text-sm transition-all px-2 font-secondary pt-1 ">
+          <Menu.Item className="text-sm transition-all px-2 font-secondary pt-1 ">
             <Link to="/settings/general">
-              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
-                <span>
-                  <BiUser className="mr-3" size={20} />
-                </span>
-                Account
+              <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center py-2">
+                <span>{/* <BiUser className="mr-3" size={15} /> */}</span>
+                Profile
               </h2>
             </Link>
           </Menu.Item>
           {isAdmin && (
-            <Menu.Item className="uppercase text-sm transition-all px-2 font-secondary pt-1 ">
+            <Menu.Item className="text-sm transition-all px-2 font-secondary pt-1 ">
               <Link to="/dashboard/allOrders">
-                <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center font-semibold py-2">
+                <h2 className="inline-flex hover:bg-gray-100 px-1 rounded w-full items-center py-2">
                   <span>
-                    <RxDashboard className="mr-3" size={20} />
+                    {/* <RxDashboard className="mr-3" size={15} /> */}
                   </span>
                   Dashboard
                 </h2>
               </Link>
             </Menu.Item>
           )}
-          <Menu.Item className="uppercase text-sm transition-all px-2 font-secondary pt-1">
+          <Menu.Item className="text-sm transition-all px-2 font-secondary pt-1">
             <div onClick={handleLogOut}>
-              <h2 className="inline-flex hover:bg-gray-100 text-red-500 px-1 rounded w-full items-center font-semibold py-2">
-                <span>
-                  <BiLogOutCircle className="mr-3" size={20} />
-                </span>
-                Log out
+              <h2 className="inline-flex hover:bg-gray-100 font-medium px-1 rounded w-full items-center py-2">
+                <span>{/* <RxDashboard className="mr-3" size={15} /> */}</span>
+                Logout
               </h2>
             </div>
           </Menu.Item>

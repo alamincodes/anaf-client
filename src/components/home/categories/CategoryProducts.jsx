@@ -27,7 +27,7 @@ const CategoryProducts = () => {
   }
   return (
     <div
-      className="md:container md:mx-auto md:px-0 px-2 text-3xl font-bold my-4
+      className="myContainer rounded-xl bg-white shadow-cardShadow p-5 text-3xl font-bold my-4
   "
     >
       <div className=" uppercase">

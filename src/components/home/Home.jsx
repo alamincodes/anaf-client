@@ -4,11 +4,9 @@ import HomeSlider from "./HomeSlider";
 import Products from "../products/Products";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
-import Footer from "../Shared/Footer";
 import BusinessAbout from "./BusinessAbout";
 import CallNow from "./CallNow";
 import Categories from "./categories/Categories";
-import SocialMedia from "./SocialMedia";
 
 const Home = () => {
   useTitle("Home");
@@ -22,8 +20,6 @@ const Home = () => {
         <BusinessAbout />
         {/* <HomeDelivery /> */}
         <CallNow />
-        {/* <SocialMedia /> */}
-        <Footer />
       </div>
     </AnimatePage>
   );

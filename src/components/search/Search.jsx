@@ -24,18 +24,18 @@ const Search = () => {
   };
 
   return (
-    <section className="myContainer">
+    <section className="myContainer bg-white rounded-xl mt-2 shadow-cardShadow p-5">
       <div>
         <form onSubmit={handleSubmit} className="flex mt-3 relative">
           <input
             type="text"
             name="search"
-            className="border border-black/40 focus:border-black w-full p-2 outline-none rounded-md"
+            className=" bg-[#F5F5F5] w-full py-3 px-4 outline-none rounded"
             placeholder="Search products...."
           />
           <button
             type="submit"
-            className="absolute right-0 bottom-0 top-0 bg-black text-white p-2 px-4 rounded-r-md"
+            className="absolute right-0 bottom-0 top-0 bg-neutral-800 text-white p-2 px-4 rounded-r-md"
           >
             {isLoading ? (
               <div className="flex justify-center item-center">

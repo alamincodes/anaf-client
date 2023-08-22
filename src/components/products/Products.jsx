@@ -28,11 +28,11 @@ const Products = () => {
 
   return (
     <AnimatePage>
-      <section className="my-20">
-        <div className="myContainer">
-          <h2 className="md:text-3xl text-2xl font-bold text-center mt-20 uppercase mb-10">
+      <section className="my-5">
+        <div className="myContainer bg-white p-5 shadow-cardShadow rounded-xl">
+          {/* <h2 className="md:text-3xl text-2xl font-bold text-center uppercase mb-5">
             Our Products
-          </h2>
+          </h2> */}
           <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2">
             {isLoading && <SkeletonCard cards={20} />}
             {/* products */}
