@@ -11,7 +11,7 @@ const Products = () => {
   const [loadCount, setLoadCount] = useState(15);
 
   const handleLoadMore = () => {
-    setLoadCount((prevCount) => prevCount + 12);
+    setLoadCount((prevCount) => prevCount + 15);
     // console.log(loadCount);
   };
 

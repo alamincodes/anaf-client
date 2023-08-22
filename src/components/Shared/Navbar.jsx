@@ -131,7 +131,7 @@ const Navbar = () => {
               <Link to="/cart">
                 <h2 className="cursor-pointer relative mb-1">
                   {totalUniqueItems > 0 && (
-                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-sm text-xs">
+                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
                       {totalUniqueItems}
                     </span>
                   )}

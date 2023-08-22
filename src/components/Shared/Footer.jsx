@@ -1,11 +1,15 @@
 import React from "react";
 import logo from "../../assets/logo/anaf-white.svg";
-import { RiHeadphoneLine, RiFacebookCircleFill } from "react-icons/ri";
+import { BiSupport } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import SocialMedia from "../home/SocialMedia";
 const Footer = () => {
   return (
-    <div className="mt-52 bg-neutral-900 ">
+    <div className="mt-20 bg-neutral-900 ">
       <footer aria-label="Site Footer" className="container mx-auto">
+        <div className="py-5">
+          <SocialMedia />
+        </div>
         <div>
           <nav className="flex justify-between items-center px-3">
             <img src={logo} className="w-20 h-20" alt="" />
@@ -14,23 +18,13 @@ const Footer = () => {
             </p>
             <ul className="flex items-center justify-center space-x-5">
               <li>
-                <a
-                  href="https://www.facebook.com/anaafshop"
-                  rel="noreferrer"
-                  target="_blank"
-                  className="text-white transition hover:opacity-80"
-                >
-                  <RiFacebookCircleFill size={20} />
-                </a>
-              </li>
-              <li>
                 <Link
                   to="/contact"
                   className="text-white transition hover:opacity-80"
                 >
                   <span>
                     {" "}
-                    <RiHeadphoneLine size={20} />
+                    <BiSupport size={20} />
                   </span>
                 </Link>
               </li>

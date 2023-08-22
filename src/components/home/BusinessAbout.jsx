@@ -1,6 +1,4 @@
 import React, { useContext } from "react";
-import img1 from "../../assets/image/business1.jpg";
-import img2 from "../../assets/image/business2.jpg";
 import { Link } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 const BusinessAbout = () => {
@@ -12,9 +10,9 @@ const BusinessAbout = () => {
           Business About
         </h2>
         <div className="">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="">
             <div className="bg-neutral-900 p-8 md:p-12 lg:px-16 lg:py-24">
-              <div className="mx-auto max-w-xl text-center">
+              <div className=" text-center">
                 <h2 className="text-2xl uppercase font-bold text-white md:text-4xl">
                   our business type
                 </h2>
@@ -37,23 +35,6 @@ const BusinessAbout = () => {
                     </Link>
                   </div>
                 )}
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-1 lg:grid-cols-2">
-              <div className="overflow-hidden group">
-                <img
-                  alt="clothing"
-                  src={img1}
-                  className="h-40 w-full object-cover sm:h-56 md:h-full group-hover:scale-110 duration-300"
-                />
-              </div>
-              <div className="overflow-hidden group">
-                <img
-                  alt="clothing"
-                  src={img2}
-                  className="h-40 w-full object-cover sm:h-56 md:h-full group-hover:scale-110 duration-300"
-                />
               </div>
             </div>
           </div>
