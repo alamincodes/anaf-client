@@ -1,11 +1,9 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { FiImage } from "react-icons/fi";
-const CategoryProductCard = ({ category }) => {
+import { Link } from "react-router-dom";
+const RelatedProduct = ({product}) => {
   const [imageLoad, setImageLoad] = useState(false);
-  const { name, img, price, _id, outOfStock } = category;
+  const { name, img, price, _id, outOfStock } = product;
 
   useEffect(() => {
     const image = new Image();
@@ -13,7 +11,7 @@ const CategoryProductCard = ({ category }) => {
       setImageLoad(true);
     };
     image.src = img;
-  }, [category]);
+  }, [product]);
   return (
     <div className="relative group rounded-xl border border-gray-100 bg-white hover:shadow-lg duration-300">
       {outOfStock === "true" && (
@@ -44,7 +42,7 @@ const CategoryProductCard = ({ category }) => {
               />
             </div>
           )}
-          <div className="md:px-5 px-2 border-t border-neutral-100">
+          <div className="md:px-3 px-2 border-t border-neutral-100">
             <div className="mt-1">
               <h5 className="md:text-[15px] group-hover:underline text-xs tracking-tight text-slate-900">
                 {name?.length > 50 ? name.substr(0, 40) + "..." : name}
@@ -71,4 +69,4 @@ const CategoryProductCard = ({ category }) => {
   );
 };
 
-export default CategoryProductCard;
+export default RelatedProduct;

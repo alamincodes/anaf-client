@@ -69,7 +69,7 @@ const OrderDetails = () => {
             <h2 className="font-bold uppercase">Total Amount</h2>
             <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
             <h2>Delivery fee: 120 Tk</h2>
-            <h2 className="font-semibold text-purple-500">
+            <h2 className="font-semibold text-orange-500">
               Total: {orderDetail.total} Tk
             </h2>
           </div>
@@ -79,7 +79,7 @@ const OrderDetails = () => {
             <h2>Payment type: {orderDetail.selectPaymentType}</h2>
             <h2>Payment method: {orderDetail.payWith} </h2>
             <h2>Transaction Id: {orderDetail.transactionId}</h2>
-            <h2 className="font-semibold text-purple-500">
+            <h2 className="font-semibold text-orange-500">
               Pay:{" "}
               {orderDetail.selectPaymentType === "Cash on delivery"
                 ? "200"

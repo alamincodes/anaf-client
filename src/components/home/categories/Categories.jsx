@@ -70,8 +70,8 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="md:container md:mx-auto mt-5 bg-white shadow-cardShadow p-5 rounded-xl">
-      <div>
+    <div className="myContainer mt-5  ">
+      <div className="bg-white shadow-cardShadow p-5 rounded-xl">
         <h2 className="md:text-3xl text-2xl font-bold text-center uppercase mb-5">
           Categories
         </h2>

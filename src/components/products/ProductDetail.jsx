@@ -152,7 +152,7 @@ const ProductDetail = () => {
 
           {/* related products */}
           <div>
-            <RelatedPRoducts />
+            <RelatedPRoducts productDetail={productDetail} />
           </div>
         </div>
       </section>

@@ -9,7 +9,7 @@ const AddProducts = () => {
   const [addLoading, setAddLoading] = useState(false);
   // const [product, setProduct] = useState([]);
 
-  const { data: product = [], } = useQuery({
+  const { data: product = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await fetch("https://anaf-server.vercel.app/products", {
@@ -114,6 +114,7 @@ const AddProducts = () => {
         .then((res) => res.json())
         .then(() => {
           form.reset();
+          refetch();
           setAddLoading(false);
         });
     } catch (error) {

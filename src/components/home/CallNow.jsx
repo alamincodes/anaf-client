@@ -3,7 +3,7 @@ import { TbPhoneCall } from "react-icons/tb";
 const CallNow = () => {
   return (
     <section className="myContainer my-4">
-      <div className="flex md:flex-row flex-col justify-between items-center md:text-left text-center md:p-10 p-3 bg-neutral-900 text-gray-100">
+      <div className="flex md:flex-row flex-col justify-between items-center md:text-left text-center md:p-10 p-3 bg-neutral-900 text-gray-100 rounded-xl">
         <div>
           <h2 className="lg:text-3xl text-lg font-bold font-secondary">
             অর্ডার সম্পকির্ত যেকোনো তথ্যের জন্য কল করুন
