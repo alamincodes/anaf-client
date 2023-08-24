@@ -9,7 +9,7 @@ const HomeDelivery = () => {
             <h2 className="text-black lg:text-6xl md:text-4xl text-2xl md:text-left text-center font-extrabold uppercase">
               home delivery in{" "}
               <span className="text-green-500">Bangladesh</span> within{" "}
-              <span className="text-purple-500">3 days.</span>
+              <span className="text-orange-500">3 days.</span>
             </h2>
           </div>
           <div>

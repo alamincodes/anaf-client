@@ -112,7 +112,7 @@ const Orders = () => {
                                     </span>
                                   )}
                                   {order.status === "processing" && (
-                                    <span className="bg-purple-200 text-purple-800 px-4 py-2 rounded-full ">
+                                    <span className="bg-orange-200 text-orange-800 px-4 py-2 rounded-full ">
                                       {order.status ? order.status : "Pending"}
                                     </span>
                                   )}
@@ -159,7 +159,7 @@ const Orders = () => {
           </div>
         </div>
       ) : (
-        <div className="myContainer flex justify-center items-center flex-col mt-32">
+        <div className="myContainer flex justify-center items-center flex-col h-[700px]">
           <BsBoxSeam size={50} />
           <div className="flex flex-col text-xl items-center font-medium mt-2">
             <h2 className="mb-3">No orders</h2>

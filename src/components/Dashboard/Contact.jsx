@@ -8,7 +8,7 @@ const Contact = () => {
           <div className="flex flex-wrap lg:justify-between">
             <div className="w-full ">
               <div className="mb-12 max-w-[570px] lg:mb-0">
-                <span className="block mb-4 text-base font-semibold text-purple-500">
+                <span className="block mb-4 text-base font-semibold text-orange-500">
                   Contact Us
                 </span>
                 <h2 className="mb-6 text-[20px] font-bold uppercase text-dark sm:text-[40px] lg:text-[36px] xl:text-[40px]">

@@ -193,7 +193,7 @@ const AllOrders = () => {
                                     </span>
                                   )}
                                   {order.status === "processing" && (
-                                    <span className="bg-purple-200 text-purple-800 p-2 rounded-sm ">
+                                    <span className="bg-orange-200 text-orange-800 p-2 rounded-sm ">
                                       {order.status ? order.status : "Pending"}
                                     </span>
                                   )}

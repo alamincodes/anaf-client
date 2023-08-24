@@ -28,6 +28,7 @@ import AllProducts from "../Dashboard/AllProducts";
 import EditProduct from "../Dashboard/EditProduct";
 import Contact from "../Dashboard/Contact";
 import PageNotFound from "../Shared/PageNotFound";
+import Profile from "../auth/settings/Profile";
 
 export const routes = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ export const routes = createBrowserRouter([
         element: (
           <PrivateRoutes>
             <Orders />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoutes>
+            <Profile />
           </PrivateRoutes>
         ),
       },

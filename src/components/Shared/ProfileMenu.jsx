@@ -21,7 +21,7 @@ const ProfileMenu = () => {
   };
   return (
     <div className="relative mt-2">
-      <Menu >
+      <Menu>
         <Menu.Button>
           <div className="flex items-center space-x-1">
             <span>
@@ -36,7 +36,6 @@ const ProfileMenu = () => {
           </div>
         </Menu.Button>
         <Menu.Items className="flex flex-col bg-[#fff] text-black shadow-secondary absolute w-64 md:top-12 top-10 right-0 z-50 text-left rounded py-2">
-         
           <Menu.Item className="transition-all px-3 font-secondary">
             <Link to="/orders">
               <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
@@ -46,10 +45,18 @@ const ProfileMenu = () => {
             </Link>
           </Menu.Item>
           <Menu.Item className="text-sm transition-all px-3 font-secondary pt-1 ">
-            <Link to="/settings/general">
+            <Link to="/profile">
               <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
                 <span>{/* <BiUser className="mr-3" size={15} /> */}</span>
                 Profile
+              </h2>
+            </Link>
+          </Menu.Item>
+          <Menu.Item className="text-sm transition-all px-3 font-secondary pt-1 ">
+            <Link to="/settings/general">
+              <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
+                <span>{/* <BiUser className="mr-3" size={15} /> */}</span>
+                Settings
               </h2>
             </Link>
           </Menu.Item>

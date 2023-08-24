@@ -13,9 +13,9 @@ const Product = ({ product }) => {
     image.src = img;
   }, [product]);
   return (
-    <div className="relative group rounded-xl border border-gray-100 bg-white hover:shadow-lg duration-300">
+    <div className="relative group rounded-xl border border-neutral-200 bg-white hover:shadow-lg duration-300">
       {outOfStock === "true" && (
-        <div className="absolute rounded bg-red-500 text-white z-10 md:p-3 md:text-md text-xs p-1 right-0">
+        <div className="absolute rounded-bl uppercase bg-red-500 text-white z-10 md:p-3 md:text-md text-xs p-1 right-0">
           <h2 className="font-bold">Out of stock</h2>
         </div>
       )}

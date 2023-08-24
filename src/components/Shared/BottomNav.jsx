@@ -39,7 +39,7 @@ const BottomNav = () => {
             <span className="text-xs">Orders</span>
           </li>
         </Link>
-        <Link to="/settings/general">
+        <Link to="/profile">
           <li className="flex flex-col items-center">
             <span>
               <TbUser size={25} />

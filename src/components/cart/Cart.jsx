@@ -17,7 +17,7 @@ const Cart = () => {
     <AnimatePage>
       <section className="myContainer  ">
         {isEmpty ? (
-          <div className="myContainer flex flex-col justify-center items-center mt-32">
+          <div className="myContainer flex flex-col justify-center items-center h-[700px]">
             <span>
               <BiShoppingBag size={50} />
             </span>
@@ -32,7 +32,7 @@ const Cart = () => {
           </div>
         ) : (
           <div>
-            <div className="myContainer p-5 mt-2 bg-white shadow-cardShadow rounded-xl mt-3">
+            <div className="myContainer p-5 bg-white shadow-cardShadow rounded-xl mt-3">
               <div>
                 <header className="text-left">
                   <h1 className="text-xl uppercase font-bold text-gray-900 sm:text-3xl">

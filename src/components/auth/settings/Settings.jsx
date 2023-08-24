@@ -4,52 +4,14 @@ import { MdAccountBox, MdKey } from "react-icons/md";
 import { TiWarning } from "react-icons/ti";
 import { FaRegAddressCard } from "react-icons/fa";
 import useTitle from "../../../hooks/useTitle";
-import { AUTH_CONTEXT } from "../../../context/AuthProvider";
-import LoadingSpinner from "../../Shared/LoadingSpinner";
 const Settings = () => {
-  const { user } = useContext(AUTH_CONTEXT);
+ 
   useTitle("Settings");
-  const [isLoading, setIsLoading] = useState(false);
-  const [userData, setUserData] = useState({});
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setUserData(data);
-        setIsLoading(false);
-      });
-  }, [user]);
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  
   return (
-    <div className="md:container md:mx-auto md:px-0 px-2 ">
-      <div>
-        <h2 className="font-bold text-2xl md:mt-10 my-2">My Account</h2>
-        <div className="bg-white backdrop-filter backdrop-blur-3xl bg-opacity-10 overflow-hidden border text-center relative">
-          {/* <div className="absolute -inset-0.5 left-0 bg-gradient-to-l from-fuchsia-500 to-orange-500 blur-3xl opacity-10"></div> */}
-          <div className="p-2 flex justify-center items-center ">
-            <span className="bg-gray-200 p-2 text-gray-900 rounded-full">
-              <FaRegAddressCard size={30} />
-            </span>
-          </div>
-          <h2 className="font-bold bg-white py-4 border-t ">
-            {user?.displayName}
-          </h2>
-          <h2 className="font-bold py-4 border-t border-l-0 border-r-0">
-            {userData.phone}
-          </h2>
-          <h2 className="font-bold bg-white py-4 border-t border-l-0 border-r-0">
-            {user?.email.length > 25 ? user?.email.substr(0, 20) + "..." : user?.email}
-          </h2>
-          <h2 className="font-bold py-4 border-t border-l-0 border-r-0">
-            {userData.address}
-          </h2>
-        </div>
-      </div>
-      <h2 className="font-bold text-2xl mt-10">Settings</h2>
+    <div className="myContainer">
+     
+      <h2 className="font-bold text-2xl mt-2">Settings</h2>
       <ul className="flex border-b items-center border-gray-200 font-gray-500 text-sm font-medium text-gray-500 overflow-x-auto scrollbar-hide">
         <NavLink
           className={({ isActive }) =>

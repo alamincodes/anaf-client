@@ -128,7 +128,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.name?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         Name name is required*
                       </p>
                     )}
@@ -145,7 +145,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.email?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         Email is required*
                       </p>
                     )}
@@ -188,7 +188,7 @@ const SignUp = () => {
                       )}
                     </div>
                     {errors?.password && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         {errors?.password?.message}
                       </p>
                     )}
@@ -205,7 +205,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.phone?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         Number is required*
                       </p>
                     )}
@@ -229,7 +229,7 @@ const SignUp = () => {
                       ))}
                     </select>
                     {errors.division?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         Division is required*
                       </p>
                     )}
@@ -250,7 +250,7 @@ const SignUp = () => {
                       ))}
                     </select>
                     {errors.district?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         District is required*
                       </p>
                     )}
@@ -268,7 +268,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.address?.type === "required" && (
-                      <p className="text-red-600 font-semibold">
+                      <p className="text-red-600 ">
                         Address is required*
                       </p>
                     )}

@@ -30,7 +30,7 @@ const Products = () => {
     <AnimatePage>
       <section className="my-5">
         <div className="myContainer ">
-          <div className="bg-white p-5 shadow-cardShadow rounded-xl">
+          <div className="bg-white md:p-5 p-2 shadow-cardShadow rounded-xl">
             <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2">
               {isLoading && <SkeletonCard cards={20} />}
               {/* products */}
