@@ -179,7 +179,7 @@ const Navbar = () => {
             </li>
           )}
           <Link onClick={() => setOpen(false)} to="/">
-            <li className="flex justify-between items-center">
+            <li className="flex justify-between items-center mt-5">
               <span>Home</span>
               <span>
                 {" "}
@@ -200,6 +200,17 @@ const Navbar = () => {
             <Link onClick={() => setOpen(false)} to="/orders">
               <li className="flex justify-between items-center">
                 <span>Orders</span>
+                <span>
+                  {" "}
+                  <HiChevronRight size={20} />
+                </span>
+              </li>
+            </Link>
+          )}
+          {user?.email && (
+            <Link onClick={() => setOpen(false)} to="/settings/general">
+              <li className="flex justify-between items-center">
+                <span>settings</span>
                 <span>
                   {" "}
                   <HiChevronRight size={20} />

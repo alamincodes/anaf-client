@@ -17,40 +17,16 @@
   }
 }
 
-.swiper-button-prev {
-  display: none;
-}
 
-.swiper-button-next {
-  display: none;
+.splide__pagination__page{
+  opacity: 1;
+  background-color: #6d696975;
 }
-.swiper-pagination-bullet {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: white;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+.splide__pagination__page.is-active {
+    background: white;
+    transform: scale(1.4);
+    z-index: 1;
 }
-
-/* @media only screen and (max-width: 600px) {
-  .swiper-pagination-bullet {
-    padding: 2px 7px;
-  }
-} */
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-.hiddenScrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.hiddenScrollbar {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-
 /* loading spinner */
 .jelly-triangle {
   --uib-size: 42px;

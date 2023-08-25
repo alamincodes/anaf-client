@@ -1,14 +1,13 @@
 import React from "react";
-import fan from "../../../assets/categories/fan.svg";
-import microphone from "../../../assets/categories/microphone.svg";
-import powerBank from "../../../assets/categories/powerBank.svg";
-import router from "../../../assets/categories/router.svg";
-import tripod from "../../../assets/categories/tripod.svg";
-import watch from "../../../assets/categories/watch.svg";
-import headphone from "../../../assets/categories/headphone.svg";
-import mouse from "../../../assets/categories/mouse.svg";
-import { Link } from "react-router-dom";
-import { BsFire } from "react-icons/bs";
+import fan from "../../../assets/categories/fan.png";
+import microphone from "../../../assets/categories/microphone.png";
+import powerBank from "../../../assets/categories/powerBank.png";
+import router from "../../../assets/categories/router.png";
+import tripod from "../../../assets/categories/tripod.png";
+import watch from "../../../assets/categories/watch.png";
+import headphone from "../../../assets/categories/headphone.png";
+import mouse from "../../../assets/categories/mouse.png";
+import Category from "./Category";
 const Categories = () => {
   const categories = [
     {
@@ -70,37 +69,16 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="myContainer mt-5 ">
+    <div className="myContainer mt-5">
       <div className="bg-white shadow-cardShadow md:p-5 p-2 rounded-xl">
         <h2 className="md:text-3xl text-2xl font-bold text-center uppercase mb-5">
           Categories
         </h2>
 
-        <div className="grid lg:grid-cols-6 md:grid-cols-4 grid-cols-3 gap-2">
-          {categories.map((category) => {
-            // console.log(category);
-            return (
-              <Link key={category.id} to={`/products/${category.query}`}>
-                <div className=" hover:transition-all rounded-md hover:duration-300 bg-white group h-32 shadow hover:shadow-primary relative md:py-5 py-2">
-                  {category.hotSeal === true && (
-                    <span className="absolute bg-red-100 p-1 rounded-full top-1 right-1">
-                      <BsFire size={17} className="text-red-700" />{" "}
-                    </span>
-                  )}
-                  <div className="flex flex-col justify-center items-center py-1">
-                    <img
-                      src={category.icon}
-                      className="w-10 h-14"
-                      alt={category.name}
-                    />
-                    <h2 className="mt-2 uppercase text-xs group-hover:text-orange-500 group-hover:font-medium text-gray-600 transition-all text-center md:text-sm ">
-                      {category.name}
-                    </h2>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+        <div className="grid lg:grid-cols-8 md:grid-cols-6 grid-cols-3 gap-2">
+          {categories.map((category) => (
+            <Category category={category} key={category.id} />
+          ))}
         </div>
       </div>
     </div>

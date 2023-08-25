@@ -21,9 +21,10 @@ export default {
         transparent: "transparent",
       },
       boxShadow: {
-        primary: "rgba(132, 59, 206, 0.15) 0px 4px 24px",
+        primary: "rgba(255, 102, 1, 0.13) 0px 4px 24px",
         secondary: "rgba(0, 0, 0, 0.15) 0px 5px 15px 0px",
-        cardShadow: "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px",
+        cardShadow:
+          "rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.02) 0px 0px 0px 1px",
       },
       backgroundImage: {
         clBg: "url('./src/assets/image/clBg.jpeg')",

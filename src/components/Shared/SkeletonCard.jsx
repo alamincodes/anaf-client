@@ -10,10 +10,10 @@ const SkeletonCard = ({ cards }) => {
           <Skeleton height={190} />
         </div>
         <div className="hidden md:block">
-          <Skeleton count={7} />
+          <Skeleton count={4} />
         </div>
         <div className="block md:hidden">
-          <Skeleton count={5} />
+          <Skeleton count={4} />
         </div>
       </div>
     ));

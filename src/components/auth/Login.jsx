@@ -70,17 +70,13 @@ const Login = () => {
               onSubmit={handleSubmit(handleSignUp)}
               className="py-5 md:px-10 px-5 bg-white md:w-96 w-full"
             >
-              <div className="flex flex-col justify-center items-center">
-                <div className="border-b border-dashed w-full flex justify-center">
-                  <img src={logo} className="w-28 h-20 px-2 " alt="" />
-                </div>
-
+              <div className="flex justify-center items-center ">
                 <h2 className="md:text-3xl text-2xl text-neutral-800 font-semibold md:my-5 my-2 uppercase">
                   Login
                 </h2>
               </div>
               {/* email */}
-              <div className="">
+              <div className="mt-4">
                 <label>
                   <span className="font-[400] text-black">Your email</span>
                 </label>
@@ -190,7 +186,7 @@ const Login = () => {
 
               <p className="font-normal mt-4 select-none">
                 New to ANAF?
-                <Link to="/signUp" className="ml-1 text-violet-500">
+                <Link to="/signUp" className="ml-1 text-orange-500">
                   <span>Create new account</span>
                 </Link>
               </p>

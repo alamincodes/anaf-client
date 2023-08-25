@@ -104,11 +104,7 @@ const SignUp = () => {
               className="py-5 md:px-10 px-5 bg-white md:w-auto w-full"
             >
               {/* logo */}
-              <div className="flex flex-col justify-center items-center ">
-                <div className="border-b border-dashed w-full flex justify-center">
-                  <img src={logo} className="w-28 h-20 px-2 " alt="" />
-                </div>
-
+              <div className="flex justify-center items-center ">
                 <h2 className="md:text-3xl text-2xl mt-2 uppercase font-semibold">
                   Sign up
                 </h2>
@@ -128,9 +124,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.name?.type === "required" && (
-                      <p className="text-red-600 ">
-                        Name name is required*
-                      </p>
+                      <p className="text-red-600 ">Name name is required*</p>
                     )}
                   </div>
                   {/* email */}
@@ -145,9 +139,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.email?.type === "required" && (
-                      <p className="text-red-600 ">
-                        Email is required*
-                      </p>
+                      <p className="text-red-600 ">Email is required*</p>
                     )}
                   </div>
                   {/* password */}
@@ -205,9 +197,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.phone?.type === "required" && (
-                      <p className="text-red-600 ">
-                        Number is required*
-                      </p>
+                      <p className="text-red-600 ">Number is required*</p>
                     )}
                   </div>
                 </div>
@@ -229,9 +219,7 @@ const SignUp = () => {
                       ))}
                     </select>
                     {errors.division?.type === "required" && (
-                      <p className="text-red-600 ">
-                        Division is required*
-                      </p>
+                      <p className="text-red-600 ">Division is required*</p>
                     )}
                   </div>
                   {/* districts */}
@@ -250,9 +238,7 @@ const SignUp = () => {
                       ))}
                     </select>
                     {errors.district?.type === "required" && (
-                      <p className="text-red-600 ">
-                        District is required*
-                      </p>
+                      <p className="text-red-600 ">District is required*</p>
                     )}
                   </div>
                   {/* Address */}
@@ -268,9 +254,7 @@ const SignUp = () => {
                       className="border rounded-sm outline-none font-normal p-2 w-full"
                     />
                     {errors.address?.type === "required" && (
-                      <p className="text-red-600 ">
-                        Address is required*
-                      </p>
+                      <p className="text-red-600 ">Address is required*</p>
                     )}
                   </div>
                 </div>
@@ -290,7 +274,7 @@ const SignUp = () => {
 
               <p className="font-normal mt-4">
                 Already have an account?
-                <Link to="/login" className="ml-1 text-violet-500">
+                <Link to="/login" className="ml-1 text-orange-500">
                   <span>Please login</span>
                 </Link>
               </p>
