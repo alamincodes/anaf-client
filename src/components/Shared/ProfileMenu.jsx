@@ -31,7 +31,10 @@ const ProfileMenu = () => {
               {user?.displayName?.length > 12
                 ? user?.displayName.substr(0, 12) + "..."
                 : user?.displayName}
-              <HiChevronDown size={26} />
+              <span className="bg-neutral-200 rounded-full">
+               
+                <HiChevronDown size={26} />
+              </span>
             </span>
           </div>
         </Menu.Button>
