@@ -14,7 +14,7 @@ const FindOrder = () => {
   };
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/find/${id}`, {
+    fetch(`https://anaf-server.vercel.app/find?searchId=${id}`, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -9,13 +9,10 @@ import bkash from "../../assets/icons/bkash.svg";
 import nagad from "../../assets/icons/nagad.svg";
 import { TbTruckDelivery } from "react-icons/tb";
 import { format } from "date-fns";
-import { toast } from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { VscCopy } from "react-icons/vsc";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import OrderSuccessModal from "../orders/OrderSuccessModal";
-import { districts } from "../BD_DISTRICTS_DIVISION/districts";
-import { divisions } from "../BD_DISTRICTS_DIVISION/divisions";
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
@@ -83,7 +80,7 @@ const Checkout = () => {
       return;
     }
 
-    // console.log(paymentMode);
+    console.log(isLoading);
     // console.log(payWithC);
     // console.log(transactionId);
     const orderDate = format(new Date(), "PP");
@@ -117,13 +114,17 @@ const Checkout = () => {
       .then((res) => res.json())
       .then((data) => {
         emptyCart();
-        setIsLoading(false);
         setSuccessModal(true);
-
         if (data.insertedId) {
+          setIsLoading(false);
           setOrderId(data.insertedId);
         }
-        // console.log(data);
+        console.log(data);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setSetErrorMessage("Try agin something is wrong");
+        console.log(error);
       });
   };
 
@@ -134,7 +135,7 @@ const Checkout = () => {
         // console.log(data);
         setUserFullInfo(data);
       });
-  }, [user]);
+  }, []);
   if (isLoading) {
     return <LoadingSpinner />;
   }

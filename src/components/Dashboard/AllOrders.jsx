@@ -28,7 +28,7 @@ const AllOrders = () => {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
       });
-      const data = await res.json();    
+      const data = await res.json();
       return data?.reverse();
     },
   });
@@ -181,7 +181,7 @@ const AllOrders = () => {
                               className="whitespace-nowrap px-6 py-4 font-medium"
                               title={order._id}
                             >
-                              {order._id.slice(0, 5)}...
+                              #{order.orderId}
                             </td>
 
                             <td className="whitespace-nowrap px-6 py-4 ">
