@@ -56,7 +56,7 @@ const AllOrders = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           refetch();
           toast("Order update", {

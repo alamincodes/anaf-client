@@ -6,7 +6,11 @@ const useAdmin = (email) => {
   useEffect(() => {
     if (email) {
       const url = `https://anaf-server.vercel.app/users/admin/${email}`;
-      fetch(url)
+      fetch(url, {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           // console.log(data);

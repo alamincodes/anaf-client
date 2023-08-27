@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useTitle from "../../hooks/useTitle";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-hot-toast";
 
 const AddProducts = () => {
   useTitle("Add Product");
@@ -112,13 +113,18 @@ const AddProducts = () => {
         body: JSON.stringify(productInfo),
       })
         .then((res) => res.json())
-        .then(() => {
-          form.reset();
-          refetch();
-          setAddLoading(false);
+        .then((data) => {
+          console.log(data);
+          if (data.acknowledged) {
+            form.reset();
+            refetch();
+            setAddLoading(false);
+            toast.success("product added");
+          }
         });
     } catch (error) {
       console.error("Error uploading images:", error);
+      setAddLoading(false);
     }
   };
 

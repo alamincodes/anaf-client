@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 import SocialMedia from "../home/SocialMedia";
 const Footer = () => {
   return (
-    <div className="mt-auto bg-neutral-900">
+    <div className="mt-auto">
       <footer>
-        <div className="py-5 myContainer">
-          <SocialMedia />
-        </div>
         <div>
           <nav className="bg-neutral-800">
             <div className="flex justify-between myContainer items-center px-3 ">
@@ -20,7 +17,10 @@ const Footer = () => {
 
               <div>
                 <a href="/contact" className="text-white">
-                  <button> <BiSupport size={20}/> </button>
+                  <button>
+                    {" "}
+                    <BiSupport size={20} />{" "}
+                  </button>
                 </a>
               </div>
             </div>

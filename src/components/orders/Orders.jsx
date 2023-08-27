@@ -5,7 +5,6 @@ import AnimatePage from "../Shared/AnimatePage";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { BsBoxSeam } from "react-icons/bs";
 import { HiArrowSmRight } from "react-icons/hi";
-import emptyBox from "../../assets/image/emptyBox.png";
 import useTitle from "../../hooks/useTitle";
 const Orders = () => {
   useTitle("Orders");
@@ -29,7 +28,7 @@ const Orders = () => {
       })
       .then((ordersData) => {
         // console.log(ordersData);
-        setOrders(ordersData.reverse());
+        setOrders(ordersData?.reverse());
         setIsLoading(false);
       });
   }, []);
@@ -38,7 +37,22 @@ const Orders = () => {
   }
   return (
     <AnimatePage>
-      {orders.length > 0 ? (
+      {orders.length === 0 ? (
+        <div className="myContainer flex justify-center items-center flex-col h-[700px]">
+          <BsBoxSeam size={50} />
+          <div className="flex flex-col text-xl items-center font-medium mt-2">
+            <h2 className="mb-3">No orders</h2>
+            <Link
+              to="/"
+              className="text-white ml-2 py-2 px-4 rounded-md bg-neutral-800 "
+            >
+              <span className="inline-flex items-center">
+                Back to home <HiArrowSmRight size={20} />
+              </span>
+            </Link>
+          </div>
+        </div>
+      ) : (
         <div className="myContainer mt-2">
           <div className="bg-white shadow-cardShadow rounded-xl p-5">
             <h2 className="text-2xl uppercase font-bold my-2">My orders</h2>
@@ -156,21 +170,6 @@ const Orders = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      ) : (
-        <div className="myContainer flex justify-center items-center flex-col h-[700px]">
-          <BsBoxSeam size={50} />
-          <div className="flex flex-col text-xl items-center font-medium mt-2">
-            <h2 className="mb-3">No orders</h2>
-            <Link
-              to="/"
-              className="text-white ml-2 py-2 px-4 rounded-md bg-neutral-800 "
-            >
-              <span className="inline-flex items-center">
-                Back to home <HiArrowSmRight size={20} />
-              </span>
-            </Link>
           </div>
         </div>
       )}

@@ -29,14 +29,14 @@ const Login = () => {
   if (token) {
     navigate(from, { replace: true });
   }
-  const handleSignUp = (data) => {
-    // console.log(data);
+  const handleSignIn = (data) => {
     setIsLoading(true);
     setErrorMessage("");
     loginUser(data.email, data.password)
       .then((result) => {
-        const user = result.user;
-        setJwtSendEmail(data.email);
+        // const user = result.user;
+        const userEmail = data.email.toLowerCase();
+        setJwtSendEmail(userEmail);
         setIsLoading(false);
         // console.log(user);
       })
@@ -55,11 +55,13 @@ const Login = () => {
           setErrorMessage(
             "Your account has been temporarily disabled. Try again later."
           );
+        } else if (errMessage.includes("invalid-email")) {
+          setErrorMessage("invalid email");
         }
         setIsLoading(false);
       });
   };
-
+  // console.log(errorMessage);
   return (
     <AnimatePage>
       <div>
@@ -67,7 +69,7 @@ const Login = () => {
           {/* form */}
           <div className="flex justify-center items-center md:mt-5">
             <form
-              onSubmit={handleSubmit(handleSignUp)}
+              onSubmit={handleSubmit(handleSignIn)}
               className="py-5 md:px-10 px-5 bg-white md:w-96 w-full"
             >
               <div className="flex justify-center items-center ">

@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { Menu } from "@headlessui/react";
 import { HiChevronDown } from "react-icons/hi";
-import { BiUser, BiLogOutCircle } from "react-icons/bi";
-import { RxDashboard } from "react-icons/rx";
-import { BsBox } from "react-icons/bs";
 import avatar from "../../assets/image/avatar.svg";
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -32,7 +29,6 @@ const ProfileMenu = () => {
                 ? user?.displayName.substr(0, 12) + "..."
                 : user?.displayName}
               <span className="bg-neutral-200 rounded-full">
-               
                 <HiChevronDown size={26} />
               </span>
             </span>

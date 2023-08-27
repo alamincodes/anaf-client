@@ -2,7 +2,7 @@ import React from "react";
 
 const LoadingSpinner = () => {
   return (
-    <div className="grid place-content-center h-[800px]">
+    <div className="grid place-content-center h-screen">
       <div className="jelly-triangle">
         <div className="jelly-triangle__dot"></div>
         <div className="jelly-triangle__traveler"></div>

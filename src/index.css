@@ -17,15 +17,16 @@
   }
 }
 
-
-.splide__pagination__page{
+.splide__pagination__page {
   opacity: 1;
-  background-color: #6d696975;
+  background-color: #dfd9d9e5;
 }
 .splide__pagination__page.is-active {
-    background: white;
-    transform: scale(1.4);
-    z-index: 1;
+  background: white;
+
+  border: 1px solid orange;
+  transform: scale(1.4);
+  z-index: 1;
 }
 /* loading spinner */
 .jelly-triangle {

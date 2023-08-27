@@ -20,6 +20,9 @@ const DeleteModal = ({ setOpen }) => {
       .then(() => {
         fetch(`https://anaf-server.vercel.app/user/${userId}`, {
           method: "DELETE",
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
         })
           .then((res) => res.json())
           .then((data) => {
@@ -103,10 +106,15 @@ const DeleteModal = ({ setOpen }) => {
         setLoading(false);
       });
 
-    console.log(userId);
+    // console.log(userId);
   };
   useEffect(() => {
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
+    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setUserFullInfo(data);
@@ -183,7 +191,7 @@ const DeleteModal = ({ setOpen }) => {
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
-                    onClick={() => handleAccountDelete(userFullInfo._id)}
+                    onClick={() => handleAccountDelete(userFullInfo?._id)}
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                   >
                     Delete

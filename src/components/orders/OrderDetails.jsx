@@ -33,7 +33,7 @@ const OrderDetails = () => {
         <h2 className="font-medium mt-5 shadow-primary border rounded p-2">
           Order{" "}
           <span className="bg-gray-100 font-bold md:text-sm text-xs p-1 uppercase">
-            #{orderDetail._id}
+            #{orderDetail.orderId}
           </span>{" "}
           was placed on {orderDetail.orderDate} and is currently{" "}
           <span className="bg-gray-100 p-1 capitalize font-bold">

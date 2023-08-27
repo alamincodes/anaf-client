@@ -37,6 +37,8 @@ const SignUp = () => {
   const handleSignUp = (data) => {
     setErrorMessage("");
     setIsLoading(true);
+    console.log(data);
+    console.log(data.email);
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
@@ -57,7 +59,7 @@ const SignUp = () => {
 
         const userInfo = {
           name: data.name,
-          email: data.email,
+          email: data.email.toLowerCase(),
           phone: data.phone,
           division: data.division,
           district: data.district,
@@ -84,6 +86,8 @@ const SignUp = () => {
         const errMessage = error.message;
         if (errMessage.includes("email-already-in-use")) {
           setErrorMessage("Email already used, try another email.");
+        } else if (errMessage.includes("invalid-email")) {
+          setErrorMessage("invalid email");
         }
         setIsLoading(false);
       });

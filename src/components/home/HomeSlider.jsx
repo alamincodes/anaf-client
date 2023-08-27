@@ -21,28 +21,22 @@ const HomeSlider = () => {
             <SplideSlide>
               <img
                 className="lg:rounded-xl rounded-md lg:max-h-full max-h-[400px]"
-                src="https://scontent.fcla4-1.fna.fbcdn.net/v/t1.15752-9/370277876_221549423874292_5390627129022682207_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=ae9488&_nc_eui2=AeEhSZx5aNzwN8i9daFPQ9CoJ2Z5HVWgEvYnZnkdVaAS9uZuiW6kuJxDjg0tdWTKtO0tKXsQCGqsg9HyU2b-bsdk&_nc_ohc=63z8RRcds0sAX_t59Mq&_nc_ht=scontent.fcla4-1.fna&oh=03_AdTgQXwQzjdeLsk5CgZiZa2v-Z3UzXnJkx0j5RkHd_E8TQ&oe=6510CDEE"
+                src="https://i.ibb.co/Qmt7ZHP/Website-Banner-2-transformed.png"
                 alt=""
               />
             </SplideSlide>
             <SplideSlide>
               <img
                 className="lg:rounded-xl rounded-md lg:max-h-full max-h-[400px]"
-                src="https://i.ibb.co/WybXb8T/Special-Collection-Gadget-and-Electronic-Banner-transformed.png"
+                src="https://i.ibb.co/tBpJwBV/Gadget-3-transformed.jpg"
                 alt=""
               />
             </SplideSlide>
+
             <SplideSlide>
               <img
                 className="lg:rounded-xl rounded-md lg:max-h-full max-h-[400px]"
-                src="https://i.ibb.co/54dz9tj/Black-Friday-Sale-Promotion-Banner-1.png"
-                alt=""
-              />
-            </SplideSlide>
-            <SplideSlide>
-              <img
-                className="lg:rounded-xl rounded-md lg:max-h-full max-h-[400px]"
-                src="https://i.ibb.co/bgD3c4R/1-transformed-1.png"
+                src="https://i.ibb.co/0fHX3T9/Website-Banner-1-transformed.png"
                 alt=""
               />
             </SplideSlide>

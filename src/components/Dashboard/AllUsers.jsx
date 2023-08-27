@@ -15,6 +15,7 @@ const AllUsers = () => {
     fetch(`https://anaf-server.vercel.app/users/admin/${id}`, {
       method: "PUT",
       headers: {
+        "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
@@ -30,6 +31,7 @@ const AllUsers = () => {
     fetch(`https://anaf-server.vercel.app/users/cancel/${id}`, {
       method: "PUT",
       headers: {
+        "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
@@ -56,7 +58,11 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("https://anaf-server.vercel.app/allUsers", {});
+      const res = await fetch("https://anaf-server.vercel.app/allUsers", {
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      });
       const data = await res.json();
       return data?.reverse();
     },

@@ -102,12 +102,13 @@ const Checkout = () => {
       orderDate,
     };
 
-    console.log(orderInfo);
+    // console.log(orderInfo);
     setIsLoading(true);
     fetch("https://anaf-server.vercel.app/orders", {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(orderInfo),
     })
@@ -119,7 +120,7 @@ const Checkout = () => {
           setIsLoading(false);
           setOrderId(data.insertedId);
         }
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => {
         setIsLoading(false);
@@ -129,7 +130,11 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
+    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

@@ -10,7 +10,11 @@ const Profile = () => {
   const [userData, setUserData] = useState({});
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`)
+    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

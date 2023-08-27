@@ -62,22 +62,22 @@ const EditProduct = () => {
       outOfStock,
       id,
     };
-    console.log(productInfo);
+    // console.log(productInfo);
     fetch(`https://anaf-server.vercel.app/updateProduct/${productDetail._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
-        //   authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(productInfo),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data.acknowledged) {
           setIsLoading(false);
           toast.success("Update product");
-          //   form.reset();
+          form.reset();
         }
       });
   };
