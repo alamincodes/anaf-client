@@ -6,7 +6,7 @@ import HeaderContact from "../Shared/HeaderContact";
 
 const Main = () => {
   return (
-    <div className="my-[80px]">
+    <div className="mt-[80px] mb-1">
       <ScrollTop />
       {/* <HeaderContact /> */}
       <Navbar />

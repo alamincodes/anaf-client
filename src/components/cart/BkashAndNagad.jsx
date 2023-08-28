@@ -22,6 +22,57 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
         </div>
         {/* select bkash and nagad */}
         <div className="border-2 border-dashed border-gray-400 p-2 mb-5">
+          <div className="flex items-center gap-5 my-2">
+            <div>
+              <input
+                type="radio"
+                name="selectPayment"
+                value="bkash"
+                id="Bkash"
+                defaultChecked
+                onChange={(e) => setPayWith(e.target.value)}
+                className="peer hidden [&:checked_+_label_svg]:block"
+              />
+
+              <label
+                htmlFor="Bkash"
+                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
+              >
+                <div className="flex items-center gap-2">
+                  <HiOutlineCheck className="hidden bg-black text-white ro" />
+
+                  <p className="text-black flex items-center">
+                    <img src={bkash} className="w-7 h-7" alt="" />
+                    Bkash
+                  </p>
+                </div>
+              </label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="selectPayment"
+                value="nagad"
+                id="nagad"
+                onChange={(e) => setPayWith(e.target.value)}
+                className="peer hidden [&:checked_+_label_svg]:block"
+              />
+
+              <label
+                htmlFor="nagad"
+                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
+              >
+                <div className="flex items-center gap-2">
+                  <HiOutlineCheck className="hidden bg-black text-white ro" />
+
+                  <p className="text-black flex items-center">
+                    <img src={nagad} className="w-5 h-7 mr-1" alt="" />
+                    Nagad
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
           {/* number start */}
           <div className="mb-5">
             {/* bkash */}
@@ -74,8 +125,7 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
             </div>
             <ul className="list-disc px-6">
               <li className="text-md font-secondary mt-1">
-                Bkash personal number তায় Send money অপশন সিলেক্ট করে পেমেন্ট
-                করুন।
+                Bkash personal নাম্বার Send money অপশন সিলেক্ট করে পেমেন্ট করুন।
               </li>
               <li className="text-md font-secondary mt-1">
                 Bkash অথবা Nagad সিলেক্ট করে Payment করার পর Transaction Id টি
@@ -84,57 +134,7 @@ const BkashAndNagad = ({ discountTotal, setPayWith, setTransactionId }) => {
             </ul>
           </div>
           {/* number end */}
-          <div className="flex items-center gap-5">
-            <div>
-              <input
-                type="radio"
-                name="selectPayment"
-                value="bkash"
-                id="Bkash"
-                defaultChecked
-                onChange={(e) => setPayWith(e.target.value)}
-                className="peer hidden [&:checked_+_label_svg]:block"
-              />
 
-              <label
-                htmlFor="Bkash"
-                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-              >
-                <div className="flex items-center gap-2">
-                  <HiOutlineCheck className="hidden bg-black text-white ro" />
-
-                  <p className="text-black flex items-center">
-                    <img src={bkash} className="w-7 h-7" alt="" />
-                    Bkash
-                  </p>
-                </div>
-              </label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                name="selectPayment"
-                value="nagad"
-                id="nagad"
-                onChange={(e) => setPayWith(e.target.value)}
-                className="peer hidden [&:checked_+_label_svg]:block"
-              />
-
-              <label
-                htmlFor="nagad"
-                className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-              >
-                <div className="flex items-center gap-2">
-                  <HiOutlineCheck className="hidden bg-black text-white ro" />
-
-                  <p className="text-black flex items-center">
-                    <img src={nagad} className="w-5 h-7 mr-1" alt="" />
-                    Nagad
-                  </p>
-                </div>
-              </label>
-            </div>
-          </div>
           <h2 className="text-md font-secondary mt-1">
             Bkash অথবা Nagad সিলেক্ট করে Payment করার পর Transaction Id টি দিয়ের
             অর্ডার Confirm করুন।

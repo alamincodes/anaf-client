@@ -9,9 +9,9 @@ const CallNow = () => {
             অর্ডার সম্পকির্ত যেকোনো তথ্যের জন্য কল করুন
           </h2>
           <p className="font-secondary text-gray-200">
-            সকাল ৯ টা থেকে রাত ১০ টা পর্যন্ত
+            যোগাযোগের সময় - সকাল 10 টা থেকে রাত 10 টা.
           </p>
-          <p className="font-secondary text-gray-200">01630328733</p>
+          <p className="font-primary text-gray-300">01630328733</p>
         </div>
         <div className="my-5 group">
           <a
@@ -21,7 +21,7 @@ const CallNow = () => {
             <span>
               <TbPhoneCall
                 size={20}
-                className="mr-1 group-hover:animate-pulse"
+                className="mr-1 text-green-700 animate-pulse"
               />
             </span>{" "}
             কল করুন

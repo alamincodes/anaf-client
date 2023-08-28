@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
-import emptyCartImg from "../../assets/image/emptyCart.png";
 import { BiShoppingBag } from "react-icons/bi";
 const Cart = () => {
   useTitle("Cart");
@@ -15,9 +14,9 @@ const Cart = () => {
 
   return (
     <AnimatePage>
-      <section className="myContainer  ">
+      <section className="myContainer">
         {isEmpty ? (
-          <div className="myContainer flex flex-col justify-center items-center h-[700px]">
+          <div className="myContainer flex flex-col justify-center items-center h-[400px]">
             <span>
               <BiShoppingBag size={50} />
             </span>

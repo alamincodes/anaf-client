@@ -26,7 +26,7 @@ const Search = () => {
   return (
     <section className="myContainer bg-white rounded-xl mt-2 shadow-cardShadow p-5">
       <div>
-        <form onSubmit={handleSubmit} className="flex mt-3 relative">
+        <form onSubmit={handleSubmit} className="flex relative">
           <input
             type="text"
             name="search"

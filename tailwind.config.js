@@ -4,7 +4,7 @@ export default {
   theme: {
     fontFamily: {
       primary: "Rubik, sans-serif",
-      secondary: "Anek Bangla, sans-serif",
+      secondary: "Hind Siliguri, sans-serif",
     },
     screens: {
       sm: "640px",

@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../../assets/logo/A.svg";
-import { TbUser } from "react-icons/tb";
+import { FaRegUser } from "react-icons/fa";
 import { BsBox } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
-import { RiHeadphoneLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-const BottomNav = () => {
+import { HiOutlineMenu } from "react-icons/hi";
+const BottomNav = ({ open, setOpen }) => {
   return (
     <div className="md:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
-      <ul className="relative flex items-center justify-center space-x-6">
-        <Link to="/contact">
-          <li className="flex flex-col items-center">
+      <ul className="relative flex items-center justify-between px-5">
+        <div>
+          <li
+            onClick={() => setOpen(true)}
+            className="w-full h-full flex flex-col items-center"
+          >
             <span>
-              <RiHeadphoneLine size={25} />
+              <HiOutlineMenu size={25} />
             </span>
-            <span className="text-xs">Support</span>
+            <span className="text-xs">Menu</span>
           </li>
-        </Link>
+        </div>
         <a href="tel:01630328733">
-          <li className="flex flex-col items-center">
+          <li className="w-full h-full flex flex-col items-center">
             <span>
               <HiOutlinePhone size={25} />
             </span>
@@ -26,13 +29,13 @@ const BottomNav = () => {
           </li>
         </a>
         <Link to="/">
-          <li className="bg-white rounded-full p-2 -mt-7 border-4 border-neutral-900">
+          <li className="w-full h-full bg-white rounded-full p-2 -mt-7 border-4 border-neutral-900">
             <img src={Logo} className="h-10 w-10 object-fill" alt="" />
           </li>
         </Link>
 
         <Link to="/orders">
-          <li className="flex flex-col items-center">
+          <li className="w-full h-full flex flex-col items-center">
             <span>
               <BsBox size={25} />
             </span>
@@ -40,11 +43,11 @@ const BottomNav = () => {
           </li>
         </Link>
         <Link to="/profile">
-          <li className="flex flex-col items-center">
+          <li className="w-full h-full flex flex-col items-center">
             <span>
-              <TbUser size={25} />
+              <FaRegUser size={25} />
             </span>
-            <span className="text-xs">Account</span>
+            <span className="text-xs">Profile</span>
           </li>
         </Link>
       </ul>

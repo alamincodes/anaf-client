@@ -4,8 +4,9 @@ import "@splidejs/react-splide/css";
 import BestOffer from "./offer/BestOffer";
 
 const HomeSlider = () => {
+  
   return (
-    <div className="myContainer mt-3">
+    <div className="myContainer mt-2">
       <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-5">
         <div className="lg:col-span-8 lg:max-h-full max-h-[400px]">
           <Splide
@@ -28,7 +29,7 @@ const HomeSlider = () => {
             <SplideSlide>
               <img
                 className="lg:rounded-xl rounded-md lg:max-h-full max-h-[400px]"
-                src="https://i.ibb.co/tBpJwBV/Gadget-3-transformed.jpg"
+                src="https://i.ibb.co/Q6mkrg8/Gadget-3-transformed.jpg"
                 alt=""
               />
             </SplideSlide>

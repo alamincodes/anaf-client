@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { useCart } from "react-use-cart";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -22,7 +22,7 @@ const ProductDetail = () => {
     setIsVisible(true);
     const timeout = setTimeout(() => {
       setIsVisible(false);
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearTimeout(timeout);
@@ -47,29 +47,27 @@ const ProductDetail = () => {
   return (
     <AnimatePage>
       <section>
-        <div className="md:container md:mx-auto md:px-0 relative px-2">
+        <div className="myContainer mt-2 relative">
           {/* toast */}
           {isVisible && (
-            <div className="my-4 rounded-sm w-[300px] z-20 top-[50px] right-0 left-0 mx-auto fixed text-white bg-neutral-900 p-5">
+            <div className="show rounded-sm ring-4 ring-neutral-700 w-[300px] z-20 top-[84px] right-0 fixed text-white bg-neutral-900 p-5">
               <div className="flex items-center">
                 <span>
-                  {" "}
-                  <HiCheckCircle
-                    size={23}
-                    className="text-green-500 mr-1"
-                  />{" "}
-                </span>{" "}
-                <p>Added Successfully, Go to cart.</p>
+                  <HiCheckCircle size={23} className="text-green-500 mr-2" />
+                </span>
+                <p>
+                  Item added. <Link to="/cart" className="underline">Go to cart.</Link>{" "}
+                </p>
               </div>
             </div>
           )}
           <div className="flex flex-col md:gap-4 lg:flex-row bg-white">
             {/* left */}
             <div className="flex flex-col lg:w-[40%]">
-              <div>
+              <div className="flex justify-center items-center">
                 <img
                   src={activeImg}
-                  className="md:w-full lg:h-[500px] object-cover"
+                  className="md:w-full lg:h-[500px] mt-4 object-cover w-full h-full"
                   alt=""
                 />
               </div>
@@ -129,7 +127,7 @@ const ProductDetail = () => {
                   <button
                     disabled={outOfStock === "true"}
                     onClick={handleAddToCart}
-                    className="py-3 px-3 disabled:bg-neutral-500 font-[500] inline-flex justify-center uppercase md:w-[200px] rounded-sm bg-neutral-800 text-white hover:bg-neutral-700"
+                    className="py-4 px-3 active:transition-[0.3s] active:scale-[0.93] disabled:bg-neutral-500 font-[500] inline-flex justify-center uppercase md:w-[200px] rounded bg-neutral-900 text-white hover:bg-neutral-800"
                   >
                     <span>
                       <HiOutlineShoppingBag size={25} className="mr-1" />

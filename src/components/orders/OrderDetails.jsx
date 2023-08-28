@@ -44,7 +44,7 @@ const OrderDetails = () => {
           {orderDetail.items?.map((item) => (
             <div
               key={item.id}
-              className="bg-white shadow rounded mt-2 py-5 px-3"
+              className="bg-white rounded mt-2 py-5 px-3"
             >
               <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
                 <img
@@ -65,7 +65,7 @@ const OrderDetails = () => {
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-3 shadow gap-0">
           {/* total */}
-          <div className="shadow-sm border border-dashed p-5">
+          <div className="border border-dashed p-5">
             <h2 className="font-bold uppercase">Total Amount</h2>
             <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
             <h2>Delivery fee: 120 Tk</h2>
@@ -74,7 +74,7 @@ const OrderDetails = () => {
             </h2>
           </div>
           {/* total */}
-          <div className="shadow-sm border border-dashed  p-5">
+          <div className="border border-dashed  p-5">
             <h2 className="font-bold uppercase">Payment details</h2>
             <h2>Payment type: {orderDetail.selectPaymentType}</h2>
             <h2>Payment method: {orderDetail.payWith} </h2>
@@ -90,7 +90,7 @@ const OrderDetails = () => {
 
           {/* billing address */}
 
-          <div className="shadow-sm border border-dashed p-5">
+          <div className="border border-dashed p-5">
             <h2 className="font-bold uppercase">BILLING ADDRESS</h2>
             <h3>{orderDetail.name}</h3>
             <h3>{orderDetail.phone}</h3>

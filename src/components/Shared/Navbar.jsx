@@ -3,7 +3,6 @@ import logo from "../../assets/logo/anaf.svg";
 import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
 import { TbSearch } from "react-icons/tb";
 import { IoClose } from "react-icons/io5";
-import { FaUser } from "react-icons/fa";
 import { HiChevronRight } from "react-icons/hi";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
@@ -30,15 +29,6 @@ const Navbar = () => {
       <div className="bg-white shadow fixed top-0 z-20 w-full">
         <nav className="myContainer md:py-3 py-4 relative">
           <div className="flex justify-between items-center">
-            {/* menu */}
-            <span className="md:hidden">
-              <HiOutlineMenu
-                onClick={() => setOpen(true)}
-                className=""
-                size={30}
-              />
-            </span>
-            {/* logo */}
             <div>
               <Link to="/">
                 <img src={logo} className="md:w-28 w-20 h-12" alt="" />
@@ -99,10 +89,10 @@ const Navbar = () => {
                 <>
                   <Link to="/login">
                     {" "}
-                    <h2 className="cursor-pointer">Login</h2>
+                    <h2 className="cursor-pointer ">Login</h2>
                   </Link>
                   <Link to="/signUp">
-                    <h2 className="cursor-pointer rounded-sm bg-black text-white p-2 px-4">
+                    <h2 className="cursor-pointer rounded-full bg-black text-white p-2 px-4">
                       Sign up
                     </h2>
                   </Link>
@@ -145,11 +135,11 @@ const Navbar = () => {
 
       {/* mobile nav */}
 
-      <BottomNav />
+      <BottomNav open={open} setOpen={setOpen} />
       <div
         className={`${
           open ? "left-0" : "-left-full"
-        } fixed top-0 bottom-0 lg:hidden bg-neutral-900 transition-all text-white z-20 w-64 duration-300`}
+        }  fixed top-0 bottom-0 lg:hidden bg-neutral-900 transition-all text-white z-20 w-64 duration-300`}
       >
         <IoClose
           onClick={() => setOpen(false)}
@@ -250,7 +240,7 @@ const Navbar = () => {
                 </li>
               </Link>
               <Link onClick={() => setOpen(false)} to="/signUp">
-                <li className="bg-white rounded-md border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all duration-300 text-black font-bold p-2 px-4">
+                <li className="bg-white rounded border-2 border-transparent hover:border-white hover:bg-transparent hover:text-white transition-all duration-300 text-black font-bold p-2 px-4">
                   Sign up
                 </li>
               </Link>

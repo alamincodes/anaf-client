@@ -1,5 +1,4 @@
 import React from "react";
-import Banner from "./Banner";
 import HomeSlider from "./HomeSlider";
 import Products from "../products/Products";
 import useTitle from "../../hooks/useTitle";
@@ -13,7 +12,6 @@ const Home = () => {
   return (
     <AnimatePage>
       <div>
-        {/* <Banner /> */}
         <HomeSlider />
         <Categories />
         <Products />

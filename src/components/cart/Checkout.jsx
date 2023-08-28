@@ -80,7 +80,7 @@ const Checkout = () => {
       return;
     }
 
-    console.log(isLoading);
+    // console.log(isLoading);
     // console.log(payWithC);
     // console.log(transactionId);
     const orderDate = format(new Date(), "PP");
