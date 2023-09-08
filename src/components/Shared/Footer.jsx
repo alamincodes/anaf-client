@@ -20,7 +20,7 @@ const Footer = () => {
     }
   };
   return (
-    <div className="mt-auto">
+    <div className="mt-auto print:hidden">
       <footer>
         <div className="bg-neutral-800">
           <nav>

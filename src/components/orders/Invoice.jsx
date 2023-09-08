@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { PDFExport } from "@progress/kendo-react-pdf";
 import { useParams } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import logo from "../../assets/logo/anaf.svg";
@@ -7,7 +6,6 @@ const Invoice = () => {
   const [orderDetail, setOrderDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   let { id } = useParams();
-  const pdfExportComponent = useRef(null);
   useEffect(() => {
     setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/order/${id}`, {
@@ -15,15 +13,9 @@ const Invoice = () => {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => {
-        if (res.status === 401 || res.status === 403) {
-          localStorage.removeItem("accessToken");
-          return logOut();
-        }
-        return res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setOrderDetail(data);
         setIsLoading(false);
       });
@@ -32,189 +24,135 @@ const Invoice = () => {
     return <LoadingSpinner />;
   }
   return (
-    <div className="container mx-auto">
-      <div className="text-right my-1">
-        <button
-          className="bg-black w-full text-white p-2 rounded-sm"
-          onClick={() => {
-            if (pdfExportComponent.current) {
-              pdfExportComponent.current.save();
-            }
-          }}
-        >
-          Download
-        </button>
-      </div>
-      <PDFExport paperSize="A4" margin="1cm" ref={pdfExportComponent}>
-        <section className="">
-          <div className="bg-white">
-            <article className="overflow-hidden">
-              <div className="bg-[white] rounded-b-md">
-                <div className="p-9">
-                  <div>
-                    <div className="flex justify-end">
-                      <img src={logo} className="w-20 mb-10" alt="" />
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <div className="text-sm font-light text-black">
-                        <p className="text-lg font-normal text-black">
-                          Invoice Detail:
-                        </p>
-                        <div className="mb-2 ">
-                          <span className="font-bold">Order id:</span>{" "}
-                          <span className="text-black">{orderDetail._id}</span>{" "}
-                          <h2>
-                            {" "}
-                            <span className="font-bold">Order date:</span>{" "}
-                            {orderDetail.orderDate}
-                          </h2>
-                          <h2 className="text-black font-bold mt-3">
-                            Order status:{" "}
-                            <span className="border border-black rounded-full p-1 px-2 ml-1">
-                              {orderDetail?.status
-                                ? orderDetail.status
-                                : "pending"}
-                            </span>
-                          </h2>
-                        </div>
-                        <p>{orderDetail.name}</p>
-                        <p>{orderDetail.districtName}</p>
-                        <p>{orderDetail.address}</p>
-                      </div>
-                      <div className="text-sm font-light text-black">
-                        <p className="text-sm font-normal text-black">
-                          Billed To
-                        </p>
-                        <p>{orderDetail.phone}</p>
-                        <p>{orderDetail.payWith}</p>
-                        <p>Transaction Id: {orderDetail.transactionId}</p>
-                        <p>{orderDetail.selectPaymentType}</p>
-                      </div>
-                    </div>
+    <section classname="">
+      <div className="flex flex-row flex-wrap">
+        <div className="mb-6 w-full max-w-full flex-shrink">
+          <div className="rounded-lg bg-white p-2">
+            <div className="mb-3 flex items-center justify-between border-b border-gray-200 pb-4 ">
+              <div className="flex flex-col">
+                <div className="mb-1 text-3xl font-bold">
+                  <img
+                    className="inline-block h-auto w-12 ltr:mr-2 rtl:ml-2"
+                    src={logo}
+                  />
+                </div>
+                <p className="text-sm">
+                  Amphitheatre, Mountain View
+                  <br />
+                  San Francisco, CA 9321, US
+                </p>
+              </div>
+              <div className="text-4xl font-bold uppercase">Invoice</div>
+            </div>
+            <div className="flex flex-row justify-between py-3">
+              <div className="flex-1">
+                <p>
+                  <strong>Bill to:</strong>
+                  <br />
+                  James Doe
+                  <br />
+                  Andreas street, Mountain View
+                  <br />
+                  San Francisco, CA 9321, US
+                  <br />
+                  Andreas-Doe@domain.com
+                  <br />
+                  +123 456 7890
+                </p>
+              </div>
+              <div className="flex-1">
+                <div className="mb-2 flex justify-between">
+                  <div className="flex-1 font-semibold">Invoice ID#:</div>
+                  <div className="flex-1 ltr:text-right rtl:text-left">
+                    INV1089
                   </div>
                 </div>
-
-                <div className="p-9">
-                  <div className="flex flex-col mx-0 mt-8">
-                    <table className="min-w-full divide-y divide-black">
-                      <thead>
-                        <tr>
-                          <th
-                            scope="col"
-                            className="py-3.5 pl-4 pr-3 text-left text-sm font-normal text-black sm:pl-6 md:pl-0"
-                          >
-                            Description
-                          </th>
-                          <th
-                            scope="col"
-                            className="hidden py-3.5 px-3 text-right text-sm font-normal text-black sm:table-cell"
-                          >
-                            Quantity
-                          </th>
-                          <th
-                            scope="col"
-                            className="hidden py-3.5 px-3 text-right text-sm font-normal text-black sm:table-cell"
-                          >
-                            Price
-                          </th>
-                          <th
-                            scope="col"
-                            className="py-3.5 pl-3 pr-4 text-right text-sm font-normal text-black sm:pr-6 md:pr-0"
-                          >
-                            Total
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {orderDetail.items?.map((item) => (
-                          <tr className="border-b border-black">
-                            <td className="py-4 pl-4 pr-3 text-sm sm:pl-6 md:pl-0">
-                              <div className="font-medium text-black">
-                                {item.name}
-                              </div>
-                              <div className="mt-0.5 text-black sm:hidden">
-                                1 unit at $0.00
-                              </div>
-                            </td>
-                            <td className="hidden px-3 py-4 text-sm text-right text-black sm:table-cell">
-                              {item.quantity}
-                            </td>
-
-                            <td className="py-4 pl-3 pr-4 text-sm text-right text-black sm:pr-6 md:pr-0">
-                              {item.price} Tk
-                            </td>
-                            <td className="py-4 pl-3 pr-4 text-sm text-right text-black sm:pr-6 md:pr-0">
-                              {item.price * item.quantity} Tk
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th
-                            scope="row"
-                            colSpan="3"
-                            className="hidden pt-6 pl-6 pr-3 text-sm font-light text-right text-black sm:table-cell md:pl-0"
-                          >
-                            Subtotal
-                          </th>
-                          <th
-                            scope="row"
-                            className="pt-6 pl-4 pr-3 text-sm font-light text-left text-black sm:hidden"
-                          >
-                            Subtotal
-                          </th>
-                          <td className="pt-6 pl-3 pr-4 text-sm text-right text-black sm:pr-6 md:pr-0">
-                            {orderDetail.cartTotal} Tk
-                          </td>
-                        </tr>
-                        <tr>
-                          <th
-                            scope="row"
-                            colSpan="3"
-                            className="hidden pt-6 pl-6 pr-3 text-sm font-light text-right text-black sm:table-cell md:pl-0"
-                          >
-                            Delivery fee
-                          </th>
-                          <th
-                            scope="row"
-                            className="pt-6 pl-4 pr-3 text-sm font-light text-left text-black sm:hidden"
-                          >
-                            Delivery fee
-                          </th>
-                          <td className="pt-6 pl-3 pr-4 text-sm text-right text-black sm:pr-6 md:pr-0">
-                            130 Tk
-                          </td>
-                        </tr>
-
-                        <tr>
-                          <th
-                            scope="row"
-                            colSpan="3"
-                            className="hidden pt-4 pl-6 pr-3 text-sm font-bold text-right text-black sm:table-cell md:pl-0"
-                          >
-                            Total
-                          </th>
-                          <th
-                            scope="row"
-                            className="pt-4 font-bold pl-4 pr-3 text-sm text-left text-black sm:hidden"
-                          >
-                            Total
-                          </th>
-                          <td className="pt-4 pl-3 pr-4 text-sm font-bold text-right text-black sm:pr-6 md:pr-0">
-                            {orderDetail.total} Tk
-                          </td>
-                        </tr>
-                      </tfoot>
-                    </table>
+                <div className="mb-2 flex justify-between">
+                  <div className="flex-1 font-semibold">Invoice date:</div>
+                  <div className="flex-1 ltr:text-right rtl:text-left">
+                    12/08/2022
+                  </div>
+                </div>
+                <div className="mb-2 flex justify-between">
+                  <div className="flex-1 font-semibold">Due date:</div>
+                  <div className="flex-1 ltr:text-right rtl:text-left">
+                    12/08/2022
+                  </div>
+                </div>
+                <div className="mb-2 flex justify-between">
+                  <div className="flex-1 font-semibold">Status #:</div>
+                  <div className="flex-1 ltr:text-right rtl:text-left">
+                    Paid
+                  </div>
+                </div>
+                <div className="mb-2 flex justify-between">
+                  <div className="flex-1 font-semibold">Payment #:</div>
+                  <div className="flex-1 ltr:text-right rtl:text-left">
+                    Paypal
                   </div>
                 </div>
               </div>
-            </article>
+            </div>
+            <div className="py-4">
+              <table className="table-bordered w-full text-gray-600 ltr:text-left rtl:text-right">
+                <thead className="border-b ">
+                  <tr className="bg-gray-100">
+                    <th>Products</th>
+                    <th className="text-center">Qty</th>
+                    <th className="text-center">Unit price</th>
+                    <th className="text-center">Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div className="flex flex-row flex-wrap items-center">
+                        <div className="mb-1 flex-1 leading-5 ltr:ml-2 rtl:mr-2 text-black">
+                          Nike Unisex-Child Free Rn (Big Kid)
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-center">1</td>
+                    <td className="text-center">80$</td>
+                    <td className="text-center">80$</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan={2} />
+                    <td className="text-center">
+                      <b>Sub-Total</b>
+                    </td>
+                    <td className="text-center">$290</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2} />
+                    <td className="text-center">
+                      <b>Discount</b>
+                    </td>
+                    <td className="text-center">15%</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2} />
+                    <td className="text-center">
+                      <b>Tax</b>
+                    </td>
+                    <td className="text-center">5%</td>
+                  </tr>
+                  <tr>
+                    <td colSpan={2} />
+                    <td className="text-center">
+                      <b>Total</b>
+                    </td>
+                    <td className="text-center font-bold">$258,8</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
-        </section>
-      </PDFExport>
-    </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

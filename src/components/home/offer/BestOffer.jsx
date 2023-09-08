@@ -6,7 +6,7 @@ const BestOffer = () => {
   return (
     <div className=" rounded-xl bg-gradient-to-b bg-white shadow-cardShadow lg:mt-0 mt-3 lg:p-5 p-2">
       <h2 className="uppercase font-bold md:text-lg text-xs my-1">Best offer🔥</h2>
-      <div className="flex lg:flex-col scrollbar-hide flex-row lg:max-h-[359px] overflow-y-auto lg:gap-y-3 gap-x-3">
+      <div className="flex lg:flex-col scrollbar-hide flex-row lg:max-h-[349px] overflow-y-auto lg:gap-y-3 gap-x-3">
         {/* card */}
         <Link to="http://anafshop.com/product/64d89ddb7a40b71495def6ff">
           <div className=" shadow-cardShadow p-3 rounded-lg min-w-[330px] border">

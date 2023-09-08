@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
-import Logo from "../../assets/logo/A.svg";
+// import Logo from "../../assets/logo/A.svg";
 import { FaRegUser } from "react-icons/fa";
 import { BsBox } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { HiOutlineMenu } from "react-icons/hi";
-const BottomNav = ({ open, setOpen }) => {
+import { HiOutlineDocumentText, HiOutlineHome } from "react-icons/hi2";
+const BottomNav = ({ setOpen }) => {
   return (
-    <div className="md:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
+    <div className="md:hidden print:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
       <ul className="relative flex items-center justify-between px-5">
         <div>
           <li
@@ -29,15 +30,19 @@ const BottomNav = ({ open, setOpen }) => {
           </li>
         </a>
         <Link to="/">
-          <li className="w-full h-full bg-white rounded-full p-2 -mt-7 border-4 border-neutral-900">
-            <img src={Logo} className="h-10 w-10 object-fill" alt="" />
+          <li className="w-full h-full flex flex-col justify-center items-center  -mt-7">
+            <h5 className="flex items-center justify-center bg-white text-black rounded-full p-2 border-4 border-neutral-900">
+              {" "}
+              <HiOutlineHome size={40} />{" "}
+            </h5>
+            {/* <span className="text-xs">Home</span> */}
           </li>
         </Link>
 
         <Link to="/orders">
           <li className="w-full h-full flex flex-col items-center">
             <span>
-              <BsBox size={25} />
+              <HiOutlineDocumentText size={25} />
             </span>
             <span className="text-xs">Orders</span>
           </li>

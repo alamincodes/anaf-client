@@ -394,71 +394,21 @@ const Checkout = () => {
                     <BkashAndNagad
                       discountTotal={discountTotal}
                       setPayWith={setPayWith}
+                      payWith={payWith}
                       setTransactionId={setTransactionId}
                     />
                   )}
+
                   {paymentMode === "Cash on delivery" && (
                     <div>
-                      <div className="flex items-center">
-                        <h2 className="flex items-center">
-                          <img src={bkash} className="w-7 h-7" alt="" />{" "}
-                          <span>01630328733</span>
-                        </h2>
-
-                        <CopyToClipboard
-                          text="01830328733"
-                          onCopy={() => setBkashCopied(true)}
-                        >
-                          <span
-                            className={`ml-2 ${
-                              bkashCopied
-                                ? "bg-[#d41065]/70 text-white"
-                                : "bg-gray-200"
-                            } flex justify-center items-center p-1 rounded-full`}
-                          >
-                            {bkashCopied ? (
-                              <HiOutlineClipboardCheck />
-                            ) : (
-                              <VscCopy size={15} />
-                            )}
-                          </span>
-                        </CopyToClipboard>
-                      </div>
-                      {/* nagad */}
-                      <div className="flex items-center mt-1">
-                        <h2 className="flex items-center">
-                          <img src={nagad} className="w-7 h-5" alt="" />{" "}
-                          <span>01630328733</span>
-                        </h2>
-
-                        <CopyToClipboard
-                          text="01830328733"
-                          onCopy={() => setNagadCopied(true)}
-                        >
-                          <span
-                            className={`ml-2 ${
-                              nagadCopied
-                                ? "bg-[#f6921e]/70 text-white"
-                                : "bg-gray-200"
-                            }  flex justify-center items-center p-1 rounded-full`}
-                          >
-                            {nagadCopied ? (
-                              <HiOutlineClipboardCheck />
-                            ) : (
-                              <VscCopy size={15} />
-                            )}
-                          </span>
-                        </CopyToClipboard>
-                      </div>
                       <div className="flex items-center gap-5 my-3">
                         <div>
                           <input
                             type="radio"
                             name="selectPayment"
-                            value="bkash"
                             id="Bkash"
                             defaultChecked
-                            onChange={(e) => setPayWith(e.target.value)}
+                            onChange={(e) => setPayWith("bkash")}
                             className="peer hidden [&:checked_+_label_svg]:block"
                           />
 
@@ -480,9 +430,8 @@ const Checkout = () => {
                           <input
                             type="radio"
                             name="selectPayment"
-                            value="nagad"
                             id="nagad"
-                            onChange={(e) => setPayWith(e.target.value)}
+                            onChange={(e) => setPayWith("nagad")}
                             className="peer hidden [&:checked_+_label_svg]:block"
                           />
 
@@ -505,12 +454,72 @@ const Checkout = () => {
                           </label>
                         </div>
                       </div>
+                      {/* bkash */}
+                      {payWith === "bkash" && (
+                        <div className="flex items-center">
+                          <h2 className="flex items-center">
+                            <img src={bkash} className="w-7 h-7" alt="" />{" "}
+                            <span>01630328733</span>
+                          </h2>
+
+                          <CopyToClipboard
+                            text="01830328733"
+                            onCopy={() => setBkashCopied(true)}
+                          >
+                            <span
+                              className={`ml-2 ${
+                                bkashCopied
+                                  ? "bg-[#d41065]/70 text-white"
+                                  : "bg-gray-200"
+                              } flex justify-center items-center p-1 rounded-full`}
+                            >
+                              {bkashCopied ? (
+                                <HiOutlineClipboardCheck />
+                              ) : (
+                                <VscCopy size={15} />
+                              )}
+                            </span>
+                          </CopyToClipboard>
+                        </div>
+                      )}
+                      {/* nagad */}
+                      {payWith === "nagad" && (
+                        <div className="flex items-center mt-1">
+                          <h2 className="flex items-center">
+                            <img src={nagad} className="w-7 h-5" alt="" />{" "}
+                            <span>01630328733</span>
+                          </h2>
+
+                          <CopyToClipboard
+                            text="01830328733"
+                            onCopy={() => setNagadCopied(true)}
+                          >
+                            <span
+                              className={`ml-2 ${
+                                nagadCopied
+                                  ? "bg-[#f6921e]/70 text-white"
+                                  : "bg-gray-200"
+                              }  flex justify-center items-center p-1 rounded-full`}
+                            >
+                              {nagadCopied ? (
+                                <HiOutlineClipboardCheck />
+                              ) : (
+                                <VscCopy size={15} />
+                              )}
+                            </span>
+                          </CopyToClipboard>
+                        </div>
+                      )}
+
                       <ul className="list-disc px-4">
-                        <li className="text-md font-secondary mt-1">
+                        <li className="text-md font-secondary font-bold mt-1">
                           Cash on delivery তে ২০০ টাকা অগ্রিম পরিশোধ করতে হবে।
                         </li>
                         <li className="text-md font-secondary mt-1">
-                          Bkash অথবা Nagad সিলেক্ট করে Payment করার পর
+                          Send money অপশন সিলেক্ট করে পেমেন্ট করুন।
+                        </li>
+                        <li className="text-md font-secondary mt-1">
+                          Bkash অথবা Nagad সিলেক্ট করে Send money করার পর
                           Transaction Id টি দিয়ের অর্ডার Confirm করুন।
                         </li>
                       </ul>
@@ -519,9 +528,9 @@ const Checkout = () => {
                       </label>
                       <input
                         type="text"
-                        placeholder="Transaction Id"
+                        placeholder="78USX97S"
                         onChange={(e) => setTransactionId(e.target.value)}
-                        className="mt-1 w-full rounded-sm border-orange-600 shadow-primary border-2 p-2 outline-none"
+                        className="mt-1 w-full rounded border-orange-600 shadow-primary border-2 p-2 outline-none"
                       />
                     </div>
                   )}
@@ -531,7 +540,7 @@ const Checkout = () => {
                     )}
                     <button
                       type="submit"
-                      className="block w-full rounded-sm bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
+                      className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
                     >
                       Confirm order
                     </button>

@@ -96,26 +96,6 @@ const AllOrders = () => {
       });
   };
 
-  // useEffect(() => {
-  //   // setIsLoading(true);
-  //   fetch("https://anaf-server.vercel.app/orders", {
-  //     headers: {
-  //       authorization: `bearer ${localStorage.getItem("accessToken")}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status === 401 || res.status === 403) {
-  //         localStorage.removeItem("accessToken");
-  //         return logOut();
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       // console.log(data);
-  //       setOrders(data.reverse());
-  //       setIsLoading(false);
-  //     });
-  // }, []);
   if (isLoading) {
     return <LoadingSpinner />;
   }

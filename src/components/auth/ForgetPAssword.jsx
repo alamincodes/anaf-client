@@ -82,7 +82,7 @@ const ForgetPAssword = () => {
                 Not sign up yet?
                 <Link
                   to="/signUp"
-                  className="text-indigo-600 font-medium inline-flex space-x-1 items-center"
+                  className="text-orange-500 font-medium inline-flex space-x-1 items-center"
                 >
                   <span className="ml-1">Sign up now </span>
                   <span>

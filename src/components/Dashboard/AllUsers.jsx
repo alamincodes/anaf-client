@@ -67,15 +67,6 @@ const AllUsers = () => {
       return data?.reverse();
     },
   });
-  // useEffect(() => {
-  //   fetch("https://anaf-server.vercel.app/allUsers")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setAllUsers(data);
-  //       // console.log(data);
-  //       setIsLoading(false);
-  //     });
-  // }, [users]);
 
   if (isLoading) {
     return <LoadingSpinner />;
