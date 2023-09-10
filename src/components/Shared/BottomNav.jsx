@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { BsBox } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { HiOutlineMenu } from "react-icons/hi";
 import { HiOutlineDocumentText, HiOutlineHome } from "react-icons/hi2";
 const BottomNav = ({ setOpen }) => {
@@ -29,32 +29,47 @@ const BottomNav = ({ setOpen }) => {
             <span className="text-xs">Call</span>
           </li>
         </a>
-        <Link to="/">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "text-orange-500" : "text-black"
+          }
+        >
           <li className="w-full h-full flex flex-col justify-center items-center  -mt-7">
-            <h5 className="flex items-center justify-center bg-white text-black rounded-full p-2 border-4 border-neutral-900">
+            <h5 className="flex items-center justify-center bg-white  rounded-full p-2 border-4 border-neutral-900">
               {" "}
               <HiOutlineHome size={40} />{" "}
             </h5>
             {/* <span className="text-xs">Home</span> */}
           </li>
-        </Link>
+        </NavLink>
 
-        <Link to="/orders">
+        <NavLink
+          to="/orders"
+          className={({ isActive }) =>
+            isActive ? "text-orange-500" : undefined
+          }
+        >
           <li className="w-full h-full flex flex-col items-center">
             <span>
               <HiOutlineDocumentText size={25} />
             </span>
             <span className="text-xs">Orders</span>
           </li>
-        </Link>
-        <Link to="/profile">
+        </NavLink>
+        <NavLink
+          to="/profile"
+          className={({ isActive }) =>
+            isActive ? "text-orange-500" : undefined
+          }
+        >
           <li className="w-full h-full flex flex-col items-center">
             <span>
               <FaRegUser size={25} />
             </span>
             <span className="text-xs">Profile</span>
           </li>
-        </Link>
+        </NavLink>
       </ul>
     </div>
   );

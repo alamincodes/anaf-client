@@ -38,13 +38,13 @@ const CategoryProductCard = ({ category }) => {
             <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="md:w-[200px] md:h-[200px] w-[120px] h-[120px] object-cover mb-4"
+                className="md:h-[250px] h-[120px] object-cover mb-1 rounded-lg"
                 src={img}
                 alt="product image"
               />
             </div>
           )}
-          <div className="md:px-5 px-2 border-t border-neutral-100">
+          <div className="md:px-3 px-2 border-t border-neutral-100">
             <div className="mt-1">
               <h5 className="md:text-[15px] group-hover:underline text-xs tracking-tight text-slate-900">
                 {name?.length > 50 ? name.substr(0, 40) + "..." : name}

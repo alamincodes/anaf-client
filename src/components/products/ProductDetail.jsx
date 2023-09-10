@@ -64,10 +64,10 @@ const ProductDetail = () => {
           <div className="flex flex-col md:gap-4 lg:flex-row bg-white">
             {/* left */}
             <div className="flex flex-col lg:w-[40%]">
-              <div className="flex justify-center items-center">
+              <div className="flex justify-center items-center ">
                 <img
                   src={activeImg}
-                  className="md:w-full lg:h-[500px] mt-4 object-cover w-full h-full"
+                  className="md:w-[500px] lg:h-[520px] mt-4 object-cover w-full h-full"
                   alt=""
                 />
               </div>

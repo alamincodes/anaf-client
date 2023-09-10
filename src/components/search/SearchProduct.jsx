@@ -12,9 +12,9 @@ const SearchProduct = ({ searchProduct }) => {
     image.src = img;
   }, []);
   return (
-    <div className="relative group rounded-xl border border-gray-100 bg-white hover:shadow-lg duration-300">
+    <div className="relative group rounded-xl border border-neutral-200 bg-white hover:shadow-lg duration-300 overflow-hidden">
       {outOfStock === "true" && (
-        <div className="absolute rounded bg-red-500 text-white z-10 md:p-3 md:text-md text-xs p-1 right-0">
+        <div className="absolute rounded-bl uppercase bg-red-500 text-white z-10 md:p-3 md:text-md text-xs p-1 right-0">
           <h2 className="font-bold">Out of stock</h2>
         </div>
       )}
@@ -35,13 +35,13 @@ const SearchProduct = ({ searchProduct }) => {
             <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="md:w-[200px] md:h-[200px] w-[120px] h-[120px] object-cover mb-4"
+                className="md:h-[250px] h-[120px] object-cover mb-1 rounded-lg"
                 src={img}
                 alt="product image"
               />
             </div>
           )}
-          <div className="md:px-5 px-2 border-t border-neutral-100">
+          <div className="md:px-3 px-2 border-t border-neutral-100">
             <div className="mt-1">
               <h5 className="md:text-[15px] group-hover:underline text-xs tracking-tight text-slate-900">
                 {name?.length > 50 ? name.substr(0, 40) + "..." : name}
@@ -51,7 +51,7 @@ const SearchProduct = ({ searchProduct }) => {
                   <span
                     className={`md:text-lg ${
                       outOfStock === "true" && "line-through"
-                    } text-lg font-bold text-slate-900`}
+                    } text-lg font-bold text-orange-500`}
                   >
                     {price}৳
                   </span>
