@@ -36,7 +36,7 @@ const Product = ({ product }) => {
             <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="md:h-[250px] h-[120px] object-cover mb-1 rounded-lg"
+                className="md:h-[220px] h-[120px] object-cover mb-1 rounded-lg"
                 src={img}
                 alt="product image"
               />

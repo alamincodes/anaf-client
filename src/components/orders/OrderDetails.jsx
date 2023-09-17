@@ -30,22 +30,19 @@ const OrderDetails = () => {
         <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
           Order Details
         </h2>
-        <h2 className="font-medium mt-5 shadow-primary border rounded p-2">
+        <h2 className="font-medium mt-5 text-orange-500 bg-orange-50 border border-orange-300 rounded p-2">
           Order{" "}
-          <span className="bg-gray-100 font-bold md:text-sm text-xs p-1 uppercase">
+          <span className="text-black font-bold p-1 uppercase">
             #{orderDetail.orderId}
           </span>{" "}
           was placed on {orderDetail.orderDate} and is currently{" "}
-          <span className="bg-gray-100 p-1 capitalize font-bold">
+          <span className="text-black p-1 font-bold">
             {orderDetail.status ? orderDetail.status : "pending"}
           </span>
         </h2>
         <div className="mt-5">
           {orderDetail.items?.map((item) => (
-            <div
-              key={item.id}
-              className="bg-white rounded mt-2 py-5 px-3"
-            >
+            <div key={item.id} className="bg-white rounded mt-2 py-5 px-3">
               <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
                 <img
                   src={item.img}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FiImage } from "react-icons/fi";
 import { Link } from "react-router-dom";
-const RelatedProduct = ({product}) => {
+const RelatedProduct = ({ product }) => {
   const [imageLoad, setImageLoad] = useState(false);
   const { name, img, price, _id, outOfStock } = product;
 
@@ -36,7 +36,7 @@ const RelatedProduct = ({product}) => {
             <div className="p-2 flex justify-center">
               <img
                 loading="lazy"
-                className="md:w-[200px] md:h-[200px] w-[120px] h-[120px] object-cover mb-4"
+                className="md:h-[220px] h-[120px] object-cover mb-1 rounded-lg"
                 src={img}
                 alt="product image"
               />

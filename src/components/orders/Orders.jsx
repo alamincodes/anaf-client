@@ -27,7 +27,7 @@ const Orders = () => {
         return res.json();
       })
       .then((ordersData) => {
-        // console.log(ordersData);
+        console.log(ordersData);
         setOrders(ordersData?.reverse());
         setIsLoading(false);
       });

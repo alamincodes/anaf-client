@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 // import Logo from "../../assets/logo/A.svg";
 import { FaRegUser } from "react-icons/fa";
-import { BsBox } from "react-icons/bs";
 import { HiOutlinePhone } from "react-icons/hi";
 import { NavLink } from "react-router-dom";
 import { HiOutlineMenu } from "react-icons/hi";

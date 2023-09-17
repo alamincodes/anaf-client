@@ -335,7 +335,7 @@ const Checkout = () => {
 
                       <label
                         htmlFor="Cash"
-                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
+                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-cardShadow ${
                           paymentMode === "Cash on delivery" &&
                           "border-2 border-black"
                         }`}
@@ -368,7 +368,7 @@ const Checkout = () => {
 
                       <label
                         htmlFor="onlinePayment"
-                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-primary ${
+                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-cardShadow ${
                           paymentMode === "Online Payment" &&
                           "border-2 border-black"
                         }`}
@@ -530,7 +530,7 @@ const Checkout = () => {
                         type="text"
                         placeholder="78USX97S"
                         onChange={(e) => setTransactionId(e.target.value)}
-                        className="mt-1 w-full rounded border-orange-600 shadow-primary border-2 p-2 outline-none"
+                        className="mt-1 w-full rounded border-orange-600  border-2 p-2 outline-none"
                       />
                     </div>
                   )}
