@@ -28,7 +28,7 @@ const Products = () => {
 
   return (
     <AnimatePage>
-      <section className="my-5">
+      <section className="mb-5 mt-2">
         <div className="myContainer ">
           <div className="bg-white md:p-5 p-2 shadow-cardShadow rounded-xl">
             <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2">

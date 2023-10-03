@@ -3,63 +3,25 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
-import BkashAndNagad from "./BkashAndNagad";
-import { HiOutlineCheck, HiOutlineClipboardCheck } from "react-icons/hi";
+import { HiOutlineCheck } from "react-icons/hi";
 import bkash from "../../assets/icons/bkash.svg";
-import nagad from "../../assets/icons/nagad.svg";
 import { TbTruckDelivery } from "react-icons/tb";
 import { format } from "date-fns";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { VscCopy } from "react-icons/vsc";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import OrderSuccessModal from "../orders/OrderSuccessModal";
+import delivery from "../../assets/image/delivery.svg";
+import { Link } from "react-router-dom";
+
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
   const { items, cartTotal, emptyCart } = useCart();
-  const [paymentMode, setPaymentMode] = useState("Cash on delivery");
+  const [paymentMethod, setPaymentMethod] = useState("Bkash");
   const [userFullInfo, setUserFullInfo] = useState({});
-  const [discountTotal, setDiscountTotal] = useState(cartTotal);
-  const [discountError, setDiscountError] = useState("");
-  const [payWith, setPayWith] = useState("bkash");
-  const [transactionId, setTransactionId] = useState("");
   const [errorMessage, setSetErrorMessage] = useState("");
-  const [bkashCopied, setBkashCopied] = useState(false);
-  const [nagadCopied, setNagadCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
   const [orderId, setOrderId] = useState("");
-
-  // const handleDiscount = (e) => {
-  //   e.preventDefault();
-  //   const discountValue = e.target.discount.value;
-  //   const code = import.meta.env.VITE_DISCOUNT_CODE;
-  //   console.log(code);
-  //   setDiscountError("");
-
-  //   if (discountValue !== code) {
-  //     setDiscountError("discount code you have provided is not valid.");
-  //   }
-  //   if (cartTotal < 600) {
-  //     setDiscountError(
-  //       "discount code is valid for purchases with a minimum value of 600 TK."
-  //     );
-  //     return;
-  //   }
-
-  //   if (discountValue === code && cartTotal >= 600) {
-  //     setDiscountTotal(cartTotal - 100);
-  //     toast("You have successfully received a discount of 100 Tk.", {
-  //       icon: "🎉",
-  //       style: {
-  //         borderRadius: "10px",
-  //         background: "black",
-  //         color: "white",
-  //       },
-  //     });
-  //     setDiscountError("");
-  //   }
-  // };
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -71,18 +33,7 @@ const Checkout = () => {
     const districtName = form.district.value;
     const division = form.division.value;
     const address = form.address.value;
-    const selectPaymentType = paymentMode;
-
-    if (transactionId === "") {
-      setSetErrorMessage(
-        "Kindly make the payment and provide the transaction ID."
-      );
-      return;
-    }
-
-    // console.log(isLoading);
-    // console.log(payWithC);
-    // console.log(transactionId);
+    const deliveryFee = 90;
     const orderDate = format(new Date(), "PP");
     const orderInfo = {
       name,
@@ -91,18 +42,15 @@ const Checkout = () => {
       districtName,
       division,
       address,
-      selectPaymentType,
+      paymentMethod,
       items,
+      deliveryFee,
       cartTotal,
-      discountTotal,
-      deliveryFee: 120,
-      total: discountTotal + 120,
-      payWith,
-      transactionId,
+      total: cartTotal + deliveryFee,
       orderDate,
     };
-
-    // console.log(orderInfo);
+    console.log(paymentMethod);
+    console.log(orderInfo);
     setIsLoading(true);
     fetch("https://anaf-server.vercel.app/orders", {
       method: "POST",
@@ -146,95 +94,29 @@ const Checkout = () => {
   }
   return (
     <AnimatePage>
-      <>
-        <section className="container mx-auto">
-          <div className="flex justify-between md:gap-3 md:flex-row flex-col">
-            <div className="bg-gray-50 md:py-4 p-4">
-              <div>
-                <div>
-                  <p className="text-sm font-medium tracking-tight text-gray-900">
-                    Subtotal Tk. {discountTotal}
-                  </p>
+      <section className="myContainer">
+        {items.length > 0 ? (
+          <div className="grid lg:grid-cols-7 grid-cols-1 md:gap-3">
+            {/* order details */}
+            <div className="w-full col-span-3 relative rounded bg-white shadow p-4 mt-3">
+              <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded">
+                <li className="font-semibold">Subtotal: {cartTotal}Tk</li>
+                <li className="font-semibold my-2">Delivery charge: 90Tk</li>
+                <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
+                  <h5 className="mt-1">Total: {cartTotal + 90}Tk</h5>
+                </li>
+              </ul>
 
-                  <p className="text-sm font-medium tracking-tight text-gray-900">
-                    Shipping fee Tk. 120
-                  </p>
-
-                  <p className="text-2xl font-medium tracking-tight text-gray-900">
-                    Total Tk. {discountTotal + 120}
-                  </p>
-
-                  {/* --- discount form ---*/}
-                  {/* <div className="mb-5">
-                    <form onSubmit={handleDiscount} className=" ">
-                      <label className="text-sm font-medium text-gray-700">
-                        Discount coupon
-                      </label>
-                      <div className="relative md:w-[250px] w-[200px]">
-                        <input
-                          type="text"
-                          name="discount"
-                          className="mt-1 px-3 border-2 border-gray-500 w-full relative shadow-sm p-1 rounded outline-none"
-                        />
-                        <button
-                          type="submit"
-                          className="bg-black text-xs  rounded absolute top-[5px] right-0 text-white py-[10px] px-4"
-                        >
-                          Apply
-                        </button>
-                      </div>
-                      {discountError && (
-                        <p className="text-red-500">{discountError}</p>
-                      )}
-                    </form>
-                  </div> */}
-                  <p className="mt-1 text-sm text-gray-600">
-                    For the purchase of
-                  </p>
-                </div>
-
-                <div>
-                  <div className="flow-root">
-                    <ul className="-my-4 divide-y divide-gray-200">
-                      {items.map((item) => (
-                        <li
-                          className="flex items-center gap-4 py-4"
-                          key={item.id}
-                        >
-                          <img
-                            src={item.img}
-                            alt=""
-                            className="h-16 w-16 rounded object-cover"
-                          />
-
-                          <div>
-                            <h3 className="text-sm text-gray-900">
-                              {item.name}
-                            </h3>
-
-                            <dl className="mt-0.5 space-y-px text-[13px] text-gray-600">
-                              <div className="font-normal">
-                                <dt className="inline">Quantity:</dt>
-                                <dd className="inline">{item.quantity}</dd>
-                              </div>
-
-                              <div className="font-normal">
-                                <dt className="inline">Price:</dt>
-                                <dd className="inline">{item.price}</dd>
-                              </div>
-                            </dl>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+              <div className="absolute left-0 bottom-0 md:block hidden">
+                <img src={delivery} alt="" />
               </div>
             </div>
-
             {/* User order data */}
-            <div className="bg-white py-12 md:py-24 col-span-3 ">
+            <div className="bg-white shadow rounded py-5  col-span-4 mt-3 w-full">
               <div className="px-4 lg:px-8">
+                <h4 className="text-2xl font-bold text-orange-500">
+                  Customer details
+                </h4>
                 <form onSubmit={handleOrder}>
                   <div className="flex md:flex-row flex-col gap-5">
                     <div className="w-full">
@@ -317,223 +199,78 @@ const Checkout = () => {
                     </div>
                   </div>
                   {/* select payment */}
-                  <h2 className="font-medium text-xs mt-4">
-                    Select payment type
+                  <h2 className="font-medium text-md mt-4">
+                    Select payment method
                   </h2>
                   <div className="flex md:flex-row flex-col items-center gap-4 my-3">
+                    {/* Bkash payment */}
+                    <div className="w-full">
+                      <input
+                        type="radio"
+                        name="selectPayment"
+                        value="Bkash"
+                        id="Bkash"
+                        defaultChecked
+                        onChange={(e) => setPaymentMethod(e.target.value)}
+                        className="peer hidden [&:checked_+_label_svg]:block"
+                      />
+
+                      <label
+                        htmlFor="Bkash"
+                        className="flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[1px] border-neutral-200 p-4 text-sm font-medium shadow-cardShadow"
+                      >
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`${
+                              paymentMethod === "Bkash"
+                                ? "bg-black"
+                                : "bg-neutral-200"
+                            } text-white rounded-full w-6 h-6  flex justify-center items-center`}
+                          >
+                            <HiOutlineCheck size={15} />
+                          </span>
+                          <div className="flex items-center">
+                            <img src={bkash} className="w-7 h-9" alt="" />
+                          </div>
+                          <p className="text-gray-900">Bkash payment</p>
+                        </div>
+                      </label>
+                    </div>
                     {/* cash on deliver */}
                     <div className="w-full">
                       <input
                         type="radio"
                         name="selectPayment"
-                        value="Cash on delivery"
+                        value="CashOnDelivery"
                         id="Cash"
-                        defaultChecked
-                        onChange={(e) => setPaymentMode(e.target.value)}
+                        onChange={(e) => setPaymentMethod(e.target.value)}
                         className="peer hidden [&:checked_+_label_svg]:block"
                       />
 
                       <label
                         htmlFor="Cash"
-                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-cardShadow ${
-                          paymentMode === "Cash on delivery" &&
-                          "border-2 border-black"
-                        }`}
+                        className="flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[1px] border-neutral-200 p-4 text-sm font-medium shadow-cardShadow"
                       >
                         <div className="flex items-center gap-2">
-                          {paymentMode === "Cash on delivery" && (
-                            <span className="bg-black text-white rounded-full p-[2px]">
-                              {" "}
-                              <HiOutlineCheck size={15} />
-                            </span>
-                          )}
+                          <span
+                            className={`${
+                              paymentMethod === "CashOnDelivery"
+                                ? "bg-black"
+                                : "bg-neutral-200"
+                            } text-white rounded-full w-6 h-6  flex justify-center items-center`}
+                          >
+                            <HiOutlineCheck size={15} />
+                          </span>
 
                           <p className="text-black flex items-center">
                             <TbTruckDelivery className="w-7 h-9 mr-1" /> Cash on
-                            delivery{" "}
+                            delivery
                           </p>
                         </div>
                       </label>
                     </div>
-                    {/* Online payment */}
-                    <div className="w-full">
-                      <input
-                        type="radio"
-                        name="selectPayment"
-                        value="Online Payment"
-                        id="onlinePayment"
-                        onChange={(e) => setPaymentMode(e.target.value)}
-                        className="peer hidden [&:checked_+_label_svg]:block"
-                      />
-
-                      <label
-                        htmlFor="onlinePayment"
-                        className={`flex cursor-pointer items-center justify-between rounded-lg bg-white p-4 text-sm font-medium shadow-cardShadow ${
-                          paymentMode === "Online Payment" &&
-                          "border-2 border-black"
-                        }`}
-                      >
-                        <div className="flex items-center gap-2">
-                          {paymentMode === "Online Payment" && (
-                            <span className="bg-black text-white rounded-full p-[2px]">
-                              {" "}
-                              <HiOutlineCheck size={15} />
-                            </span>
-                          )}
-                          <div className="flex items-center">
-                            <img src={bkash} className="w-7 h-9" alt="" />
-                            <img src={nagad} className="w-6" alt="" />
-                          </div>{" "}
-                          <p className="text-gray-900">Online Payment</p>
-                        </div>
-                      </label>
-                    </div>
                   </div>
-                  {/* ---------- */}
-                  {paymentMode === "Online Payment" && (
-                    <BkashAndNagad
-                      discountTotal={discountTotal}
-                      setPayWith={setPayWith}
-                      payWith={payWith}
-                      setTransactionId={setTransactionId}
-                    />
-                  )}
 
-                  {paymentMode === "Cash on delivery" && (
-                    <div>
-                      <div className="flex items-center gap-5 my-3">
-                        <div>
-                          <input
-                            type="radio"
-                            name="selectPayment"
-                            id="Bkash"
-                            defaultChecked
-                            onChange={(e) => setPayWith("bkash")}
-                            className="peer hidden [&:checked_+_label_svg]:block"
-                          />
-
-                          <label
-                            htmlFor="Bkash"
-                            className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-                          >
-                            <div className="flex items-center gap-2">
-                              <HiOutlineCheck className="hidden bg-black text-white " />
-
-                              <p className="text-black flex items-center">
-                                <img src={bkash} className="w-7 h-8" alt="" />
-                                Bkash
-                              </p>
-                            </div>
-                          </label>
-                        </div>
-                        <div>
-                          <input
-                            type="radio"
-                            name="selectPayment"
-                            id="nagad"
-                            onChange={(e) => setPayWith("nagad")}
-                            className="peer hidden [&:checked_+_label_svg]:block"
-                          />
-
-                          <label
-                            htmlFor="nagad"
-                            className="flex cursor-pointer items-center justify-between rounded-lg border border-gray-100 bg-white p-2 text-sm font-medium shadow-sm hover:border-gray-200 "
-                          >
-                            <div className="flex items-center gap-2">
-                              <HiOutlineCheck className="hidden bg-black text-white" />
-
-                              <p className="text-black flex items-center">
-                                <img
-                                  src={nagad}
-                                  className="w-5 h-8 mr-1"
-                                  alt=""
-                                />
-                                Nagad
-                              </p>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-                      {/* bkash */}
-                      {payWith === "bkash" && (
-                        <div className="flex items-center">
-                          <h2 className="flex items-center">
-                            <img src={bkash} className="w-7 h-7" alt="" />{" "}
-                            <span>01630328733</span>
-                          </h2>
-
-                          <CopyToClipboard
-                            text="01830328733"
-                            onCopy={() => setBkashCopied(true)}
-                          >
-                            <span
-                              className={`ml-2 ${
-                                bkashCopied
-                                  ? "bg-[#d41065]/70 text-white"
-                                  : "bg-gray-200"
-                              } flex justify-center items-center p-1 rounded-full`}
-                            >
-                              {bkashCopied ? (
-                                <HiOutlineClipboardCheck />
-                              ) : (
-                                <VscCopy size={15} />
-                              )}
-                            </span>
-                          </CopyToClipboard>
-                        </div>
-                      )}
-                      {/* nagad */}
-                      {payWith === "nagad" && (
-                        <div className="flex items-center mt-1">
-                          <h2 className="flex items-center">
-                            <img src={nagad} className="w-7 h-5" alt="" />{" "}
-                            <span>01630328733</span>
-                          </h2>
-
-                          <CopyToClipboard
-                            text="01830328733"
-                            onCopy={() => setNagadCopied(true)}
-                          >
-                            <span
-                              className={`ml-2 ${
-                                nagadCopied
-                                  ? "bg-[#f6921e]/70 text-white"
-                                  : "bg-gray-200"
-                              }  flex justify-center items-center p-1 rounded-full`}
-                            >
-                              {nagadCopied ? (
-                                <HiOutlineClipboardCheck />
-                              ) : (
-                                <VscCopy size={15} />
-                              )}
-                            </span>
-                          </CopyToClipboard>
-                        </div>
-                      )}
-
-                      <ul className="list-disc px-4">
-                        <li className="text-md font-secondary font-bold mt-1">
-                          Cash on delivery তে ২০০ টাকা অগ্রিম পরিশোধ করতে হবে।
-                        </li>
-                        <li className="text-md font-secondary mt-1">
-                          Send money অপশন সিলেক্ট করে পেমেন্ট করুন।
-                        </li>
-                        <li className="text-md font-secondary mt-1">
-                          Bkash অথবা Nagad সিলেক্ট করে Send money করার পর
-                          Transaction Id টি দিয়ের অর্ডার Confirm করুন।
-                        </li>
-                      </ul>
-                      <label className="text-sm font-medium text-gray-700">
-                        Transaction Id
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="78USX97S"
-                        onChange={(e) => setTransactionId(e.target.value)}
-                        className="mt-1 w-full rounded border-orange-600  border-2 p-2 outline-none"
-                      />
-                    </div>
-                  )}
                   <div className="mt-10">
                     {errorMessage && (
                       <p className="text-red-500 mt-1">{errorMessage}</p>
@@ -549,9 +286,18 @@ const Checkout = () => {
               </div>
             </div>
           </div>
-        </section>
-        {successModal && <OrderSuccessModal orderId={orderId} />}
-      </>
+        ) : (
+          <div className="flex flex-col justify-center items-center h-[400px]">
+            <h4 className="font-bold text-2xl">No product found</h4>
+            <Link to="/">
+              <button className="bg-neutral-800 text-white py-2 px-6 rounded mt-3">
+                Continue shopping
+              </button>
+            </Link>
+          </div>
+        )}
+      </section>
+      {successModal && <OrderSuccessModal orderId={orderId} />}
     </AnimatePage>
   );
 };

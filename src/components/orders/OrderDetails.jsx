@@ -65,7 +65,7 @@ const OrderDetails = () => {
           <div className="border border-dashed p-5">
             <h2 className="font-bold uppercase">Total Amount</h2>
             <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
-            <h2>Delivery fee: 120 Tk</h2>
+            <h2>Delivery fee: {orderDetail.deliveryFee} Tk</h2>
             <h2 className="font-semibold text-orange-500">
               Total: {orderDetail.total} Tk
             </h2>
@@ -73,16 +73,24 @@ const OrderDetails = () => {
           {/* total */}
           <div className="border border-dashed  p-5">
             <h2 className="font-bold uppercase">Payment details</h2>
-            <h2>Payment type: {orderDetail.selectPaymentType}</h2>
-            <h2>Payment method: {orderDetail.payWith} </h2>
-            <h2>Transaction Id: {orderDetail.transactionId}</h2>
-            <h2 className="font-semibold text-orange-500">
+            <h2>
+              Payment method:{" "}
+              {orderDetail.paymentMethod === "CashOnDelivery"
+                ? "Cash on delivery"
+                : "Bkash"}
+            </h2>
+            {/* Transaction start*/}
+            {orderDetail.transactionId && (
+              <h2>Transaction Id: {orderDetail.transactionId}</h2>
+            )}
+            {/* Transaction end */}
+            {/* <h2 className="font-semibold text-orange-500">
               Pay:{" "}
-              {orderDetail.selectPaymentType === "Cash on delivery"
-                ? "200"
+              {orderDetail.paymentMethod === "CashOnDelivery"
+                ? "90"
                 : orderDetail.total}
               Tk
-            </h2>
+            </h2> */}
           </div>
 
           {/* billing address */}
@@ -95,6 +103,7 @@ const OrderDetails = () => {
             <h3>{orderDetail.address}</h3>
           </div>
         </div>
+        {/* <button onClick={() => window.print()}>Print</button> */}
       </div>
     </AnimatePage>
   );

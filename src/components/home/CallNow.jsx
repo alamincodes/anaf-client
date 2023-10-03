@@ -8,7 +8,7 @@ const CallNow = () => {
           <h2 className="lg:text-3xl text-lg font-bold font-secondary">
             অর্ডার সম্পকির্ত যেকোনো তথ্যের জন্য কল করুন
           </h2>
-          <p className="font-secondary text-gray-200">
+          <p className="font-secondary text-orange-500">
             যোগাযোগের সময় - সকাল 10 টা থেকে রাত 10 টা.
           </p>
           <p className="font-primary text-gray-300">01630328733</p>
@@ -21,7 +21,7 @@ const CallNow = () => {
             <span>
               <TbPhoneCall
                 size={20}
-                className="mr-1 text-green-700 animate-pulse"
+                className="mr-1 text-orange-600 animate-pulse"
               />
             </span>{" "}
             কল করুন

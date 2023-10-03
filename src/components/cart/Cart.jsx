@@ -5,6 +5,7 @@ import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { BiShoppingBag } from "react-icons/bi";
+import emptyCart from "../../assets/image/emptyCart.svg";
 const Cart = () => {
   useTitle("Cart");
   const { isEmpty, items, updateItemQuantity, cartTotal, removeItem } =
@@ -14,17 +15,17 @@ const Cart = () => {
 
   return (
     <AnimatePage>
-      <section className="myContainer">
+      <section className="myContainer mb-5">
         {isEmpty ? (
           <div className="myContainer flex flex-col justify-center items-center h-[400px]">
-            <span>
-              <BiShoppingBag size={50} />
-            </span>
-            <h2 className="text-3xl font-semibold">Your cart is empty</h2>
+            <div className="w-[200px] h-[200px]">
+              <img src={emptyCart} alt="" />
+            </div>
+            <h2 className=" font-semibold">Your cart is empty</h2>
 
             <Link
               to="/"
-              className=" bg-neutral-800 mt-2 text-white py-3 rounded-md px-4"
+              className=" bg-neutral-800 mt-2 text-white py-3 rounded-md px-8"
             >
               <button>Continue to shopping</button>
             </Link>

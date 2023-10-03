@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import { HiOutlineMenu } from "react-icons/hi";
 import { HiOutlineDocumentText, HiOutlineHome } from "react-icons/hi2";
 const BottomNav = ({ setOpen }) => {
+  
   return (
     <div className="md:hidden print:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
       <ul className="relative flex items-center justify-between px-5">

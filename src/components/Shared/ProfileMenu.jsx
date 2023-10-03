@@ -6,6 +6,7 @@ import useAdmin from "../../hooks/useAdmin";
 import { Menu } from "@headlessui/react";
 import { HiChevronDown } from "react-icons/hi";
 import avatar from "../../assets/image/avatar.svg";
+
 const ProfileMenu = () => {
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();

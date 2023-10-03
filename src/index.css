@@ -22,7 +22,7 @@
 
   @keyframes fadein {
     from {
-      @apply opacity-0 -right-[100px] ;
+      @apply opacity-0 -right-[100px];
     }
     to {
       @apply opacity-100 right-[0px] ;

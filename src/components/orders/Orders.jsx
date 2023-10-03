@@ -3,9 +3,9 @@ import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { Link } from "react-router-dom";
 import AnimatePage from "../Shared/AnimatePage";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import { BsBoxSeam } from "react-icons/bs";
-import { HiArrowSmRight } from "react-icons/hi";
+import { HiChevronRight } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
+import emptyBox from "../../assets/image/box.svg";
 const Orders = () => {
   useTitle("Orders");
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -27,7 +27,7 @@ const Orders = () => {
         return res.json();
       })
       .then((ordersData) => {
-        console.log(ordersData);
+        // console.log(ordersData);
         setOrders(ordersData?.reverse());
         setIsLoading(false);
       });
@@ -39,15 +39,17 @@ const Orders = () => {
     <AnimatePage>
       {orders.length === 0 ? (
         <div className="myContainer flex justify-center items-center flex-col h-[400px]">
-          <BsBoxSeam size={50} />
-          <div className="flex flex-col text-xl items-center font-medium mt-2">
-            <h2 className="mb-3">No orders</h2>
+          <div className="w-[200px] h-[200px]">
+            <img src={emptyBox} alt="" />
+          </div>
+          <div className="flex flex-col items-center font-medium mt-2">
+            <h2 className="mb-3">No order found</h2>
             <Link
               to="/"
-              className="text-white ml-2 py-2 px-4 rounded-md bg-neutral-800 "
+              className="text-white ml-2 py-2 px-8 rounded-md bg-neutral-800 "
             >
               <span className="inline-flex items-center">
-                Back to home <HiArrowSmRight size={20} />
+                Back to home <HiChevronRight size={20} />
               </span>
             </Link>
           </div>

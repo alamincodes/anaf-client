@@ -37,8 +37,8 @@ const SignUp = () => {
   const handleSignUp = (data) => {
     setErrorMessage("");
     setIsLoading(true);
-    console.log(data);
-    console.log(data.email);
+    // console.log(data);
+    // console.log(data.email);
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;

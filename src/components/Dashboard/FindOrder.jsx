@@ -66,7 +66,7 @@ const FindOrder = () => {
           <h2 className="mt-5">
             Order{" "}
             <span className="bg-gray-200 font-bold p-1">
-              #{orderDetail._id}
+              #{orderDetail.orderId}
             </span>{" "}
             was placed on {orderDetail.orderDate} and is currently{" "}
             <span className="bg-gray-200 p-1  font-bold">

@@ -50,24 +50,27 @@ const ProductDetail = () => {
         <div className="myContainer mt-2 relative">
           {/* toast */}
           {isVisible && (
-            <div className="show rounded-sm ring-4 ring-neutral-700 w-[300px] z-20 top-[84px] right-0 fixed text-white bg-neutral-900 p-5">
+            <div className="show rounded-sm ring-4 ring-neutral-500 w-[300px] z-20 top-[84px] right-0 fixed text-white bg-neutral-900 p-5">
               <div className="flex items-center">
                 <span>
                   <HiCheckCircle size={23} className="text-green-500 mr-2" />
                 </span>
                 <p>
-                  Item added. <Link to="/cart" className="underline">Go to cart.</Link>{" "}
+                  Product added
+                  <Link to="/cart" className=" bg-orange-500 p-2 ml-3 rounded ">
+                    viwe cart
+                  </Link>
                 </p>
               </div>
             </div>
           )}
-          <div className="flex flex-col md:gap-4 lg:flex-row bg-white">
+          <div className="flex flex-col md:gap-4 lg:flex-row bg-white shadow-cardShadow rounded-xl md:p-5 p-2">
             {/* left */}
-            <div className="flex flex-col lg:w-[40%]">
-              <div className="flex justify-center items-center ">
+            <div className="flex flex-col lg:w-[30%] ">
+              <div className="">
                 <img
                   src={activeImg}
-                  className="md:w-[500px] lg:h-[520px] mt-4 object-cover w-full h-full"
+                  className="md:w-[400px] lg:h-[400px] object-cover w-full h-full rounded"
                   alt=""
                 />
               </div>
@@ -77,7 +80,7 @@ const ProductDetail = () => {
                     <img
                       key={singleImg}
                       onClick={() => setActiveImg(singleImg)}
-                      className="w-20 h-20 object-cover border p-1 my-1 cursor-pointer"
+                      className="w-20 h-20 object-cover border p-1 mt-3 cursor-pointer"
                       src={singleImg}
                       alt=""
                     />
@@ -139,7 +142,7 @@ const ProductDetail = () => {
             </div>
           </div>
           {/* description */}
-          <div className="p-5 bg-white mt-3 overflow-x-auto">
+          <div className="p-5 bg-white mt-3 overflow-x-auto shadow-cardShadow rounded-xl">
             <nav className="flex gap-4 border-b">
               <span className="border-b-2 border-gray-900 py-3 text-sm font-medium text-gray-900 hover:border-gray-400 hover:text-gray-800">
                 Description
