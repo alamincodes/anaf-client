@@ -32,7 +32,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/product/${id}`)
+    fetch(`http://localhost:5000/product/${id}`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

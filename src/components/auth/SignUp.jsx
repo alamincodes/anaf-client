@@ -65,7 +65,7 @@ const SignUp = () => {
           district: data.district,
           address: data.address,
         };
-        fetch("https://anaf-server.vercel.app/users", {
+        fetch("http://localhost:5000/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -113,7 +113,7 @@ const SignUp = () => {
                   Sign up
                 </h2>
               </div>
-              <div className="flex md:flex-row flex-col md:gap-4 mt-10">
+              <div className="flex md:flex-row flex-col md:gap-4 lg:mt-10">
                 {/*  --------part 1-------- */}
                 <div>
                   {/* name */}

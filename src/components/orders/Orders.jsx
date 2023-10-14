@@ -15,7 +15,7 @@ const Orders = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/order?email=${user?.email}`, {
+    fetch(`http://localhost:5000/order?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },

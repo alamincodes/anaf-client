@@ -26,47 +26,38 @@ const Checkout = () => {
 
   const location = useLocation();
   const invoiceId = location.search.split("=")[1];
-
+  // console.log(window.location.href);
   const handleOrder = (e) => {
     e.preventDefault();
     setSetErrorMessage("");
-    const form = e.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    const phone = form.phone.value;
-    const districtName = form.district.value;
-    const division = form.division.value;
-    const address = form.address.value;
-    const deliveryFee = 90;
-    const orderDate = format(new Date(), "PP");
-    const orderInfo = {
-      name,
-      email,
-      phone,
-      districtName,
-      division,
-      address,
-      paymentMethod,
-      items,
-      deliveryFee,
-      cartTotal,
-      total: cartTotal + deliveryFee,
-      orderDate,
+    // const form = e.target;
+    // const name = form.name.value;
+    // const email = form.email.value;
+    // const phone = form.phone.value;
+    // const districtName = form.district.value;
+    // const division = form.division.value;
+    // const address = form.address.value;
+    // const orderDate = format(new Date(), "PP");
+    const checkoutInfo = {
+      invoiceId,
+      callbackURL: "http://localhost:5173/process-checkout?invoiceId=",
     };
+
     console.log(paymentMethod);
-    console.log(orderInfo);
+    console.log(checkoutInfo);
     setIsLoading(true);
-    fetch("https://anaf-server.vercel.app/orders", {
+    fetch("https://anaf-server.vercel.app/payment/bkash/create", {
       method: "POST",
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify(orderInfo),
+      body: JSON.stringify(checkoutInfo),
     })
       .then((res) => res.json())
       .then((data) => {
-        emptyCart();
+        // emptyCart();
+        console.log(data);
         setSuccessModal(true);
         if (data.insertedId) {
           setIsLoading(false);
@@ -82,7 +73,7 @@ const Checkout = () => {
   };
 
   useEffect(() => {
-    fetch(`https://anaf-server.vercel.app/get-invoice/${invoiceId}`, {
+    fetch(`http://localhost:5000/get-invoice/${invoiceId}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
@@ -94,7 +85,7 @@ const Checkout = () => {
       });
   }, []);
   useEffect(() => {
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
+    fetch(`http://localhost:5000/users?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },

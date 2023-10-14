@@ -12,7 +12,7 @@ const AllUsers = () => {
   // const [users, setAllUsers] = useState([]);
   // const [isLoading, setIsLoading] = useState(true);
   const handleMakeAdmin = (id) => {
-    fetch(`https://anaf-server.vercel.app/users/admin/${id}`, {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -28,7 +28,7 @@ const AllUsers = () => {
   };
 
   const handleCancelAdmin = (id) => {
-    fetch(`https://anaf-server.vercel.app/users/cancel/${id}`, {
+    fetch(`http://localhost:5000/users/cancel/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -58,7 +58,7 @@ const AllUsers = () => {
   } = useQuery({
     queryKey: ["allUsers"],
     queryFn: async () => {
-      const res = await fetch("https://anaf-server.vercel.app/allUsers", {
+      const res = await fetch("http://localhost:5000/allUsers", {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },

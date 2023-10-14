@@ -9,7 +9,7 @@ const OrderDetails = () => {
   let { id } = useParams();
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/order/${id}`, {
+    fetch(`http://localhost:5000/order/${id}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },

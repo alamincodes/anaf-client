@@ -23,7 +23,7 @@ const AllOrders = () => {
   } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
-      const res = await fetch("https://anaf-server.vercel.app/orders", {
+      const res = await fetch("http://localhost:5000/orders", {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -40,7 +40,7 @@ const AllOrders = () => {
       status,
     };
 
-    fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
+    fetch(`http://localhost:5000/order/${orderId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const AllOrders = () => {
 
   const handleDeleteOrder = (id) => {
     setDeleteLoading(true);
-    fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
+    fetch(`http://localhost:5000/deleteOrder/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

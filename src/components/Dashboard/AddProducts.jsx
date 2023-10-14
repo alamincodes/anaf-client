@@ -13,7 +13,7 @@ const AddProducts = () => {
   const { data: product = [], refetch } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
-      const res = await fetch("https://anaf-server.vercel.app/products", {
+      const res = await fetch("http://localhost:5000/products", {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -104,7 +104,7 @@ const AddProducts = () => {
         id,
       };
       setAddLoading(true);
-      fetch("https://anaf-server.vercel.app/products", {
+      fetch("http://localhost:5000/products", {
         method: "POST",
         headers: {
           "content-type": "application/json",

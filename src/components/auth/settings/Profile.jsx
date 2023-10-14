@@ -8,17 +8,23 @@ import BottomNav from "../../Shared/BottomNav";
 
 const Profile = () => {
   useTitle("Profile");
-  const { user } = useContext(AUTH_CONTEXT);
+  const { user, logOut } = useContext(AUTH_CONTEXT);
   const [isLoading, setIsLoading] = useState(false);
   const [userData, setUserData] = useState({});
   useEffect(() => {
     setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
+    fetch(`http://localhost:5000/users?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         // console.log(data);
         setUserData(data);
@@ -63,7 +69,6 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      
     </AnimatePage>
   );
 };

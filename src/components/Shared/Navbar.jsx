@@ -1,19 +1,14 @@
 import React, { useContext, useState } from "react";
 import logo from "../../assets/logo/anaf.svg";
-import { HiOutlineMenu, HiOutlineShoppingBag } from "react-icons/hi";
+import {  HiOutlineShoppingBag } from "react-icons/hi";
 import { TbSearch } from "react-icons/tb";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
-import useAdmin from "../../hooks/useAdmin";
-import BottomNav from "./BottomNav";
-import avatar from "../../assets/image/avatar.svg";
-import { TOOLS_PROVIDER } from "../../context/ToolsProvider";
 import MobileNav from "./MobileNav";
 const Navbar = () => {
-  const { user, logOut } = useContext(AUTH_CONTEXT);
-  const { emptyCart } = useCart();
+  const { user} = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
 
   return (

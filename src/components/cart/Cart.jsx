@@ -17,7 +17,7 @@ const Cart = () => {
   const cartItems = { email: user?.email, items, };
 
   const handleCreateInvoice = () => {
-    fetch("https://anaf-server.vercel.app/create-invoice", {
+    fetch("http://localhost:5000/create-invoice", {
       method: "POST",
       headers: {
         "content-type": "application/json",
