@@ -18,8 +18,8 @@ const RelatedPRoducts = ({ productDetail }) => {
       });
   }, []);
   return (
-    <div className="mt-5">
-      <h2 className="text-3xl uppercase font-bold">related products</h2>
+    <div className="my-5">
+      <h2 className="text-3xl uppercase font-bold mb-2">related products</h2>
       <div className="myContainer bg-white md:p-5 p-2 shadow-cardShadow rounded-xl">
         <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2">
           {isLoading && <SkeletonCard cards={5} />}

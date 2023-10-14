@@ -12,7 +12,7 @@ const Home = () => {
   useTitle("Home");
   return (
     <AnimatePage>
-      <div>
+      <div >
         <LiveChat />
         <HomeSlider />
         <Categories />
@@ -20,6 +20,7 @@ const Home = () => {
         {/* <BusinessAbout /> */}
         {/* <HomeDelivery /> */}
         <CallNow />
+       
       </div>
     </AnimatePage>
   );

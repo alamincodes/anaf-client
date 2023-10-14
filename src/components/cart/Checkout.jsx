@@ -10,7 +10,7 @@ import { format } from "date-fns";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import OrderSuccessModal from "../orders/OrderSuccessModal";
 import delivery from "../../assets/image/delivery.svg";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Checkout = () => {
   useTitle("Checkout");
@@ -22,6 +22,10 @@ const Checkout = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [successModal, setSuccessModal] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [invoiceData, setInvoiceData] = useState({});
+
+  const location = useLocation();
+  const invoiceId = location.search.split("=")[1];
 
   const handleOrder = (e) => {
     e.preventDefault();
@@ -78,6 +82,18 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+    fetch(`https://anaf-server.vercel.app/get-invoice/${invoiceId}`, {
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        setInvoiceData(data);
+      });
+  }, []);
+  useEffect(() => {
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -100,10 +116,12 @@ const Checkout = () => {
             {/* order details */}
             <div className="w-full col-span-3 relative rounded bg-white shadow p-4 mt-3">
               <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded">
-                <li className="font-semibold">Subtotal: {cartTotal}Tk</li>
+                <li className="font-semibold">
+                  Subtotal: {invoiceData.total}Tk
+                </li>
                 <li className="font-semibold my-2">Delivery charge: 90Tk</li>
                 <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
-                  <h5 className="mt-1">Total: {cartTotal + 90}Tk</h5>
+                  <h5 className="mt-1">Total: {invoiceData.total + 90}Tk</h5>
                 </li>
               </ul>
 
@@ -128,11 +146,11 @@ const Checkout = () => {
                         type="text"
                         name="name"
                         defaultValue={user?.displayName}
-                        className="mt-1 w-full  rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                        className="mt-1 w-full  rounded-lg border-gray-200 shadow-sm p-2 border outline-none"
                       />
                     </div>
                     <div className="w-full">
-                      <label className=" text-xs font-medium text-gray-700">
+                      <label className="text-xs font-medium text-gray-700">
                         Email
                       </label>
 
@@ -141,7 +159,7 @@ const Checkout = () => {
                         disabled
                         name="email"
                         defaultValue={user?.email}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                        className="mt-1 w-full rounded-lg border-gray-200 shadow-sm p-2 border outline-none"
                       />
                     </div>
                   </div>
@@ -155,7 +173,7 @@ const Checkout = () => {
                         type="text"
                         name="phone"
                         defaultValue={userFullInfo.phone}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                        className="mt-1 w-full rounded-lg border-gray-200 shadow-sm p-2 border outline-none"
                       />
                     </div>
                     {/* division */}
@@ -167,7 +185,7 @@ const Checkout = () => {
                       <input
                         name="division"
                         defaultValue={userFullInfo.division}
-                        className="border rounded-sm outline-none font-normal p-2 w-full "
+                        className="border rounded-lg outline-none font-normal shadow-sm p-2 w-full "
                       />
                     </div>
                   </div>
@@ -182,7 +200,7 @@ const Checkout = () => {
                       <input
                         name="district"
                         defaultValue={userFullInfo.district}
-                        className="border rounded-sm outline-none font-normal p-2 w-full "
+                        className="border rounded-lg outline-none font-normal shadow-sm p-2 w-full "
                       />
                     </div>
                     <div className="w-full">
@@ -194,7 +212,7 @@ const Checkout = () => {
                         name="address"
                         defaultValue={userFullInfo.address}
                         rows={1}
-                        className="mt-1 w-full rounded-md border-gray-200 shadow-sm p-2 border outline-none"
+                        className="mt-1 w-full rounded-lg border-gray-200 shadow-sm p-2 border outline-none"
                       />
                     </div>
                   </div>

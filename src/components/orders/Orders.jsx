@@ -6,6 +6,7 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import { HiChevronRight } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import emptyBox from "../../assets/image/box.svg";
+import BottomNav from "../Shared/BottomNav";
 const Orders = () => {
   useTitle("Orders");
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -175,6 +176,7 @@ const Orders = () => {
           </div>
         </div>
       )}
+      
     </AnimatePage>
   );
 };

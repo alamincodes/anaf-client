@@ -9,6 +9,7 @@ import { BsCreditCard } from "react-icons/bs";
 import { FiCheckCircle } from "react-icons/fi";
 import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import RelatedPRoducts from "./RelatedProducts/RelatedPRoducts";
+import { HiCurrencyBangladeshi } from "react-icons/hi";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -64,6 +65,7 @@ const ProductDetail = () => {
               </div>
             </div>
           )}
+          {/* product details */}
           <div className="flex flex-col md:gap-4 lg:flex-row bg-white shadow-cardShadow rounded-xl md:p-5 p-2">
             {/* left */}
             <div className="flex flex-col lg:w-[30%] ">
@@ -123,9 +125,12 @@ const ProductDetail = () => {
                   </div>
                 </div>
                 {/* btn */}
-                <div className="md:border-t md:border-b-0 border-b md:py-5 pb-10 flex flex-col space-y-4 mt-5">
-                  <h2 className="text-3xl font-bold text-orange-500">
-                    {price} ৳
+                <div className="hidden  md:border-t md:border-b-0 border-b md:py-5 pb-10 md:flex flex-col space-y-4 mt-5">
+                  <h2 className="text-2xl font-bold text-orange-500 flex items-center">
+                    <span>
+                      <HiCurrencyBangladeshi size={32} />
+                    </span>{" "}
+                    {price}
                   </h2>
                   <button
                     disabled={outOfStock === "true"}
@@ -149,6 +154,24 @@ const ProductDetail = () => {
               </span>
             </nav>
             <p className="mt-2">{detail}</p>
+          </div>
+
+          {/* only mobile */}
+          <div className="md:hidden bg-neutral-800 flex justify-between items-center fixed bottom-0 left-0 z-50 w-full h-[79px] border-t-2 border-neutral-500">
+            {/* <div className=""> */}
+            <h2 className="text-xl font-bold py-2 text-orange-500 bg-neutral-800 w-full flex justify-center items-center">
+              <span>
+                <HiCurrencyBangladeshi size={25} />
+              </span>
+              {price}
+            </h2>
+            <button className="py-2 w-full bg-orange-500 font-bold h-full flex justify-center items-center text-white uppercase">
+              <span>
+                <HiOutlineShoppingBag className=" mb-2 mr-1" size={25} />
+              </span>{" "}
+              Add to cart
+            </button>
+            {/* </div> */}
           </div>
 
           {/* related products */}

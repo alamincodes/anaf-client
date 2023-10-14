@@ -7,7 +7,7 @@ const HomeSlider = () => {
   
   return (
     <div className="myContainer mt-2">
-      <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-5">
+      <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-3">
         <div className="lg:col-span-8 lg:max-h-full max-h-[400px]">
           <Splide
             options={{

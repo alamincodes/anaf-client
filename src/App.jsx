@@ -6,7 +6,7 @@ import FooterSection from "./components/Shared/FooterSection";
 
 function App() {
   return (
-    <div className="">
+    <div>
       <CartProvider>
         <RouterProvider router={routes} />
       </CartProvider>

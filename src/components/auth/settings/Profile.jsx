@@ -4,6 +4,7 @@ import LoadingSpinner from "../../Shared/LoadingSpinner";
 import useTitle from "../../../hooks/useTitle";
 import AnimatePage from "../../Shared/AnimatePage";
 import { Link } from "react-router-dom";
+import BottomNav from "../../Shared/BottomNav";
 
 const Profile = () => {
   useTitle("Profile");
@@ -62,6 +63,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      
     </AnimatePage>
   );
 };

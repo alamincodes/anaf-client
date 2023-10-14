@@ -1,22 +1,25 @@
-import React, { useEffect } from "react";
-// import Logo from "../../assets/logo/A.svg";
-import { FaRegUser } from "react-icons/fa";
-import { HiOutlinePhone } from "react-icons/hi";
+import React, { useContext, useEffect } from "react";
+import {
+  HiDocumentText,
+  HiUserCircle,
+  HiMenuAlt1,
+  HiPhoneOutgoing,
+  HiHome,
+} from "react-icons/hi";
 import { NavLink } from "react-router-dom";
-import { HiOutlineMenu } from "react-icons/hi";
-import { HiOutlineDocumentText, HiOutlineHome } from "react-icons/hi2";
-const BottomNav = ({ setOpen }) => {
-  
+import { TOOLS_PROVIDER } from "../../context/ToolsProvider";
+const BottomNav = () => {
+  const { setOpenMenu } = useContext(TOOLS_PROVIDER);
   return (
-    <div className="md:hidden print:hidden fixed -bottom-1 z-20 bg-neutral-900 text-white w-full py-5">
+    <div className="md:hidden print:hidden fixed left-0 -bottom-1 z-20 bg-neutral-900 text-white w-full py-5 h-[73px]">
       <ul className="relative flex items-center justify-between px-5">
         <div>
           <li
-            onClick={() => setOpen(true)}
+            onClick={() => setOpenMenu(true)}
             className="w-full h-full flex flex-col items-center"
           >
             <span>
-              <HiOutlineMenu size={25} />
+              <HiMenuAlt1 size={25} />
             </span>
             <span className="text-xs">Menu</span>
           </li>
@@ -24,7 +27,7 @@ const BottomNav = ({ setOpen }) => {
         <a href="tel:01630328733">
           <li className="w-full h-full flex flex-col items-center">
             <span>
-              <HiOutlinePhone size={25} />
+              <HiPhoneOutgoing size={25} />
             </span>
             <span className="text-xs">Call</span>
           </li>
@@ -35,10 +38,10 @@ const BottomNav = ({ setOpen }) => {
             isActive ? "text-orange-500" : "text-black"
           }
         >
-          <li className="w-full h-full flex flex-col justify-center items-center  -mt-7">
+          <li className="w-full h-full flex flex-col justify-center items-center  -mt-8">
             <h5 className="flex items-center justify-center bg-white  rounded-full p-2 border-4 border-neutral-900">
               {" "}
-              <HiOutlineHome size={40} />{" "}
+              <HiHome size={40} />{" "}
             </h5>
             {/* <span className="text-xs">Home</span> */}
           </li>
@@ -52,7 +55,7 @@ const BottomNav = ({ setOpen }) => {
         >
           <li className="w-full h-full flex flex-col items-center">
             <span>
-              <HiOutlineDocumentText size={25} />
+              <HiDocumentText size={25} />
             </span>
             <span className="text-xs">Orders</span>
           </li>
@@ -65,7 +68,7 @@ const BottomNav = ({ setOpen }) => {
         >
           <li className="w-full h-full flex flex-col items-center">
             <span>
-              <FaRegUser size={25} />
+              <HiUserCircle size={25} />
             </span>
             <span className="text-xs">Profile</span>
           </li>

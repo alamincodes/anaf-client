@@ -1,18 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
-import { BiShoppingBag } from "react-icons/bi";
 import emptyCart from "../../assets/image/emptyCart.svg";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
+
 const Cart = () => {
   useTitle("Cart");
+  const { user } = useContext(AUTH_CONTEXT);
   const { isEmpty, items, updateItemQuantity, cartTotal, removeItem } =
     useCart();
 
-  //   console.log(items);
+  // console.log(items);
+  const cartItems = { email: user?.email, items, };
 
+  const handleCreateInvoice = () => {
+    fetch("https://anaf-server.vercel.app/create-invoice", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(cartItems),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          window.location.replace(
+            `http://localhost:5173/checkout?invoiceId=${data.insertedId}`
+          );
+        }
+      });
+  };
   return (
     <AnimatePage>
       <section className="myContainer mb-5">
@@ -136,13 +158,13 @@ const Cart = () => {
                         </div>
                       </dl>
 
-                      <div className="flex justify-end ">
-                        <Link
-                          to="/checkout"
-                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-sm text-white"
+                      <div className="flex justify-end">
+                        <button
+                          onClick={handleCreateInvoice}
+                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-white"
                         >
                           Checkout
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

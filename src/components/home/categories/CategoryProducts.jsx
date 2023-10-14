@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import CategoryProductCard from "./CategoryProductCard";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
+import BottomNav from "../../Shared/BottomNav";
 const CategoryProducts = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +47,7 @@ const CategoryProducts = () => {
           <CategoryProductCard key={category._id} category={category} />
         ))}
       </div>
+      
     </div>
   );
 };

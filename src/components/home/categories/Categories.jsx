@@ -69,7 +69,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="myContainer mt-5">
+    <div className="myContainer mt-2">
       <div className="bg-white shadow-cardShadow md:p-5 p-2 rounded-xl">
         <h2 className="md:text-3xl text-2xl font-bold text-center uppercase mb-5">
           Categories

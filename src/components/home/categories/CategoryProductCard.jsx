@@ -10,7 +10,6 @@ import { HiOutlinePhoto } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 import { useCart } from "react-use-cart";
 
-
 const CategoryProductCard = ({ category }) => {
   const [imageLoad, setImageLoad] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -45,11 +44,11 @@ const CategoryProductCard = ({ category }) => {
       {/* toast */}
       {isVisible && (
         <div className="show rounded-sm ring-4 ring-neutral-500 w-[300px] z-20 top-[84px] right-0 fixed text-white bg-neutral-900 p-5">
-          <div className="flex items-center">
+          <div className="flex items-center md:text-md  text-xs">
             <span>
               <HiCheckCircle size={23} className="text-green-500 mr-2" />
             </span>
-            <p>
+            <p className="">
               Product added
               <Link to="/cart" className=" bg-orange-500 p-2 ml-3 rounded ">
                 viwe cart
