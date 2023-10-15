@@ -51,7 +51,7 @@ const FooterSection = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link to='/refund-policy'>
                     <button>রিফান্ড পলিসি</button>
                   </Link>
                 </li>

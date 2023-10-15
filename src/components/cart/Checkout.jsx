@@ -39,14 +39,17 @@ const Checkout = () => {
     // const address = form.address.value;
     // const orderDate = format(new Date(), "PP");
     const checkoutInfo = {
-      invoiceId,
-      callbackURL: "http://localhost:5173/process-checkout?invoiceId=",
+      invoiceId: invoiceId,
+      callbackURL: `${
+        import.meta.env.VITE_SERVER_URL
+      }process-checkout?invoiceId=`,
+      
     };
-
-    console.log(paymentMethod);
-    console.log(checkoutInfo);
+    console.log(import.meta.env.VITE_SERVER_URL);
+    // console.log(paymentMethod);
+    // console.log(checkoutInfo);
     setIsLoading(true);
-    fetch("https://anaf-server.vercel.app/payment/bkash/create", {
+    fetch("http://localhost:5000/payment/bkash/create", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -56,13 +59,14 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // emptyCart();
         console.log(data);
-        setSuccessModal(true);
-        if (data.insertedId) {
-          setIsLoading(false);
-          setOrderId(data.insertedId);
-        }
+        window.location.replace(data.bkashURL);
+        // emptyCart();
+        // setSuccessModal(true);
+        // if (data.bkashURL) {
+        //   setIsLoading(false);
+        //   setOrderId(data.insertedId);
+        // }
         // console.log(data);
       })
       .catch((error) => {

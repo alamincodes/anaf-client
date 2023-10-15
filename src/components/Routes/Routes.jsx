@@ -29,6 +29,8 @@ import EditProduct from "../Dashboard/EditProduct";
 import Contact from "../Dashboard/Contact";
 import PageNotFound from "../Shared/PageNotFound";
 import Profile from "../auth/settings/Profile";
+import ProcessCheckout from "../payment/ProcessCheckout";
+import RefundPolicy from "../refundPolicy/RefundPolicy";
 
 export const routes = createBrowserRouter([
   {
@@ -113,6 +115,14 @@ export const routes = createBrowserRouter([
       {
         path: "/forgetPAssword",
         element: <ForgetPAssword />,
+      },
+      {
+        path: "/process-checkout",
+        element: <ProcessCheckout />,
+      },
+      {
+        path: "/refund-policy",
+        element: <RefundPolicy />,
       },
       {
         path: "/settings",
