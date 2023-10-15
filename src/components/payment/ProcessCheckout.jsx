@@ -1,28 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const ProcessCheckout = () => {
   const queryString = window.location.search;
   const queryParams = new URLSearchParams(queryString);
   const status = queryParams.get("status");
   const paymentID = queryParams.get("paymentID");
-  console.log(paymentID, status);
+  const invoiceID = queryParams.get("invoiceId");
 
-  const obj = {
-    hello: "hello",
-  };
-  if (status === "success") {
-    console.log("success");
-    fetch("something", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    });
-  } else {
-    console.log("cancel");
-  }
-  return <div>success</div>;
+  const [message, setMessage] = useState("Wait, we are processing your payment.");
+  useEffect(() => {
+    const bkashExecBody = {
+      paymentID: paymentID,
+      invoiceID: invoiceID,
+    };
+
+    if (status === "success") {
+      console.log("success");
+      fetch("http://localhost:5000/payment/bkash/execute", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+        body: JSON.stringify(bkashExecBody),
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          if (json.status == "SUCCESS") {
+            // successfully paid
+            // show that paymenet is paid in UI
+            // clear cart
+            setMessage("Payment done, fucking alamin!");
+          } else {
+            // show the error
+            setMessage(json.message);
+          }
+          console.log(json);
+        });
+      return;
+    }
+
+    // failed / cancelled
+    setMessage("The payment was " + status);
+  }, []);
+
+  return <div>{message}</div>;
 };
 
 export default ProcessCheckout;

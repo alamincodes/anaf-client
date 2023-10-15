@@ -12,15 +12,15 @@ import ToolsProvider from "./context/ToolsProvider.jsx";
 const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <ToolsProvider>
-          <SkeletonTheme>
-            <App />
-          </SkeletonTheme>
-        </ToolsProvider>
-      </AuthProvider>
-    </QueryClientProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <QueryClientProvider client={queryClient}>
+    <AuthProvider>
+      <ToolsProvider>
+        <SkeletonTheme>
+          <App />
+        </SkeletonTheme>
+      </ToolsProvider>
+    </AuthProvider>
+  </QueryClientProvider>
+  // </React.StrictMode>
 );
