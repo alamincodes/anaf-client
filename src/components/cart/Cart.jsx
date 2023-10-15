@@ -6,15 +6,16 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import emptyCart from "../../assets/image/emptyCart.svg";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import { format } from "date-fns";
 
 const Cart = () => {
   useTitle("Cart");
   const { user } = useContext(AUTH_CONTEXT);
-  const { isEmpty, items, updateItemQuantity, cartTotal, removeItem } =
-    useCart();
+  const { isEmpty, items, updateItemQuantity, cartTotal, removeItem } = useCart();
 
   // console.log(items);
-  const cartItems = { email: user?.email, items, };
+  const dateTime = format(new Date(), "PPpp");
+  const cartItems = { email: user?.email, items, dateTime };
 
   const handleCreateInvoice = () => {
     fetch("http://localhost:5000/create-invoice", {
@@ -29,9 +30,7 @@ const Cart = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          window.location.replace(
-            `http://localhost:5173/checkout?invoiceId=${data.insertedId}`
-          );
+          window.location.replace(`http://localhost:5173/checkout?invoiceId=${data.insertedId}`);
         }
       });
   };
@@ -45,10 +44,7 @@ const Cart = () => {
             </div>
             <h2 className=" font-semibold">Your cart is empty</h2>
 
-            <Link
-              to="/"
-              className=" bg-neutral-800 mt-2 text-white py-3 rounded-md px-8"
-            >
+            <Link to="/" className=" bg-neutral-800 mt-2 text-white py-3 rounded-md px-8">
               <button>Continue to shopping</button>
             </Link>
           </div>
@@ -57,9 +53,7 @@ const Cart = () => {
             <div className="myContainer p-5 bg-white shadow-cardShadow rounded-xl mt-3">
               <div>
                 <header className="text-left">
-                  <h1 className="text-xl uppercase font-bold text-gray-900 sm:text-3xl">
-                    Your Cart
-                  </h1>
+                  <h1 className="text-xl uppercase font-bold text-gray-900 sm:text-3xl">Your Cart</h1>
                 </header>
 
                 <div className="mt-5">
@@ -70,22 +64,14 @@ const Cart = () => {
                         className="flex flex-col space-y-3 py-6 text-left sm:flex-row sm:space-x-5 sm:space-y-0"
                       >
                         <div className="shrink-0">
-                          <img
-                            className="h-16 w-16 max-w-full rounded-lg object-cover"
-                            src={item.img}
-                            alt=""
-                          />
+                          <img className="h-16 w-16 max-w-full rounded-lg object-cover" src={item.img} alt="" />
                         </div>
 
                         <div className="relative flex flex-1 flex-col justify-between">
                           <div className="sm:col-gap-5 sm:grid sm:grid-cols-2">
                             <div className="pr-8 sm:pr-5">
-                              <p className="text-base font-semibold text-gray-900">
-                                {item.name}
-                              </p>
-                              <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">
-                                Quantity: {item.quantity}
-                              </p>
+                              <p className="text-base font-semibold text-gray-900">{item.name}</p>
+                              <p className="mx-0 mt-1 mb-0 text-sm text-gray-400">Quantity: {item.quantity}</p>
                             </div>
 
                             <div className="mt-4 flex items-end justify-between sm:mt-0 sm:items-start sm:justify-end">
@@ -96,12 +82,7 @@ const Cart = () => {
                               <div className="sm:order-1">
                                 <div className="mx-auto flex h-8 items-stretch text-gray-600">
                                   <button
-                                    onClick={() =>
-                                      updateItemQuantity(
-                                        item.id,
-                                        item.quantity - 1
-                                      )
-                                    }
+                                    onClick={() => updateItemQuantity(item.id, item.quantity - 1)}
                                     className="flex items-center justify-center rounded-l-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
                                   >
                                     -
@@ -110,12 +91,7 @@ const Cart = () => {
                                     {item.quantity}
                                   </div>
                                   <button
-                                    onClick={() =>
-                                      updateItemQuantity(
-                                        item.id,
-                                        item.quantity + 1
-                                      )
-                                    }
+                                    onClick={() => updateItemQuantity(item.id, item.quantity + 1)}
                                     className="flex items-center justify-center rounded-r-md bg-gray-200 px-4 transition hover:bg-black hover:text-white"
                                   >
                                     +
