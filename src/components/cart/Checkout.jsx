@@ -40,10 +40,7 @@ const Checkout = () => {
     // const orderDate = format(new Date(), "PP");
     const checkoutInfo = {
       invoiceId: invoiceId,
-      callbackURL: `${
-        import.meta.env.VITE_SERVER_URL
-      }process-checkout?invoiceId=`,
-      
+      callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
     };
     console.log(import.meta.env.VITE_SERVER_URL);
     // console.log(paymentMethod);
@@ -111,9 +108,7 @@ const Checkout = () => {
             {/* order details */}
             <div className="w-full col-span-3 relative rounded bg-white shadow p-4 mt-3">
               <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded">
-                <li className="font-semibold">
-                  Subtotal: {invoiceData.total}Tk
-                </li>
+                <li className="font-semibold">Subtotal: {invoiceData.total}Tk</li>
                 <li className="font-semibold my-2">Delivery charge: 90Tk</li>
                 <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
                   <h5 className="mt-1">Total: {invoiceData.total + 90}Tk</h5>
@@ -127,15 +122,11 @@ const Checkout = () => {
             {/* User order data */}
             <div className="bg-white shadow rounded py-5  col-span-4 mt-3 w-full">
               <div className="px-4 lg:px-8">
-                <h4 className="text-2xl font-bold text-orange-500">
-                  Customer details
-                </h4>
+                <h4 className="text-2xl font-bold text-orange-500">Customer details</h4>
                 <form onSubmit={handleOrder}>
                   <div className="flex md:flex-row flex-col gap-5">
                     <div className="w-full">
-                      <label className=" text-xs font-medium text-gray-700">
-                        Name
-                      </label>
+                      <label className=" text-xs font-medium text-gray-700">Name</label>
 
                       <input
                         type="text"
@@ -145,9 +136,7 @@ const Checkout = () => {
                       />
                     </div>
                     <div className="w-full">
-                      <label className="text-xs font-medium text-gray-700">
-                        Email
-                      </label>
+                      <label className="text-xs font-medium text-gray-700">Email</label>
 
                       <input
                         type="text"
@@ -160,9 +149,7 @@ const Checkout = () => {
                   </div>
                   <div className="flex md:flex-row flex-col gap-5">
                     <div className="w-full">
-                      <label className=" text-xs font-medium text-gray-700">
-                        Phone
-                      </label>
+                      <label className=" text-xs font-medium text-gray-700">Phone</label>
 
                       <input
                         type="text"
@@ -173,9 +160,7 @@ const Checkout = () => {
                     </div>
                     {/* division */}
                     <div className="w-full">
-                      <label className="text-xs font-medium text-gray-700">
-                        Division
-                      </label>
+                      <label className="text-xs font-medium text-gray-700">Division</label>
 
                       <input
                         name="division"
@@ -188,9 +173,7 @@ const Checkout = () => {
                   <div className="flex md:flex-row flex-col gap-5">
                     {/* district */}
                     <div className="w-full">
-                      <label className=" text-xs font-medium text-gray-700">
-                        District
-                      </label>
+                      <label className=" text-xs font-medium text-gray-700">District</label>
 
                       <input
                         name="district"
@@ -199,9 +182,7 @@ const Checkout = () => {
                       />
                     </div>
                     <div className="w-full">
-                      <label className=" text-xs font-medium text-gray-700">
-                        Address
-                      </label>
+                      <label className=" text-xs font-medium text-gray-700">Address</label>
                       <textarea
                         type="text"
                         name="address"
@@ -212,9 +193,7 @@ const Checkout = () => {
                     </div>
                   </div>
                   {/* select payment */}
-                  <h2 className="font-medium text-md mt-4">
-                    Select payment method
-                  </h2>
+                  <h2 className="font-medium text-md mt-4">Select payment method</h2>
                   <div className="flex md:flex-row flex-col items-center gap-4 my-3">
                     {/* Bkash payment */}
                     <div className="w-full">
@@ -235,9 +214,7 @@ const Checkout = () => {
                         <div className="flex items-center gap-2">
                           <span
                             className={`${
-                              paymentMethod === "Bkash"
-                                ? "bg-black"
-                                : "bg-neutral-200"
+                              paymentMethod === "Bkash" ? "bg-black" : "bg-neutral-200"
                             } text-white rounded-full w-6 h-6  flex justify-center items-center`}
                           >
                             <HiOutlineCheck size={15} />
@@ -267,17 +244,14 @@ const Checkout = () => {
                         <div className="flex items-center gap-2">
                           <span
                             className={`${
-                              paymentMethod === "CashOnDelivery"
-                                ? "bg-black"
-                                : "bg-neutral-200"
+                              paymentMethod === "CashOnDelivery" ? "bg-black" : "bg-neutral-200"
                             } text-white rounded-full w-6 h-6  flex justify-center items-center`}
                           >
                             <HiOutlineCheck size={15} />
                           </span>
 
                           <p className="text-black flex items-center">
-                            <TbTruckDelivery className="w-7 h-9 mr-1" /> Cash on
-                            delivery
+                            <TbTruckDelivery className="w-7 h-9 mr-1" /> Cash on delivery
                           </p>
                         </div>
                       </label>
@@ -285,9 +259,7 @@ const Checkout = () => {
                   </div>
 
                   <div className="mt-10">
-                    {errorMessage && (
-                      <p className="text-red-500 mt-1">{errorMessage}</p>
-                    )}
+                    {errorMessage && <p className="text-red-500 mt-1">{errorMessage}</p>}
                     <button
                       type="submit"
                       className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
@@ -303,9 +275,7 @@ const Checkout = () => {
           <div className="flex flex-col justify-center items-center h-[400px]">
             <h4 className="font-bold text-2xl">No product found</h4>
             <Link to="/">
-              <button className="bg-neutral-800 text-white py-2 px-6 rounded mt-3">
-                Continue shopping
-              </button>
+              <button className="bg-neutral-800 text-white py-2 px-6 rounded mt-3">Continue shopping</button>
             </Link>
           </div>
         )}
