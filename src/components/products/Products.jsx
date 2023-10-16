@@ -17,7 +17,7 @@ const Products = () => {
 
   useEffect(() => {
     // setIsLoading(true);
-    fetch("http://localhost:5000/products")
+    fetch("https://anaf-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

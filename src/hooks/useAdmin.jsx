@@ -5,7 +5,7 @@ const useAdmin = (email) => {
   const [isAdminLoading, setIsAdminLoading] = useState(true);
   useEffect(() => {
     if (email) {
-      const url = `http://localhost:5000/users/admin/${email}`;
+      const url = `https://anaf-server.vercel.app/users/admin/${email}`;
       fetch(url, {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,

@@ -63,7 +63,7 @@ const EditProduct = () => {
       id,
     };
     // console.log(productInfo);
-    fetch(`http://localhost:5000/updateProduct/${productDetail._id}`, {
+    fetch(`https://anaf-server.vercel.app/updateProduct/${productDetail._id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
@@ -82,7 +82,7 @@ const EditProduct = () => {
       });
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://anaf-server.vercel.app/product/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

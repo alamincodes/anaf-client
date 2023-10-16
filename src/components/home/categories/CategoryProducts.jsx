@@ -13,7 +13,7 @@ const CategoryProducts = () => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `http://localhost:5000/product/category?category=${category}`
+      `https://anaf-server.vercel.app/product/category?category=${category}`
     )
       .then((res) => res.json())
       .then((data) => {

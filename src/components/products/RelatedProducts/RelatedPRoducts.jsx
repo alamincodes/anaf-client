@@ -8,7 +8,7 @@ const RelatedPRoducts = ({ productDetail }) => {
   useEffect(() => {
     setIsLoading(true);
     fetch(
-      `http://localhost:5000/product/category?category=${productDetail.category}`
+      `https://anaf-server.vercel.app/product/category?category=${productDetail.category}`
     )
       .then((res) => res.json())
       .then((data) => {

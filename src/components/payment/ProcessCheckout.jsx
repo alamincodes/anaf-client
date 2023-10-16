@@ -16,7 +16,7 @@ const ProcessCheckout = () => {
 
     if (status === "success") {
       console.log("success");
-      fetch("http://localhost:5000/payment/bkash/execute", {
+      fetch("https://anaf-server.vercel.app/payment/bkash/execute", {
         method: "POST",
         headers: {
           "content-type": "application/json",

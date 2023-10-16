@@ -9,14 +9,14 @@ const OrderDetails = () => {
   let { id } = useParams();
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://anaf-server.vercel.app/order/${id}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setOrderDetail(data);
         setIsLoading(false);
       });
@@ -41,7 +41,7 @@ const OrderDetails = () => {
           </span>
         </h2>
         <div className="mt-5">
-          {orderDetail.items?.map((item) => (
+          {orderDetail.productsList?.map((item) => (
             <div key={item.id} className="bg-white rounded mt-2 py-5 px-3">
               <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
                 <img
@@ -64,8 +64,7 @@ const OrderDetails = () => {
           {/* total */}
           <div className="border border-dashed p-5">
             <h2 className="font-bold uppercase">Total Amount</h2>
-            <h2>Subtotal: {orderDetail.cartTotal} Tk</h2>
-            <h2>Delivery fee: {orderDetail.deliveryFee} Tk</h2>
+            <h2>Delivery charge: {orderDetail.deliveryCharge} Tk</h2>
             <h2 className="font-semibold text-orange-500">
               Total: {orderDetail.total} Tk
             </h2>
@@ -75,32 +74,23 @@ const OrderDetails = () => {
             <h2 className="font-bold uppercase">Payment details</h2>
             <h2>
               Payment method:{" "}
-              {orderDetail.paymentMethod === "CashOnDelivery"
-                ? "Cash on delivery"
-                : "Bkash"}
+              {orderDetail.status === "PAID" ? "Bkash" : "Cash on delivery"}
             </h2>
             {/* Transaction start*/}
-            {orderDetail.transactionId && (
-              <h2>Transaction Id: {orderDetail.transactionId}</h2>
+            {orderDetail.paymentData?.trxID && (
+              <h2>Transaction Id: {orderDetail.paymentData?.trxID}</h2>
             )}
             {/* Transaction end */}
-            {/* <h2 className="font-semibold text-orange-500">
-              Pay:{" "}
-              {orderDetail.paymentMethod === "CashOnDelivery"
-                ? "90"
-                : orderDetail.total}
-              Tk
-            </h2> */}
           </div>
 
           {/* billing address */}
 
           <div className="border border-dashed p-5">
             <h2 className="font-bold uppercase">BILLING ADDRESS</h2>
-            <h3>{orderDetail.name}</h3>
-            <h3>{orderDetail.phone}</h3>
-            <h3>{orderDetail.email}</h3>
-            <h3>{orderDetail.address}</h3>
+            <h3>{orderDetail.userData?.name}</h3>
+            <h3>{orderDetail.userData?.phone}</h3>
+            <h3>{orderDetail.userData?.email}</h3>
+            <h3>{orderDetail.userData?.address}</h3>
           </div>
         </div>
         {/* <button onClick={() => window.print()}>Print</button> */}

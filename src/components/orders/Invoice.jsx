@@ -8,7 +8,7 @@ const Invoice = () => {
   let { id } = useParams();
   useEffect(() => {
     setIsLoading(true);
-    fetch(`http://localhost:5000/order/${id}`, {
+    fetch(`https://anaf-server.vercel.app/order/${id}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },

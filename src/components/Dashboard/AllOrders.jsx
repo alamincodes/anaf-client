@@ -23,7 +23,7 @@ const AllOrders = () => {
   } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/orders", {
+      const res = await fetch("https://anaf-server.vercel.app/orders", {
         headers: {
           authorization: `bearer ${localStorage.getItem("accessToken")}`,
         },
@@ -32,7 +32,7 @@ const AllOrders = () => {
       return data?.reverse();
     },
   });
-
+  console.log(orders);
   const handleUpdate = (e) => {
     e.preventDefault();
     const status = e.target.orderStatus.value;
@@ -40,7 +40,7 @@ const AllOrders = () => {
       status,
     };
 
-    fetch(`http://localhost:5000/order/${orderId}`, {
+    fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ const AllOrders = () => {
 
   const handleDeleteOrder = (id) => {
     setDeleteLoading(true);
-    fetch(`http://localhost:5000/deleteOrder/${id}`, {
+    fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -149,7 +149,7 @@ const AllOrders = () => {
                             className="border-b odd:bg-gray-100 font-medium"
                           >
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
-                              <h2>{order.name}</h2>
+                              <h2>{order.userData?.name}</h2>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
@@ -165,50 +165,21 @@ const AllOrders = () => {
                             </td>
 
                             <td className="whitespace-nowrap px-6 py-4 ">
-                              {order.status ? (
-                                <>
-                                  {order.status === "Handover to Courier" && (
-                                    <span className="bg-green-200 text-green-800 p-2 rounded-sm ">
-                                      {order.status ? order.status : "Pending"}
-                                    </span>
-                                  )}
-                                  {order.status === "processing" && (
-                                    <span className="bg-orange-200 text-orange-800 p-2 rounded-sm ">
-                                      {order.status ? order.status : "Pending"}
-                                    </span>
-                                  )}
-                                  {order.status === "pending" && (
-                                    <span className="bg-yellow-200 text-yellow-800 p-2 rounded-sm ">
-                                      {order.status ? order.status : "Pending"}
-                                    </span>
-                                  )}
-                                  {order.status === "receive" && (
-                                    <span className="bg-sky-200 text-sky-800 p-2 rounded-sm ">
-                                      {order.status ? order.status : "Pending"}
-                                    </span>
-                                  )}
-                                  {order.status === "cancel" && (
-                                    <span className="bg-red-200 text-red-800 p-2 rounded-sm ">
-                                      {order.status ? order.status : "Pending"}
-                                    </span>
-                                  )}
-                                </>
-                              ) : (
-                                <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
-                                  {order.status ? order.status : "Pending"}
-                                </span>
-                              )}
+                              <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
+                                {order.status ? order.status : "Pending"}
+                              </span>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order?.items[0]?.name.length > 10
-                                ? order?.items[0]?.name.substr(0, 10) + "..."
-                                : order?.items[0]?.name}
+                              {order?.productsList[0]?.name.length > 10
+                                ? order?.productsList[0]?.name.substr(0, 10) +
+                                  "..."
+                                : order?.productsList[0]?.name}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.total}Tk
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order.orderDate}
+                              {order.dateTime}
                             </td>
 
                             <td className="whitespace-nowrap px-6 py-4">

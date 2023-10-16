@@ -13,7 +13,7 @@ const Search = () => {
       return;
     }
     setIsLoading(true);
-    const url = `http://localhost:5000/search?search=${search}`;
+    const url = `https://anaf-server.vercel.app/search?search=${search}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) => {

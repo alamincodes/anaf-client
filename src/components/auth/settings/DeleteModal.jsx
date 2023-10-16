@@ -18,7 +18,7 @@ const DeleteModal = ({ setOpen }) => {
     setErrorMessage("");
     loginUser(user?.email, getPassword)
       .then(() => {
-        fetch(`http://localhost:5000/user/${userId}`, {
+        fetch(`https://anaf-server.vercel.app/user/${userId}`, {
           method: "DELETE",
           headers: {
             authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -109,7 +109,7 @@ const DeleteModal = ({ setOpen }) => {
     // console.log(userId);
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/users?email=${user?.email}`, {
+    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
       headers: {
         "content-type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,

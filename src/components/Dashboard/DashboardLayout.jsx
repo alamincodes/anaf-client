@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
-import BottomNav from "../Shared/BottomNav";
+
 const DashboardLayout = () => {
   return (
     <div className="myContainer">
@@ -58,8 +58,6 @@ const DashboardLayout = () => {
         </NavLink>
       </ul>
       <Outlet />
-
-      
     </div>
   );
 };
