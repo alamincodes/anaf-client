@@ -15,36 +15,22 @@ import { Link, useLocation } from "react-router-dom";
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
-  const { items, cartTotal, emptyCart } = useCart();
+  const { items } = useCart();
   const [paymentMethod, setPaymentMethod] = useState("Bkash");
   const [userFullInfo, setUserFullInfo] = useState({});
   const [errorMessage, setSetErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [successModal, setSuccessModal] = useState(false);
-  const [orderId, setOrderId] = useState("");
   const [invoiceData, setInvoiceData] = useState({});
 
   const location = useLocation();
   const invoiceId = location.search.split("=")[1];
-  // console.log(window.location.href);
-  const handleOrder = (e) => {
-    e.preventDefault();
-    setSetErrorMessage("");
-    // const form = e.target;
-    // const name = form.name.value;
-    // const email = form.email.value;
-    // const phone = form.phone.value;
-    // const districtName = form.district.value;
-    // const division = form.division.value;
-    // const address = form.address.value;
-    // const orderDate = format(new Date(), "PP");
+
+  const handleOrder = () => {
     const checkoutInfo = {
       invoiceId: invoiceId,
       callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
     };
-    console.log(import.meta.env.VITE_SERVER_URL);
-    // console.log(paymentMethod);
-    // console.log(checkoutInfo);
+
     setIsLoading(true);
     fetch("https://anaf-server.vercel.app/payment/bkash/create", {
       method: "POST",
@@ -67,6 +53,7 @@ const Checkout = () => {
   };
 
   useEffect(() => {
+     setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/get-invoice/${invoiceId}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -75,10 +62,12 @@ const Checkout = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+         setIsLoading(false);
         setInvoiceData(data);
       });
   }, []);
   useEffect(() => {
+     setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -88,6 +77,7 @@ const Checkout = () => {
       .then((data) => {
         // console.log(data);
         setUserFullInfo(data);
+         setIsLoading(false);
       });
   }, []);
   if (isLoading) {
@@ -97,39 +87,43 @@ const Checkout = () => {
     <AnimatePage>
       <section className="myContainer mb-5">
         {items.length > 0 ? (
-          <div className="grid lg:grid-cols-7 grid-cols-1 md:gap-5">
+          <div className="flex items-start md:flex-row flex-col md:gap-5">
             {/* price details */}
             <div className="w-full col-span-4 relative rounded bg-white shadow p-4 mt-3">
               {/* price details */}
               <div>
-                <ul className="space-y-2">
+                <ul className="space-y-5">
                   {invoiceData.productsList?.map((product) => (
-                    <li key={product._id} className="flex justify-between">
+                    <li
+                      key={product._id}
+                      className="flex justify-between items-center p-2 rounded"
+                    >
                       <div className="flex items-center space-x-2">
                         <img src={product.img[0]} className="w-10" alt="" />
-                        <h3  className="font-medium">{product.name}</h3>
+                        <h3 className="font-medium">{product.name}</h3>
                       </div>
                       <h3>x{product.quantity}</h3>
                     </li>
                   ))}
                 </ul>
               </div>
-              <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded">
-                <li className="font-semibold">
-                  Subtotal: {invoiceData.total}Tk
+              <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded mt-5">
+                <li className="font-semibold flex justify-between">
+                  <span>Subtotal:</span> <span>Tk. {invoiceData.total}</span>
                 </li>
-                <li className="font-semibold my-2">
-                  Delivery charge: {invoiceData.deliveryCharge}TK
+                <li className="font-semibold flex justify-between my-2">
+                  <span> Delivery charge:</span>{" "}
+                  <span>TK. {invoiceData.deliveryCharge}</span>
                 </li>
                 <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
-                  <h5 className="mt-1">
-                    Total: {invoiceData.total + invoiceData.deliveryCharge}Tk
+                  <h5 className="mt-1 text-right">
+                    Total: {invoiceData.total} .Tk
                   </h5>
                 </li>
               </ul>
             </div>
             {/* User order data */}
-            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 w-full">
+            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 w-2/3">
               <div className="px-4 lg:px-8">
                 <h4 className="text-2xl font-bold text-orange-500">
                   Customer details
@@ -245,7 +239,6 @@ const Checkout = () => {
           </div>
         )}
       </section>
-      {successModal && <OrderSuccessModal orderId={orderId} />}
     </AnimatePage>
   );
 };

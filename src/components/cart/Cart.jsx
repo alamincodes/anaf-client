@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useCart } from "react-use-cart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineTrash } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
@@ -18,8 +18,11 @@ const Cart = () => {
   // console.log(items);
   const dateTime = format(new Date(), "PPpp");
   const cartItems = { email: user?.email, items, dateTime };
-
+  const navigate = useNavigate();
   const handleCreateInvoice = () => {
+    if (!user) {
+      return navigate("/login");
+    }
     setIsLoading(true);
     fetch("https://anaf-server.vercel.app/create-invoice", {
       method: "POST",
@@ -167,7 +170,7 @@ const Cart = () => {
                       <div className="flex justify-end">
                         <button
                           onClick={handleCreateInvoice}
-                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-5 py-3 text-white"
+                          className="block rounded mb-7 md:w-auto w-full text-center bg-black px-20 py-3 text-white"
                         >
                           {isLoading ? (
                             <div className="flex justify-center item-center">

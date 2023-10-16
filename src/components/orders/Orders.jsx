@@ -56,7 +56,7 @@ const Orders = () => {
           </div>
         </div>
       ) : (
-        <div className="myContainer mt-2">
+        <div className="myContainer mt-2 mb-5">
           <div className="bg-white shadow-cardShadow rounded-xl md:p-5 p-2">
             <h2 className="text-2xl uppercase font-bold mb-2">My orders</h2>
             <div className="flex flex-col">
