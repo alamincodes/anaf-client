@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
@@ -15,19 +15,29 @@ const AllOrders = () => {
   const { logOut } = useContext(AUTH_CONTEXT);
   const [orderId, setOrderId] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const search = e.target.search.value;
+    setSearchText(search);
+  };
   const {
     data: orders = [],
     refetch,
     isLoading,
   } = useQuery({
-    queryKey: ["orders"],
+    queryKey: ["orders", searchText],
     queryFn: async () => {
-      const res = await fetch("https://anaf-server.vercel.app/orders", {
-        headers: {
-          authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        },
-      });
+      const res = await fetch(
+        `https://anaf-server.vercel.app/orders?search=${searchText}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
       const data = await res.json();
       return data?.reverse();
     },
@@ -88,7 +98,7 @@ const AllOrders = () => {
           setDeleteLoading(false);
         }
         setDeleteLoading(false);
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -102,10 +112,26 @@ const AllOrders = () => {
   return (
     <AnimatePage>
       <div>
+        <div className="my-2 ">
+          <form onSubmit={handleSearch} className="flex items-center flex-row">
+            <input
+              type="text"
+              className="bg-gray-200 outline-none p-2 w-full"
+              placeholder="Search order id #035350"
+              name="search"
+              id=""
+            />
+            <button
+              type="submit"
+              className=" bg-neutral-700 text-white p-2 px-4 "
+            >
+              {" "}
+              Search{" "}
+            </button>
+          </form>
+        </div>
         <div>
-          {orders.length === 0 ? (
-            <h2 className="text-center text-2xl my-56">No orders</h2>
-          ) : (
+          {orders?.length > 0 && (
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -170,10 +196,13 @@ const AllOrders = () => {
                               </span>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order?.productsList[0]?.name.length > 10
-                                ? order?.productsList[0]?.name.substr(0, 10) +
-                                  "..."
-                                : order?.productsList[0]?.name}
+                              {order.productsList?.map((p) => (
+                                <span key={p._id}>
+                                  {p.name.length > 7
+                                    ? p.name.substr(0, 7) + "..."
+                                    : p.name}
+                                </span>
+                              ))}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.total}Tk

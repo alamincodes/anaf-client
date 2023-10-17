@@ -21,7 +21,7 @@ const AllUsers = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         toast.success("Successfully make admin");
         refetch();
       });

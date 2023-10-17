@@ -4,13 +4,12 @@ import AnimatePage from "../Shared/AnimatePage";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import { HiOutlineCheck } from "react-icons/hi";
+import { HiPencilSquare } from "react-icons/hi2";
 import bkash from "../../assets/icons/bkash.svg";
 import { TbTruckDelivery } from "react-icons/tb";
-import { format } from "date-fns";
 import LoadingSpinner from "../Shared/LoadingSpinner";
-import OrderSuccessModal from "../orders/OrderSuccessModal";
-import delivery from "../../assets/image/delivery.svg";
 import { Link, useLocation } from "react-router-dom";
+import UpdateAddressModal from "../update-user-address/UpdateAddressModal";
 
 const Checkout = () => {
   useTitle("Checkout");
@@ -21,6 +20,7 @@ const Checkout = () => {
   const [errorMessage, setSetErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [invoiceData, setInvoiceData] = useState({});
+  const [openModal, setOpenModal] = useState(false);
 
   const location = useLocation();
   const invoiceId = location.search.split("=")[1];
@@ -42,18 +42,18 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         window.location.replace(data.bkashURL);
       })
       .catch((error) => {
         setIsLoading(false);
         setSetErrorMessage("Try agin something is wrong");
-        console.log(error);
+        // console.log(error);
       });
   };
 
   useEffect(() => {
-     setIsLoading(true);
+    setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/get-invoice/${invoiceId}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -61,13 +61,13 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-         setIsLoading(false);
+        // console.log(data);
+        setIsLoading(false);
         setInvoiceData(data);
       });
   }, []);
   useEffect(() => {
-     setIsLoading(true);
+    setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -77,7 +77,7 @@ const Checkout = () => {
       .then((data) => {
         // console.log(data);
         setUserFullInfo(data);
-         setIsLoading(false);
+        setIsLoading(false);
       });
   }, []);
   if (isLoading) {
@@ -102,14 +102,16 @@ const Checkout = () => {
                         <img src={product.img[0]} className="w-10" alt="" />
                         <h3 className="font-medium">{product.name}</h3>
                       </div>
-                      <h3>x{product.quantity}</h3>
+                      <h3 className="font-bold text-orange-500">
+                        x{product.quantity}
+                      </h3>
                     </li>
                   ))}
                 </ul>
               </div>
               <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded mt-5">
                 <li className="font-semibold flex justify-between">
-                  <span>Subtotal:</span> <span>Tk. {invoiceData.total}</span>
+                  <span>Subtotal:</span> <span>Tk. {invoiceData.subtotal}</span>
                 </li>
                 <li className="font-semibold flex justify-between my-2">
                   <span> Delivery charge:</span>{" "}
@@ -123,13 +125,22 @@ const Checkout = () => {
               </ul>
             </div>
             {/* User order data */}
-            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 w-2/3">
+            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 md:w-2/3 w-full">
               <div className="px-4 lg:px-8">
-                <h4 className="text-2xl font-bold text-orange-500">
-                  Customer details
-                </h4>
                 {/* user info */}
-                <div className="bg-neutral-100 p-2 rounded">
+                <div className="bg-neutral-100 p-2 rounded relative">
+                  {/* update address  btn*/}
+                  <button
+                    onClick={() => setOpenModal(true)}
+                    className="absolute right-2 bg-neutral-800 text-white px-4 py-2 text-xs rounded flex items-center"
+                  >
+                    {" "}
+                    <span>
+                      <HiPencilSquare size={18} className="mr-1" />
+                    </span>{" "}
+                    Update address
+                  </button>
+                  {/* ---------- */}
                   <h5 className="font-bold">Delivery Address</h5>
                   <ul>
                     <li>{userFullInfo.name}</li>
@@ -239,6 +250,13 @@ const Checkout = () => {
           </div>
         )}
       </section>
+
+      {openModal && (
+        <UpdateAddressModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+        />
+      )}
     </AnimatePage>
   );
 };

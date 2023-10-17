@@ -8,7 +8,7 @@ const AllProducts = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e.target.search.value);
+    // console.log(e.target.search.value);
     const searchText = e.target.search.value;
     setSearch(searchText);
     if (search.length === 0) {

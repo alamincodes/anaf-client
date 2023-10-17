@@ -26,7 +26,7 @@ const OrderDetails = () => {
   }
   return (
     <AnimatePage>
-      <div className="myContainer bg-white md:px-20 md:py-10">
+      <div className="myContainer bg-white md:px-20 md:py-10 mb-5">
         <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
           Order Details
         </h2>

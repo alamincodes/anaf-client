@@ -187,7 +187,7 @@ const AddProducts = () => {
             />
           </label>
           <button
-            // disabled={isLoading}
+            disabled={addLoading}
             className="bg-black p-2 rounded w-full mt-3 text-white"
           >
             {addLoading ? "Loading..." : "Add product"}

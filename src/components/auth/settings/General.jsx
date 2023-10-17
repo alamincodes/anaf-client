@@ -26,7 +26,7 @@ const General = () => {
       });
       return;
     }
-    console.log(name);
+    // console.log(name);
     setIsLoading(true);
     updateName(name)
       .then(() => {

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import LoadingSpinner from "../Shared/LoadingSpinner";
 import { useLottie } from "lottie-react";
 
 import failedAnimationIcon from "./animationJson/fail.json";
 import SuccessPayment from "./SuccessPayment";
 import { Link } from "react-router-dom";
+import ExecuteLoading from "./ExecuteLoading";
 const ProcessCheckout = () => {
   const queryString = window.location.search;
   const queryParams = new URLSearchParams(queryString);
@@ -52,8 +52,7 @@ const ProcessCheckout = () => {
           } else {
             // show the error
             setMessage(json.message);
-            setSuccessPaymentData(json)
-          
+            setSuccessPaymentData(json);
           }
           console.log(json);
         });
@@ -65,7 +64,7 @@ const ProcessCheckout = () => {
   }, []);
 
   if (isLoading) {
-    return <LoadingSpinner />;
+    return <ExecuteLoading />;
   }
 
   return (
@@ -79,9 +78,9 @@ const ProcessCheckout = () => {
         )}
         {/* cancel */}
         {status === "cancel" && (
-          <div className="flex justify-center items-center flex-col">
-            <h4 className="md:w-[300px] h-36">{View}</h4>
-            <h3 className="text-red-500 font-bold md:text-5xl text-2xl mt-5 uppercase">
+          <div className="flex justify-center items-center flex-col bg-white shadow p-5 text-center m-5">
+            <h4 className="md:w-[100px] h-20 mb-10">{View}</h4>
+            <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>
             <Link to="/cart">
@@ -93,9 +92,9 @@ const ProcessCheckout = () => {
         )}
         {/* failed */}
         {status === null && (
-          <div className="flex justify-center items-center flex-col">
-            <h4 className="md:w-[300px] h-36">{View}</h4>
-            <h3 className="text-red-500 font-bold md:text-5xl text-2xl mt-5 uppercase">
+          <div className="flex justify-center items-center flex-col bg-white shadow p-5 text-center m-5">
+            <h4 className="md:w-[100px] h-20 mb-10">{View}</h4>
+            <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>
             <Link to="/cart">

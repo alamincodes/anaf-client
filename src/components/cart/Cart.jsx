@@ -39,7 +39,7 @@ const Cart = () => {
         if (data.acknowledged) {
           setIsLoading(false);
           window.location.replace(
-            `http://localhost:5173/checkout?invoiceId=${data.insertedId}`
+            `https://anafshop.com/checkout?invoiceId=${data.insertedId}`
           );
         }
       });
