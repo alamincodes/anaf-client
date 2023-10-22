@@ -109,7 +109,7 @@ const FooterSection = () => {
           <div className="flex items-center space-x-10 border-t border-neutral-800 border-b">
             <h5 className="text-orange-500">Pay with</h5>
             <div className="border-l border-neutral-800 pl-10 py-5">
-              <img src={bkashPayment} alt="bkashPayment" className="w-32 " />
+              <img src={bkashPayment} alt="bkashPayment" className="w-28 h-full rounded-lg" />
             </div>
           </div>
           <p className="text-white text-center text-xs py-5">

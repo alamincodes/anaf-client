@@ -85,7 +85,7 @@ const ProcessCheckout = () => {
             </h3>
             <Link to="/cart">
               <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Please try agin
+                Please try again
               </button>
             </Link>
           </div>
@@ -99,25 +99,11 @@ const ProcessCheckout = () => {
             </h3>
             <Link to="/cart">
               <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Please try agin
+                Please try again
               </button>
             </Link>
           </div>
         )}
-        {/* failed */}
-        {/* {successPaymentData.status === "FAILED" && (
-          <div className="flex justify-center items-center flex-col">
-            <h4 className="md:w-[300px] h-36">{View}</h4>
-            <h3 className="text-red-500 font-bold md:text-5xl text-2xl mt-5 uppercase">
-              {successPaymentData.message}
-            </h3>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Please try agin
-              </button>
-            </Link>
-          </div>
-        )} */}
       </div>
     </section>
   );

@@ -10,15 +10,16 @@ import { TbTruckDelivery } from "react-icons/tb";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { Link, useLocation } from "react-router-dom";
 import UpdateAddressModal from "../update-user-address/UpdateAddressModal";
+import { useQuery } from "@tanstack/react-query";
 
 const Checkout = () => {
   useTitle("Checkout");
   const { user } = useContext(AUTH_CONTEXT);
   const { items } = useCart();
   const [paymentMethod, setPaymentMethod] = useState("Bkash");
-  const [userFullInfo, setUserFullInfo] = useState({});
+  // const [userFullInfo, setUserFullInfo] = useState({});
   const [errorMessage, setSetErrorMessage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [invoiceData, setInvoiceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
@@ -31,7 +32,7 @@ const Checkout = () => {
       callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
     };
 
-    setIsLoading(true);
+    // setIsLoading(true);
     fetch("https://anaf-server.vercel.app/payment/bkash/create", {
       method: "POST",
       headers: {
@@ -46,14 +47,14 @@ const Checkout = () => {
         window.location.replace(data.bkashURL);
       })
       .catch((error) => {
-        setIsLoading(false);
+        // setIsLoading(false);
         setSetErrorMessage("Try agin something is wrong");
         // console.log(error);
       });
   };
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     fetch(`https://anaf-server.vercel.app/get-invoice/${invoiceId}`, {
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -62,24 +63,27 @@ const Checkout = () => {
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
-        setIsLoading(false);
+        // setIsLoading(false);
         setInvoiceData(data);
       });
   }, []);
-  useEffect(() => {
-    setIsLoading(true);
-    fetch(`https://anaf-server.vercel.app/users?email=${user?.email}`, {
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // console.log(data);
-        setUserFullInfo(data);
-        setIsLoading(false);
-      });
-  }, []);
+
+  const { data: userFullInfo = {}, isLoading } = useQuery({
+    queryKey: ["email"],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://anaf-server.vercel.app/users?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
   if (isLoading) {
     return <LoadingSpinner />;
   }
@@ -99,27 +103,29 @@ const Checkout = () => {
                       className="flex justify-between items-center p-2 rounded"
                     >
                       <div className="flex items-center space-x-2">
-                        <img src={product.img[0]} className="w-10" alt="" />
-                        <h3 className="font-medium">{product.name}</h3>
+                        <img src={product.img} className="w-10 h-10" alt="" />
+                        <div>
+                          <p className="text-sm">{product.name}</p>
+                          <h5 className="text-neutral-500">
+                            Quantity : {product.quantity}
+                          </h5>
+                        </div>
                       </div>
-                      <h3 className="font-bold text-orange-500">
-                        x{product.quantity}
-                      </h3>
                     </li>
                   ))}
                 </ul>
               </div>
               <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded mt-5">
-                <li className="font-semibold flex justify-between">
-                  <span>Subtotal:</span> <span>Tk. {invoiceData.subtotal}</span>
+                <li className="font-semibold flex justify-between uppercase">
+                  <span>Subtotal:</span> <span>৳ {invoiceData.subtotal}</span>
                 </li>
-                <li className="font-semibold flex justify-between my-2">
+                <li className="font-semibold flex justify-between my-2 uppercase">
                   <span> Delivery charge:</span>{" "}
-                  <span>TK. {invoiceData.deliveryCharge}</span>
+                  <span>৳ {invoiceData.deliveryCharge}</span>
                 </li>
                 <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
-                  <h5 className="mt-1 text-right">
-                    Total: {invoiceData.total} .Tk
+                  <h5 className="font-semibold flex justify-between my-2 uppercase">
+                    <span>Total:</span> <span>৳ {invoiceData.total}</span>
                   </h5>
                 </li>
               </ul>
@@ -252,10 +258,7 @@ const Checkout = () => {
       </section>
 
       {openModal && (
-        <UpdateAddressModal
-          openModal={openModal}
-          setOpenModal={setOpenModal}
-        />
+        <UpdateAddressModal openModal={openModal} setOpenModal={setOpenModal} />
       )}
     </AnimatePage>
   );

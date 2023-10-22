@@ -1,12 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useContext } from "react";
+import { Fragment, useContext, useRef } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const UpdateAddressModal = ({ openModal, setOpenModal }) => {
   const { logOut, user } = useContext(AUTH_CONTEXT);
-
+  let completeButtonRef = useRef(null);
   const {
     data: userData = {},
     refetch,
@@ -79,6 +79,7 @@ const UpdateAddressModal = ({ openModal, setOpenModal }) => {
         <Dialog
           as="div"
           className="relative z-10"
+          initialFocus={completeButtonRef}
           onClose={() => setOpenModal(false)}
         >
           <Transition.Child
@@ -135,7 +136,7 @@ const UpdateAddressModal = ({ openModal, setOpenModal }) => {
                           required
                         />
                       </label>
-                       <label>
+                      <label>
                         Phone
                         <input
                           type="text"
@@ -157,11 +158,12 @@ const UpdateAddressModal = ({ openModal, setOpenModal }) => {
                           required
                         />
                       </label>
-                     
+
                       <div className="mt-4 text-right">
                         <button
                           type="submit"
                           disabled={isLoading}
+                          ref={completeButtonRef}
                           className="inline-flex justify-center rounded-md border border-transparent bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
                         >
                           {isLoading ? "Updating..." : "Update"}

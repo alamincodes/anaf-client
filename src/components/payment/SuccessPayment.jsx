@@ -1,5 +1,4 @@
 import { useLottie } from "lottie-react";
-import React, { useState } from "react";
 import SuccessAnimationIcon from "./animationJson/success.json";
 import { Link } from "react-router-dom";
 const SuccessPayment = ({ successPaymentData }) => {
@@ -15,18 +14,18 @@ const SuccessPayment = ({ successPaymentData }) => {
     <div>
       {successPaymentData.status === "FAILED" ? (
         <div className="text-center md:mt-20 mt-10 uppercase">
-          <h3 className="text-red-500  font-bold md:text-5xl text-2xl ">
+          <h3 className="text-red-500 font-bold md:text-5xl text-2xl ">
             {successPaymentData.paymentData?.statusMessage}
           </h3>
           <Link to="/cart">
             <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-              Please try agin
+              Please try again
             </button>
           </Link>
         </div>
       ) : (
         <div className="flex justify-center items-center flex-col">
-          <h4 className="md:w-[300px] w-56 h-36">{View}</h4>
+          <h4 className="md:w-[300px] w-56 h-32">{View}</h4>
           <h3 className="text-green-800 font-bold md:text-2xl text-2xl md:mt-20 mb-3 mt-10 uppercase">
             {successPaymentData.message}
           </h3>
@@ -50,7 +49,7 @@ const SuccessPayment = ({ successPaymentData }) => {
                 </p>
               </div>
               <div className="flex justify-end w-full mt-2">
-                <Link to='/orders'>
+                <Link to="/orders">
                   <button className="bg-orange-500 uppercase text-xs text-white px-4 py-2 rounded">
                     See oreder
                   </button>

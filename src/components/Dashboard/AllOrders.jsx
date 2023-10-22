@@ -16,7 +16,7 @@ const AllOrders = () => {
   const [orderId, setOrderId] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
-
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -42,7 +42,20 @@ const AllOrders = () => {
       return data?.reverse();
     },
   });
-  console.log(orders);
+
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(orders.length / itemsPerPage);
+  // Get the current page's data
+  const getCurrentPageData = () => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return orders.slice(startIndex, endIndex);
+  };
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  // console.log(orders);
   const handleUpdate = (e) => {
     e.preventDefault();
     const status = e.target.orderStatus.value;
@@ -82,28 +95,33 @@ const AllOrders = () => {
   };
 
   const handleDeleteOrder = (id) => {
-    setDeleteLoading(true);
-    fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          refetch();
-          toast.success("Deleted successfully");
-          setDeleteLoading(false);
-        }
-        setDeleteLoading(false);
-        // console.log(data);
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this order?"
+    );
+    if (confirmed) {
+      setDeleteLoading(true);
+      fetch(`https://anaf-server.vercel.app/deleteOrder/${id}`, {
+        method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          "content-type": "application/json",
+        },
       })
-      .catch((error) => {
-        console.log(error);
-        setDeleteLoading(false);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            refetch();
+            toast.success("Deleted successfully");
+            setDeleteLoading(false);
+          }
+          setDeleteLoading(false);
+          // console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+          setDeleteLoading(false);
+        });
+    }
   };
 
   if (isLoading) {
@@ -140,14 +158,18 @@ const AllOrders = () => {
                       <thead className="border-b bg-white font-medium uppercase">
                         <tr>
                           <th scope="col" className="px-6 py-4">
+                            #Id
+                          </th>
+                          <th scope="col" className="px-6 py-4">
                             name
+                          </th>
+                          <th scope="col" className="px-6 py-4">
+                            Date
                           </th>
                           <th scope="col" className="px-6 py-4">
                             Action
                           </th>
-                          <th scope="col" className="px-6 py-4">
-                            #Id
-                          </th>
+
                           <th scope="col" className="px-6 py-4">
                             status
                           </th>
@@ -157,39 +179,41 @@ const AllOrders = () => {
                           <th scope="col" className="px-6 py-4">
                             Total
                           </th>
-                          <th scope="col" className="px-6 py-4">
-                            Date
-                          </th>
+
                           <th scope="col" className="px-6 py-4">
                             Update
                           </th>
                           <th scope="col" className="px-6 py-4">
                             Delete
                           </th>
+                          <th scope="col" className="px-6 py-4">
+                            Refund
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {orders?.map((order, i) => (
+                        {getCurrentPageData()?.map((order, i) => (
                           <tr
                             key={order._id}
                             className="border-b odd:bg-gray-100 font-medium"
                           >
+                            <td
+                              className="whitespace-nowrap px-6 py-4 font-medium"
+                              title={order.orderId}
+                            >
+                              #{order.orderId}
+                            </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <h2>{order.userData?.name}</h2>
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              {order.dateTime}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
                                 <span className="text-blue-600"> View</span>
                               </Link>
                             </td>
-
-                            <td
-                              className="whitespace-nowrap px-6 py-4 font-medium"
-                              title={order._id}
-                            >
-                              #{order.orderId}
-                            </td>
-
                             <td className="whitespace-nowrap px-6 py-4 ">
                               <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
                                 {order.status ? order.status : "Pending"}
@@ -206,9 +230,6 @@ const AllOrders = () => {
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.total}Tk
-                            </td>
-                            <td className="whitespace-nowrap px-6 py-4">
-                              {order.dateTime}
                             </td>
 
                             <td className="whitespace-nowrap px-6 py-4">
@@ -232,30 +253,36 @@ const AllOrders = () => {
                                 <button
                                   type="submit"
                                   onClick={() => setOrderId(order._id)}
-                                  className="ml-2 bg-slate-200 rounded-full p-1 px-2 flex items-center"
+                                  className="bg-neutral-200 rounded-full p-2 flex items-center ml-2"
                                 >
-                                  <GrUpdate className="mx-2 text-whit " />
-                                  update
+                                  <GrUpdate className="text-whit " size={20} />
                                 </button>
                               </form>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              <h2
+                              <button
                                 onClick={() => handleDeleteOrder(order._id)}
-                                className="bg-red-100 cursor-pointer flex items-center justify-center rounded-full p-3"
+                                className="bg-red-600 cursor-pointer flex items-center justify-center rounded-full p-2"
                               >
                                 {deleteLoading ? (
                                   <HiOutlineCog8Tooth
                                     size={20}
-                                    className="text-red-600 animate-spin"
+                                    className="bg-red-600 animate-spin"
                                   />
                                 ) : (
                                   <HiOutlineTrash
                                     size={20}
-                                    className="text-red-600"
+                                    className="text-white"
                                   />
                                 )}
-                              </h2>
+                              </button>
+                            </td>
+                            <td className="whitespace-nowrap px-6 py-4">
+                              <Link to={`/dashboard/refund/${order._id}`}>
+                                <button className="bg-purple-600 py-2 px-4 rounded text-white">
+                                  Refund
+                                </button>
+                              </Link>
                             </td>
                           </tr>
                         ))}
@@ -266,6 +293,26 @@ const AllOrders = () => {
               </div>
             </div>
           )}
+        </div>
+        {/* Pagination controls */}
+        <div className="text-right mt-2 flex justify-end space-x-3 mb-3">
+          <button
+            className="bg-black disabled:bg-neutral-500 text-white p-1 rounded px-3"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            Prev
+          </button>
+          <span>
+            {currentPage} of {totalPages}
+          </span>
+          <button
+            className="bg-black disabled:bg-neutral-500 text-white p-1 rounded px-3"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
         </div>
       </div>
     </AnimatePage>

@@ -58,7 +58,7 @@ const Orders = () => {
       ) : (
         <div className="myContainer mt-2 mb-5">
           <div className="bg-white shadow-cardShadow rounded-xl md:p-5 p-2">
-            <h2 className="text-2xl uppercase font-bold mb-2">My orders</h2>
+            <h2 className="text-2xl uppercase font-bold mb-2">My order </h2>
             <div className="flex flex-col">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
@@ -109,10 +109,13 @@ const Orders = () => {
                               {order.dateTime}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order.productsList[0]?.name.length > 25
-                                ? order.productsList[0]?.name.substr(0, 20) +
-                                  "..."
-                                : order.productsList[0]?.name}
+                              {order.productsList?.map((p) => (
+                                <span key={p._id}>
+                                  {p.name.length > 7
+                                    ? p.name.substr(0, 7) + "..."
+                                    : p.name}
+                                </span>
+                              ))}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.total}Tk

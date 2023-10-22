@@ -25,14 +25,6 @@ const ProfileMenu = () => {
             <span>
               <img src={avatar} className="w-10 h-10 object-cover" alt="" />
             </span>
-            <span className="font-medium flex items-center">
-              {user?.displayName?.length > 12
-                ? user?.displayName.substr(0, 12) + "..."
-                : user?.displayName}
-              <span className="bg-neutral-200 rounded-full">
-                <HiChevronDown size={26} />
-              </span>
-            </span>
           </div>
         </Menu.Button>
         <Menu.Items className="flex flex-col bg-[#fff] text-black shadow-secondary absolute w-64 md:top-12 top-10 right-0 z-50 text-left rounded py-2">

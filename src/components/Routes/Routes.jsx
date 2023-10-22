@@ -31,6 +31,7 @@ import PageNotFound from "../Shared/PageNotFound";
 import Profile from "../auth/settings/Profile";
 import ProcessCheckout from "../payment/ProcessCheckout";
 import RefundPolicy from "../refundPolicy/RefundPolicy";
+import Refund from "../payment/redund/Refund";
 
 export const routes = createBrowserRouter([
   {
@@ -118,7 +119,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/process-checkout",
-        element: <ProcessCheckout />,
+        element: (
+          <PrivateRoutes>
+            <ProcessCheckout />,
+          </PrivateRoutes>
+        ),
       },
       {
         path: "/refund-policy",
@@ -177,6 +182,10 @@ export const routes = createBrowserRouter([
           {
             path: "/dashboard/:id",
             element: <EditProduct />,
+          },
+          {
+            path: "/dashboard/refund/:id",
+            element: <Refund />,
           },
         ],
       },
