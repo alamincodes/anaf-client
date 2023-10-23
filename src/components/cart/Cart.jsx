@@ -17,7 +17,8 @@ const Cart = () => {
 
   // console.log(items);
   const dateTime = format(new Date(), "PPpp");
-  const cartItems = { email: user?.email, items, dateTime };
+  const paymentMethod = "";
+  const cartItems = { email: user?.email, items, dateTime, paymentMethod };
   const navigate = useNavigate();
   const handleCreateInvoice = () => {
     if (!user) {
@@ -34,7 +35,7 @@ const Cart = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setIsLoading(false);
         if (data.acknowledged) {
           setIsLoading(false);

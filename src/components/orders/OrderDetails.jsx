@@ -6,6 +6,18 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 const OrderDetails = () => {
   const [orderDetail, setOrderDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const {
+    productsList,
+    orderId,
+    dateTime,
+    userData,
+    status,
+    deliveryCharge,
+    subtotal,
+    total,
+    paymentMethod,
+    paymentData,
+  } = orderDetail;
   let { id } = useParams();
   useEffect(() => {
     setIsLoading(true);
@@ -26,11 +38,11 @@ const OrderDetails = () => {
   }
   return (
     <AnimatePage>
-      <div className="myContainer bg-white md:px-20 md:py-10 mb-5">
+      <div className="myContainer bg-white md:px-10 py-5 mb-5">
         <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
           Order Details
         </h2>
-        <h2 className="font-medium mt-5 text-orange-500 bg-orange-50 border border-orange-300 rounded p-2">
+        {/* <h2 className="font-medium md:mt-5 mt-2 text-orange-500 bg-orange-50 border border-orange-300 rounded p-2">
           Order{" "}
           <span className="text-black font-bold p-1 uppercase">
             #{orderDetail.orderId}
@@ -39,60 +51,102 @@ const OrderDetails = () => {
           <span className="text-black p-1 font-bold">
             {orderDetail.status ? orderDetail.status : "pending"}
           </span>
-        </h2>
+        </h2> */}
+        <div className="mt-4 flex justify-between flex-col md:flex-row">
+          <ul>
+            <li className="uppercase">
+              <h5 className="font-bold text-xl">OrderID #{orderId}</h5>
+            </li>
+            <li>{userData?.name}</li>
+            <li>{userData?.email}</li>
+            <li>{userData?.phone}</li>
+            <li>
+              {userData?.district}, {userData?.address}
+            </li>
+          </ul>
+          <ul>
+            <li className="uppercase">
+              <h5 className="font-bold text-xl">Payment Details</h5>
+            </li>
+
+            <li>{dateTime}</li>
+            <li>Payment method: {paymentMethod}</li>
+            {paymentData?.trxID && <li>TransactionID: {paymentData?.trxID}</li>}
+            <li>Status: {status}</li>
+          </ul>
+        </div>
         <div className="mt-5">
-          {orderDetail.productsList?.map((item) => (
-            <div key={item.id} className="bg-white rounded mt-2 py-5 px-3">
-              <div className="flex md:items-center items-start justify-between md:flex-row flex-col md:text-center items-left space-y-2">
-                <img
-                  src={item.img}
-                  alt=""
-                  className="w-20 h-20 bg-cover rounded-md"
-                />
-                <h2>
-                  {item.name}{" "}
-                  <span className="font-semibold">X {item.quantity} </span>
-                </h2>
-                <h2 className="uppercase font-semibold">
-                  Price: {item.price} Tk
-                </h2>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-3 shadow gap-0">
-          {/* total */}
-          <div className="border border-dashed p-5">
-            <h2 className="font-bold uppercase">Total Amount</h2>
-            <h2>Delivery charge: {orderDetail.deliveryCharge} Tk</h2>
-            <h2 className="font-semibold text-orange-500">
-              Total: {orderDetail.total} Tk
-            </h2>
-          </div>
-          {/* total */}
-          <div className="border border-dashed  p-5">
-            <h2 className="font-bold uppercase">Payment details</h2>
-            <h2>
-              Payment method:{" "}
-              {orderDetail.status === "PAID" ? "Bkash" : "Cash on delivery"}
-            </h2>
-            {/* Transaction start*/}
-            {orderDetail.paymentData?.trxID && (
-              <h2>Transaction Id: {orderDetail.paymentData?.trxID}</h2>
-            )}
-            {/* Transaction end */}
-          </div>
+          <div className="overflow-x-auto rounded border border-gray-200">
+            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+              <thead className="ltr:text-left rtl:text-right bg-neutral-200">
+                <tr>
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                    No
+                  </th>
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                    Product
+                  </th>
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                    Quantity
+                  </th>
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                    Price
+                  </th>
+                </tr>
+              </thead>
 
-          {/* billing address */}
-
-          <div className="border border-dashed p-5">
-            <h2 className="font-bold uppercase">BILLING ADDRESS</h2>
-            <h3>{orderDetail.userData?.name}</h3>
-            <h3>{orderDetail.userData?.phone}</h3>
-            <h3>{orderDetail.userData?.email}</h3>
-            <h3>{orderDetail.userData?.address}</h3>
+              <tbody className="divide-y divide-gray-200">
+                {productsList?.map((order, i) => (
+                  <tr key={order._id}>
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                      {i + 1}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.name}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      {order.quantity}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                      ৳{order.quantity * order.price}
+                    </td>
+                  </tr>
+                ))}
+                <tr>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                    Subtotal
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l">
+                    ৳ {subtotal}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                    Delivery Charge
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l">
+                    ৳ {deliveryCharge}
+                  </td>
+                </tr>
+                <tr>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                    Total
+                  </td>
+                  <td className="whitespace-nowrap px-4 py-2 font-bold text-gray-900 border-l">
+                    ৳ {total}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
+
         {/* <button onClick={() => window.print()}>Print</button> */}
       </div>
     </AnimatePage>

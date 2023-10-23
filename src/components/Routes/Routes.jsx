@@ -20,7 +20,6 @@ import PrivateAdminRoute from "./PrivateAdminRoute";
 import AllOrders from "../Dashboard/AllOrders";
 import AddProducts from "../Dashboard/AddProducts";
 import ProductDetail from "../products/ProductDetail";
-import FindOrder from "../Dashboard/FindOrder";
 import Invoice from "../orders/Invoice";
 import CategoryProducts from "../home/categories/CategoryProducts";
 import Search from "../search/Search";
@@ -170,10 +169,6 @@ export const routes = createBrowserRouter([
           {
             path: "/dashboard/addProducts",
             element: <AddProducts />,
-          },
-          {
-            path: "/dashboard/findOrder",
-            element: <FindOrder />,
           },
           {
             path: "/dashboard/allProduct",

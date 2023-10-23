@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { MdOutlineAddBox } from "react-icons/md";
 import { BsBoxSeam } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa";
-import { HiOutlineReceiptRefund } from "react-icons/hi";
+
 
 const DashboardLayout = () => {
   return (
@@ -39,15 +39,7 @@ const DashboardLayout = () => {
             <span className="ml-1">Product</span>
           </li>
         </NavLink>
-        <NavLink
-          className={({ isActive }) => (isActive ? " text-black" : undefined)}
-          to="/dashboard/findOrder"
-        >
-          <li className="-mb-px p-4 flex items-center">
-            <MdOutlineAddBox size={20} className="mr-1" /> Find{" "}
-            <span className="ml-1">Order</span>
-          </li>
-        </NavLink>
+
         <NavLink
           className={({ isActive }) => (isActive ? " text-black" : undefined)}
           to="/dashboard/allProduct"

@@ -79,8 +79,8 @@ const ProcessCheckout = () => {
 
         {/* cancel */}
         {status === "cancel" && (
-          <div className="flex justify-center items-center flex-col bg-white shadow p-5 text-center m-5">
-            <h4 className="md:w-[100px] h-20 mb-10">{View}</h4>
+          <div className="flex justify-center items-center flex-col bg-white shadow md:p-5 p-4 text-center m-5">
+            <h4 className="md:w-[120px] h-20 md:mb-10 mb-5">{View}</h4>
             <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>
@@ -96,8 +96,8 @@ const ProcessCheckout = () => {
         )}
         {/* failed */}
         {status === null && (
-          <div className="flex justify-center items-center flex-col bg-white shadow p-5 text-center m-5">
-            <h4 className="md:w-[100px] h-20 mb-10">{View}</h4>
+          <div className="flex justify-center items-center flex-col bg-white shadow md:p-5 p-4 text-center m-5">
+            <h4 className="md:w-[120px] h-20 md:mb-10 mb-5">{View}</h4>
             <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>

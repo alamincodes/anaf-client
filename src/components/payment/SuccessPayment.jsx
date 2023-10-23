@@ -30,7 +30,7 @@ const SuccessPayment = ({ successPaymentData }) => {
         </div>
       ) : (
         <div className="flex justify-center items-center flex-col">
-          <h4 className="md:w-[300px] w-56 h-32">{View}</h4>
+          <h4 className="md:w-[300px] w-56 h-32 ">{View}</h4>
           <h3 className="text-green-800 font-bold md:text-2xl text-2xl md:mt-20 mb-3 mt-10 uppercase">
             {successPaymentData.message}
           </h3>
@@ -56,7 +56,7 @@ const SuccessPayment = ({ successPaymentData }) => {
               </div>
               <div className="flex justify-end w-full">
                 <Link to="/orders">
-                  <button className="bg-orange-500 uppercase text-xs text-white px-4 py-2 rounded mt-3">
+                  <button className="bg-orange-500 uppercase text-xs text-white px-4 py-2 rounded-sm mt-3">
                     See oreder
                   </button>
                 </Link>

@@ -11,6 +11,7 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import { Link, useLocation } from "react-router-dom";
 import UpdateAddressModal from "../update-user-address/UpdateAddressModal";
 import { useQuery } from "@tanstack/react-query";
+import CodSuccessOrder from "../modal/CodSuccessOrder";
 
 const Checkout = () => {
   useTitle("Checkout");
@@ -22,11 +23,36 @@ const Checkout = () => {
   const [paymentLoading, setPaymentLoading] = useState(false);
   const [invoiceData, setInvoiceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(false);
 
   const location = useLocation();
   const invoiceId = location.search.split("=")[1];
-
-  const handleOrder = () => {
+  console.log(invoiceData);
+  const handleCODOrder = () => {
+    setPaymentLoading(true);
+    fetch("https://anaf-server.vercel.app/order/cod", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(invoiceData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setPaymentLoading(false);
+        // console.log(data);
+        if (data.acknowledged) {
+          setSuccessModal(true);
+        }
+      })
+      .catch((error) => {
+        setPaymentLoading(false);
+        setSetErrorMessage("Try agin something is wrong");
+        // console.log(error);
+      });
+  };
+  const handleBkashOrder = () => {
     const checkoutInfo = {
       invoiceId: invoiceId,
       callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
@@ -63,7 +89,7 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         // setIsLoading(false);
         setInvoiceData(data);
       });
@@ -88,7 +114,7 @@ const Checkout = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
-  
+
   return (
     <AnimatePage>
       <section className="myContainer mb-5">
@@ -105,7 +131,11 @@ const Checkout = () => {
                       className="flex justify-between items-center p-2 rounded"
                     >
                       <div className="flex items-center space-x-2">
-                        <img src={product.img} className="w-10 h-10 rounded-lg" alt="" />
+                        <img
+                          src={product.img}
+                          className="w-12 h-12 rounded"
+                          alt=""
+                        />
                         <div>
                           <p className="text-sm">{product.name}</p>
                           <h5 className="text-neutral-500">
@@ -235,12 +265,12 @@ const Checkout = () => {
                   <p className="text-red-500 mt-1">{errorMessage}</p>
                 )}
                 <div className="mt-5">
-                  <button
-                    type="submit"
-                    onClick={handleOrder}
-                    className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
-                  >
-                    {paymentMethod === "Bkash" ? (
+                  {paymentMethod === "Bkash" ? (
+                    <button
+                      type="submit"
+                      onClick={handleBkashOrder}
+                      className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
+                    >
                       <span>
                         {paymentLoading ? (
                           <div className="flex justify-center item-center">
@@ -269,10 +299,43 @@ const Checkout = () => {
                           "Pay now"
                         )}
                       </span>
-                    ) : (
-                      "Confirm order"
-                    )}
-                  </button>
+                    </button>
+                  ) : (
+                    <button
+                      type="submit"
+                      onClick={handleCODOrder}
+                      className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
+                    >
+                      <span>
+                        {paymentLoading ? (
+                          <div className="flex justify-center item-center">
+                            <svg
+                              className="h-7 w-7 animate-spin text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                          </div>
+                        ) : (
+                          "Confirm Order"
+                        )}
+                      </span>
+                    </button>
+                  )}
                 </div>
                 {/* </form> */}
               </div>
@@ -292,6 +355,12 @@ const Checkout = () => {
 
       {openModal && (
         <UpdateAddressModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
+      {successModal && (
+        <CodSuccessOrder
+          successModal={successModal}
+          setSuccessModal={setSuccessModal}
+        />
       )}
     </AnimatePage>
   );

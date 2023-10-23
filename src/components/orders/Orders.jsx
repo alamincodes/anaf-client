@@ -6,7 +6,7 @@ import LoadingSpinner from "../Shared/LoadingSpinner";
 import { HiChevronRight } from "react-icons/hi";
 import useTitle from "../../hooks/useTitle";
 import emptyBox from "../../assets/image/box.svg";
-import BottomNav from "../Shared/BottomNav";
+
 const Orders = () => {
   useTitle("Orders");
   const { user, logOut } = useContext(AUTH_CONTEXT);
@@ -127,7 +127,7 @@ const Orders = () => {
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
-                                <span className="text-blue-500"> View</span>
+                                <button className="bg-orange-600 text-white py-2 px-4 rounded"> View</button>
                               </Link>
                             </td>
                             {/* <td className="whitespace-nowrap px-6 py-4">

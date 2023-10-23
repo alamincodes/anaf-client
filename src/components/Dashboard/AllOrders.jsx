@@ -42,7 +42,7 @@ const AllOrders = () => {
       return data?.reverse();
     },
   });
-
+console.log(orders);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(orders.length / itemsPerPage);
   // Get the current page's data
@@ -134,7 +134,7 @@ const AllOrders = () => {
           <form onSubmit={handleSearch} className="flex items-center flex-row">
             <input
               type="text"
-              className="bg-gray-200 outline-none p-2 w-full"
+              className="bg-neutral-200 outline-none p-2 w-full"
               placeholder="Search order id #035350"
               name="search"
               id=""
@@ -157,36 +157,36 @@ const AllOrders = () => {
                     <table className="min-w-full text-left text-sm font-light">
                       <thead className="border-b bg-white font-medium uppercase">
                         <tr>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             #Id
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             name
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Date
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Action
                           </th>
 
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             status
                           </th>
                           <th scope="col" className="px-6">
                             Product
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Total
                           </th>
 
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Update
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Delete
                           </th>
-                          <th scope="col" className="px-6 py-4">
+                          <th scope="col" className="px-3 py-4">
                             Refund
                           </th>
                         </tr>
@@ -198,28 +198,28 @@ const AllOrders = () => {
                             className="border-b odd:bg-gray-100 font-medium"
                           >
                             <td
-                              className="whitespace-nowrap px-6 py-4 font-medium"
+                              className="whitespace-nowrap px-3 py-4 font-medium"
                               title={order.orderId}
                             >
                               #{order.orderId}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                            <td className="whitespace-nowrap px-3 py-4 font-medium">
                               <h2>{order.userData?.name}</h2>
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-3 py-4">
                               {order.dateTime}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 font-medium">
+                            <td className="whitespace-nowrap px-3 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
                                 <span className="text-blue-600"> View</span>
                               </Link>
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4 ">
-                              <span className="bg-yellow-200 p-2 rounded-sm text-yellow-800">
+                            <td className="whitespace-nowrap px-3 py-4 ">
+                              <span className="bg-green-700 p-2 rounded-sm text-white">
                                 {order.status ? order.status : "Pending"}
                               </span>
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-3 py-4">
                               {order.productsList?.map((p) => (
                                 <span key={p._id}>
                                   {p.name.length > 7
@@ -228,11 +228,11 @@ const AllOrders = () => {
                                 </span>
                               ))}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-3 py-4">
                               {order.total}Tk
                             </td>
 
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-2 py-4">
                               <form
                                 className="flex items-center"
                                 onSubmit={handleUpdate}
@@ -259,7 +259,7 @@ const AllOrders = () => {
                                 </button>
                               </form>
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-3 py-4">
                               <button
                                 onClick={() => handleDeleteOrder(order._id)}
                                 className="bg-red-600 cursor-pointer flex items-center justify-center rounded-full p-2"
@@ -267,7 +267,7 @@ const AllOrders = () => {
                                 {deleteLoading ? (
                                   <HiOutlineCog8Tooth
                                     size={20}
-                                    className="bg-red-600 animate-spin"
+                                    className="bg-red-600 animate-spin text-white"
                                   />
                                 ) : (
                                   <HiOutlineTrash
@@ -277,7 +277,7 @@ const AllOrders = () => {
                                 )}
                               </button>
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">
+                            <td className="whitespace-nowrap px-3 py-4">
                               <Link to={`/dashboard/refund/${order._id}`}>
                                 <button className="bg-purple-600 py-2 px-4 rounded text-white">
                                   Refund
