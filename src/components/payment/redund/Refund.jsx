@@ -25,6 +25,7 @@ const Refund = () => {
     };
     // console.log(refundData);
     setRefundLoading(true);
+    setErrorMessage("")
     fetch("https://anaf-server.vercel.app/payment/bkash/refund", {
       method: "POST",
       headers: {
@@ -34,10 +35,13 @@ const Refund = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setRefundLoading(false);
         if (data.statusCode === "2034") {
           setErrorMessage("Already refund");
+        }
+        if (data.statusCode === "2023") {
+          setErrorMessage("Insufficient Balance");
         }
         if (data.statusCode === "0000") {
           setSuccessMessage("Successfully refunded✅");
@@ -65,6 +69,11 @@ const Refund = () => {
               toast.success("Successfully refunded");
             });
         }
+      })
+      .catch((error) => {
+        console.log(error);
+        setRefundLoading(false);
+        setErrorMessage("Server problem");
       });
   };
 

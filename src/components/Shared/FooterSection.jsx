@@ -4,7 +4,7 @@ import { BiSupport } from "react-icons/bi";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { HiOutlineShare } from "react-icons/hi";
 import { Link } from "react-router-dom";
-import bkashPayment from "../../assets/logo/bkash_payment.png";
+import bkashPayment from "../../assets/logo/bkash_payment.svg";
 const FooterSection = () => {
   const handleShare = async () => {
     if (navigator.share) {

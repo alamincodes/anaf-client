@@ -5,7 +5,7 @@ const SuccessPayment = ({ successPaymentData }) => {
   // animation
   const successAnimation = {
     animationData: SuccessAnimationIcon,
-    loop: false,
+    loop: true,
   };
 
   const { View } = useLottie(successAnimation);
@@ -13,13 +13,18 @@ const SuccessPayment = ({ successPaymentData }) => {
   return (
     <div>
       {successPaymentData.status === "FAILED" ? (
-        <div className="text-center md:mt-20 mt-10 uppercase">
+        <div className="text-center  uppercase bg-white p-5 py-20">
           <h3 className="text-red-500 font-bold md:text-5xl text-2xl ">
             {successPaymentData.paymentData?.statusMessage}
           </h3>
+          {successPaymentData.paymentData?.statusCode === "2023" && (
+            <p className="text-black font-secondary text-lg">
+              আপনার একাউন্টে পর্যাপ্ত পরিমান ব্যালেন্স নেই।
+            </p>
+          )}
           <Link to="/cart">
             <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-              Please try again
+              Try again
             </button>
           </Link>
         </div>
@@ -30,7 +35,7 @@ const SuccessPayment = ({ successPaymentData }) => {
             {successPaymentData.message}
           </h3>
           {/* order detail */}
-          <div className="border-2 bg-orange-50 border-dashed p-3 md:w-[400px] md:h-[200px] w-full relative">
+          <div className="border-2 bg-white border-dashed p-3 md:w-[400px] md:h-[250px] w-full relative">
             <ul className="font-bold uppercase flex justify-center flex-col items-center">
               <li className="border-b-2 border-orange-500 w-full border-dashed">
                 {" "}
@@ -42,15 +47,16 @@ const SuccessPayment = ({ successPaymentData }) => {
                 <span className="text-orange-500">Transaction ID: </span>
                 {successPaymentData.paymentData?.trxID}
               </li>
-              <div className="bg-orange-500 text-white p-2 font-secondary border-b-2 border-dashed">
+              <div className="bg-orange-50 text-black p-2 font-secondary border-2 border-orange-500 border-dashed mt-5">
                 <p>
                   আপনার অর্ডারটি রিসিভ হয়েছে, কিছুক্ষনের মধ্যে আমাদের প্রতিনিধি
                   আপনার সাথে যোগাযোগ করবেন।
                 </p>
+                <p>ধন্যবাদ।</p>
               </div>
-              <div className="flex justify-end w-full mt-2">
+              <div className="flex justify-end w-full">
                 <Link to="/orders">
-                  <button className="bg-orange-500 uppercase text-xs text-white px-4 py-2 rounded">
+                  <button className="bg-orange-500 uppercase text-xs text-white px-4 py-2 rounded mt-3">
                     See oreder
                   </button>
                 </Link>

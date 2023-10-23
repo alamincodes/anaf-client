@@ -19,7 +19,7 @@ const Checkout = () => {
   const [paymentMethod, setPaymentMethod] = useState("Bkash");
   // const [userFullInfo, setUserFullInfo] = useState({});
   const [errorMessage, setSetErrorMessage] = useState("");
-  // const [isLoading, setIsLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
   const [invoiceData, setInvoiceData] = useState({});
   const [openModal, setOpenModal] = useState(false);
 
@@ -32,7 +32,7 @@ const Checkout = () => {
       callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
     };
 
-    // setIsLoading(true);
+    setPaymentLoading(true);
     fetch("https://anaf-server.vercel.app/payment/bkash/create", {
       method: "POST",
       headers: {
@@ -43,11 +43,12 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setPaymentLoading(false);
         // console.log(data);
         window.location.replace(data.bkashURL);
       })
       .catch((error) => {
-        // setIsLoading(false);
+        setPaymentLoading(false);
         setSetErrorMessage("Try agin something is wrong");
         // console.log(error);
       });
@@ -87,6 +88,7 @@ const Checkout = () => {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+  
   return (
     <AnimatePage>
       <section className="myContainer mb-5">
@@ -103,7 +105,7 @@ const Checkout = () => {
                       className="flex justify-between items-center p-2 rounded"
                     >
                       <div className="flex items-center space-x-2">
-                        <img src={product.img} className="w-10 h-10" alt="" />
+                        <img src={product.img} className="w-10 h-10 rounded-lg" alt="" />
                         <div>
                           <p className="text-sm">{product.name}</p>
                           <h5 className="text-neutral-500">
@@ -132,9 +134,9 @@ const Checkout = () => {
             </div>
             {/* User order data */}
             <div className="bg-white shadow rounded py-5 col-span-3 mt-3 md:w-2/3 w-full">
-              <div className="px-4 lg:px-8">
+              <div className="px-4 ">
                 {/* user info */}
-                <div className="bg-neutral-100 p-2 rounded relative">
+                <div className="bg-neutral-100 p-2 relative">
                   {/* update address  btn*/}
                   <button
                     onClick={() => setOpenModal(true)}
@@ -238,7 +240,38 @@ const Checkout = () => {
                     onClick={handleOrder}
                     className="block w-full rounded bg-black p-2.5 text-lg  text-white transition hover:shadow-lg"
                   >
-                    {paymentMethod === "Bkash" ? "Pay now" : "Confirm order"}
+                    {paymentMethod === "Bkash" ? (
+                      <span>
+                        {paymentLoading ? (
+                          <div className="flex justify-center item-center">
+                            <svg
+                              className="h-7 w-7 animate-spin text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              ></path>
+                            </svg>
+                          </div>
+                        ) : (
+                          "Pay now"
+                        )}
+                      </span>
+                    ) : (
+                      "Confirm order"
+                    )}
                   </button>
                 </div>
                 {/* </form> */}

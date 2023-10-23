@@ -76,6 +76,7 @@ const ProcessCheckout = () => {
         {status === "success" && (
           <SuccessPayment successPaymentData={successPaymentData} />
         )}
+
         {/* cancel */}
         {status === "cancel" && (
           <div className="flex justify-center items-center flex-col bg-white shadow p-5 text-center m-5">
@@ -83,9 +84,12 @@ const ProcessCheckout = () => {
             <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>
+            <p className="font-secondary text-lg">
+              আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
+            </p>
             <Link to="/cart">
               <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Please try again
+                Try again
               </button>
             </Link>
           </div>
@@ -97,9 +101,29 @@ const ProcessCheckout = () => {
             <h3 className="text-red-600 font-bold md:text-5xl text-2xl my-5 uppercase">
               {message}
             </h3>
+            <p className="font-secondary text-lg">
+              আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
+            </p>
             <Link to="/cart">
               <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Please try again
+                Try again
+              </button>
+            </Link>
+          </div>
+        )}
+        {/* failed */}
+        {status === "failure" && (
+          <div className="flex justify-center items-center flex-col bg-white shadow md:p-5 p-4 text-center m-5">
+            <h4 className="md:w-[120px] h-20 md:mb-10 mb-5">{View}</h4>
+            <h3 className="text-red-600 font-bold md:text-5xl text-xl my-3 uppercase">
+              The payment has failed
+            </h3>
+            <p className="font-secondary text-lg">
+              আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
+            </p>
+            <Link to="/cart">
+              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                Try again
               </button>
             </Link>
           </div>
