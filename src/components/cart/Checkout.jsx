@@ -27,7 +27,7 @@ const Checkout = () => {
 
   const location = useLocation();
   const invoiceId = location.search.split("=")[1];
-  console.log(invoiceData);
+  // console.log(invoiceData);
   const handleCODOrder = () => {
     setPaymentLoading(true);
     fetch("https://anaf-server.vercel.app/order/cod", {
@@ -89,7 +89,7 @@ const Checkout = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         // setIsLoading(false);
         setInvoiceData(data);
       });

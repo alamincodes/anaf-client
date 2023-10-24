@@ -28,7 +28,7 @@ const OrderDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setOrderDetail(data);
         setIsLoading(false);
       });
@@ -42,16 +42,6 @@ const OrderDetails = () => {
         <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
           Order Details
         </h2>
-        {/* <h2 className="font-medium md:mt-5 mt-2 text-orange-500 bg-orange-50 border border-orange-300 rounded p-2">
-          Order{" "}
-          <span className="text-black font-bold p-1 uppercase">
-            #{orderDetail.orderId}
-          </span>{" "}
-          was placed on {orderDetail.orderDate} and is currently{" "}
-          <span className="text-black p-1 font-bold">
-            {orderDetail.status ? orderDetail.status : "pending"}
-          </span>
-        </h2> */}
         <div className="mt-4 flex justify-between flex-col md:flex-row">
           <ul>
             <li className="uppercase">
@@ -76,20 +66,20 @@ const OrderDetails = () => {
           </ul>
         </div>
         <div className="mt-5">
-          <div className="overflow-x-auto rounded border border-gray-200">
-            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+          <div className="overflow-x-auto rounded border-2 border-neutral-500">
+            <table className="min-w-full divide-y-2 divide-neutral-500 bg-white text-sm">
               <thead className="ltr:text-left rtl:text-right bg-neutral-200">
                 <tr>
-                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                     No
                   </th>
-                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                     Product
                   </th>
-                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                     Quantity
                   </th>
-                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900">
+                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 ">
                     Price
                   </th>
                 </tr>
@@ -97,48 +87,48 @@ const OrderDetails = () => {
 
               <tbody className="divide-y divide-gray-200">
                 {productsList?.map((order, i) => (
-                  <tr key={order._id}>
-                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                  <tr key={order._id} className="even:bg-neutral-100">
+                    <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                       {i + 1}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 border-r-2 border-neutral-500">
                       {order.name}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 border-r-2 border-neutral-500">
                       {order.quantity}
                     </td>
-                    <td className="whitespace-nowrap px-4 py-2 text-gray-700">
+                    <td className="whitespace-nowrap px-4 py-2 text-gray-700 ">
                       ৳{order.quantity * order.price}
                     </td>
                   </tr>
                 ))}
-                <tr>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                <tr className="">
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right border-t-2 border-neutral-500">
                     Subtotal
                   </td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l">
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l-2 border-t-2 border-neutral-500">
                     ৳ {subtotal}
                   </td>
                 </tr>
                 <tr>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500 "></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right border-t-2 border-neutral-500 ">
                     Delivery Charge
                   </td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l">
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-l-2 border-t-2 border-neutral-500 ">
                     ৳ {deliveryCharge}
                   </td>
                 </tr>
                 <tr>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900"></td>
-                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right">
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-t-2 border-neutral-500"></td>
+                  <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 text-right border-t-2 border-neutral-500">
                     Total
                   </td>
-                  <td className="whitespace-nowrap px-4 py-2 font-bold text-gray-900 border-l">
+                  <td className="whitespace-nowrap px-4 py-2 font-bold text-gray-900 border-l-2 border-t-2 border-neutral-500">
                     ৳ {total}
                   </td>
                 </tr>
