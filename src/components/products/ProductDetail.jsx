@@ -10,7 +10,7 @@ import { FiCheckCircle } from "react-icons/fi";
 import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import RelatedPRoducts from "./RelatedProducts/RelatedPRoducts";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
-import { cartIconWhite } from "../Shared/icons/svgIcons";
+import { addCartWhite, cartIconWhite, showIcon } from "../Shared/icons/svgIcons";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -50,17 +50,17 @@ const ProductDetail = () => {
     <AnimatePage>
       <section>
         <div className="myContainer mt-2 relative">
-          {/* toast */}
           {isVisible && (
-            <div className="show rounded-sm ring-4 ring-neutral-500 w-[300px] z-20 top-[84px] right-0 fixed text-white bg-neutral-900 p-5">
+            <div className="show rounded-sm  w-[300px] z-20 top-[84px] right-0 fixed text-white bg-black p-4">
               <div className="flex items-center">
-                <span>
-                  <HiCheckCircle size={23} className="text-green-500 mr-2" />
-                </span>
-                <p>
+                <h5 className="mr-1">{addCartWhite()}</h5>
+                <p className="flex items-center">
                   Product added
-                  <Link to="/cart" className=" bg-orange-500 p-2 ml-3 rounded ">
-                    viwe cart
+                  <Link
+                    to="/cart"
+                    className="bg-orange-600 py-2 px-3 ml-3 rounded flex items-center"
+                  >
+                    <span className="mr-1"> {showIcon()} </span> View
                   </Link>
                 </p>
               </div>

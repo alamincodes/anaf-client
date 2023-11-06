@@ -76,6 +76,7 @@ const Cart = () => {
                   <h1 className="text-xl uppercase font-bold text-gray-900 sm:text-3xl">
                     Your Cart
                   </h1>
+                  <h5 className="font-bold">Total products ({items?.length})</h5>
                 </header>
 
                 <div className="mt-5">

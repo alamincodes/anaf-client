@@ -530,3 +530,109 @@ export const cartIconWhite = () => {
     </svg>
   );
 };
+export const addCartWhite = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={32}
+      height={32}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <pattern
+          id="a"
+          patternUnits="userSpaceOnUse"
+          width={80}
+          height={80}
+          patternTransform="scale(3.19) rotate(0)"
+        >
+          <rect
+            x={0}
+            y={0}
+            width="100%"
+            height="100%"
+            fill="hsla(0,0%,100%,1)"
+          />
+          <path
+            d="M-20.133 4.568C-13.178 4.932-6.452 7.376 0 10c6.452 2.624 13.036 5.072 20 5 6.967-.072 13.56-2.341 20-5 6.44-2.659 13.033-4.928 20-5 6.964-.072 13.548 2.376 20 5s13.178 5.068 20.133 5.432"
+            strokeWidth={15}
+            stroke="#ffc400"
+            fill="none"
+          />
+          <path
+            d="M-20.133 24.568C-13.178 24.932-6.452 27.376 0 30c6.452 2.624 13.036 5.072 20 5 6.967-.072 13.56-2.341 20-5 6.44-2.659 13.033-4.928 20-5 6.964-.072 13.548 2.376 20 5s13.178 5.068 20.133 5.432"
+            strokeWidth={15}
+            stroke="#ff8c00"
+            fill="none"
+          />
+          <path
+            d="M-20.133 44.568C-13.178 44.932-6.452 47.376 0 50c6.452 2.624 13.036 5.072 20 5 6.967-.072 13.56-2.341 20-5 6.44-2.659 13.033-4.928 20-5 6.964-.072 13.548 2.376 20 5s13.178 5.068 20.133 5.432"
+            strokeWidth={15}
+            stroke="#ff2a00"
+            fill="none"
+          />
+          <path
+            d="M-20.133 64.568C-13.178 64.932-6.452 67.376 0 70c6.452 2.624 13.036 5.072 20 5 6.967-.072 13.56-2.341 20-5 6.44-2.659 13.033-4.928 20-5 6.964-.072 13.548 2.376 20 5s13.178 5.068 20.133 5.432"
+            strokeWidth={15}
+            stroke="#cf0000"
+            fill="none"
+          />
+        </pattern>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <rect id="backgr" width={256} height={256} fill="none" rx={60} />
+      <g id="group" transform="translate(0,0) scale(1)">
+        <path
+          d="M64.000 53.333H224.000L213.333 160.000H85.333L64.000 53.333ZM64.000 53.333L53.333 32.000H32.000M117.333 208.000C117.333 216.836 110.170 224.000 101.333 224.000C92.497 224.000 85.333 216.836 85.333 208.000C85.333 199.164 92.497 192.000 101.333 192.000C110.170 192.000 117.333 199.164 117.333 208.000ZM213.333 208.000C213.333 216.836 206.170 224.000 197.333 224.000C188.497 224.000 181.333 216.836 181.333 208.000C181.333 199.164 188.497 192.000 197.333 192.000C206.170 192.000 213.333 199.164 213.333 208.000Z"
+          stroke="#ffffff"
+          strokeWidth={15}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+        <path
+          d="M128.000 106.667L149.333 128.000L181.333 85.333"
+          stroke="#ff8000"
+          strokeWidth={15}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const showIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={22}
+      height={22}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <rect id="backgr" width={256} height={256} fill="none" rx={60} />
+      <path
+        d="M85.333 32.000H74.667C51.103 32.000 32.000 51.103 32.000 74.667V85.333M170.667 32.000H181.333C204.897 32.000 224.000 51.103 224.000 74.667V85.333M85.333 224.000H74.667C51.103 224.000 32.000 204.897 32.000 181.333V170.667M170.667 224.000H181.333C204.897 224.000 224.000 204.897 224.000 181.333V170.667M53.333 128.000C53.333 128.000 78.222 181.333 128.000 181.333C177.778 181.333 202.667 128.000 202.667 128.000C202.667 128.000 177.778 74.667 128.000 74.667C78.222 74.667 53.333 128.000 53.333 128.000ZM149.333 128.000C149.333 139.782 139.782 149.333 128.000 149.333C116.218 149.333 106.667 139.782 106.667 128.000C106.667 116.218 116.218 106.667 128.000 106.667C139.782 106.667 149.333 116.218 149.333 128.000Z"
+        stroke="#ffffff"
+        strokeWidth={14}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        id="my-path"
+        transform="translate(0,0) scale(1)"
+      />
+    </svg>
+  );
+};
