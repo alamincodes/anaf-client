@@ -15,7 +15,7 @@ import CodSuccessOrder from "../modal/CodSuccessOrder";
 
 const Checkout = () => {
   useTitle("Checkout");
-  const { user } = useContext(AUTH_CONTEXT);
+  const { user, logOut } = useContext(AUTH_CONTEXT);
   const { items } = useCart();
   const [paymentMethod, setPaymentMethod] = useState("Bkash");
   // const [userFullInfo, setUserFullInfo] = useState({});
@@ -106,6 +106,11 @@ const Checkout = () => {
           },
         }
       );
+
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem("accessToken");
+        return logOut();
+      }
       const data = await res.json();
       return data;
     },

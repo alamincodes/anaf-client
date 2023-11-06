@@ -23,6 +23,11 @@ const Profile = () => {
           },
         }
       );
+
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem("accessToken");
+        return logOut();
+      }
       const data = await res.json();
       return data;
     },
