@@ -38,11 +38,16 @@ const OrderDetails = () => {
   }
   return (
     <AnimatePage>
-      <div className="myContainer bg-white md:px-10 py-5 mb-5">
-        <h2 className="md:text-3xl text-2xl font-bold text-left uppercase">
-          Order Details
-        </h2>
-        <div className="mt-4 flex justify-between flex-col md:flex-row">
+      <div className="myContainer bg-white md:px-10 py-5 mb-5 lg:mt-5">
+        <div className="text-right print:hidden">
+          <button
+            className="bg-neutral-800 py-2 px-4 text-white rounded"
+            onClick={() => window.print()}
+          >
+            Print
+          </button>
+        </div>
+        <div className="mt-4 flex flex-col ">
           <ul>
             <li className="uppercase">
               <h5 className="font-bold text-xl">OrderID #{orderId}</h5>
@@ -76,7 +81,7 @@ const OrderDetails = () => {
                   <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                     Product
                   </th>
-                  <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
+                  <th className="whitespace-nowrap text-left  px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
                     Quantity
                   </th>
                   <th className="whitespace-nowrap text-left px-4 py-2 font-medium text-gray-900 ">
@@ -85,7 +90,7 @@ const OrderDetails = () => {
                 </tr>
               </thead>
 
-              <tbody className="divide-y divide-gray-200">
+              <tbody className="divide-y divide-gray-200 print:text-xs">
                 {productsList?.map((order, i) => (
                   <tr key={order._id} className="even:bg-neutral-100">
                     <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900 border-r-2 border-neutral-500">
@@ -136,8 +141,7 @@ const OrderDetails = () => {
             </table>
           </div>
         </div>
-
-        {/* <button onClick={() => window.print()}>Print</button> */}
+        <p className="text-center mt-2 font-medium">Thanks for purchasing</p>
       </div>
     </AnimatePage>
   );

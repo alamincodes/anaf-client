@@ -5,10 +5,12 @@ import CountdownClock from "../../Shared/countdownClock/CountdownClock";
 const BestOffer = () => {
   return (
     <div className=" rounded-xl bg-gradient-to-b bg-white shadow-cardShadow lg:mt-0 mt-3 lg:p-5 p-2">
-      <h2 className="uppercase font-bold md:text-lg text-xs my-1">Best offer🔥</h2>
+      <h2 className="uppercase font-bold md:text-lg text-xs my-1">
+        Best offer🔥
+      </h2>
       <div className="flex lg:flex-col scrollbar-hide flex-row lg:max-h-[349px] overflow-y-auto lg:gap-y-3 gap-x-3">
         {/* card */}
-        <Link to="http://anafshop.com/product/64d89ddb7a40b71495def6ff">
+        <Link to={"/product/652e3ba7b19bef6a5cdd41d4"}>
           <div className=" shadow-cardShadow p-3 rounded-lg min-w-[330px] border">
             <div className="flex flex-row justify-between items-center">
               {/* left */}
@@ -39,7 +41,7 @@ const BestOffer = () => {
         </Link>
 
         {/* card */}
-        <Link to="http://anafshop.com/product/64d89d9f7a40b71495def6fe">
+        <Link to="product/652e3b65b19bef6a5cdd41d3">
           <div className="shadow-cardShadow p-3 rounded-lg min-w-[330px] border">
             <div className="flex flex-row justify-between items-center">
               {/* left */}
@@ -70,7 +72,7 @@ const BestOffer = () => {
         </Link>
 
         {/* card */}
-        <Link to="http://anafshop.com/product/64e58e71e55d35b9c4662de3">
+        <Link to="/product/652e3f90e4c43af1b8428748">
           <div className=" shadow-cardShadow p-3 rounded-lg min-w-[330px] border">
             <div className="flex flex-row justify-between items-center">
               {/* left */}
@@ -101,7 +103,7 @@ const BestOffer = () => {
         </Link>
 
         {/* card */}
-        <Link to="http://anafshop.com/product/64e58daae55d35b9c4662de0">
+        <Link to="product/652e3f31b19bef6a5cdd41d5">
           <div className=" shadow-cardShadow p-3 rounded-lg min-w-[330px] border">
             <div className="flex flex-row justify-between items-center">
               {/* left */}

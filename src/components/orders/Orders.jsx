@@ -109,25 +109,40 @@ const Orders = () => {
                               {order.dateTime}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
-                              {order.productsList?.map((p) => (
-                                <span key={p._id}>
-                                  {p.name.length > 7
-                                    ? p.name.substr(0, 7) + "..."
-                                    : p.name}
-                                </span>
-                              ))}
+                              {order?.productsList[0].name.length > 15 ? (
+                                <h5>
+                                  {order?.productsList[0]?.name.substr(0, 15) +
+                                    "..."}
+                                </h5>
+                              ) : (
+                                <h5>{order?.productsList[0]?.name}</h5>
+                              )}
                             </td>
                             <td className="whitespace-nowrap px-6 py-4">
                               {order.total}Tk
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 ">
-                              <button className="bg-green-700 px-4 py-2 rounded-full text-white">
-                                {order.status ? order.status : "Pending"}
+                              <button
+                                className={`${
+                                  order.status === "PAID" ||
+                                  order.status === "PAID-COD"
+                                    ? "bg-green-700"
+                                    : "bg-purple-700"
+                                } px-2 py-1 text-xs rounded-full text-white uppercase`}
+                              >
+                                {order.status
+                                  ? order.status.includes("Refunded")
+                                    ? "Refund"
+                                    : order.status
+                                  : "Pending"}
                               </button>
                             </td>
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
-                                <button className="bg-orange-600 text-white py-2 px-4 rounded"> View</button>
+                                <button className="bg-orange-600 text-white py-2 px-4 rounded">
+                                  {" "}
+                                  View
+                                </button>
                               </Link>
                             </td>
                             {/* <td className="whitespace-nowrap px-6 py-4">

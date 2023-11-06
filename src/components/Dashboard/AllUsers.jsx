@@ -72,73 +72,71 @@ const AllUsers = () => {
     return <LoadingSpinner />;
   }
   return (
-    <div>
-      <div>
-        <div className="flex flex-col">
-          <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div className="overflow-hidden">
-                <table className="min-w-full text-left text-sm font-light">
-                  <thead className="border-b bg-white font-medium ">
-                    <tr>
-                      <th scope="col" className="px-6 py-4">
-                        Name
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Email
-                      </th>
-                      <th scope="col" className="px-6 py-4">
-                        Make admin
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users.map((user) => (
-                      <tr
-                        key={user._id}
-                        className="border-b odd:bg-gray-100 font-medium"
-                      >
-                        <td className="whitespace-nowrap px-6 py-4 font-medium">
-                          {user.name}
-                        </td>
+    <section>
+      <div className="flex flex-col border mb-5">
+        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div className="inline-block min-w-full sm:px-6 lg:px-8">
+            <div className="overflow-hidden">
+              <table className="min-w-full text-left text-sm font-light">
+                <thead className="border-b bg-white font-medium ">
+                  <tr>
+                    <th scope="col" className="px-6 py-4">
+                      Name
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Email
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                      Make admin
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {users.map((user) => (
+                    <tr
+                      key={user._id}
+                      className="border-b odd:bg-gray-100 font-medium"
+                    >
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                        {user.name}
+                      </td>
 
-                        <td className="whitespace-nowrap flex items-center px-6 py-4 ">
-                          {user?.role === "admin" && (
-                            <span>
-                              <MdVerified className="mr-1 text-lg text-green-500" />
-                            </span>
-                          )}
-                          {user.email}
-                        </td>
-                        <td className="whitespace-nowrap px-6 py-4 ">
-                          {user?.role === "admin" ? (
-                            <div className="flex items-center gap-1">
-                              <button
-                                onClick={() => handleCancelAdmin(user._id)}
-                                className="bg-red-100 rounded text-red-700 p-2"
-                              >
-                                Remove
-                              </button>
-                            </div>
-                          ) : (
+                      <td className="whitespace-nowrap flex items-center px-6 py-4 ">
+                        {user?.role === "admin" && (
+                          <span>
+                            <MdVerified className="mr-1 text-lg text-green-500" />
+                          </span>
+                        )}
+                        {user.email}
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        {user?.role === "admin" ? (
+                          <div className="flex items-center gap-1">
                             <button
-                              onClick={() => handleMakeAdmin(user._id)}
-                              className="bg-black rounded text-white p-2"
+                              onClick={() => handleCancelAdmin(user._id)}
+                              className="bg-red-100 rounded text-red-700 p-2"
                             >
-                              Make admin
+                              Remove
                             </button>
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => handleMakeAdmin(user._id)}
+                            className="bg-black rounded text-white p-2"
+                          >
+                            Make admin
+                          </button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

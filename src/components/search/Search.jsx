@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SearchProduct from "./SearchProduct";
+import Product from "../products/Product";
 
 const Search = () => {
   const [searchData, setSearchData] = useState([]);
@@ -73,11 +73,8 @@ const Search = () => {
         </h3>
       )}
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2 mt-5">
-        {searchData.map((searchProduct) => (
-          <SearchProduct
-            searchProduct={searchProduct}
-            key={searchProduct._id}
-          />
+        {searchData.map((product) => (
+          <Product product={product} key={product._id} />
         ))}
       </div>
     </section>

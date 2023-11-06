@@ -119,7 +119,7 @@ const Checkout = () => {
     <AnimatePage>
       <section className="myContainer mb-5">
         {items.length > 0 ? (
-          <div className="flex items-start md:flex-row flex-col md:gap-5">
+          <div className="flex items-start lg:flex-row flex-col lg:gap-5">
             {/* price details */}
             <div className="w-full col-span-4 relative rounded bg-white shadow p-4 mt-3">
               {/* price details */}
@@ -130,12 +130,9 @@ const Checkout = () => {
                       key={product._id}
                       className="flex justify-between items-center p-2 rounded"
                     >
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src={product.img}
-                          className="w-12 h-12 rounded"
-                          alt=""
-                        />
+                      <div className="flex items-center space-x-2 ">
+                        <img src={product.img} className="w-12 h-12  " alt="" />
+
                         <div>
                           <p className="text-sm">{product.name}</p>
                           <h5 className="text-neutral-500">
@@ -147,26 +144,12 @@ const Checkout = () => {
                   ))}
                 </ul>
               </div>
-              <ul className="p-5 bg-orange-50 shadow border border-dashed border-orange-500 rounded mt-5">
-                <li className="font-semibold flex justify-between uppercase">
-                  <span>Subtotal:</span> <span>৳ {invoiceData.subtotal}</span>
-                </li>
-                <li className="font-semibold flex justify-between my-2 uppercase">
-                  <span> Delivery charge:</span>{" "}
-                  <span>৳ {invoiceData.deliveryCharge}</span>
-                </li>
-                <li className="text-xl font-bold text-s-500 border-t border-dashed border-orange-500">
-                  <h5 className="font-semibold flex justify-between my-2 uppercase">
-                    <span>Total:</span> <span>৳ {invoiceData.total}</span>
-                  </h5>
-                </li>
-              </ul>
             </div>
             {/* User order data */}
-            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 md:w-2/3 w-full">
+            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 lg:w-2/3 w-full lg:sticky lg:top-20">
               <div className="px-4 ">
                 {/* user info */}
-                <div className="bg-neutral-100 p-2 relative">
+                <div className="bg-neutral-100 rounded p-2 relative">
                   {/* update address  btn*/}
                   <button
                     onClick={() => setOpenModal(true)}
@@ -189,6 +172,21 @@ const Checkout = () => {
                     </li>
                   </ul>
                 </div>
+                {/* <-------- total price --------> */}
+                <ul className="p-5 text-[15px] bg-orange-50 border border-dashed border-orange-500 rounded mt-5">
+                  <li className="font-semibold flex justify-between uppercase">
+                    <span>Subtotal:</span> <span>৳ {invoiceData.subtotal}</span>
+                  </li>
+                  <li className="font-semibold flex justify-between my-2 uppercase">
+                    <span> Delivery charge:</span>{" "}
+                    <span>৳ {invoiceData.deliveryCharge}</span>
+                  </li>
+                  <li className=" font-bold border-t border-dashed border-orange-500">
+                    <h5 className="font-semibold flex justify-between my-2 uppercase">
+                      <span>Total:</span> <span>৳ {invoiceData.total}</span>
+                    </h5>
+                  </li>
+                </ul>
                 {/* select payment */}
                 <h2 className="font-medium text-md mt-4">
                   Select payment method

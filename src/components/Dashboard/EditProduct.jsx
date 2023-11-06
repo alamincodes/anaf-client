@@ -91,7 +91,7 @@ const EditProduct = () => {
       });
   }, []);
   return (
-    <div>
+    <section className="mb-5">
       <form onSubmit={handleAddProduct}>
         <label>id</label>
         <input
@@ -158,7 +158,7 @@ const EditProduct = () => {
           {isLoading ? "Loading..." : "Update"}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

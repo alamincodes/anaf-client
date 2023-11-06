@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HiOutlinePhoto } from "react-icons/hi2";
 import {
@@ -7,13 +7,19 @@ import {
   HiCheckCircle,
 } from "react-icons/hi";
 import { useCart } from "react-use-cart";
+import useFavorite from "../../hooks/useFavorite";
+import { AUTH_CONTEXT } from "../../context/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 
 const Product = ({ product }) => {
   const [imageLoad, setImageLoad] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [isFav, setIsFav] = useState(false);
+  const { user } = useContext(AUTH_CONTEXT);
   const { name, img, price, _id, outOfStock } = product;
-
   const { addItem } = useCart();
+
+  // //! add to cart
   const handleAddToCart = () => {
     addItem(product);
     setIsVisible(true);
@@ -26,6 +32,32 @@ const Product = ({ product }) => {
     };
   };
 
+  const {
+    data: favProducts = {},
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["email"],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://anaf-server.vercel.app/get-favorite-product?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `bearer ${localStorage.getItem("accessToken")}`,
+          },
+        }
+      );
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  // ! post favorite product
+  const handlePostFavProduct = () => {
+    useFavorite(product, user?.email);
+    refetch();
+  };
+
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
@@ -33,6 +65,7 @@ const Product = ({ product }) => {
     };
     image.src = img;
   }, [product]);
+
   return (
     <div className="relative group rounded-xl border border-neutral-200 bg-white hover:shadow-lg duration-300 overflow-hidden">
       {outOfStock === "true" && (
@@ -125,7 +158,7 @@ const Product = ({ product }) => {
           <div className="mt-1">
             <h3
               className={`${
-                outOfStock === "true" ? "text-red-600" : "text-blue-600" 
+                outOfStock === "true" ? "text-red-600" : "text-blue-600"
               } text-sm my-1`}
             >
               {outOfStock === "false" ? "In Stock" : "Out of stock"}
@@ -158,13 +191,14 @@ const Product = ({ product }) => {
             </span> */}
               </p>
               <button
-                onClick={() => handleAddToCart()}
-                className="bg-neutral-100 hover:bg-neutral-200 transition duration-300 rounded-md p-1"
+                onClick={handleAddToCart}
+                className="bg-neutral-200 inline-flex items-center hover:bg-neutral-200 rounded-full transition duration-300 px-4 py-2 text-xs"
                 title="Add to cart"
               >
-                <span className="text-orange-500">
-                  <HiOutlineShoppingBag size={25} />
+                <span className="text-black mr-1">
+                  <HiOutlineShoppingBag size={20} />
                 </span>
+                Add to cart
               </button>
             </div>
           </div>

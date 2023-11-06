@@ -2,9 +2,9 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import CategoryProductCard from "./CategoryProductCard";
 import LoadingSpinner from "../../Shared/LoadingSpinner";
-import BottomNav from "../../Shared/BottomNav";
+import Product from "../../products/Product";
+
 const CategoryProducts = () => {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +28,7 @@ const CategoryProducts = () => {
   }
   return (
     <div
-      className="myContainer rounded-xl bg-white shadow-cardShadow md:p-5 p-2 text-3xl font-bold my-4
-  "
+      className="myContainer rounded-xl bg-white shadow-cardShadow md:p-5 p-2 my-4"
     >
       <div className=" uppercase">
         {category === "powerBank" && <h2>Power Bank</h2>}
@@ -43,11 +42,10 @@ const CategoryProducts = () => {
       </div>
 
       <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-2 mt-4">
-        {categories.map((category) => (
-          <CategoryProductCard key={category._id} category={category} />
+        {categories.map((product) => (
+          <Product key={product._id} product={product} />
         ))}
       </div>
-      
     </div>
   );
 };

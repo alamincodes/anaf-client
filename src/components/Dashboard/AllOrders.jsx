@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "../Shared/LoadingSpinner";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
-import { GrUpdate } from "react-icons/gr";
+import { TbSettingsFilled, TbTrashFilled } from "react-icons/tb";
 import AnimatePage from "../Shared/AnimatePage";
 import useTitle from "../../hooks/useTitle";
 import { toast } from "react-hot-toast";
-import { HiOutlineTrash, HiOutlineCog8Tooth } from "react-icons/hi2";
+import { HiOutlineCog8Tooth } from "react-icons/hi2";
 
 import { useQuery } from "@tanstack/react-query";
 
@@ -15,6 +15,7 @@ const AllOrders = () => {
   const { logOut } = useContext(AUTH_CONTEXT);
   const [orderId, setOrderId] = useState("");
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [updatingLoading, setUpdatingLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,7 +43,7 @@ const AllOrders = () => {
       return data?.reverse();
     },
   });
-console.log(orders);
+  // console.log(orders);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(orders.length / itemsPerPage);
   // Get the current page's data
@@ -62,7 +63,7 @@ console.log(orders);
     const orderStatus = {
       status,
     };
-
+    setUpdatingLoading(true);
     fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
       method: "PUT",
       headers: {
@@ -72,6 +73,7 @@ console.log(orders);
       body: JSON.stringify(orderStatus),
     })
       .then((res) => {
+        setUpdatingLoading(false);
         if (res.status === 401 || res.status === 403) {
           localStorage.removeItem("accessToken");
           return logOut();
@@ -80,6 +82,7 @@ console.log(orders);
       })
       .then((data) => {
         // console.log(data);
+        setUpdatingLoading(false);
         if (data.acknowledged) {
           refetch();
           toast("Order update", {
@@ -129,19 +132,19 @@ console.log(orders);
   }
   return (
     <AnimatePage>
-      <div>
+      <section>
         <div className="my-2 ">
           <form onSubmit={handleSearch} className="flex items-center flex-row">
             <input
               type="text"
-              className="bg-neutral-200 outline-none p-2 w-full"
+              className="bg-neutral-200 outline-none p-3 w-full placeholder:text-neutral-600"
               placeholder="Search order id #035350"
               name="search"
               id=""
             />
             <button
               type="submit"
-              className=" bg-neutral-700 text-white p-2 px-4 "
+              className=" bg-neutral-900 text-white p-3 px-4 "
             >
               {" "}
               Search{" "}
@@ -150,9 +153,9 @@ console.log(orders);
         </div>
         <div>
           {orders?.length > 0 && (
-            <div className="flex flex-col">
+            <div className="flex flex-col border">
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                <div className="inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden">
                     <table className="min-w-full text-left text-sm font-light">
                       <thead className="border-b bg-white font-medium uppercase">
@@ -166,16 +169,13 @@ console.log(orders);
                           <th scope="col" className="px-3 py-4">
                             Date
                           </th>
-                          <th scope="col" className="px-3 py-4">
-                            Action
-                          </th>
-
-                          <th scope="col" className="px-3 py-4">
-                            status
-                          </th>
                           <th scope="col" className="px-6">
                             Product
                           </th>
+                          <th scope="col" className="px-3 py-4">
+                            status
+                          </th>
+
                           <th scope="col" className="px-3 py-4">
                             Total
                           </th>
@@ -185,6 +185,9 @@ console.log(orders);
                           </th>
                           <th scope="col" className="px-3 py-4">
                             Delete
+                          </th>
+                          <th scope="col" className="px-3 py-4">
+                            Action
                           </th>
                           <th scope="col" className="px-3 py-4">
                             Refund
@@ -209,25 +212,30 @@ console.log(orders);
                             <td className="whitespace-nowrap px-3 py-4">
                               {order.dateTime}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 font-medium">
-                              <Link to={`/order/${order._id}`}>
-                                <span className="text-blue-600"> View</span>
-                              </Link>
+                            <td className="whitespace-nowrap px-3 py-4">
+                              {order?.productsList[0].name.length > 15 ? (
+                                <h5>
+                                  {order?.productsList[0]?.name.substr(0, 15) +
+                                    "..."}
+                                </h5>
+                              ) : (
+                                <h5>{order?.productsList[0]?.name}</h5>
+                              )}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 ">
-                              <span className="bg-green-700 p-2 rounded-sm text-white">
+                              <span
+                                className={`${
+                                  order.status === "PAID" ||
+                                  order.status === "UNPAID" ||
+                                  order.status === "PAID-COD"
+                                    ? "bg-green-700"
+                                    : "bg-red-700"
+                                } p-2 rounded-full text-center text-white`}
+                              >
                                 {order.status ? order.status : "Pending"}
                               </span>
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
-                              {order.productsList?.map((p) => (
-                                <span key={p._id}>
-                                  {p.name.length > 7
-                                    ? p.name.substr(0, 7) + "..."
-                                    : p.name}
-                                </span>
-                              ))}
-                            </td>
+
                             <td className="whitespace-nowrap px-3 py-4">
                               {order.total}Tk
                             </td>
@@ -238,27 +246,31 @@ console.log(orders);
                                 onSubmit={handleUpdate}
                               >
                                 <select
+                                  disabled={order?.status?.includes("Refunded")}
                                   name="orderStatus"
-                                  className="p-2 outline-none"
+                                  className="p-2 outline-none bg-neutral-300 rounded-sm disabled:bg-neutral-200"
                                 >
-                                  <option value="receive">receive</option>
-                                  <option value="processing">processing</option>
-                                  <option value="Handover to Courier">
-                                    Handover to Courier
-                                  </option>
-                                  <option value="pending">pending</option>
-                                  <option value="cancel">cancel</option>
+                                  <option value="PAID-COD">PAID-COD</option>
+                                  <option value="PAID">PAID</option>
+                                  <option value="UNPAID">UNPAID</option>
                                 </select>
 
                                 <button
                                   type="submit"
+                                  disabled={order?.status?.includes("Refunded")}
                                   onClick={() => setOrderId(order._id)}
                                   className="bg-neutral-200 rounded-full p-2 flex items-center ml-2"
                                 >
-                                  <GrUpdate className="text-whit " size={20} />
+                                  <TbSettingsFilled
+                                    className={`text-neutral-900 ${
+                                      updatingLoading && "animate-spin"
+                                    }`}
+                                    size={23}
+                                  />
                                 </button>
                               </form>
                             </td>
+
                             <td className="whitespace-nowrap px-3 py-4">
                               <button
                                 onClick={() => handleDeleteOrder(order._id)}
@@ -270,16 +282,27 @@ console.log(orders);
                                     className="bg-red-600 animate-spin text-white"
                                   />
                                 ) : (
-                                  <HiOutlineTrash
+                                  <TbTrashFilled
                                     size={20}
                                     className="text-white"
                                   />
                                 )}
                               </button>
                             </td>
+                            <td className="whitespace-nowrap px-3 py-4 font-medium">
+                              <Link to={`/order/${order._id}`}>
+                                <button className="bg-blue-600 px-4 py-2 text-white rounded">
+                                  {" "}
+                                  View
+                                </button>
+                              </Link>
+                            </td>
                             <td className="whitespace-nowrap px-3 py-4">
                               <Link to={`/dashboard/refund/${order._id}`}>
-                                <button className="bg-purple-600 py-2 px-4 rounded text-white">
+                                <button
+                                  disabled={order.status !== "PAID"}
+                                  className="bg-purple-600 disabled:bg-neutral-300 py-2 px-4 rounded text-white"
+                                >
                                   Refund
                                 </button>
                               </Link>
@@ -314,7 +337,7 @@ console.log(orders);
             Next
           </button>
         </div>
-      </div>
+      </section>
     </AnimatePage>
   );
 };

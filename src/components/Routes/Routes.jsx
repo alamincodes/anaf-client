@@ -31,6 +31,7 @@ import Profile from "../auth/settings/Profile";
 import ProcessCheckout from "../payment/ProcessCheckout";
 import RefundPolicy from "../refundPolicy/RefundPolicy";
 import Refund from "../payment/redund/Refund";
+import SearchPayment from "../payment/searchPayment/SearchPayment";
 
 export const routes = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const routes = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/search-payment",
+        element: <SearchPayment />,
       },
       {
         path: "/contact",

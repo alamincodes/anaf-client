@@ -27,7 +27,7 @@ const AllProducts = () => {
       });
   }, [search]);
   return (
-    <div className="">
+    <section className="">
       <form onSubmit={handleSubmit} className="flex mt-3 relative">
         <input
           type="text"
@@ -68,7 +68,7 @@ const AllProducts = () => {
         </button>
       </form>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-4 grid-cols-2 gap-4 mt-3">
+      <div className="grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4 mt-3">
         {searchData.map((product) => (
           <div
             key={product._id}
@@ -114,7 +114,7 @@ const AllProducts = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

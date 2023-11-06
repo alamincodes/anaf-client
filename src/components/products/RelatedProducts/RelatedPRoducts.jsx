@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import RelatedProduct from "./RelatedProduct";
 import SkeletonCard from "../../Shared/SkeletonCard";
+import Product from "../Product";
 
 const RelatedPRoducts = ({ productDetail }) => {
   const [relatedProducts, setRelatedPRoducts] = useState([]);
@@ -25,7 +25,7 @@ const RelatedPRoducts = ({ productDetail }) => {
           {isLoading && <SkeletonCard cards={5} />}
           {/* products */}
           {relatedProducts.map((product) => (
-            <RelatedProduct key={product._id} product={product} />
+            <Product product={product} key={product._id} />
           ))}
         </div>
       </div>
