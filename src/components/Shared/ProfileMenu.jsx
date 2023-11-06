@@ -1,22 +1,25 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { Menu } from "@headlessui/react";
-import { HiChevronDown } from "react-icons/hi";
 import avatar from "../../assets/image/avatar.svg";
+import {
+  dashboardIcon,
+  logoutIcon,
+  orderIcon,
+  settingIcon,
+  userIcon,
+} from "./icons/svgIcons";
+import LogoutModal from "../modal/LogoutModal";
 
 const ProfileMenu = () => {
+  const [openModal, setOpenModal] = useState(false);
   const { user, logOut } = useContext(AUTH_CONTEXT);
   const { emptyCart } = useCart();
   const [isAdmin] = useAdmin(user?.email);
-  // console.log(isAdmin);
-  const handleLogOut = () => {
-    emptyCart();
-    localStorage.removeItem("accessToken");
-    logOut();
-  };
+
   return (
     <div className="relative mt-2">
       <Menu>
@@ -31,7 +34,7 @@ const ProfileMenu = () => {
           <Menu.Item className="transition-all px-3">
             <Link to="/orders">
               <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
-                <span>{/* <BsBox className="mr-3" size={15} /> */}</span>
+                <span className="mr-2">{orderIcon()}</span>
                 My orders
               </h2>
             </Link>
@@ -39,7 +42,7 @@ const ProfileMenu = () => {
           <Menu.Item className="text-sm transition-all px-3 pt-1 ">
             <Link to="/profile">
               <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
-                <span>{/* <BiUser className="mr-3" size={15} /> */}</span>
+                <span className="mr-2">{userIcon()}</span>
                 Profile
               </h2>
             </Link>
@@ -47,7 +50,7 @@ const ProfileMenu = () => {
           <Menu.Item className="text-sm transition-all px-3 pt-1 ">
             <Link to="/settings/general">
               <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
-                <span>{/* <BiUser className="mr-3" size={15} /> */}</span>
+                <span className="mr-2">{settingIcon()}</span>
                 Settings
               </h2>
             </Link>
@@ -56,24 +59,26 @@ const ProfileMenu = () => {
             <Menu.Item className="text-sm transition-all px-3 pt-1 ">
               <Link to="/dashboard/allOrders">
                 <h2 className="inline-flex hover:bg-neutral-100 px-3 rounded w-full items-center py-2">
-                  <span>
-                    {/* <RxDashboard className="mr-3" size={15} /> */}
-                  </span>
+                  <span className="mr-2">{dashboardIcon()}</span>
                   Dashboard
                 </h2>
               </Link>
             </Menu.Item>
           )}
-          <Menu.Item className="text-sm transition-all px-3 pt-1">
-            <div onClick={handleLogOut}>
-              <h2 className="inline-flex hover:bg-neutral-100 font-medium px-3 rounded w-full items-center py-2">
-                <span>{/* <RxDashboard className="mr-3" size={15} /> */}</span>
+          <Menu.Item className="text-sm transition-all px-3 pt-1 ">
+            <div onClick={() => setOpenModal(true)}>
+              <h2 className="inline-flex font-medium px-3 rounded w-full items-center py-2 border border-red-300 bg-red-100 hover:bg-red-200">
+                <span className="mr-2">{logoutIcon()}</span>
                 Logout
               </h2>
             </div>
           </Menu.Item>
         </Menu.Items>
       </Menu>
+
+      {openModal && (
+        <LogoutModal openModal={openModal} setOpenModal={setOpenModal} />
+      )}
     </div>
   );
 };
