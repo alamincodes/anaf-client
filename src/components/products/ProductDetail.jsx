@@ -10,6 +10,7 @@ import { FiCheckCircle } from "react-icons/fi";
 import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import RelatedPRoducts from "./RelatedProducts/RelatedPRoducts";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
+import { cartIconWhite } from "../Shared/icons/svgIcons";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -135,11 +136,9 @@ const ProductDetail = () => {
                   <button
                     disabled={outOfStock === "true"}
                     onClick={handleAddToCart}
-                    className="py-4 px-3 active:transition-[0.3s] active:scale-[0.93] disabled:bg-neutral-500 font-[500] inline-flex justify-center uppercase md:w-[200px] rounded bg-neutral-900 text-white hover:bg-neutral-800"
+                    className="py-4 px-6 active:transition-[0.3s] active:scale-[0.93] disabled:bg-neutral-500 font-[500] flex items-center justify-center uppercase md:w-[200px] rounded bg-neutral-900 text-white hover:bg-neutral-800"
                   >
-                    <span>
-                      <HiOutlineShoppingBag size={25} className="mr-1" />
-                    </span>
+                    <span className="mb-1 mr-1">{cartIconWhite()}</span>
                     {outOfStock === "true" ? "Out of stock" : "Add to cart"}
                   </button>
                 </div>

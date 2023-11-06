@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
 import { useCart } from "react-use-cart";
 import MobileNav from "./MobileNav";
+import { cartIcon } from "./icons/svgIcons";
 const Navbar = () => {
   const { user} = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
@@ -65,11 +66,12 @@ const Navbar = () => {
               <Link to="/cart">
                 <h2 className="cursor-pointer relative">
                   {totalUniqueItems > 0 && (
-                    <span className=" absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
+                    <span className="absolute bg-black p-1 px-2 top-4 left-3 text-white rounded-full text-xs">
                       {totalUniqueItems}
                     </span>
                   )}
-                  <HiOutlineShoppingBag size={30} className="mb-1" />
+                  {/* <HiOutlineShoppingBag size={30} className="mb-1" /> */}
+                  <span>{cartIcon()}</span>
                 </h2>
               </Link>
               {!user?.email && (
@@ -108,11 +110,12 @@ const Navbar = () => {
               <Link to="/cart">
                 <h2 className="cursor-pointer relative mb-1">
                   {totalUniqueItems > 0 && (
-                    <span className="absolute bg-black p-1 px-2 top-4 text-white rounded-full text-xs">
+                    <span className="absolute bg-black p-1 px-2 top-[18px] right-0 text-white rounded-full text-xs">
                       {totalUniqueItems}
                     </span>
                   )}
-                  <HiOutlineShoppingBag size={32} />
+                  {/* <HiOutlineShoppingBag size={32} /> */}
+                  <span>{cartIcon()}</span>
                 </h2>
               </Link>
             </div>
