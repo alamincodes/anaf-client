@@ -72,7 +72,7 @@ const Product = ({ product }) => {
       )}
       {/* toast */}
       {isVisible && (
-        <div className="show rounded-sm  w-[300px] z-20 top-[84px] right-0 fixed text-white bg-black p-4">
+        <div className="show rounded-sm w-[300px] z-20 top-[80px] right-0 fixed text-white bg-black p-4">
           <div className="flex items-center">
             <h5 className="mr-1">{addCartWhite()}</h5>
             <p className="flex items-center">

@@ -4,7 +4,6 @@ import LoadingSpinner from "../../Shared/LoadingSpinner";
 import useTitle from "../../../hooks/useTitle";
 import AnimatePage from "../../Shared/AnimatePage";
 import { Link } from "react-router-dom";
-import BottomNav from "../../Shared/BottomNav";
 import UpdateAddressModal from "../../update-user-address/UpdateAddressModal";
 import { useQuery } from "@tanstack/react-query";
 

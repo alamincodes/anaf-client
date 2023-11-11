@@ -105,7 +105,7 @@ const SignUp = () => {
           <div className="flex justify-center items-center">
             <form
               onSubmit={handleSubmit(handleSignUp)}
-              className="py-5 md:px-10 px-5 bg-white md:w-auto w-full"
+              className="py-5 md:px-10 px-5 bg-white shadow-cardShadow md:w-auto w-full"
             >
               {/* logo */}
               <div className="flex justify-center items-center ">

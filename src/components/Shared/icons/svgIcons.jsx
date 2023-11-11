@@ -636,3 +636,213 @@ export const showIcon = () => {
     </svg>
   );
 };
+
+// bottom nav icons
+export const navOrderIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <g
+        id="group"
+        transform="translate(-12.800000762939465,-12.800000000000011) scale(1.1)"
+      >
+        <path
+          d="M202.667 96.000V202.667C202.667 214.449 193.116 224.000 181.333 224.000H74.667C62.885 224.000 53.333 214.449 53.333 202.667V192.000V53.333C53.333 41.551 62.885 32.000 74.667 32.000H138.667M202.667 96.000L138.667 32.000M202.667 96.000H160.000C148.218 96.000 138.667 86.449 138.667 74.667V32.000"
+          stroke="#000000"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+        <path
+          d="M85.333 96.000H106.667M85.333 138.667H170.667M85.333 181.333H170.667"
+          stroke="#ff5100"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const navUserIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <g
+        id="group"
+        transform="translate(-25.599998474121087,-24.533299255371087) scale(1.2)"
+      >
+        <path
+          d="M154.666 117.333H170.667C194.230 117.333 213.333 136.436 213.333 160.000V192.000C213.333 203.782 203.782 213.333 192.000 213.333H64.000C52.218 213.333 42.667 203.782 42.667 192.000V160.000C42.667 136.436 61.769 117.333 85.333 117.333H101.334"
+          stroke="#000000"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+        <path
+          d="M170.667 82.526C170.667 110.431 146.963 128.000 128.000 128.000C109.037 128.000 85.333 110.431 85.333 82.526C85.333 54.621 101.818 32.000 128.000 32.000C154.182 32.000 170.667 54.621 170.667 82.526Z"
+          stroke="#ff5100"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const navPhoneIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <g
+        id="group"
+        transform="translate(-25.956000518798824,-24.533401489257805) scale(1.2)"
+      >
+        <path
+          d="M40.893 184.890C40.893 191.123 42.676 197.106 45.951 202.667H85.337L94.225 171.550C105.113 168.695 117.138 167.113 129.780 167.113C142.421 167.113 154.447 168.695 165.334 171.550L174.223 202.667H213.609C216.884 197.106 218.667 191.123 218.667 184.890C218.667 155.435 178.870 131.557 129.780 131.557C80.689 131.557 40.893 155.435 40.893 184.890Z"
+          stroke="#000000"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+        <path
+          d="M90.667 101.334C100.347 91.460 113.836 85.334 128.755 85.334C143.291 85.334 156.468 91.149 166.089 100.580M196.663 70.812C179.289 53.423 155.278 42.667 128.755 42.667C102.166 42.667 78.102 53.477 60.717 70.941"
+          stroke="#ff5100"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const navMenuIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <g
+        id="group"
+        transform="translate(-38.400000000000006,-38.39999885559082) scale(1.3)"
+      >
+        <path
+          d="M64.000 74.667H192.000M64.000 181.333H192.000"
+          stroke="#000000"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+        <path
+          d="M64.000 128.000H192.000"
+          stroke="#ff5100"
+          strokeWidth={21}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const noBalanceIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      version="1.1"
+      x="0px"
+      y="0px"
+      viewBox="0 0 32 40"
+      style={{ enableBackground: "new 0 0 32 32" }}
+      xmlSpace="preserve"
+    >
+      <style
+        type="text/css"
+        dangerouslySetInnerHTML={{
+          __html: "\n\t.st0{display:none;}\n\t.st1{display:inline;}\n",
+        }}
+      />
+      <g>
+        <path d="M26.5,2.799h-21c-2.426,0-4.4,1.974-4.4,4.4v13.46c0,2.426,1.974,4.4,4.4,4.4h11.34c0.497,0,0.9-0.403,0.9-0.9   s-0.403-0.9-0.9-0.9H5.5c-1.434,0-2.6-1.167-2.6-2.6v-6.98h26.2v2.99c0,0.497,0.403,0.9,0.9,0.9s0.9-0.403,0.9-0.9v-9.47   C30.9,4.773,28.926,2.799,26.5,2.799z M5.5,4.599h21c1.434,0,2.6,1.167,2.6,2.6v0.597H2.9V7.199C2.9,5.766,4.066,4.599,5.5,4.599z    M2.9,11.879V9.596h26.2v2.284H2.9z" />
+        <path d="M6.308,17.367h2.757c0.497,0,0.9-0.403,0.9-0.9s-0.403-0.9-0.9-0.9H6.308c-0.497,0-0.9,0.403-0.9,0.9   S5.811,17.367,6.308,17.367z" />
+        <path d="M6.308,20.755h5.514c0.497,0,0.9-0.403,0.9-0.9s-0.403-0.9-0.9-0.9H6.308c-0.497,0-0.9,0.403-0.9,0.9   S5.811,20.755,6.308,20.755z" />
+        <path d="M21.091,19.392c-1.085,1.085-1.683,2.528-1.683,4.063c0,1.535,0.598,2.978,1.683,4.063   c1.086,1.085,2.528,1.683,4.063,1.683s2.978-0.598,4.063-1.683c2.239-2.24,2.239-5.885,0-8.125   C26.976,17.151,23.331,17.152,21.091,19.392z M27.944,26.245c-1.49,1.49-4.09,1.491-5.58,0c-0.746-0.745-1.156-1.736-1.156-2.79   c0-1.054,0.41-2.045,1.156-2.791c0.769-0.769,1.779-1.154,2.79-1.154s2.021,0.385,2.79,1.154   C29.482,22.203,29.482,24.707,27.944,26.245z" />
+        <path d="M26.964,21.644c-0.352-0.352-0.922-0.352-1.273,0l-0.537,0.536l-0.537-0.536c-0.352-0.352-0.922-0.352-1.273,0   s-0.352,0.921,0,1.272l0.537,0.537l-0.537,0.537c-0.352,0.351-0.352,0.921,0,1.272c0.176,0.176,0.406,0.264,0.637,0.264   s0.461-0.088,0.637-0.264l0.537-0.536l0.537,0.536c0.176,0.176,0.406,0.264,0.637,0.264s0.461-0.088,0.637-0.264   c0.352-0.352,0.352-0.921,0-1.272l-0.537-0.537l0.537-0.537C27.315,22.565,27.315,21.996,26.964,21.644z" />
+      </g>
+      <text
+        x={0}
+        y={47}
+        fill="#000000"
+        fontSize="5px"
+        fontWeight="bold"
+        fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
+      >
+        Created by Rikas Dzihab
+      </text>
+      <text
+        x={0}
+        y={52}
+        fill="#000000"
+        fontSize="5px"
+        fontWeight="bold"
+        fontFamily="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
+      >
+        from the Noun Project
+      </text>
+    </svg>
+  );
+};

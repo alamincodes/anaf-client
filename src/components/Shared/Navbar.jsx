@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/logo/anaf.svg";
-import {  HiOutlineShoppingBag } from "react-icons/hi";
 import { TbSearch } from "react-icons/tb";
 import ProfileMenu from "./ProfileMenu";
 import { Link, NavLink } from "react-router-dom";
@@ -9,7 +8,7 @@ import { useCart } from "react-use-cart";
 import MobileNav from "./MobileNav";
 import { cartIcon } from "./icons/svgIcons";
 const Navbar = () => {
-  const { user} = useContext(AUTH_CONTEXT);
+  const { user } = useContext(AUTH_CONTEXT);
   const { totalUniqueItems } = useCart();
 
   return (
@@ -125,7 +124,6 @@ const Navbar = () => {
 
       {/* mobile nav */}
 
-      {/* <BottomNav open={open} setOpenMenu={setOpenMenu} /> */}
       <MobileNav />
     </>
   );

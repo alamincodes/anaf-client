@@ -30,7 +30,7 @@ const CategoryProducts = () => {
     <div
       className="myContainer rounded-xl bg-white shadow-cardShadow md:p-5 p-2 my-4"
     >
-      <div className=" uppercase">
+      <div className="uppercase text-2xl font-bold">
         {category === "powerBank" && <h2>Power Bank</h2>}
         {category === "headphones" && <h2>Headphones</h2>}
         {category === "smartWatches" && <h2>Smart Watches</h2>}

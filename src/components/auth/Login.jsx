@@ -70,7 +70,7 @@ const Login = () => {
           <div className="flex justify-center items-center md:mt-5">
             <form
               onSubmit={handleSubmit(handleSignIn)}
-              className="py-5 md:px-10 px-5 bg-white md:w-96 w-full"
+              className="py-5 md:px-10 px-5 bg-white shadow-cardShadow md:w-96 w-full"
             >
               <div className="flex justify-center items-center ">
                 <h2 className="md:text-3xl text-2xl text-neutral-800 font-semibold md:my-5 my-2 uppercase">

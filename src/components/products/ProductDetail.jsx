@@ -10,7 +10,11 @@ import { FiCheckCircle } from "react-icons/fi";
 import { HiCheckCircle, HiOutlineShoppingBag } from "react-icons/hi";
 import RelatedPRoducts from "./RelatedProducts/RelatedPRoducts";
 import { HiCurrencyBangladeshi } from "react-icons/hi";
-import { addCartWhite, cartIconWhite, showIcon } from "../Shared/icons/svgIcons";
+import {
+  addCartWhite,
+  cartIconWhite,
+  showIcon,
+} from "../Shared/icons/svgIcons";
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -38,7 +42,7 @@ const ProductDetail = () => {
       .then((data) => {
         // console.log(data);
         setProductDetail(data);
-        setActiveImg(data?.img[0]);
+        setActiveImg(data?.img?.[0]);
         setIsLoading(false);
       });
   }, [id]);
@@ -51,7 +55,7 @@ const ProductDetail = () => {
       <section>
         <div className="myContainer mt-2 relative">
           {isVisible && (
-            <div className="show rounded-sm  w-[300px] z-20 top-[84px] right-0 fixed text-white bg-black p-4">
+            <div className="show rounded-sm  w-[300px] z-20 top-[80px] right-0 fixed text-white bg-black p-4">
               <div className="flex items-center">
                 <h5 className="mr-1">{addCartWhite()}</h5>
                 <p className="flex items-center">
@@ -75,6 +79,7 @@ const ProductDetail = () => {
                   src={activeImg}
                   className="md:w-[400px] lg:h-[400px] object-cover w-full h-full rounded"
                   alt=""
+                  loading="lazy"
                 />
               </div>
               <div className="flex flex-wrap space-x-1">
