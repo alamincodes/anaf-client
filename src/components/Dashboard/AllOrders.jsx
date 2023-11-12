@@ -39,11 +39,15 @@ const AllOrders = () => {
           },
         }
       );
+      if (res.status === 401 || res.status === 403) {
+        localStorage.removeItem("accessToken");
+        return logOut();
+      }
       const data = await res.json();
       return data?.reverse();
     },
   });
-  // console.log(orders);
+  console.log(orders);
   const itemsPerPage = 10;
   const totalPages = Math.ceil(orders.length / itemsPerPage);
   // Get the current page's data
@@ -64,13 +68,52 @@ const AllOrders = () => {
       status,
     };
     setUpdatingLoading(true);
-    fetch(`https://anaf-server.vercel.app/order/${orderId}`, {
+    fetch(`https://anaf-server.vercel.app/order-payment-status/${orderId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify(orderStatus),
+    })
+      .then((res) => {
+        setUpdatingLoading(false);
+        if (res.status === 401 || res.status === 403) {
+          localStorage.removeItem("accessToken");
+          return logOut();
+        }
+        return res.json();
+      })
+      .then((data) => {
+        // console.log(data);
+        setUpdatingLoading(false);
+        if (data.acknowledged) {
+          refetch();
+          toast("Order update", {
+            icon: "🚀",
+            style: {
+              borderRadius: "10px",
+              background: "#333",
+              color: "#fff",
+            },
+          });
+        }
+      });
+  };
+  const handleOrderStatusUpdate = (e) => {
+    e.preventDefault();
+    const orderStatus = e.target.orderStatus.value;
+    const orderStatusInfo = {
+      orderStatus,
+    };
+    setUpdatingLoading(true);
+    fetch(`https://anaf-server.vercel.app/order-status/${orderId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+      body: JSON.stringify(orderStatusInfo),
     })
       .then((res) => {
         setUpdatingLoading(false);
@@ -177,11 +220,17 @@ const AllOrders = () => {
                           </th>
 
                           <th scope="col" className="px-3 py-4">
+                            Order status
+                          </th>
+                          <th scope="col" className="px-3 py-4">
                             Total
                           </th>
 
                           <th scope="col" className="px-3 py-4">
-                            Update
+                            Payment Update
+                          </th>
+                          <th scope="col" className="px-3 py-4">
+                            Status Update
                           </th>
                           <th scope="col" className="px-3 py-4">
                             Delete
@@ -229,17 +278,45 @@ const AllOrders = () => {
                                   order.status === "UNPAID" ||
                                   order.status === "PAID-COD"
                                     ? "bg-green-700"
-                                    : "bg-red-700"
-                                } p-2 rounded-full text-center text-white`}
+                                    : "bg-red-600"
+                                } px-2 py-1 rounded-full text-center text-white`}
                               >
-                                {order.status ? order.status : "Pending"}
+                                {order.status
+                                  ? order.status.includes("Refunded")
+                                    ? "REFUNDED"
+                                    : order.status
+                                  : "Pending"}
                               </span>
                             </td>
+                            {/* order status */}
+                            <td className="whitespace-nowrap uppercase text-left px-3 py-4 ">
+                              {order?.orderStatus === "completed" && (
+                                <span className="bg-green-600 text-white rounded-full py-1 px-2">
+                                  {order?.orderStatus}
+                                </span>
+                              )}
 
+                              {order?.orderStatus === "processing" && (
+                                <span className="bg-purple-60 text-white bg-purple-600 py-1 px-2 rounded-full">
+                                  {order?.orderStatus}
+                                </span>
+                              )}
+
+                              {order?.orderStatus === "pending" && (
+                                <span className="bg-yellow-500 text-white py-1 px-2 rounded-full">
+                                  {order?.orderStatus}
+                                </span>
+                              )}
+
+                              {order?.orderStatus === "cancel" && (
+                                <span className="bg-red-600 text-white py-1 px-2 rounded-full">
+                                  {order?.orderStatus}
+                                </span>
+                              )}
+                            </td>
                             <td className="whitespace-nowrap px-3 py-4">
                               {order.total}Tk
                             </td>
-
                             <td className="whitespace-nowrap px-2 py-4">
                               <form
                                 className="flex items-center"
@@ -253,6 +330,7 @@ const AllOrders = () => {
                                   <option value="PAID-COD">PAID-COD</option>
                                   <option value="PAID">PAID</option>
                                   <option value="UNPAID">UNPAID</option>
+                                  <option value="CANCEL">CANCEL</option>
                                 </select>
 
                                 <button
@@ -270,7 +348,37 @@ const AllOrders = () => {
                                 </button>
                               </form>
                             </td>
+                            <td className="whitespace-nowrap px-2 py-4">
+                              <form
+                                className="flex items-center"
+                                onSubmit={handleOrderStatusUpdate}
+                              >
+                                <select
+                                  disabled={order?.status?.includes("Refunded")}
+                                  name="orderStatus"
+                                  className="p-2 outline-none bg-neutral-300 rounded-sm disabled:bg-neutral-200"
+                                >
+                                  <option value="completed">COM</option>
+                                  <option value="processing">PROS</option>
+                                  <option value="pending">PEN</option>
+                                  <option value="cancel">CAN</option>
+                                </select>
 
+                                <button
+                                  type="submit"
+                                  disabled={order?.status?.includes("Refunded")}
+                                  onClick={() => setOrderId(order._id)}
+                                  className="bg-neutral-200 rounded-full p-2 flex items-center ml-2"
+                                >
+                                  <TbSettingsFilled
+                                    className={`text-neutral-900 ${
+                                      updatingLoading && "animate-spin"
+                                    }`}
+                                    size={23}
+                                  />
+                                </button>
+                              </form>
+                            </td>
                             <td className="whitespace-nowrap px-3 py-4">
                               <button
                                 onClick={() => handleDeleteOrder(order._id)}

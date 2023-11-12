@@ -6,6 +6,7 @@ import AnimatePage from "../../Shared/AnimatePage";
 import { Link } from "react-router-dom";
 import UpdateAddressModal from "../../update-user-address/UpdateAddressModal";
 import { useQuery } from "@tanstack/react-query";
+import UserOrderCounter from "../../orders/UserOrderCounter";
 
 const Profile = () => {
   useTitle("Profile");
@@ -80,6 +81,9 @@ const Profile = () => {
             setOpenModal={setOpenModal}
           />
         )}
+
+        {/* user order counter */}
+        <UserOrderCounter user={user} />
       </div>
     </AnimatePage>
   );

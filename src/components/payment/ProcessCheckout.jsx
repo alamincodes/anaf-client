@@ -15,7 +15,7 @@ const ProcessCheckout = () => {
   const invoiceID = queryParams.get("invoiceId");
   const [message, setMessage] = useState("");
   const [successPaymentData, setSuccessPaymentData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log(successPaymentData);
   const failAnimation = {
@@ -73,8 +73,6 @@ const ProcessCheckout = () => {
   return (
     <section>
       <div className="myContainer">
-        {/* <div>{message}</div> */}
-
         {/* success */}
         {successPaymentData?.paymentData?.statusCode === "0000" && (
           <SuccessPayment successPaymentData={successPaymentData} />

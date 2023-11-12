@@ -136,7 +136,11 @@ const Checkout = () => {
                       className="flex justify-between items-center p-2 rounded"
                     >
                       <div className="flex items-center space-x-2 ">
-                        <img src={product.img} className="w-12 h-12  " alt="" />
+                        <img
+                          src={product.img}
+                          className="w-12 h-12 rounded"
+                          alt=""
+                        />
 
                         <div>
                           <p className="text-sm">{product.name}</p>
@@ -192,7 +196,7 @@ const Checkout = () => {
                     </h5>
                   </li>
                 </ul>
-                {/* select payment */}
+                {/* <--------------- select payment -------------->*/}
                 <h2 className="font-medium text-md mt-4">
                   Select payment method
                 </h2>
@@ -211,7 +215,7 @@ const Checkout = () => {
 
                     <label
                       htmlFor="Bkash"
-                      className="flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[1px] border-neutral-200 p-4 text-sm font-medium shadow-cardShadow"
+                      className={`flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[2px] ${paymentMethod === "Bkash" ? "border-neutral-800":"border-neutral-200"}  p-4 text-sm font-medium shadow-cardShadow`}
                     >
                       <div className="flex items-center gap-2">
                         <span
@@ -267,6 +271,8 @@ const Checkout = () => {
                 {errorMessage && (
                   <p className="text-red-500 mt-1">{errorMessage}</p>
                 )}
+
+                {/* <------------------- order buttons --------------->*/}
                 <div className="mt-5">
                   {paymentMethod === "Bkash" ? (
                     <button

@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AUTH_CONTEXT } from "../../context/AuthProvider";
-import { useCart } from "react-use-cart";
 import { Link } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { Menu } from "@headlessui/react";
@@ -16,8 +15,7 @@ import LogoutModal from "../modal/LogoutModal";
 
 const ProfileMenu = () => {
   const [openModal, setOpenModal] = useState(false);
-  const { user, logOut } = useContext(AUTH_CONTEXT);
-  const { emptyCart } = useCart();
+  const { user } = useContext(AUTH_CONTEXT);
   const [isAdmin] = useAdmin(user?.email);
 
   return (
@@ -67,7 +65,7 @@ const ProfileMenu = () => {
           )}
           <Menu.Item className="text-sm transition-all px-3 pt-1 ">
             <div onClick={() => setOpenModal(true)}>
-              <h2 className="inline-flex font-medium px-3 rounded w-full items-center py-2 border border-red-300 bg-red-100 hover:bg-red-200">
+              <h2 className="inline-flex font-medium px-3 rounded w-full items-center py-2 hover:bg-red-100">
                 <span className="mr-2">{logoutIcon()}</span>
                 Logout
               </h2>

@@ -6,7 +6,7 @@ import { FaUsers } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
-    <div className="myContainer">
+    <div className="lg:px-5 px-2">
       <ul className="flex border-b items-center border-gray-200 font-gray-500 text-sm font-medium text-gray-500 overflow-x-auto scrollbar-hide">
         <NavLink
           className={({ isActive }) => (isActive ? "text-black" : undefined)}
