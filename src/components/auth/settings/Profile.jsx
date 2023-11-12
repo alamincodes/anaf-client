@@ -41,6 +41,11 @@ const Profile = () => {
       <div className="myContainer mb-3">
         <div className="bg-white  shadow-cardShadow p-5 mt-2">
           <h2 className="font-bold text-orange-500 text-2xl ">Profile</h2>
+          {/* user order counter */}
+          <div className="flex justify-center">
+            <UserOrderCounter user={user} />
+          </div>
+          {/* -------<>------- */}
           <div>
             <div className="flex justify-between items-center">
               <h5 className="font-bold">Name</h5>
@@ -81,9 +86,6 @@ const Profile = () => {
             setOpenModal={setOpenModal}
           />
         )}
-
-        {/* user order counter */}
-        <UserOrderCounter user={user} />
       </div>
     </AnimatePage>
   );
