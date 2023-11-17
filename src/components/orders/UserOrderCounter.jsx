@@ -50,7 +50,7 @@ const UserOrderCounter = ({ user }) => {
         return res.json();
       })
       .then((ordersData) => {
-        // console.log(ordersData);
+        console.log(ordersData);
         setOrdersData(ordersData);
         setIsLoading(false);
       });

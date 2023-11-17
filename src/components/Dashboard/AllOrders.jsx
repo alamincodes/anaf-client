@@ -354,7 +354,7 @@ const AllOrders = () => {
                                 onSubmit={handleOrderStatusUpdate}
                               >
                                 <select
-                                  disabled={order?.status?.includes("Refunded")}
+                                  // disabled={order?.status?.includes("Refunded")}
                                   name="orderStatus"
                                   className="p-2 outline-none bg-neutral-300 rounded-sm disabled:bg-neutral-200"
                                 >
@@ -366,16 +366,13 @@ const AllOrders = () => {
 
                                 <button
                                   type="submit"
-                                  disabled={order?.status?.includes("Refunded")}
+                                  // disabled={order?.status?.includes("Refunded")}
                                   onClick={() => setOrderId(order._id)}
-                                  className="bg-neutral-200 rounded-full p-2 flex items-center ml-2"
+                                  className="bg-blue-600 text-white rounded px-4 py-2 flex items-center ml-2"
                                 >
-                                  <TbSettingsFilled
-                                    className={`text-neutral-900 ${
-                                      updatingLoading && "animate-spin"
-                                    }`}
-                                    size={23}
-                                  />
+                                 {
+                                  updatingLoading ? "Updating..": "Update"
+                                 }
                                 </button>
                               </form>
                             </td>
