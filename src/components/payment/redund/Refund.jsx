@@ -35,7 +35,7 @@ const Refund = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setRefundLoading(false);
         if (data.statusCode === "2034") {
           setErrorMessage("Already refund");
@@ -49,14 +49,17 @@ const Refund = () => {
             status: `Refunded-(${data.refundTrxID})`,
           };
 
-          fetch(`https://anaf-server.vercel.app/order/${orderDetail._id}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `bearer ${localStorage.getItem("accessToken")}`,
-            },
-            body: JSON.stringify(orderStatus),
-          })
+          fetch(
+            `https://anaf-server.vercel.app/order-payment-status/${orderDetail._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                authorization: `bearer ${localStorage.getItem("accessToken")}`,
+              },
+              body: JSON.stringify(orderStatus),
+            }
+          )
             .then((res) => {
               if (res.status === 401 || res.status === 403) {
                 localStorage.removeItem("accessToken");
@@ -65,7 +68,7 @@ const Refund = () => {
               return res.json();
             })
             .then((data) => {
-              // console.log(data);
+              console.log(data);
               toast.success("Successfully refunded");
             });
         }

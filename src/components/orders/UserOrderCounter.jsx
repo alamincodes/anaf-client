@@ -56,7 +56,7 @@ const UserOrderCounter = ({ user }) => {
       });
   }, []);
   return (
-    <section className=" text-white" style={{ width: "100%", height: "250px" }}>
+    <section className=" text-white" style={{ width: "100%", height: "265px" }}>
       <ResponsiveContainer>
         <PieChart width="100%" height="100%">
           <Pie
