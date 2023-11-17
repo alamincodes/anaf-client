@@ -1,0 +1,57 @@
+name: Firebase Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: 🔨 Build
+        env:
+          VITE_FIREBASE_apiKey: ${{ secrets.VITE_FIREBASE_apiKey }}
+          VITE_FIREBASE_authDomain: ${{ secrets.VITE_FIREBASE_authDomain }}
+          VITE_FIREBASE_projectId: ${{ secrets.VITE_FIREBASE_projectId }}
+          VITE_FIREBASE_storageBucket: ${{ secrets.VITE_FIREBASE_storageBucket }}
+          VITE_FIREBASE_messagingSenderId: ${{ secrets.VITE_FIREBASE_messagingSenderId }}
+          VITE_FIREBASE_appId: ${{ secrets.VITE_FIREBASE_appId }}
+          VITE_IMAGE_BB_API_KEY: ${{ secrets.VITE_IMAGE_BB_API_KEY}}
+        run: npm run build
+
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2.3.2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+          path: dist
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
