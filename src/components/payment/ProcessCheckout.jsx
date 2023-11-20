@@ -15,9 +15,10 @@ const ProcessCheckout = () => {
   const invoiceID = queryParams.get("invoiceId");
   const [message, setMessage] = useState("");
   const [successPaymentData, setSuccessPaymentData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   console.log(successPaymentData);
+
   const failAnimation = {
     animationData: failedAnimationIcon,
     loop: false,
@@ -51,10 +52,13 @@ const ProcessCheckout = () => {
             // successfully paid
             // show that payment is paid in UI
             // clear cart
+            setIsLoading(false);
             setMessage(json.message);
+            console.log(json.message);
           } else {
             // show the error
             setMessage(json.message);
+            setIsLoading(false);
             setSuccessPaymentData(json);
           }
           console.log(json);
