@@ -56,32 +56,39 @@ const UserOrderCounter = ({ user }) => {
       });
   }, []);
   return (
-    <section className=" text-white" style={{ width: "100%", height: "265px" }}>
-      <ResponsiveContainer>
-        <PieChart width="100%" height="100%">
-          <Pie
-            data={chartData}
-            dataKey="value"
-            nameKey="name"
-            outerRadius={80}
-            fill="#8884d8"
-            label
-          >
-            {chartData.map((entry, index) => (
-              <Cell
-                key={`cell-${index}`}
-                fill={COLORS[index % COLORS.length]}
+    <>
+      {ordersData.length > 0 && (
+        <section
+          className=" text-white"
+          style={{ width: "100%", height: "265px" }}
+        >
+          <ResponsiveContainer>
+            <PieChart >
+              <Pie
+                data={chartData}
+                dataKey="value"
+                nameKey="name"
+                outerRadius={80}
+                fill="#8884d8"
+                label
+              >
+                {chartData.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip
+                itemStyle={tooltipItemStyle}
+                contentStyle={tooltipContentStyle}
               />
-            ))}
-          </Pie>
-          <Tooltip
-            itemStyle={tooltipItemStyle}
-            contentStyle={tooltipContentStyle}
-          />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
-    </section>
+              <Legend />
+            </PieChart>
+          </ResponsiveContainer>
+        </section>
+      )}
+    </>
   );
 };
 

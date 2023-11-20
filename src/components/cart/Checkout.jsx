@@ -215,7 +215,11 @@ const Checkout = () => {
 
                     <label
                       htmlFor="Bkash"
-                      className={`flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[2px] ${paymentMethod === "Bkash" ? "border-neutral-800":"border-neutral-200"}  p-4 text-sm font-medium shadow-cardShadow`}
+                      className={`flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[2px] ${
+                        paymentMethod === "Bkash"
+                          ? "border-neutral-800"
+                          : "border-neutral-200"
+                      }  p-4 text-sm font-medium shadow-cardShadow`}
                     >
                       <div className="flex items-center gap-2">
                         <span
@@ -247,7 +251,11 @@ const Checkout = () => {
 
                     <label
                       htmlFor="Cash"
-                      className="flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[1px] border-neutral-200 p-4 text-sm font-medium shadow-cardShadow"
+                      className={`flex cursor-pointer items-center justify-between relative rounded-lg bg-white border-[2px] ${
+                        paymentMethod === "CashOnDelivery"
+                          ? "border-neutral-800"
+                          : "border-neutral-200"
+                      }  p-4 text-sm font-medium shadow-cardShadow`}
                     >
                       <div className="flex items-center gap-2">
                         <span

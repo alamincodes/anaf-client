@@ -798,6 +798,78 @@ export const navMenuIcon = () => {
     </svg>
   );
 };
+export const locationIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <rect id="backgr" width={256} height={256} fill="none" rx={60} />
+      <g id="group" transform="translate(0,0) scale(1)">
+        <path
+          d="M37.462 96.000H218.538M37.462 160.000H218.538M128.000 224.000C128.000 224.000 85.333 202.667 85.333 128.000C85.333 53.333 128.000 32.000 128.000 32.000C128.000 32.000 170.667 53.333 170.667 128.000C170.667 202.667 128.000 224.000 128.000 224.000Z"
+          stroke="#ff6600"
+          strokeWidth={25}
+          id="secondary"
+        />
+        <path
+          d="M224.000 128.000C224.000 181.020 181.020 224.000 128.000 224.000C74.981 224.000 32.000 181.020 32.000 128.000C32.000 74.981 74.981 32.000 128.000 32.000C181.020 32.000 224.000 74.981 224.000 128.000Z"
+          stroke="#050505"
+          strokeWidth={25}
+          id="primary"
+        />
+      </g>
+    </svg>
+  );
+};
+export const mailIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 256 256"
+      fill="none"
+      id="my-svg"
+    >
+      <defs>
+        <linearGradient id="gradient1">
+          <stop className="stop1" offset="0%" stopColor="#8f66ff" />
+          <stop className="stop2" offset="100%" stopColor="#3d12ff" />
+        </linearGradient>
+      </defs>
+      <rect id="backgr" width={256} height={256} fill="none" rx={60} />
+      <g id="group" transform="translate(0,0) scale(1)">
+        <path
+          d="M32.000 85.333L104.333 133.555C118.665 143.109 137.335 143.109 151.667 133.555L224.000 85.333"
+          stroke="#ff6600"
+          strokeWidth={25}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="secondary"
+        />
+        <path
+          d="M104.332 44.721C85.333 53.333 32.000 74.667 32.000 85.333V192.000C32.000 202.667 42.667 213.333 53.333 213.333H202.667C213.333 213.333 224.000 202.667 224.000 192.000V85.333C224.000 74.667 170.667 53.333 151.667 44.721C132.667 36.108 123.331 36.108 104.332 44.721Z"
+          stroke="#050505"
+          strokeWidth={25}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          id="primary"
+        />
+      </g>
+    </svg>
+  );
+};
 export const noBalanceIcon = () => {
   return (
     <svg
