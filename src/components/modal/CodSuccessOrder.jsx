@@ -8,7 +8,7 @@ const CodSuccessOrder = ({ successModal, setSuccessModal }) => {
       <Transition appear show={successModal} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-10"
+          className="relative z-50"
           onClose={() => setSuccessModal(false)}
         >
           <Transition.Child
@@ -53,7 +53,7 @@ const CodSuccessOrder = ({ successModal, setSuccessModal }) => {
                   </div>
 
                   <div className="text-right">
-                    <Link to="/orders" >
+                    <Link to="/orders">
                       <button
                         type="button"
                         className="inline-flex justify-center rounded-md border border-transparent bg-black text-white px-4 py-2 text-sm font-medium outline-none"

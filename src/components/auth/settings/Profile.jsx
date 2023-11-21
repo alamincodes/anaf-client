@@ -78,7 +78,7 @@ const Profile = () => {
                 <div className="flex items-center md:flex-row flex-col mt-5 md:space-x-2 space-y-2 md:space-y-0">
                   <Link to="/settings/general" className="w-full">
                     <button className="bg-neutral-800 text-white px-6 py-2 rounded-full w-full">
-                      update Name
+                      Update Name
                     </button>
                   </Link>
                   <button
