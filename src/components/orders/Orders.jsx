@@ -40,14 +40,14 @@ const Orders = () => {
     <AnimatePage>
       {orders.length === 0 ? (
         <div className="myContainer flex justify-center items-center flex-col h-[400px]">
-          <div className="w-[200px] h-[200px]">
+          <div className="w-[150px] h-[150px] bg-[#a3a3a32f] p-5 rounded-full">
             <img src={emptyBox} alt="" />
           </div>
-          <div className="flex flex-col items-center font-medium mt-2">
+          <div className="flex flex-col items-center font-semibold md:text-4xl text-2xl mt-2">
             <h2 className="mb-3">No order found</h2>
             <Link
               to="/"
-              className="text-white ml-2 py-2 px-8 rounded-md bg-neutral-800 "
+              className="text-white ml-2 py-2 px-8 rounded-sm bg-neutral-800 "
             >
               <span className="inline-flex items-center">
                 Back to home <HiChevronRight size={20} />
@@ -140,7 +140,6 @@ const Orders = () => {
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
                               <Link to={`/order/${order._id}`}>
                                 <button className="bg-orange-600 text-white py-2 px-4 rounded">
-                                  {" "}
                                   View
                                 </button>
                               </Link>

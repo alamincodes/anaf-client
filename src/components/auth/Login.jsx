@@ -8,6 +8,8 @@ import AnimatePage from "../Shared/AnimatePage";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import useToken from "../../hooks/useToken";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+
 const Login = () => {
   useTitle("Login");
   const { loginUser } = useContext(AUTH_CONTEXT);
@@ -46,7 +48,7 @@ const Login = () => {
         if (errMessage.includes("user-not-found")) {
           setErrorMessage("User not found");
         } else if (errMessage.includes("wrong-password")) {
-          setErrorMessage("Wrong password");
+          setErrorMessage("Incorrect password provided");
         } else if (errMessage.includes("user-disabled")) {
           setErrorMessage(
             "Your account has been disabled. Please speak to our customer support."
@@ -64,7 +66,7 @@ const Login = () => {
   // console.log(errorMessage);
   return (
     <AnimatePage>
-      <div>
+      <section>
         <div className="md:container md:mx-auto">
           {/* form */}
           <div className="flex justify-center items-center md:mt-5">
@@ -139,7 +141,14 @@ const Login = () => {
                   )}
                 </div>
                 {errors?.password && (
-                  <p className="text-red-600 ">{errors?.password?.message}</p>
+                  <p className="text-red-600 ">
+                    {" "}
+                    <span>
+                      {" "}
+                      <exclamationTriangle className="h-5 w-5 text-yellow-400" />{" "}
+                    </span>{" "}
+                    {errors?.password?.message}
+                  </p>
                 )}
                 {/* forget password  */}
                 <Link to="/forgetPassword">
@@ -150,18 +159,23 @@ const Login = () => {
               </div>
               {/* firebase error message */}
               {errorMessage && (
-                <p className="text-red-500 mt-1 ">{errorMessage}</p>
+                <p className="text-red-600 font-semibold mt-1 bg-red-100 p-2 rounded-sm inline-flex items-center w-full">
+                  <span>
+                    <ExclamationTriangleIcon className="h-5 w-5 text-red-600 mr-2" />
+                  </span>
+                  {errorMessage}
+                </p>
               )}
               {/* submit button */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-black rounded text-white w-full mt-5 p-2 font-semibold select-none"
+                className="bg-black rounded text-white w-full mt-5 md:p-2 p-3 font-semibold select-none"
               >
                 {isLoading ? (
                   <div className="flex justify-center item-center">
                     <svg
-                      className="h-5 w-5 animate-spin text-white"
+                      className="h-6 w-6 animate-spin text-white"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -195,7 +209,7 @@ const Login = () => {
             </form>
           </div>
         </div>
-      </div>
+      </section>
     </AnimatePage>
   );
 };

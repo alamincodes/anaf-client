@@ -29,7 +29,7 @@ const BestOffer = () => {
               {/* right */}
               <div className="w-full">
                 <CountdownClock
-                  startDate="2023-10-29T12:00:00"
+                  startDate="11/29/2023, 12:00:00 PM"
                   d={10}
                   h={0}
                   m={0}
@@ -60,7 +60,7 @@ const BestOffer = () => {
               {/* right */}
               <div className="w-full">
                 <CountdownClock
-                  startDate="2023-10-29T12:00:00"
+                  startDate="11/29/2023, 12:00:00 PM"
                   d={10}
                   h={0}
                   m={0}
@@ -91,7 +91,7 @@ const BestOffer = () => {
               {/* right */}
               <div className="w-full">
                 <CountdownClock
-                  startDate="2023-10-29T12:00:00"
+                  startDate="11/29/2023, 12:00:00 PM"
                   d={10}
                   h={0}
                   m={0}
@@ -122,7 +122,7 @@ const BestOffer = () => {
               {/* right */}
               <div className="w-full">
                 <CountdownClock
-                  startDate="2023-10-29T12:00:00"
+                  startDate="11/29/2023, 12:00:00 PM"
                   d={10}
                   h={0}
                   m={0}

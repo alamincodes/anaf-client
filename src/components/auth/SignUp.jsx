@@ -11,6 +11,7 @@ import useTitle from "../../hooks/useTitle";
 import AnimatePage from "../Shared/AnimatePage";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import useToken from "../../hooks/useToken";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 const SignUp = () => {
   // useTitle
   useTitle("Sign up");
@@ -99,8 +100,8 @@ const SignUp = () => {
 
   return (
     <AnimatePage>
-      <div>
-        <div className="md:container md:mx-auto md:mt-9">
+      <section className="my-5">
+        <div className="md:container md:mx-auto">
           {/* form */}
           <div className="flex justify-center items-center">
             <form
@@ -265,13 +266,18 @@ const SignUp = () => {
               </div>
               {/* error message */}
               {errorMessage && (
-                <p className="text-red-500 mt-1 font-normal">{errorMessage}</p>
+                <p className="text-red-600 font-semibold mt-3 bg-red-100 p-2 inline-flex rounded-sm items-center w-full">
+                  <span>
+                    <ExclamationTriangleIcon className="h-5 w-5 text-red-600 mr-2" />
+                  </span>
+                  {errorMessage}
+                </p>
               )}
               {/* submit button */}
               <button
                 type="submit"
                 disabled={isLoading}
-                className="bg-black rounded disabled:bg-gray-400 text-white w-full mt-5 p-2 font-semibold"
+                className="bg-black rounded disabled:bg-gray-400 text-white w-full mt-3 p-2 font-semibold"
               >
                 Sign up
               </button>
@@ -285,7 +291,7 @@ const SignUp = () => {
             </form>
           </div>
         </div>
-      </div>
+      </section>
     </AnimatePage>
   );
 };

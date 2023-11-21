@@ -94,7 +94,7 @@ const Product = ({ product }) => {
               <HiOutlinePhoto size={100} />
             </span>
             {/* logo */}
-            <div>
+            {/* <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -137,7 +137,7 @@ const Product = ({ product }) => {
                   </g>
                 </g>
               </svg>
-            </div>
+            </div> */}
           </div>
         )}
         <Link to={`/product/${_id}`}>
@@ -168,7 +168,7 @@ const Product = ({ product }) => {
             </Link>
 
             {/* price and add cart btn */}
-            <div className="md:my-5 my-2 flex items-center justify-between">
+            <div className="my-2 flex items-center justify-between">
               <p className="inline-flex items-center">
                 <span>
                   <HiCurrencyBangladeshi

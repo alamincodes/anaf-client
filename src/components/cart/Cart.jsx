@@ -59,11 +59,11 @@ const Cart = () => {
             <div className="w-[200px] h-[200px]">
               <img src={emptyCart} alt="" />
             </div>
-            <h2 className=" font-semibold">Your cart is empty</h2>
+            <h2 className=" font-semibold text-2xl">Your cart is empty</h2>
 
             <Link
               to="/"
-              className=" bg-neutral-800 mt-2 text-white py-3 rounded-md px-8"
+              className=" bg-neutral-800 mt-2 text-white py-3 rounded-sm px-8"
             >
               <button>Continue to shopping</button>
             </Link>
