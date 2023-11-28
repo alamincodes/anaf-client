@@ -29,32 +29,6 @@ const Product = ({ product }) => {
     };
   };
 
-  const {
-    data: favProducts = {},
-    refetch,
-    isLoading,
-  } = useQuery({
-    queryKey: ["email"],
-    queryFn: async () => {
-      const res = await fetch(
-        `https://anaf-server.vercel.app/get-favorite-product?email=${user?.email}`,
-        {
-          headers: {
-            authorization: `bearer ${localStorage.getItem("accessToken")}`,
-          },
-        }
-      );
-      const data = await res.json();
-      return data;
-    },
-  });
-
-  // ! post favorite product
-  const handlePostFavProduct = () => {
-    useFavorite(product, user?.email);
-    refetch();
-  };
-
   useEffect(() => {
     const image = new Image();
     image.onload = () => {
