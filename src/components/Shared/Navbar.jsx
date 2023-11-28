@@ -29,7 +29,7 @@ const Navbar = () => {
                   isActive ? "bg-neutral-900 text-white rounded-sm" : undefined
                 }
               >
-                <li className="cursor-pointer uppercase py-1 px-2">Home</li>
+                <li className="cursor-pointer uppercase py-1 px-4">Home</li>
               </NavLink>
               {/* product */}
               <NavLink
@@ -38,7 +38,7 @@ const Navbar = () => {
                   isActive ? "bg-neutral-900 text-white rounded-sm" : undefined
                 }
               >
-                <li className="cursor-pointer uppercase py-1 px-2">Shop</li>
+                <li className="cursor-pointer uppercase py-1 px-4">Shop</li>
               </NavLink>
               {/* orders */}
               {user?.email && (
@@ -50,7 +50,7 @@ const Navbar = () => {
                       : undefined
                   }
                 >
-                  <li className="cursor-pointer uppercase py-1 px-2">Orders</li>
+                  <li className="cursor-pointer uppercase py-1 px-4">Orders</li>
                 </NavLink>
               )}
             </ul>

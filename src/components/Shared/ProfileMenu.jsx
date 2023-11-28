@@ -24,7 +24,7 @@ const ProfileMenu = () => {
         <Menu.Button>
           <div className="flex items-center space-x-1">
             <span>
-              <img src={avatar} className="w-10 h-10 object-cover" alt="" />
+              <img src={avatar} className="w-9 h-9 object-cover" alt="" />
             </span>
           </div>
         </Menu.Button>

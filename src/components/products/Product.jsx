@@ -168,7 +168,7 @@ const Product = ({ product }) => {
             </Link>
 
             {/* price and add cart btn */}
-            <div className="my-2 flex items-center justify-between">
+            <div className="lg:my-2 my-1 flex items-center justify-between">
               <p className="inline-flex items-center">
                 <span>
                   <HiCurrencyBangladeshi
