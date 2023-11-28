@@ -380,8 +380,8 @@ export const cartIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={32}
-      height={32}
+      width={39}
+      height={39}
       viewBox="0 0 256 256"
       fill="none"
       id="my-svg"

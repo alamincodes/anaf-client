@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/logo/anaf.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -17,6 +17,18 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [jwtSendEmail, setJwtSendEmail] = useState("");
+  useEffect(() => {
+    checkAuth();
+  }, []);
+  const checkAuth = () => {
+    const userToken = localStorage.getItem("accessToken");
+    if (userToken) {
+      navigate("/");
+    } else {
+      navigate("/login");
+    }
+  };
+
   const {
     register,
     formState: { errors },
@@ -64,6 +76,7 @@ const Login = () => {
       });
   };
   // console.log(errorMessage);
+
   return (
     <AnimatePage>
       <section>
