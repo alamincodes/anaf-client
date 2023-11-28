@@ -16,6 +16,7 @@ import LogoutModal from "../modal/LogoutModal";
 const ProfileMenu = () => {
   const [openModal, setOpenModal] = useState(false);
   const { user } = useContext(AUTH_CONTEXT);
+
   const [isAdmin] = useAdmin(user?.email);
 
   return (
