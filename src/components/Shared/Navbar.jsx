@@ -50,7 +50,9 @@ const Navbar = () => {
                       : undefined
                   }
                 >
-                  <li className="cursor-pointer uppercase py-1 px-4">Orders</li>
+                  <li className="cursor-pointer uppercase py-1 px-4">
+                    Test Orders
+                  </li>
                 </NavLink>
               )}
             </ul>
