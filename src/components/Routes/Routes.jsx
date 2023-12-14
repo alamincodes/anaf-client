@@ -122,14 +122,6 @@ export const routes = createBrowserRouter([
         element: <ForgetPAssword />,
       },
       {
-        path: "/process-checkout",
-        element: (
-          <PrivateRoutes>
-            <ProcessCheckout />,
-          </PrivateRoutes>
-        ),
-      },
-      {
         path: "/refund-policy",
         element: <RefundPolicy />,
       },
@@ -194,5 +186,13 @@ export const routes = createBrowserRouter([
         element: <PageNotFound />,
       },
     ],
+  },
+  {
+    path: "/process-checkout",
+    element: (
+      <PrivateRoutes>
+        <ProcessCheckout />,
+      </PrivateRoutes>
+    ),
   },
 ]);

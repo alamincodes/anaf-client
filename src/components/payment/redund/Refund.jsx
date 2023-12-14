@@ -25,7 +25,7 @@ const Refund = () => {
     };
     // console.log(refundData);
     setRefundLoading(true);
-    setErrorMessage("")
+    setErrorMessage("");
     fetch("https://anaf-server.vercel.app/payment/bkash/refund", {
       method: "POST",
       headers: {
@@ -43,6 +43,7 @@ const Refund = () => {
         if (data.statusCode === "2023") {
           setErrorMessage("Insufficient Balance");
         }
+        setErrorMessage(data.statusMessage);
         if (data.statusCode === "0000") {
           setSuccessMessage("Successfully refunded✅");
           const orderStatus = {
@@ -146,7 +147,7 @@ const Refund = () => {
             type="submit"
             className="bg-neutral-800 py-2 rounded text-white mt-2"
           >
-            {refundLoading ? "refunding..." : "Refund"}
+            {refundLoading ? "Loading..." : "Refund"}
           </button>
         </form>
       </div>

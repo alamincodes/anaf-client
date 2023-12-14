@@ -17,7 +17,7 @@ const ProcessCheckout = () => {
   const [successPaymentData, setSuccessPaymentData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  console.log(successPaymentData);
+  // console.log(successPaymentData);
 
   const failAnimation = {
     animationData: failedAnimationIcon,
@@ -61,11 +61,11 @@ const ProcessCheckout = () => {
             setIsLoading(false);
             setSuccessPaymentData(json);
           }
-          console.log(json);
+          // console.log(json);
         });
       return;
     }
-    console.log(status);
+    // console.log(status);
     // failed / cancelled
     setMessage("The payment was " + status);
   }, []);
@@ -81,7 +81,6 @@ const ProcessCheckout = () => {
         {successPaymentData?.paymentData?.statusCode === "0000" && (
           <SuccessPayment successPaymentData={successPaymentData} />
         )}
-
         {/* cancel */}
         {status === "cancel" && (
           <div className="flex justify-center items-center flex-col bg-white shadow md:p-5 p-4 text-center m-5">
@@ -92,11 +91,18 @@ const ProcessCheckout = () => {
             <p className="font-secondary text-lg">
               আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
             </p>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
         {/* cancel */}
@@ -106,11 +112,18 @@ const ProcessCheckout = () => {
               The payment has already been completed
             </h3>
 
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
         {/* failed */}
@@ -123,11 +136,18 @@ const ProcessCheckout = () => {
             <p className="font-secondary text-lg">
               আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
             </p>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
         {/* failed */}
@@ -140,11 +160,18 @@ const ProcessCheckout = () => {
             <p className="font-secondary text-lg">
               আপনার পেমেন্টি বাতিল হয়েছে, দয়া করে আবার চেষ্টা করুন।
             </p>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
         {/* failed */}
@@ -156,11 +183,18 @@ const ProcessCheckout = () => {
             <p className="font-secondary text-lg">
               আপনার একাউন্টে পর্যাপ্ত পরিমাণ ব্যালেন্স নেই।
             </p>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
         {/* DUPLICATE FOR ALL TRANSACTIONS*/}
@@ -169,11 +203,18 @@ const ProcessCheckout = () => {
             <h3 className="text-red-600 font-bold md:text-5xl text-xl my-3 uppercase">
               {successPaymentData?.message}
             </h3>
-            <Link to="/cart">
-              <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
-                Try again
-              </button>
-            </Link>
+            <div className="flex items-center space-x-2">
+              <Link to="/">
+                <button className="bg-neutral-800 text-white px-6 py-2 rounded mt-3">
+                  Home
+                </button>
+              </Link>
+              <Link to="/cart">
+                <button className="bg-orange-500 text-white px-6 py-2 rounded mt-3">
+                  Try again
+                </button>
+              </Link>
+            </div>
           </div>
         )}
       </div>
