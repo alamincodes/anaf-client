@@ -35,28 +35,28 @@ const FooterSection = () => {
             {/* detail */}
             <div className="font-secondary ">
               <ul className="flex flex-wrap items-center justify-center space-x-4">
-                <li>
+                <li className="hover:text-orange-500 duration-200">
                   <Link>
                     <button>পেমেন্ট করুন</button>
                   </Link>
                 </li>
-                <li>
+                <li className="hover:text-orange-500 duration-200">
                   <Link>
                     <button>ফেসবুক গ্রুপ</button>
                   </Link>
                 </li>
-                <li>
-                  <Link>
+                <li className="hover:text-orange-500 duration-200">
+                  <Link to="contact">
                     <button>যোগাযোগ</button>
                   </Link>
                 </li>
-                <li>
-                  <Link to='/refund-policy'>
+                <li className="hover:text-orange-500 duration-200">
+                  <Link to="/refund-policy">
                     <button>রিফান্ড পলিসি</button>
                   </Link>
                 </li>
                 <li>
-                  <Link>
+                  <Link className="hover:text-orange-500 duration-200">
                     <button>প্রাইভেসি পলিসি</button>
                   </Link>
                 </li>
@@ -109,7 +109,11 @@ const FooterSection = () => {
           <div className="flex items-center space-x-10 border-t border-neutral-800 border-b">
             <h5 className="text-orange-500">Pay with</h5>
             <div className="border-l border-neutral-800 pl-10 py-5">
-              <img src={bkashPayment} alt="bkashPayment" className="w-24 h-full bg-white rounded-lg p-2" />
+              <img
+                src={bkashPayment}
+                alt="bkashPayment"
+                className="w-24 h-full bg-white rounded-lg p-2"
+              />
             </div>
           </div>
           <p className="text-white text-center text-xs py-5">
