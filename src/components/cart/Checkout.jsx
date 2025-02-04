@@ -55,7 +55,7 @@ const Checkout = () => {
   const handleBkashOrder = () => {
     const checkoutInfo = {
       invoiceId: invoiceId,
-      callbackURL: `https://anafshop.com/process-checkout?invoiceId=${invoiceId}`,
+      callbackURL: `https://anaf-4fb1c.web.app/process-checkout?invoiceId=${invoiceId}`,
     };
 
     setPaymentLoading(true);
@@ -122,18 +122,18 @@ const Checkout = () => {
 
   return (
     <AnimatePage>
-      <section className="myContainer mb-5">
+      <section className="mb-5 myContainer">
         {items.length > 0 ? (
-          <div className="flex items-start lg:flex-row flex-col lg:gap-5">
+          <div className="flex flex-col items-start lg:flex-row lg:gap-5">
             {/* price details */}
-            <div className="w-full col-span-4 relative rounded bg-white shadow p-4 mt-3">
+            <div className="relative w-full col-span-4 p-4 mt-3 bg-white rounded shadow">
               {/* price details */}
               <div>
                 <ul className="space-y-5">
                   {invoiceData.productsList?.map((product) => (
                     <li
                       key={product._id}
-                      className="flex justify-between items-center p-2 rounded"
+                      className="flex items-center justify-between p-2 rounded"
                     >
                       <div className="flex items-center space-x-2 ">
                         <img
@@ -155,14 +155,14 @@ const Checkout = () => {
               </div>
             </div>
             {/* User order data */}
-            <div className="bg-white shadow rounded py-5 col-span-3 mt-3 lg:w-2/3 w-full lg:sticky lg:top-20">
+            <div className="w-full col-span-3 py-5 mt-3 bg-white rounded shadow lg:w-2/3 lg:sticky lg:top-20">
               <div className="px-4 ">
                 {/* user info */}
-                <div className="bg-neutral-100 rounded p-2 relative">
+                <div className="relative p-2 rounded bg-neutral-100">
                   {/* update address  btn*/}
                   <button
                     onClick={() => setOpenModal(true)}
-                    className="absolute right-2 bg-neutral-800 text-white px-4 py-2 text-xs rounded flex items-center"
+                    className="absolute flex items-center px-4 py-2 text-xs text-white rounded right-2 bg-neutral-800"
                   >
                     {" "}
                     <span>
@@ -183,24 +183,24 @@ const Checkout = () => {
                 </div>
                 {/* <-------- total price --------> */}
                 <ul className="p-5 text-[15px] bg-orange-50 border border-dashed border-orange-500 rounded mt-5">
-                  <li className="font-semibold flex justify-between uppercase">
+                  <li className="flex justify-between font-semibold uppercase">
                     <span>Subtotal:</span> <span>৳ {invoiceData.subtotal}</span>
                   </li>
-                  <li className="font-semibold flex justify-between my-2 uppercase">
+                  <li className="flex justify-between my-2 font-semibold uppercase">
                     <span> Delivery charge:</span>{" "}
                     <span>৳ {invoiceData.deliveryCharge}</span>
                   </li>
-                  <li className=" font-bold border-t border-dashed border-orange-500">
-                    <h5 className="font-semibold flex justify-between my-2 uppercase">
+                  <li className="font-bold border-t border-orange-500 border-dashed ">
+                    <h5 className="flex justify-between my-2 font-semibold uppercase">
                       <span>Total:</span> <span>৳ {invoiceData.total}</span>
                     </h5>
                   </li>
                 </ul>
                 {/* <--------------- select payment -------------->*/}
-                <h2 className="font-medium text-md mt-4">
+                <h2 className="mt-4 font-medium text-md">
                   Select payment method
                 </h2>
-                <div className="flex md:flex-row flex-col items-center gap-4 my-3">
+                <div className="flex flex-col items-center gap-4 my-3 md:flex-row">
                   {/* Bkash payment */}
                   <div className="w-full">
                     <input
@@ -268,8 +268,8 @@ const Checkout = () => {
                           <HiOutlineCheck size={15} />
                         </span>
 
-                        <p className="text-black flex items-center">
-                          <TbTruckDelivery className="w-7 h-9 mr-1" /> Cash on
+                        <p className="flex items-center text-black">
+                          <TbTruckDelivery className="mr-1 w-7 h-9" /> Cash on
                           delivery
                         </p>
                       </div>
@@ -277,7 +277,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 {errorMessage && (
-                  <p className="text-red-500 mt-1">{errorMessage}</p>
+                  <p className="mt-1 text-red-500">{errorMessage}</p>
                 )}
 
                 {/* <------------------- order buttons --------------->*/}
@@ -292,7 +292,7 @@ const Checkout = () => {
                         {paymentLoading ? (
                           <div className="flex justify-center item-center">
                             <svg
-                              className="h-7 w-7 animate-spin text-white"
+                              className="text-white h-7 w-7 animate-spin"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
@@ -327,7 +327,7 @@ const Checkout = () => {
                         {paymentLoading ? (
                           <div className="flex justify-center item-center">
                             <svg
-                              className="h-7 w-7 animate-spin text-white"
+                              className="text-white h-7 w-7 animate-spin"
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
                               viewBox="0 0 24 24"
@@ -360,9 +360,9 @@ const Checkout = () => {
           </div>
         ) : (
           <div className="flex flex-col justify-center items-center h-[400px]">
-            <h4 className="font-bold text-2xl">No product found</h4>
+            <h4 className="text-2xl font-bold">No product found</h4>
             <Link to="/">
-              <button className="bg-neutral-800 text-white py-2 px-6 rounded mt-3">
+              <button className="px-6 py-2 mt-3 text-white rounded bg-neutral-800">
                 Continue shopping
               </button>
             </Link>

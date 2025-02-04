@@ -12,7 +12,7 @@ const FooterSection = () => {
         await navigator.share({
           title: "ANAF SHOP",
           text: "Hello, I am pleased to invite you to register using this link:",
-          url: "https://anafshop.com/",
+          url: "https://anaf-4fb1c.web.app/",
         });
       } catch (error) {
         console.error("Error sharing:", error);
@@ -22,7 +22,7 @@ const FooterSection = () => {
     }
   };
   return (
-    <div className="mt-auto print:hidden bg-neutral-900 text-white">
+    <div className="mt-auto text-white print:hidden bg-neutral-900">
       <footer className="myContainer">
         <div>
           {/* logo */}
@@ -31,32 +31,32 @@ const FooterSection = () => {
           </div>
 
           {/* details and social media */}
-          <div className="flex md:flex-row flex-col-reverse  gap-y-4 justify-between items-center border-t border-neutral-800 py-5">
+          <div className="flex flex-col-reverse items-center justify-between py-5 border-t md:flex-row gap-y-4 border-neutral-800">
             {/* detail */}
             <div className="font-secondary ">
               <ul className="flex flex-wrap items-center justify-center space-x-4">
-                <li className="hover:text-orange-500 duration-200">
+                <li className="duration-200 hover:text-orange-500">
                   <Link>
                     <button>পেমেন্ট করুন</button>
                   </Link>
                 </li>
-                <li className="hover:text-orange-500 duration-200">
+                <li className="duration-200 hover:text-orange-500">
                   <Link>
                     <button>ফেসবুক গ্রুপ</button>
                   </Link>
                 </li>
-                <li className="hover:text-orange-500 duration-200">
+                <li className="duration-200 hover:text-orange-500">
                   <Link to="contact">
                     <button>যোগাযোগ</button>
                   </Link>
                 </li>
-                <li className="hover:text-orange-500 duration-200">
+                <li className="duration-200 hover:text-orange-500">
                   <Link to="/refund-policy">
                     <button>রিফান্ড পলিসি</button>
                   </Link>
                 </li>
                 <li>
-                  <Link className="hover:text-orange-500 duration-200">
+                  <Link className="duration-200 hover:text-orange-500">
                     <button>প্রাইভেসি পলিসি</button>
                   </Link>
                 </li>
@@ -66,7 +66,7 @@ const FooterSection = () => {
             <div className="flex items-center space-x-4">
               <h5
                 onClick={handleShare}
-                className="text-white bg-neutral-600 flex items-center justify-center p-2 rounded-full"
+                className="flex items-center justify-center p-2 text-white rounded-full bg-neutral-600"
               >
                 <button>
                   {" "}
@@ -75,7 +75,7 @@ const FooterSection = () => {
               </h5>
               <Link
                 to="/contact"
-                className="text-white bg-neutral-600 flex items-center justify-center p-2 rounded-full"
+                className="flex items-center justify-center p-2 text-white rounded-full bg-neutral-600"
               >
                 <button>
                   {" "}
@@ -86,7 +86,7 @@ const FooterSection = () => {
               <a
                 target="_blank"
                 href="https://www.facebook.com/anaafshop"
-                className="text-white bg-neutral-600 flex items-center justify-center p-2 rounded-full"
+                className="flex items-center justify-center p-2 text-white rounded-full bg-neutral-600"
               >
                 <button>
                   {" "}
@@ -96,7 +96,7 @@ const FooterSection = () => {
               <a
                 target="_blank"
                 href="https://www.instagram.com/anaafshop"
-                className="text-white bg-neutral-600 flex items-center justify-center p-2 rounded-full"
+                className="flex items-center justify-center p-2 text-white rounded-full bg-neutral-600"
               >
                 <button>
                   {" "}
@@ -106,17 +106,17 @@ const FooterSection = () => {
             </div>
           </div>
           {/* payment */}
-          <div className="flex items-center space-x-10 border-t border-neutral-800 border-b">
+          <div className="flex items-center space-x-10 border-t border-b border-neutral-800">
             <h5 className="text-orange-500">Pay with</h5>
-            <div className="border-l border-neutral-800 pl-10 py-5">
+            <div className="py-5 pl-10 border-l border-neutral-800">
               <img
                 src={bkashPayment}
                 alt="bkashPayment"
-                className="w-24 h-full bg-white rounded-lg p-2"
+                className="w-24 h-full p-2 bg-white rounded-lg"
               />
             </div>
           </div>
-          <p className="text-white text-center text-xs py-5">
+          <p className="py-5 text-xs text-center text-white">
             {`© Copyright ${new Date().getFullYear()} ANAF - All rights reserved.`}
           </p>
         </div>

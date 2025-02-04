@@ -177,17 +177,17 @@ const AllOrders = () => {
     <AnimatePage>
       <section>
         <div className="my-2 ">
-          <form onSubmit={handleSearch} className="flex items-center flex-row">
+          <form onSubmit={handleSearch} className="flex flex-row items-center">
             <input
               type="text"
-              className="bg-neutral-200 outline-none p-3 w-full placeholder:text-neutral-600"
+              className="w-full p-3 outline-none bg-neutral-200 placeholder:text-neutral-600"
               placeholder="Search order id #035350"
               name="search"
               id=""
             />
             <button
               type="submit"
-              className=" bg-neutral-900 text-white p-3 px-4 "
+              className="p-3 px-4 text-white bg-neutral-900"
             >
               {" "}
               Search{" "}
@@ -200,8 +200,8 @@ const AllOrders = () => {
               <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden">
-                    <table className="min-w-full text-left text-sm font-light">
-                      <thead className="border-b bg-white font-medium uppercase">
+                    <table className="min-w-full text-sm font-light text-left">
+                      <thead className="font-medium uppercase bg-white border-b">
                         <tr>
                           <th scope="col" className="px-3 py-4">
                             #Id
@@ -247,31 +247,33 @@ const AllOrders = () => {
                         {getCurrentPageData()?.map((order, i) => (
                           <tr
                             key={order._id}
-                            className="border-b odd:bg-gray-100 font-medium"
+                            className="font-medium border-b odd:bg-gray-100"
                           >
                             <td
-                              className="whitespace-nowrap px-3 py-4 font-medium"
+                              className="px-3 py-4 font-medium whitespace-nowrap"
                               title={order.orderId}
                             >
                               #{order.orderId}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 font-medium">
+                            <td className="px-3 py-4 font-medium whitespace-nowrap">
                               <h2>{order.userData?.name}</h2>
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
+                            <td className="px-3 py-4 whitespace-nowrap">
                               {order.dateTime}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
-                              {order?.productsList[0].name.length > 15 ? (
+                            <td className="px-3 py-4 whitespace-nowrap">
+                              {order?.productsList?.[0]?.name ? (
                                 <h5>
-                                  {order?.productsList[0]?.name.substr(0, 15) +
-                                    "..."}
+                                  {order.productsList[0].name.length > 15
+                                    ? order.productsList[0].name.substr(0, 15) +
+                                      "..."
+                                    : order.productsList[0].name}
                                 </h5>
                               ) : (
-                                <h5>{order?.productsList[0]?.name}</h5>
+                                <h5>No product name</h5>
                               )}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 ">
+                            <td className="px-3 py-4 whitespace-nowrap ">
                               <span
                                 className={`${
                                   order.status === "PAID" ||
@@ -289,35 +291,35 @@ const AllOrders = () => {
                               </span>
                             </td>
                             {/* order status */}
-                            <td className="whitespace-nowrap uppercase text-left px-3 py-4 ">
+                            <td className="px-3 py-4 text-left uppercase whitespace-nowrap ">
                               {order?.orderStatus === "completed" && (
-                                <span className="bg-green-600 text-white rounded-full py-1 px-2">
+                                <span className="px-2 py-1 text-white bg-green-600 rounded-full">
                                   {order?.orderStatus}
                                 </span>
                               )}
 
                               {order?.orderStatus === "processing" && (
-                                <span className="bg-purple-60 text-white bg-purple-600 py-1 px-2 rounded-full">
+                                <span className="px-2 py-1 text-white bg-purple-600 rounded-full bg-purple-60">
                                   {order?.orderStatus}
                                 </span>
                               )}
 
                               {order?.orderStatus === "pending" && (
-                                <span className="bg-yellow-500 text-white py-1 px-2 rounded-full">
+                                <span className="px-2 py-1 text-white bg-yellow-500 rounded-full">
                                   {order?.orderStatus}
                                 </span>
                               )}
 
                               {order?.orderStatus === "cancel" && (
-                                <span className="bg-red-600 text-white py-1 px-2 rounded-full">
+                                <span className="px-2 py-1 text-white bg-red-600 rounded-full">
                                   {order?.orderStatus}
                                 </span>
                               )}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
+                            <td className="px-3 py-4 whitespace-nowrap">
                               {order.total}Tk
                             </td>
-                            <td className="whitespace-nowrap px-2 py-4">
+                            <td className="px-2 py-4 whitespace-nowrap">
                               <form
                                 className="flex items-center"
                                 onSubmit={handleUpdate}
@@ -325,7 +327,7 @@ const AllOrders = () => {
                                 <select
                                   disabled={order?.status?.includes("Refunded")}
                                   name="orderStatus"
-                                  className="p-2 outline-none bg-neutral-300 rounded-sm disabled:bg-neutral-200"
+                                  className="p-2 rounded-sm outline-none bg-neutral-300 disabled:bg-neutral-200"
                                 >
                                   <option value="PAID-COD">PAID-COD</option>
                                   <option value="PAID">PAID</option>
@@ -337,7 +339,7 @@ const AllOrders = () => {
                                   type="submit"
                                   disabled={order?.status?.includes("Refunded")}
                                   onClick={() => setOrderId(order._id)}
-                                  className="bg-neutral-200 rounded-full p-2 flex items-center ml-2"
+                                  className="flex items-center p-2 ml-2 rounded-full bg-neutral-200"
                                 >
                                   <TbSettingsFilled
                                     className={`text-neutral-900 ${
@@ -348,7 +350,7 @@ const AllOrders = () => {
                                 </button>
                               </form>
                             </td>
-                            <td className="whitespace-nowrap px-2 py-4">
+                            <td className="px-2 py-4 whitespace-nowrap">
                               <form
                                 className="flex items-center"
                                 onSubmit={handleOrderStatusUpdate}
@@ -356,7 +358,7 @@ const AllOrders = () => {
                                 <select
                                   // disabled={order?.status?.includes("Refunded")}
                                   name="orderStatus"
-                                  className="p-2 outline-none bg-neutral-300 rounded-sm disabled:bg-neutral-200"
+                                  className="p-2 rounded-sm outline-none bg-neutral-300 disabled:bg-neutral-200"
                                 >
                                   <option value="completed">COM</option>
                                   <option value="processing">PROS</option>
@@ -368,23 +370,21 @@ const AllOrders = () => {
                                   type="submit"
                                   // disabled={order?.status?.includes("Refunded")}
                                   onClick={() => setOrderId(order._id)}
-                                  className="bg-blue-600 text-white rounded px-4 py-2 flex items-center ml-2"
+                                  className="flex items-center px-4 py-2 ml-2 text-white bg-blue-600 rounded"
                                 >
-                                 {
-                                  updatingLoading ? "Updating..": "Update"
-                                 }
+                                  {updatingLoading ? "Updating.." : "Update"}
                                 </button>
                               </form>
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
+                            <td className="px-3 py-4 whitespace-nowrap">
                               <button
                                 onClick={() => handleDeleteOrder(order._id)}
-                                className="bg-red-600 cursor-pointer flex items-center justify-center rounded-full p-2"
+                                className="flex items-center justify-center p-2 bg-red-600 rounded-full cursor-pointer"
                               >
                                 {deleteLoading ? (
                                   <HiOutlineCog8Tooth
                                     size={20}
-                                    className="bg-red-600 animate-spin text-white"
+                                    className="text-white bg-red-600 animate-spin"
                                   />
                                 ) : (
                                   <TbTrashFilled
@@ -394,19 +394,19 @@ const AllOrders = () => {
                                 )}
                               </button>
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 font-medium">
+                            <td className="px-3 py-4 font-medium whitespace-nowrap">
                               <Link to={`/order/${order._id}`}>
-                                <button className="bg-blue-600 px-4 py-2 text-white rounded">
+                                <button className="px-4 py-2 text-white bg-blue-600 rounded">
                                   {" "}
                                   View
                                 </button>
                               </Link>
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4">
+                            <td className="px-3 py-4 whitespace-nowrap">
                               <Link to={`/dashboard/refund/${order._id}`}>
                                 <button
                                   disabled={order.status !== "PAID"}
-                                  className="bg-purple-600 disabled:bg-neutral-300 py-2 px-4 rounded text-white"
+                                  className="px-4 py-2 text-white bg-purple-600 rounded disabled:bg-neutral-300"
                                 >
                                   Refund
                                 </button>
@@ -423,9 +423,9 @@ const AllOrders = () => {
           )}
         </div>
         {/* Pagination controls */}
-        <div className="text-right mt-2 flex justify-end space-x-3 mb-3">
+        <div className="flex justify-end mt-2 mb-3 space-x-3 text-right">
           <button
-            className="bg-black disabled:bg-neutral-500 text-white p-1 rounded px-3"
+            className="p-1 px-3 text-white bg-black rounded disabled:bg-neutral-500"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
           >
@@ -435,7 +435,7 @@ const AllOrders = () => {
             {currentPage} of {totalPages}
           </span>
           <button
-            className="bg-black disabled:bg-neutral-500 text-white p-1 rounded px-3"
+            className="p-1 px-3 text-white bg-black rounded disabled:bg-neutral-500"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
           >
