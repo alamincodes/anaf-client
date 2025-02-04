@@ -46,7 +46,7 @@ const Cart = () => {
         if (data.acknowledged) {
           setIsLoading(false);
           window.location.replace(
-            `http://localhost:5173/checkout?invoiceId=${data.insertedId}`
+            `https://anaf-4fb1c.web.app/checkout?invoiceId=${data.insertedId}`
           );
         }
       });
@@ -63,7 +63,7 @@ const Cart = () => {
 
             <Link
               to="/"
-              className="px-8 py-3 mt-2 text-white rounded-sm  bg-neutral-800"
+              className="px-8 py-3 mt-2 text-white rounded-sm bg-neutral-800"
             >
               <button>Continue to shopping</button>
             </Link>
